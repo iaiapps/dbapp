@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="{{url('dbapps')}}/css/app.css" />
   </head>
   <body>
+    @php
+        $nama_apk = DB::table('database_settings')->where('name','app_name')->first();
+    @endphp
     <div id="sidebar" class="sidebar bg-primary">
-      <h3 class="text-center text-light text-bold judul">DATABASE APP</h3>
-      <h3 class="text-center text-light text-bold judulalt">DB</h3>
+      <h3 class="text-center text-light text-bold judul">{{$nama_apk->value}}</h3>
+      <h3 class="text-center text-light text-bold judulalt">{{$nama_apk->info}}</h3>
      @include('layout.partials.avatar')
      @include('layout.partials.menu')
     </div>
