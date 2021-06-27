@@ -7,13 +7,12 @@ use Illuminate\Support\Facades\DB;
 
 class MenuSeeder extends Seeder
 {
-  
     public function run()
     {
         DB::table('menus')->insert([
             [
                 'name'=>'Home',
-                'url'=>'#',
+                'url'=>'/',
                 'icon'=>'las la-home',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
@@ -31,7 +30,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'name'=>'Data guru',
-                'url'=>'#',
+                'url'=>'/operator/teachers',
                 'icon'=>'las la-home',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
@@ -49,17 +48,36 @@ class MenuSeeder extends Seeder
             ],
             [
                 'name'=>'Data siswa',
-                'url'=>'#',
+                'url'=>'/operator/students',
                 'icon'=>'las la-home',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
                 'role_id'=>'1',
             ],
-
             [
-                'name'=>'Menu Operator',
-                'url'=>'#',
+                'name'=>'Import Data',
+                'url'=>'/operator/import',
+                'icon'=>'las la-home',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'1',
+                'role_id'=>'1',
+            ],
+            // MENU OPERATOR
+            [
+                'name'=>'Home',
+                'url'=>'/',
+                'icon'=>'las la-home',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'1',
+                'role_id'=>'2',
+            ],
+            
+            [
+                'name'=>'Data siswa',
+                'url'=>'/operator/students',
                 'icon'=>'las la-home',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
@@ -68,22 +86,50 @@ class MenuSeeder extends Seeder
             ],
 
             [
-                'name'=>'Menu Guru',
-                'url'=>'#',
+                'name'=>'Home',
+                'url'=>'/',
                 'icon'=>'las la-home',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
                 'role_id'=>'3',
             ],
-
             [
-                'name'=>'Menu Siswa',
-                'url'=>'#',
+                'name'=>'Biodata',
+                'url'=>'/guru/biodata',
+                'icon'=>'las la-home',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'2',
+                'role_id'=>'3',
+            ],
+
+            // MENU SISWA
+            [
+                'name'=>'Home',
+                'url'=>'/',
                 'icon'=>'las la-home',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
+                'role_id'=>'4',
+            ],
+            [
+                'name'=>'Data Siswa',
+                'url'=>'/siswa/data',
+                'icon'=>'las la-home',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'2',
+                'role_id'=>'4',
+            ],
+            [
+                'name'=>'Pengajuan Revisi',
+                'url'=>'/siswa/pengajuan_revisi',
+                'icon'=>'las la-home',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'3',
                 'role_id'=>'4',
             ],
         ]);

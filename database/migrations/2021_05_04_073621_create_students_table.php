@@ -10,7 +10,7 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('nama')->nullable();
             $table->integer('nipd')->nullable();
             $table->string('jk')->nullable();
@@ -28,8 +28,8 @@ class CreateStudentsTable extends Migration
             $table->integer('kode_pos')->nullable();
             $table->string('jenis_tinggal')->nullable();
             $table->string('alat_transportasi')->nullable();
-            $table->integer('telepon')->nullable();
-            $table->integer('hp')->nullable();
+            $table->string('telepon')->nullable();
+            $table->string('hp')->nullable();
             $table->string('email')->nullable();
             $table->string('skhun')->nullable();
             $table->string('penerima_kps')->nullable();
@@ -84,6 +84,10 @@ class CreateStudentsTable extends Migration
             $table->string('hp_ayah')->nullable();
             $table->string('hp_ibu')->nullable();
             $table->string('hp_wali')->nullable();
+            $table->string('kota')->nullable();
+            $table->string('provinsi')->nullable();
+            
+            $table->string('status_verifikasi')->nullable();
 
             $table->timestamps();
         });

@@ -1,0 +1,24 @@
+UPLOAD SISWA
+ - KK
+ - AKTE
+
+UPLOAD GURU
+ - KTP
+ - IJAZAH ALL
+ - KK
+
+Status SISWA
+1. Berhasil verfifikasi
+2. Menunggu verifikasi
+3. Perubahan sedang ditinjau
+
+Siswa punya tabel 
+- students (utama)
+- achievements (menyimpan data prestasi siswa)
+- submissions (penampung request edit data)
+
+guru punya table
+- trachers (utama)
+- educations (riwayat pendidikan)
+- childs
+- trainings

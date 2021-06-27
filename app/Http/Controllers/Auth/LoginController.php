@@ -31,4 +31,9 @@ class LoginController extends Controller
         return redirect()->route('home');   
     }
 
+    public function cekNis()
+    {
+        return view('auth.cek_nis');
+    }
+
 }

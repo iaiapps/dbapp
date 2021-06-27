@@ -25,9 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $role_id = Auth::user()->roles->first()->id;
-        $menus= DB::table('menus')->where('role_id',$role_id)->get();
-        $as = Auth::user()->name;
-        return view('admin.home',compact('menus','as'));
+        return view('admin.home');
     }
 }
