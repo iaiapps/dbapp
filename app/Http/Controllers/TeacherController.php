@@ -20,6 +20,7 @@ class TeacherController extends Controller
         DB::table('model_has_roles')->where('model_id',$id)->update(['role_id'=>3]);
         return view('guru.input_identitas');
     }
+
     function inputData(Request $request)
     {
         $validated = $request->validate([
@@ -43,7 +44,6 @@ class TeacherController extends Controller
         }else{
             return view('guru.biodata', compact('item'));
         }
-        
     }
      function editTeacher()
     {

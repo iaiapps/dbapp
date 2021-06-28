@@ -2,7 +2,7 @@
      <div class="panel">
          <div class="foto py-2">
              <img src="{{ url('dbapps') }}/img/hacker.svg" alt="" />
-             <h4 class="text-center">{{ Auth::user()->name }}</h4>
+             <p class="text-center" style="font-weight: bold; text-transform:lowercase">{{ Auth::user()->name }}</p>
          </div>
          <div class="panel-footer">
              <a href="{{ route('ganti-pass') }}" class="btn btn-sd col-12">Ganti password</a>

@@ -8,9 +8,9 @@
      @yield('alert')
 
      <section class="navbar-section m-2">
-         <button class="btn btn-primary btn-lg btn-action m-2">
+         <a href="{{ route('siswa.contact_center') }}" class="btn btn-primary btn-lg btn-action m-2">
              <i class="las la-envelope"></i>
-         </button>
+         </a>
          <button class="btn btn-primary btn-lg btn-action m-2" id="tbllogout">
              <i class="las la-user"></i>
          </button>

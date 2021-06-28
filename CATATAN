@@ -22,3 +22,7 @@ guru punya table
 - educations (riwayat pendidikan)
 - childs
 - trainings
+
+Sebelum sinkron lagi dengan template pastikan 
+1. Salin file public/dbapps/js/tata.js
+2. Salin file public/dbapps/css/modal.css

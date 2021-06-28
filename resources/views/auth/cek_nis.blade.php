@@ -36,9 +36,9 @@
                     </div>
                     <br />
                     <button class="btn col-12 text-large" type="submit">Klaim NIS</button>
-                    <a href="{{ route('guru.input') }}" class="btn btn-secondary">Guru</a>
-                    <a href="" class="btn btn-secondary">Pegawai</a>
                 </form>
+                <a href="{{ route('guru.input') }}" class="btn btn-secondary">Guru / Pegawai</a>
+
             </div>
         </div>
     </div>

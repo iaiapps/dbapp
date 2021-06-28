@@ -3,16 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SiswaController;
 use PHPUnit\Framework\Constraint\Operator;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
+use App\Models\User;
 
 Route::get('/cc', function () {
     Artisan::call('cache:clear');
@@ -46,7 +48,17 @@ Route::get('/', [HomeController::class, 'index']);
 
 // ROUTE::ADMIN
 Route::middleware('role:admin')->group(function () {
-    Route::prefix('/admin', function () {
+    Route::resource('user', UserController::class);
+    Route::prefix('/admin')->group(function () {
+        Route::get('/db_settings',[AdminController::class,'dbSettings']);
+        Route::get('/users',[UserController::class,'index'])->name('admin.users');
+        Route::get('/edit_db_set/{id}',[AdminController::class,'editDbset'])->name('admin.editDbset');
+        Route::delete('/hapus_db_set/{id}',[AdminController::class,'hapusDbset'])->name('admin.hapusDbset');
+        
+        Route::post('/users/import',[UserController::class,'import'])->name('admin.import_users');
+        Route::post('/students/import',[StudentController::class,'import'])->name('admin.import_students');
+        Route::get('/students/export',[StudentController::class,'export'])->name('admin.export_students');
+
     });
 });
 
@@ -59,13 +71,15 @@ Route::middleware('role:operator|admin')->group(function () {
         Route::put('/student/edit/{id}',[OperatorController::class,'updateStudent'])->name('student_update');
         Route::delete('/student/{id}',[OperatorController::class,'destroy'])->name('student_delete');
         Route::get('/import',[OperatorController::class,'import']);
-
+        
         Route::get('/teachers',[OperatorController::class,'getTeachers'])->name('teachers');
         Route::get('/teacher/{id}',[OperatorController::class,'getTeacher'])->name('teacher_detail');
         Route::get('/teacher/edit/{id}',[OperatorController::class,'editTeacher'])->name('teacher_edit');
         Route::put('/teacher/edit/{id}',[OperatorController::class,'updateTeacher'])->name('teacher_update');
-        Route::delete('/teacher/{id}',[OperatorController::class,'destroy'])->name('teacher_delete');
-
+        Route::delete('/teacher/{id}',[OperatorController::class,'destroyTeacher'])->name('teacher_delete');
+        
+        Route::get('/revisi_data',[OperatorController::class,'revisiData'])->name('operator.revisi_data');
+        Route::get('/compare_revisi/{id}',[OperatorController::class,'compareRevisi'])->name('compare_revisi');
     });
 });
 
@@ -75,7 +89,7 @@ Route::middleware('role:operator|admin')->group(function () {
 
 // ROUTE::GURU
 route::get('/guru/input',[TeacherController::class,'input'])->name('guru.input');
-Route::middleware('role:guru')->group(function () {
+Route::middleware('role:guru|karyawan}')->group(function () {
     Route::prefix('guru')->group(function () {
         route::post('input',[TeacherController::class,'inputData'])->name('guru.input_data');
         route::get('/biodata',[TeacherController::class,'biodata'])->name('guru.biodata');
@@ -116,6 +130,7 @@ Route::middleware('role:siswa')->group(function () {
         Route::post('/input_prestasi',[SiswaController::class,'inputAchievement'])->name('siswa.input_prestasi');
         Route::delete('/hapus_prestasi/{id}',[SiswaController::class,'deleteAchievement'])->name('siswa.hapus_prestasi');
         Route::get('/pengajuan_revisi',[SiswaController::class,'pengajuanRevisi'])->name('siswa.pengajuan_revisi');
+       
     });
 });
 
@@ -133,8 +148,11 @@ route::get('cek_nis',[LoginController::class,'cekNis'])->name('cek_nis');
 //Login Google
 Route::get('auth/google',[SocialiteController::class,'redirectToGoogle'])->name('login.google');
 Route::get('auth/google/callback',[SocialiteController::class,'handleGoogleCallback']);
-// Route::resource('Student', StudentController::class);
+
 
 Route::get('change-password', [ChangePasswordController::class,'index'])->name('ganti-pass');
 
 Route::post('change-password', [ChangePasswordController::class,'store'])->name('change.password');
+
+ Route::get('siswa/contact_center',[SiswaController::class,'contactCenter'])->name('siswa.contact_center');
+

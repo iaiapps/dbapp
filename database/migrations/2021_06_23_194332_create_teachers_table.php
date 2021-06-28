@@ -45,6 +45,7 @@ class CreateTeachersTable extends Migration
             $table->string('nip_pasangan')->nullable();
             $table->string('pekerjaan_pasangan')->nullable();
             
+            $table->string('role_id')->nullable();
             $table->timestamps();
         });
     }

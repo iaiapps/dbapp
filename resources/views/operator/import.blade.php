@@ -6,7 +6,17 @@
             {{-- <a href="#" class="btn btn-primary float-right"> x </a> --}}
         </div>
         <br><br>
-
+        1. Download template disini <br>
+        <a href="{{ route('admin.export_students') }}" class="btn btn-primary">Guru</a>
+        <a href="{{ route('admin.export_students') }}" class="btn btn-primary">Siswa</a>
+        <br><br>
+        2. Pilih tipe import
+        <select class="form-select" name="" id="">
+            <option value="">Guru</option>
+            <option value="">Siswa</option>
+        </select><br><br>
+        3. Upload disini<br>
+        <input type="file" name="" id="">
 
     </div>
 @endsection

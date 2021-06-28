@@ -2,6 +2,7 @@
 @section('content')
     <div class="container grid-md bg-gray card">
         <form class="px-2 mx-2" id="form" action="{{ route('guru.input_data') }}" method="POST">
+            @method('POST')
             @csrf
             <fieldset>
                 <br />
@@ -15,7 +16,14 @@
                     Identitas
                 </h4>
                 <hr class="text-primary" />
-
+                {{-- <div class="form-group pt-2">
+                    <label class="form-label" for="sebagai">Sebagai</label>
+                    <select class="form-select" name="role_id" id="sebagai">
+                        <option selected disabled>Pilih</option>
+                        <option value="3">Guru</option>
+                        <option value="5">Karyawan</option>
+                    </select>
+                </div> --}}
                 <div class="form-group pt-2">
                     <label class="form-label" for="namalengkap">Nama Lengkap (tanpa gelar)</label>
                     <input class="form-input" type="text" id="namalengkap" name="nama" placeholder="Nama Lengkap"

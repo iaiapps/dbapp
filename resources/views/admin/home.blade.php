@@ -1,11 +1,17 @@
 @extends('layout.master')
 @section('content')
-
+    @php
+    $jml_siswa = DB::table('students')->count();
+    $jml_guru = DB::table('teachers')->count();
+    $jml_pegawai = DB::table('teachers')
+        ->where('role_id', 5)
+        ->count();
+    @endphp
     <div class="columns pt-2">
         <div class="column col-md-12">
             <div class="totalcard">
                 <div class="jumlah p-2 bg-primary">
-                    <h1>500</h1>
+                    <h1>{{ $jml_siswa }}</h1>
                     <p>siswa</p>
                 </div>
                 <div class="ket p-2">
@@ -18,7 +24,7 @@
         <div class="column col-md-12">
             <div class="totalcard">
                 <div class="jumlah p-2 bg-primary">
-                    <h1>70</h1>
+                    <h1>{{ $jml_guru }}</h1>
                     <p>guru</p>
                 </div>
                 <div class="ket p-2">
@@ -31,7 +37,7 @@
         <div class="column col-md-12">
             <div class="totalcard">
                 <div class="jumlah p-2 bg-primary">
-                    <h1>20</h1>
+                    <h1>{{ $jml_pegawai }}</h1>
                     <p>pegawai</p>
                 </div>
                 <div class="ket p-2">
@@ -52,35 +58,7 @@
     </div>
     <br />
 
-
-
-    {{-- <br />
-    <hr />
-    <h4 class="py-2">Daftar Kelas</h4>
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Kelas</th>
-                <th>Siswa</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1 Abu Bakar As Siddiq</td>
-                <td>24 siswa</td>
-            </tr>
-            <tr>
-                <td>1 Umar bin Khattab</td>
-                <td>24 siswa</td>
-            </tr>
-            <tr>
-                <td>1 Utsman bin Affan</td>
-                <td>24 siswa</td>
-            </tr>
-            <tr>
-                <td>1 Ali bin Abi Thalib</td>
-                <td>24 siswa</td>
-            </tr>
-        </tbody>
-    </table> --}}
 @endsection
+@section('js')
+
+@stop

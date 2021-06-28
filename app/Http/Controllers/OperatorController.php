@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Submission;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class OperatorController extends Controller
     public function destroy($id)
     {
         Student::where('id',$id)->delete();
-        return redirect()->route('students');
+        return redirect()->route('students')->with('success','Berhasil dihapus');
     }
 
     // DATA_GURU
@@ -59,11 +60,23 @@ class OperatorController extends Controller
     public function destroyTeacher($id)
     {
         Teacher::where('id',$id)->delete();
-        return redirect()->route('teachers');
+        return redirect()->route('teachers')->with('success','Berhasil dihapus');
     }
 
     public function import()
     {
         return view('operator.import');
+    }
+
+    public function revisiData()
+    {
+        $collection = Submission::all();
+        return view('operator.list_revisi',compact('collection'));
+    }
+    public function compareRevisi($id)
+    {
+        $dataNew = Submission::find($id);
+        $dataOld = Student::where('nisn',$dataNew->nisn)->first();
+        return view('operator.compare_revisi',compact('dataNew','dataOld'));
     }
 }

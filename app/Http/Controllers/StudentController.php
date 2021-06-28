@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Exports\StudentExport;
+use App\Imports\StudentImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -81,5 +85,39 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+
+    public function export()
+    {
+        return Excel::download(new StudentExport(), 'siswa.xlsx');
+    }
+
+     public function import(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = $file->hashName();
+
+        //temporary file
+        $path = $file->storeAs('public/excel/',$nama_file);
+
+        // import data
+        $import = Excel::import(new StudentImport(), storage_path('app/public/excel/'.$nama_file));
+
+        //remove from server
+        Storage::delete($path);
+
+        if($import) {
+            //redirect
+            dd("berhasil");
+        } else {
+            //redirect
+            dd("berhasil");
+        }
     }
 }

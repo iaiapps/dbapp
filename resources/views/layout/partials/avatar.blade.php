@@ -1,5 +1,5 @@
- 
  <div class="foto">
-        <img src="{{url('dbapps')}}/img/hacker.svg" alt="" />
-        <h4 class="text-center">{{Auth::user()->name}}</h4>
-      </div>
+     <img src="{{ url('dbapps') }}/img/hacker.svg" alt="" />
+     <p class="text-center" style=" text-transform: lowercase; font-style:italic">
+         {{ Auth::user()->name }}</p>
+ </div>

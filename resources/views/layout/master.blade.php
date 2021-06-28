@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url('dbapps') }}/assets/spectre/spectre.min.css" />
     <link rel="stylesheet" href="{{ url('dbapps') }}/assets/lineawesome/css/line-awesome.min.css" />
     <link rel="stylesheet" href="{{ url('dbapps') }}/css/app.css" />
+    <link rel="stylesheet" href="{{ url('dbapps') }}/css/modal.css" />
     @yield('css')
     @stack('css')
 </head>
@@ -40,6 +41,11 @@
 
     @yield('js')
     @stack('js')
+    @if (Session::has('success'))
+        <script>
+            tata.success("OK", "{!! Session::get('success') !!}")
+        </script>
+    @endif
 </body>
 
 </html>

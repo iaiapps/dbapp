@@ -54,20 +54,22 @@ class SiswaController extends Controller
     public function pengajuanRevisi()
     {
         $nisn = Auth::user()->nisn;
-        // $a = DB::table('students AS t1')
-        // ->select('t1.nisn')
-        // ->leftJoin('submissions AS t2','t2.nisn','=','t1.nisn')
-        // ->whereNull('t2.jk')->get();
-        
-        // dd($a);
-        // $jml_klm = Student::where('nisn',$nisn)->first();
-        // dd($jml_klm);
 
         $dataOld = Student::where('nisn',$nisn)->first();
         $dataNew = Submission::where('nisn',$nisn)->latest()->first();
 
-        return view('siswa.pengajuan_revisi',compact('dataOld','dataNew'));
+        if ($dataNew==null) {
+            echo 'Tidak ada pengajuan revisi data, Silahkan kembali !';
+        }else{
+            return view('siswa.pengajuan_revisi', compact('dataOld', 'dataNew'));
+        }
+    }
+    public function contactCenter()
+    {
+        $humas = DB::table('database_settings')->where('name','cc_humas')->first();
+        $keuangan = DB::table('database_settings')->where('name','cc_keuangan')->first();
+        $admin = DB::table('database_settings')->where('name','cc_admin')->first();
 
-
+        return view('siswa.contact_center',compact('humas','admin','keuangan'));
     }
 }

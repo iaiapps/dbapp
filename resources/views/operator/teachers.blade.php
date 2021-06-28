@@ -15,7 +15,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Ayah</th>
                                 <th>Hp</th>
                                 <th>Aksi</th>
                             </tr>
@@ -25,14 +24,13 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->nama_ayah }}</td>
-                                    <td>{{ $item->hp_ayah }}</td>
+                                    <td>{{ $item->no_hp }}</td>
                                     <td>
-                                        <form action="{{ route('student_delete', $item->id) }}" method="POST">
-                                            <a href="{{ route('student_detail', $item->id) }}" class="btn btn-primary">
+                                        <form action="{{ route('teacher_delete', $item->id) }}" method="POST">
+                                            <a href="{{ route('teacher_detail', $item->id) }}" class="btn btn-primary">
                                                 <span><i class="las la-info-circle"></i></span>
                                             </a>
-                                            <a href="{{ route('student_edit', $item->id) }}" class="btn btn-primary">
+                                            <a href="{{ route('teacher_edit', $item->id) }}" class="btn btn-primary">
                                                 <span><i class="las la-edit"></i></span>
                                             </a>
                                             @csrf

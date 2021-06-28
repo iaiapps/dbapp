@@ -3,8 +3,26 @@
         <div class="leftright">
             <div class="py-2 my-2 clear-fix">
                 <h3 class="float-left">Data Siswa</h3>
-                <a href="#" class="btn btn-primary float-right"> Tambah Data </a>
+                <a href="#" class="btn btn-primary float-right ml-1">Tambah </a>
+                <a href="{{ route('admin.export_students') }}" class="btn btn-a float-right  ml-1"><i
+                        class="las la-download"></i>
+                </a>
+                <a href="#openModal" class="btn btn-a float-right"><i class="las la-upload"></i> </a>
             </div>
+
+            <div id="openModal" class="modalDialog">
+                <div> <a href="#close" title="Close" class="close">X</a>
+                    <h4>Import Siswa</h4>
+                    <form action="{{ route('admin.import_students') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <input type="file" name="file" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </form>
+                </div>
+            </div>
+
 
             @if ($collection->count() == 0)
                 Belum ada data
@@ -66,6 +84,5 @@
             $(document).ready(function() {
                 $('#example').DataTable();
             });
-
         </script>
     @stop
