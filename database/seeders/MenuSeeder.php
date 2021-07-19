@@ -23,7 +23,7 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Data guru',
                 'url'=>'/operator/teachers',
-                'icon'=>'las la-home',
+                'icon'=>'las la-user-tie',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
@@ -32,7 +32,7 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Data karyawan',
                 'url'=>'#',
-                'icon'=>'las la-home',
+                'icon'=>'las la-user-tie',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
@@ -41,39 +41,50 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Data siswa',
                 'url'=>'/operator/students',
-                'icon'=>'las la-home',
+                'icon'=>'las la-user',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
                 'role_id'=>'1',
             ],
+            
             [
                 'name'=>'Import Data',
                 'url'=>'/operator/import',
-                'icon'=>'las la-home',
+                'icon'=>'las la-cloud-upload-alt',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
                 'role_id'=>'1',
             ],
             [
-                'name'=>'User Management',
+                'name'=>'Kelola Kelas',
+                'url'=>'/grade',
+                'icon'=>'las la-building',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'1',
+                'role_id'=>'1',
+            ],
+            [
+                'name'=>'Kelola Pengguna',
                 'url'=>'/admin/users',
-                'icon'=>'las la-home',
+                'icon'=>'las la-users-cog',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
                 'role_id'=>'1',
             ],
             [
-                'name'=>'Setting Database',
+                'name'=>'Setting Aplikasi',
                 'url'=>'/admin/db_settings',
-                'icon'=>'las la-home',
+                'icon'=>'las la-tools',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
                 'role_id'=>'1',
             ],
+           
             // MENU OPERATOR
             [
                 'name'=>'Home',
@@ -86,19 +97,9 @@ class MenuSeeder extends Seeder
             ],
             
             [
-                'name'=>'Data Identitas Sekolah',
+                'name'=>'Identitas Sekolah',
                 'url'=>'/operator/identitas_sekolah',
-                'icon'=>'las la-home',
-                'icon_color'=>'text-success',
-                'is_active'=>'1',
-                'order'=>'1',
-                'role_id'=>'2',
-            ],
-
-            [
-                'name'=>'Data siswa',
-                'url'=>'/operator/students',
-                'icon'=>'las la-home',
+                'icon'=>'las la-id-card',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
@@ -108,7 +109,7 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Data guru',
                 'url'=>'/operator/teachers',
-                'icon'=>'las la-home',
+                'icon'=>'las la-user-tie',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
@@ -117,7 +118,25 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Data karyawan',
                 'url'=>'/operator/teachers',
-                'icon'=>'las la-home',
+                'icon'=>'las la-user-tie',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'1',
+                'role_id'=>'2',
+            ],
+            [
+                'name'=>'Data siswa',
+                'url'=>'/operator/students',
+                'icon'=>'las la-user',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'1',
+                'role_id'=>'2',
+            ],
+            [
+                'name'=>'Siswa per kelas',
+                'url'=>'/siswa/kelas',
+                'icon'=>'las la-building',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
@@ -126,12 +145,25 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Revisi data',
                 'url'=>'/operator/revisi_data',
-                'icon'=>'las la-home',
+                'icon'=>'las la-edit',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'1',
                 'role_id'=>'2',
             ],
+            [
+                'name'=>'Pindah kelas',
+                'url'=>'/operator/revisi_data',
+                'icon'=>'las la-exchange-alt',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'1',
+                'role_id'=>'2',
+            ],
+
+
+
+
 
 
             [
@@ -146,7 +178,7 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Biodata',
                 'url'=>'/guru/biodata',
-                'icon'=>'las la-home',
+                'icon'=>'las la-id-card',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'2',
@@ -166,7 +198,7 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Data Siswa',
                 'url'=>'/siswa/data',
-                'icon'=>'las la-home',
+                'icon'=>'las la-user',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'2',
@@ -175,16 +207,25 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Revisi Data',
                 'url'=>'/siswa/pengajuan_revisi',
-                'icon'=>'las la-home',
+                'icon'=>'las la-edit',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'3',
                 'role_id'=>'4',
             ],
+            // [
+            //     'name'=>'Jadwal Pelajaran',
+            //     'url'=>'#',
+            //     'icon'=>'las la-home',
+            //     'icon_color'=>'text-success',
+            //     'is_active'=>'1',
+            //     'order'=>'3',
+            //     'role_id'=>'4',
+            // ],
             [
-                'name'=>'Jadwal Pelajaran',
-                'url'=>'#',
-                'icon'=>'las la-home',
+                'name'=>'Upload Dokumen',
+                'url'=>'/siswa/upload_dokumen',
+                'icon'=>'las la-cloud-upload-alt',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'3',
@@ -193,7 +234,7 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Contact Center',
                 'url'=>'/siswa/contact_center',
-                'icon'=>'las la-home',
+                'icon'=>'las la-address-book',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
                 'order'=>'4',

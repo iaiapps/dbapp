@@ -13,13 +13,12 @@
                 <th>jenjang pendidikan</th>
                 <th>Gelar Akademik</th>
                 <th>nama Satuan pendidikan formal</th>
-                {{-- <th>Fakultas</th>
-                            <th>Kependidikan</th> --}}
                 <th>Tahun masuk</th>
                 <th>Tahun Lulus</th>
                 <th>NIM</th>
                 <th>Semester</th>
                 <th>IPK</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -34,6 +33,15 @@
                     <td>{{ $item->nim }}</td>
                     <td>{{ $item->semester }}</td>
                     <td>{{ $item->ipk }}</td>
+                    <form action="{{ route('guru.hapus_pendidikan', $item->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <td>
+                            <button type="submit" onClick="confirm('Yakin mau di hapus?')" class="btn btn-primary">
+                                <span><i class="las la-trash"></i></span>
+                            </button>
+                        </td>
+                    </form>
                 </tr>
             @endforeach
         </tbody>

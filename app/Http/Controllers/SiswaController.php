@@ -72,4 +72,8 @@ class SiswaController extends Controller
 
         return view('siswa.contact_center',compact('humas','admin','keuangan'));
     }
+    public function uploadDokumen()
+    {
+        return view('siswa.upload');
+    }
 }

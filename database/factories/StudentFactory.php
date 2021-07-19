@@ -95,7 +95,7 @@ class StudentFactory extends Factory
             'kota'=>$this->faker->city,
             'provinsi'=>$this->faker->city,
 
-            'status_verifikasi'=>2
+            'grade_id'=>1
         ];
     }
 }

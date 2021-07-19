@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Child;
-use App\Models\Education;
 use App\Models\User;
+use App\Models\Child;
 use App\Models\Teacher;
 use App\Models\Training;
+use App\Models\Education;
 use Illuminate\Http\Request;
+use App\Exports\TeacherExport;
+use App\Imports\TeacherImport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -33,12 +36,24 @@ class TeacherController extends Controller
             'no_hp' => 'required',
             'email' => 'required',
         ]);
-        Teacher::create($request->all());
-        return redirect()->route('guru.biodata');
+        //cek apakah nik sdh ada
+        $cek_data = Teacher::where('nik',$request->nik)->first();
+        // jika belum ada boleh mengisi data
+        if ($cek_data==null) {
+            Teacher::create($request->all());
+            return redirect()->route('guru.biodata')->with('success','Selanjutnya, Lengkapi biodata anda!');
+        //Jika sudah ada, maka keluarkan dan suruh login dengan email yang telah ada
+        }else{
+            $request->session()->invalidate();
+            return redirect()->route('login')->with('success','Prestasi berhasil ditambah');
+            // dd('data sdh ada');
+        }
+        // redirect()->route('guru.biodata');
     }
     function biodata()
     {
         $item = Teacher::where('email',Auth::user()->email)->first();
+        // $cek_data_guru = 
         if(!isset($item)){
             return redirect()->route('klaim_nis');
         }else{
@@ -54,7 +69,7 @@ class TeacherController extends Controller
     {
         $data = request()->except(['_token', '_method' ]);
         Teacher::where('email',Auth::user()->email)->update($data);
-        return redirect()->route('guru.biodata');
+        return redirect()->route('guru.biodata')->with('success','Berhasil Update');
     }
     
     function inputPendidikan(request $request)
@@ -82,7 +97,43 @@ class TeacherController extends Controller
         Training::Create($data);
         return redirect()->route('guru.biodata');
     }
+    function hapusPendidikan($id)
+    {
+        Education::where('id',$id)->delete();
+        return redirect()->route('guru.biodata')->with('success','Berhasil dihapus');
+    }
+    function hapusDiklat($id)
+    {
+        Training::where('id',$id)->delete();
+        return redirect()->route('guru.biodata')->with('success','Berhasil dihapus');
+    }
+    function hapusAnak($id)
+    {
+        Child::where('id',$id)->delete();
+        return redirect()->route('guru.biodata')->with('success','Berhasil dihapus');
+    }
 
+    public function export()
+    {
+        return Excel::download(new TeacherExport(), 'guru.xlsx');
+    }
 
+    public function import(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // CARA 2
+        $file = $request->file('file')->store('import');
+        $import = new TeacherImport;
+        $import->import($file);
+
+        if($import->failures()->isNotEmpty()){
+            return back()->withFailures($import->failures())->with('success','Berhasil dg pengecualian');
+        }
+        return back()->with('success','Excel telah sukses di import');
+
+    }
 }
 

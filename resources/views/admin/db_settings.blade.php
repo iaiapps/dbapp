@@ -2,7 +2,7 @@
     @section('content')
         <div class="leftright">
             <div class="py-2 my-2 clear-fix">
-                <h3 class="float-left">Data Siswa</h3>
+                <h3 class="float-left">DB Setting</h3>
                 <a href="#" class="btn btn-primary float-right"> Tambah </a>
             </div>
 
@@ -37,7 +37,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-primary"
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                <span><i class="las la-minus-circle"></i></span></button>
+                                                <span><i class="las la-trash"></i></span></button>
                                         </form>
                                     </td>
                                 </tr>

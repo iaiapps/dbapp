@@ -5,15 +5,23 @@ namespace App\Imports;
 use App\Models\Student;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Validators\Failure;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class StudentImport implements ToModel, WithHeadingRow
+class StudentImport implements 
+    ToModel,
+    WithHeadingRow, 
+    WithValidation,
+    SkipsOnFailure
+    
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+    use Importable, SkipsErrors, SkipsFailures;
     public function model(array $row)
     {
         return new Student([
@@ -86,6 +94,19 @@ class StudentImport implements ToModel, WithHeadingRow
             'hp_wali'=>$row['hp_wali'],
             'kota'=>$row['kota'],
             'provinsi'=>$row['provinsi'],
+            'grade_id'=>$row['grade_id'],
         ]);
+    }
+    public function rules():array
+    {
+        return[
+            '*.nisn'=>['unique:students,nisn']
+        ];
+    }
+    public function customValidationMessages()
+    {
+        return [
+            'nisn.unique' => 'Humm, Sepertinya :attribute sudah ada.',
+        ];
     }
 }

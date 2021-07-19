@@ -6,17 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateGradesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('grades', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('teacher_id')->unsigned()->nullable();
             $table->string('name');
-            $table->string('teacher')->nullable();
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->timestamps();
         });
     }

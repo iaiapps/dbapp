@@ -6,6 +6,7 @@
             <div> <a href="#close" title="Close" class="close">X</a>
                 <h4>Import Users</h4>
                 <form action="{{ route('admin.import_users') }}" method="POST" enctype="multipart/form-data">
+                    @method('post')
                     @csrf
                     <div class="form-group">
                         <input type="file" name="file" class="form-control" required>
@@ -16,9 +17,9 @@
         </div>
         <div class="leftright">
             <div class="py-2 my-2 clear-fix">
-                <h3 class="float-left">Data Siswa</h3>
-                <a href="#" class="btn btn-primary float-right ml-1"> Tambah Data </a>
-                <a href="#openModal" class="btn btn-s float-right">Import</a>
+                <h3 class="float-left">Manajemen User</h3>
+                <a href="{{ route('tambah_user') }}" class="btn btn-primary float-right ml-1">Tambah</a>
+                {{-- <a href="#openModal" class="btn btn-s float-right">Import</a> --}}
             </div>
 
             @if ($collection->count() == 0)
@@ -52,7 +53,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-primary"
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                <span><i class="las la-minus-circle"></i></span></button>
+                                                <span><i class="las la-trash"></i></span></button>
                                         </form>
                                     </td>
                                 </tr>

@@ -9,21 +9,18 @@
                 <h4 class="text-center bg-primary p-2">
                     FORMULIR PENDIDIK DAN TENAGA KEPENDIDIKAN
                 </h4>
-
+                @foreach ($errors->all() as $error)
+                    <p style="color:#e74c3c">
+                        {{ $error }}<br />
+                    </p>
+                @endforeach
                 <br />
                 <!-- Identitas Pendidik dan Tenaga Kependidikan -->
                 <h4 class="text-center">
                     Identitas
                 </h4>
                 <hr class="text-primary" />
-                {{-- <div class="form-group pt-2">
-                    <label class="form-label" for="sebagai">Sebagai</label>
-                    <select class="form-select" name="role_id" id="sebagai">
-                        <option selected disabled>Pilih</option>
-                        <option value="3">Guru</option>
-                        <option value="5">Karyawan</option>
-                    </select>
-                </div> --}}
+
                 <div class="form-group pt-2">
                     <label class="form-label" for="namalengkap">Nama Lengkap (tanpa gelar)</label>
                     <input class="form-input" type="text" id="namalengkap" name="nama" placeholder="Nama Lengkap"

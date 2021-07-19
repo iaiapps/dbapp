@@ -26,3 +26,31 @@ guru punya table
 Sebelum sinkron lagi dengan template pastikan 
 1. Salin file public/dbapps/js/tata.js
 2. Salin file public/dbapps/css/modal.css
+
+Tambahkan :
+Data kelas
+walas
+pindah kelas
+
+Alur Penambahan User :
+- input ke tabel user (required:name, email, password)
+- input ke model_has_role (role_id, App\Models\User, model_id)
+
+
+yang belum :
+1. import users //
+3. set walas di teachers //
+4. set siswa ke kelas (now)
+    ada detail kelas
+    nama walas
+    no walas
+    jumlah siswa
+    
+5. validate import
+6. pesan berhasil saat import (echo aja tadinya)
+7. tambah siswa
+8. import dokumen siswa
+9. lintang bujur
+10. penambahan surat
+
+

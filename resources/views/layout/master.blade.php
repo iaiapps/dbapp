@@ -15,6 +15,9 @@
 
 <body>
     @php
+        use YoHang88\LetterAvatar\LetterAvatar;
+        $avatar = new LetterAvatar(Auth::user()->name);
+        
         $nama_apk = DB::table('database_settings')
             ->where('name', 'app_name')
             ->first();
@@ -46,6 +49,7 @@
             tata.success("OK", "{!! Session::get('success') !!}")
         </script>
     @endif
+
 </body>
 
 </html>

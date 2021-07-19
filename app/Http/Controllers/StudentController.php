@@ -76,12 +76,7 @@ class StudentController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Student $student)
     {
         //
@@ -98,26 +93,42 @@ class StudentController extends Controller
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
-        $file = $request->file('file');
 
-        // membuat nama file unik
-        $nama_file = $file->hashName();
+        // CARA 1
+        // ----------------------------------------------
+        // $file = $request->file('file');
+        
+        // // membuat nama file unik
+        // $nama_file = $file->hashName();
 
-        //temporary file
-        $path = $file->storeAs('public/excel/',$nama_file);
+        // //temporary file
+        // $path = $file->storeAs('public/excel/',$nama_file);
 
         // import data
-        $import = Excel::import(new StudentImport(), storage_path('app/public/excel/'.$nama_file));
+        // $import = Excel::import(new StudentImport(), storage_path('app/public/excel/'.$nama_file));
 
         //remove from server
-        Storage::delete($path);
+        // Storage::delete($path);
 
-        if($import) {
-            //redirect
-            dd("berhasil");
-        } else {
-            //redirect
-            dd("berhasil");
+        // if($import) {
+        //     //redirect
+        //     dd("berhasil");
+        // } else {
+        //     //redirect
+        //     dd("berhasil");
+        // }
+
+        // -----------------------------------------------
+
+
+        // CARA 2
+        $file = $request->file('file')->store('import');
+        $import = new StudentImport;
+        $import->import($file);
+
+        if($import->failures()->isNotEmpty()){
+            return back()->withFailures($import->failures());
         }
+        return back()->with('success','Excel telah sukses di import');
     }
 }

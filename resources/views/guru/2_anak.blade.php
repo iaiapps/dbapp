@@ -16,6 +16,7 @@
                  <th>tempat lahir</th>
                  <th>tanggal lahir</th>
                  <th>tahun masuk</th>
+                 <th>Aksi</th>
              </tr>
          </thead>
          <tbody>
@@ -29,6 +30,16 @@
                      <td>{{ $anak->tempat_lahir }}</td>
                      <td>{{ $anak->tanggal_lahir }}</td>
                      <td>{{ $anak->tahun_masuk }}</td>
+                     <form action="{{ route('guru.hapus_anak', $item->id) }}" method="POST">
+                         @csrf
+                         @method('DELETE')
+                         <td>
+                             <button type="submit" class="btn btn-primary">
+                                 <span><i class="las la-trash"></i></span>
+                             </button>
+                         </td>
+                     </form>
+
                  </tr>
              @endforeach
          </tbody>

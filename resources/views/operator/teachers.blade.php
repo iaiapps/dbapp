@@ -3,8 +3,14 @@
         <div class="leftright">
             <div class="py-2 my-2 clear-fix">
                 <h3 class="float-left">Data Guru</h3>
-                <a href="#" class="btn btn-primary float-right"> Tambah Data </a>
+                <a href="{{ route('admin.export_teachers') }}" class="btn btn-a float-right  ml-1"><i
+                        class="las la-download"></i>
+                </a>
+                <a href="#openModalGuruImport" class="btn btn-a float-right"><i class="las la-upload"></i> </a>
             </div>
+            @include('operator.import_error')
+            @include('operator.modal.import_guru')
+
 
             @if ($collection->count() == 0)
                 Belum ada data
@@ -37,7 +43,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-primary"
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                <span><i class="las la-minus-circle"></i></span></button>
+                                                <span><i class="las la-trash"></i></span></button>
                                         </form>
 
                                     </td>

@@ -1,7 +1,7 @@
  <div class="logout d-none col-3 col-xs-6 bg-secondary" id="panellogout">
      <div class="panel">
          <div class="foto py-2">
-             <img src="{{ url('dbapps') }}/img/hacker.svg" alt="" />
+             <img src="{{ $avatar }}" />
              <p class="text-center" style="font-weight: bold; text-transform:lowercase">{{ Auth::user()->name }}</p>
          </div>
          <div class="panel-footer">

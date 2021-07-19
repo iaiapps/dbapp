@@ -52,6 +52,10 @@
                             <td>{{ $item->nama }}</td>
                         </tr>
                         <tr>
+                            <td>NISN</td>
+                            <td>{{ $item->nisn }}</td>
+                        </tr>
+                        <tr>
                             <td>Jenis Kelamin</td>
                             <td>{{ $item->jk }}</td>
                         </tr>
@@ -326,7 +330,7 @@
                                         <span><i class="las la-edit"></i></span>
                                     </a>
                                     <a href="#" class="btn btn-primary">
-                                        <span><i class="las la-minus-circle"></i></span>
+                                        <span><i class="las la-trash"></i></span>
                                     </a>
                                 </td>
                             </tr>

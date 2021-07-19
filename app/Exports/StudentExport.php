@@ -91,6 +91,8 @@ class StudentExport implements FromCollection, WithHeadings, WithMapping
             'hp_wali',
             'kota',
             'provinsi',
+
+            'grade_id',
         ];   
     }
      public function map($a): array
@@ -171,6 +173,8 @@ class StudentExport implements FromCollection, WithHeadings, WithMapping
             $a->hp_wali,
             $a->kota,
             $a->provinsi,
+
+            $a->grade_id,
         ];   
     }
 }

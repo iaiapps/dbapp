@@ -42,6 +42,15 @@
             </div>
         </div>
     </div>
+    <script src="{{ url('dbapps') }}/js/tata.js"></script>
+
+
+    @if (Session::has('success'))
+        <script>
+            tata.success("OK", "{!! Session::get('success') !!}")
+        </script>
+    @endif
 </body>
+
 
 </html>

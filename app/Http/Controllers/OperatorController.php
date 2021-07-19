@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\School;
 use App\Models\Student;
-use App\Models\Submission;
 use App\Models\Teacher;
+use App\Models\Submission;
 use Illuminate\Http\Request;
 
 class OperatorController extends Controller
 {
+
     function getStudents()
     {
         $collection = Student::get();
+       
         return view('operator.students',compact('collection'));
     }
     function getStudent($id)
@@ -78,5 +81,24 @@ class OperatorController extends Controller
         $dataNew = Submission::find($id);
         $dataOld = Student::where('nisn',$dataNew->nisn)->first();
         return view('operator.compare_revisi',compact('dataNew','dataOld'));
+    }
+    public function schoolId()
+    {
+        $item = School::get()->first();
+        return view('operator.school.detail',compact('item'));
+    }
+    public function editSchool($id)
+    {
+        $item = School::find($id)->first();
+        return view('operator.school.edit',compact('item'));
+    }
+    public function updateSchool(Request $request, $id)
+    {
+        School::find($id)->update($request->all());
+        return redirect()->route('operator.school_id')->with('success','Berhasil update data');
+    }
+    public function siswaKelas($id)
+    {
+        dd($id);
     }
 }

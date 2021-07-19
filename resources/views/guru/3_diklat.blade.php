@@ -13,6 +13,7 @@
                 <th>Penyelenggara</th>
                 <th>Tahun</th>
                 <th>Peran</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,16 @@
                     <td>{{ $item->penyelenggara }}</td>
                     <td>{{ $item->tahun }}</td>
                     <td>{{ $item->peran }}</td>
+                    <form action="{{ route('guru.hapus_diklat', $item->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <td>
+                            <button type="submit" onClick="confirm('Yakin mau di hapus?')" class="btn btn-primary">
+                                <span><i class="las la-trash"></i></span>
+                            </button>
+                        </td>
+                    </form>
+
                 </tr>
             @endforeach
         </tbody>

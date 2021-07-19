@@ -25,4 +25,15 @@ class AdminController extends Controller
         $item = DB::table('database_settings')->where('id',$id)->first();
         return view('admin.edit_db_set',compact('item'));
     }
+    public function createUser(Request $request)
+    {
+         $newuser= User::create([
+                    'name'=>$request->name,
+                    'email'=>$request->email,
+                    'password'=>bcrypt($request->password),
+                    // 'role_id'=>$request->role_id,
+                ]);
+        $newuser->assignRole($request->role_id);
+        return redirect()->route('admin.users')->with('success','Akun berhasil dibuat');
+    }
 }

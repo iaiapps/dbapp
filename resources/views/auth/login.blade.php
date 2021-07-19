@@ -54,15 +54,14 @@
             </div>
         </div>
     </div>
+    {{-- <script src="{{ url('dbapps') }}/js/app.js"></script> --}}
 
     <script src="{{ url('dbapps') }}/js/tata.js"></script>
-    @foreach ($errors->all() as $error)
-        <div class="toast toast-error">
-            <script>
-                tata.error('Maaf', 'Password salah');
-            </script>
-        </div>
-    @endforeach
+    @if (Session::has('success'))
+        <script>
+            tata.error("Maaf", "Data guru/karyawan telah ada")
+        </script>
+    @endif
 
 </body>
 

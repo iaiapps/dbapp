@@ -14,6 +14,8 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\GradeController;
+use App\Models\Grade;
 use App\Models\User;
 
 Route::get('/cc', function () {
@@ -49,16 +51,26 @@ Route::get('/', [HomeController::class, 'index']);
 // ROUTE::ADMIN
 Route::middleware('role:admin')->group(function () {
     Route::resource('user', UserController::class);
+    Route::resource('grade', GradeController::class);
     Route::prefix('/admin')->group(function () {
+        
         Route::get('/db_settings',[AdminController::class,'dbSettings']);
-        Route::get('/users',[UserController::class,'index'])->name('admin.users');
         Route::get('/edit_db_set/{id}',[AdminController::class,'editDbset'])->name('admin.editDbset');
         Route::delete('/hapus_db_set/{id}',[AdminController::class,'hapusDbset'])->name('admin.hapusDbset');
         
+        Route::get('/users',[UserController::class,'index'])->name('admin.users');
+        Route::get('/tambah_user',function (){
+            return view('user.create');
+        })->name('tambah_user');
         Route::post('/users/import',[UserController::class,'import'])->name('admin.import_users');
+        
         Route::post('/students/import',[StudentController::class,'import'])->name('admin.import_students');
+        Route::post('/teachers/import',[TeacherController::class,'import'])->name('admin.import_teachers');
         Route::get('/students/export',[StudentController::class,'export'])->name('admin.export_students');
-
+        Route::get('/teachers/export',[TeacherController::class,'export'])->name('admin.export_teachers');
+        
+        Route::post('/create_user',[AdminController::class,'createUser'])->name('admin.create_user');
+        
     });
 });
 
@@ -80,6 +92,12 @@ Route::middleware('role:operator|admin')->group(function () {
         
         Route::get('/revisi_data',[OperatorController::class,'revisiData'])->name('operator.revisi_data');
         Route::get('/compare_revisi/{id}',[OperatorController::class,'compareRevisi'])->name('compare_revisi');
+
+        Route::get('/identitas_sekolah',[OperatorController::class,'schoolId'])->name('operator.school_id');
+        Route::get('/identitas_sekolah/{id}',[OperatorController::class,'editSchool'])->name('operator.edit_schoolid');
+        Route::put('/identitas_sekolah/{id}',[OperatorController::class,'updateSchool'])->name('operator.update_schoolid');
+
+        Route::get('/siswa_kelas/{id}',[OperatorController::class,'siswaKelas'])->name('operator.siswa_kelas');
     });
 });
 
@@ -114,7 +132,10 @@ Route::middleware('role:guru|karyawan}')->group(function () {
             return view('guru.tambah_diklat');
         })->name('guru.tambah_diklat');
         route::post('/tambah_diklat',[TeacherController::class,'inputDiklat'])->name('guru.input_diklat');
-       
+        
+        route::delete('/hapus_pendidikan/{id}',[TeacherController::class,'hapusPendidikan'])->name('guru.hapus_pendidikan');
+        route::delete('/hapus_diklat/{id}',[TeacherController::class,'hapusDiklat'])->name('guru.hapus_diklat');
+        route::delete('/hapus_anak/{id}',[TeacherController::class,'hapusAnak'])->name('guru.hapus_anak');
         
     });
 });
@@ -130,6 +151,7 @@ Route::middleware('role:siswa')->group(function () {
         Route::post('/input_prestasi',[SiswaController::class,'inputAchievement'])->name('siswa.input_prestasi');
         Route::delete('/hapus_prestasi/{id}',[SiswaController::class,'deleteAchievement'])->name('siswa.hapus_prestasi');
         Route::get('/pengajuan_revisi',[SiswaController::class,'pengajuanRevisi'])->name('siswa.pengajuan_revisi');
+        Route::get('/upload_dokumen',[SiswaController::class,'uploadDokumen'])->name('siswa.upload_dokumen');
        
     });
 });
@@ -155,4 +177,3 @@ Route::get('change-password', [ChangePasswordController::class,'index'])->name('
 Route::post('change-password', [ChangePasswordController::class,'store'])->name('change.password');
 
  Route::get('siswa/contact_center',[SiswaController::class,'contactCenter'])->name('siswa.contact_center');
-

@@ -351,7 +351,7 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                            <span><i class="las la-minus-circle"></i></span>
+                                            <span><i class="las la-trash"></i></span>
                                         </button>
                                     </form>
 

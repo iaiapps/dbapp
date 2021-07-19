@@ -14,4 +14,8 @@ class Student extends Model
     public function achievements(){
         return $this->hasMany(Achievement::class);
     }
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
 }
