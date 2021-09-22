@@ -18,4 +18,8 @@ class Student extends Model
     {
         return $this->belongsTo(Grade::class);
     }
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
 }

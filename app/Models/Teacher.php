@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Child;
+use App\Models\Document;
 use App\Models\Training;
 use App\Models\Education;
 use Illuminate\Database\Eloquent\Model;
@@ -28,5 +29,9 @@ class Teacher extends Model
     public function grade()
     {
        return $this->hasOne(Grade::class);
+    }
+    public function documents()
+    {
+       return $this->hasMany(Document::class);
     }
 }

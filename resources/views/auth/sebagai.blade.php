@@ -13,19 +13,13 @@
 </head>
 
 <body>
-    <div class="judul">
-        <h2>DATABASE APPLICATION</h2>
-        <h3>SDIT Harapan Umat Jember</h3>
-    </div>
+
     <div class="containernis">
         <div class="klaimnis">
-            <form method="POST" action="{{ route('input_klaim_nis') }}">
-                @csrf
-                @method('POST')
-                <h3>KLAIM NIS</h3>
-                <input type="text" placeholder="Nomor Induk Siswa " class="input" name="nisn" />
-                <button type="submit" class="button">klaim</button>
-            </form>
+            <br><br>
+            <a href="{{ route('klaim_nis') }}" class="button">Siswa</a>
+            <p style="text-align: center;color:gray">atau</p>
+            <a href="{{ route('guru.input') }}" class="button">Guru / Karyawan</a>
         </div>
     </div>
     </div>

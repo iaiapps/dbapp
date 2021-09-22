@@ -18,12 +18,12 @@ class CreateTeachersTable extends Migration
 
             $table->string('nama');
             $table->string('nik');
-            $table->string('jk');
-            $table->string('tempat_lahir');
-            $table->string('tanggal_lahir');
-            $table->string('nama_ibu');
-            $table->string('no_hp');
-            $table->string('email');
+            $table->string('jk')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->string('tanggal_lahir')->nullable();
+            $table->string('nama_ibu')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('email')->nullable();
             
             $table->string('alamat')->nullable();
             $table->string('rt')->nullable();

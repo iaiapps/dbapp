@@ -3,66 +3,100 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Database</title>
-    <link rel="stylesheet" href="{{ url('/dbapps') }}/assets/spectre/spectre.min.css" />
-    <link rel="stylesheet" href="{{ url('/dbapps') }}/assets/lineawesome/css/line-awesome.min.css" />
-    <link rel="stylesheet" href="{{ url('/dbapps') }}/css/app.css" />
+
+    <link rel="stylesheet" href="{{ url('/dbapps') }}/css/login.css" />
+    <title>Login</title>
+
 </head>
 
 <body>
-    <div class="centerwrap">
-        <div class="login">
-            <div class="kiri">
-                <h4 class="text-center">DATABASE APPLICATION</h4>
-                <h5 class="text-center">SDIT Harapan Umat Jember</h5>
-                <img class="p-centered" src="{{ url('/dbapps') }}/img/loginback.svg" />
-            </div>
+    <div class="judul">
+        <h2>DATABASE APPLICATION</h2>
+        <h3>SDIT Harapan Umat Jember</h3>
+    </div>
+    <div class="container">
+        <div class="petunjuk">
+            <h2>Petunjuk Login</h2>
+            <a id="tblpetunjuk"> Klik untuk buka petunjuk</a>
+            <div id="isi" class="isi">
+                <div class="one">
+                    <h3>Untuk Guru</h3>
 
-            <div class="kanan bg-primary">
-                <h5 class="text-center"></h5>
-                <h5 class="text-center">Silahkan Masuk</h5>
-
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-
-
-
-
-
-                    <div class="form-group my-2">
-                        <label class="form-label mt-2" for="email">Email</label>
-                        <div class="has-icon-left">
-                            <input type="email" id="email" class="form-input" placeholder="email" name="email" />
-                            <i class="las la-user form-icon text-primary"></i>
-                        </div>
-                    </div>
-
-                    <div class="form-group my-2">
-                        <label class="form-label my-t" for="password">Password</label>
-                        <div class="has-icon-left">
-                            <input type="password" id="password" class="form-input" placeholder="Password"
-                                name="password" />
-                            <i class="las la-lock form-icon text-primary"></i>
-                        </div>
-                    </div>
-
-                    <br />
-                    <button class="btn col-12 text-large" type="submit">Sign in</button>
-                    <a href="{{ route('login.google', 'google') }}" class="btn col-12 text-large">With Google</a>
-                </form>
+                    <p>Untuk Pertama kali gunakan "Login with Google"</p>
+                    <p>Kemudian lengkapi form data yang diminta</p>
+                    <p>
+                        Login berikutnya bisa memilih login dengan email atau "login with
+                        google"
+                    </p>
+                </div>
+                <div class="two">
+                    <h3>Untuk Siswa</h3>
+                    <p>Untuk pertama kali gunakan "Login with Google"</p>
+                    <p>klaim NIS (didapat dari wali kelas)</p>
+                    <p>Lengkapi kelengkapan form data yang diminta</p>
+                    <p>
+                        Login berikutnya bisa memilih login dengan email atau "login with
+                        google"
+                    </p>
+                </div>
             </div>
         </div>
+        <div class="login">
+            <div class="tablogin">
+                <a id="clickguru">GURU</a>
+                <a id="clicksiswa">SISWA</a>
+            </div>
+
+            <div class="formlogin">
+                @include('auth.form_login_guru')
+                @include('auth.form_login_siswa')
+            </div>
+
+        </div>
     </div>
-    {{-- <script src="{{ url('dbapps') }}/js/app.js"></script> --}}
-
-    <script src="{{ url('dbapps') }}/js/tata.js"></script>
-    @if (Session::has('success'))
-        <script>
-            tata.error("Maaf", "Data guru/karyawan telah ada")
-        </script>
-    @endif
-
 </body>
+
+<script>
+    const clickguru = document.querySelector("#clickguru");
+    const clicksiswa = document.querySelector("#clicksiswa");
+
+    const formloginguru = document.querySelector("#formloginguru");
+    const formloginsiswa = document.querySelector("#formloginsiswa");
+
+    const tblpetunjuk = document.querySelector("#tblpetunjuk");
+    const isi = document.querySelector("#isi");
+
+    window.addEventListener("DOMContentLoaded", () => {
+        formloginsiswa.style.display = "none";
+        clickguru.classList.add("active");
+    });
+
+    clickguru.addEventListener("click", () => {
+        formloginguru.style.display = "block";
+        formloginsiswa.style.display = "none";
+        clickguru.classList.add("active");
+        clicksiswa.classList.remove("active");
+    });
+    clicksiswa.addEventListener("click", () => {
+        formloginsiswa.style.display = "block";
+        formloginguru.style.display = "none";
+        clicksiswa.classList.add("active");
+        clickguru.classList.remove("active");
+    });
+
+    tblpetunjuk.addEventListener("click", () => {
+        isi.classList.toggle("isi");
+    });
+</script>
+{{-- <script src="{{ url('dbapps') }}/js/app.js"></script> --}}
+
+<script src="{{ url('dbapps') }}/js/tata.js"></script>
+@if (Session::has('success'))
+    <script>
+        tata.error("Maaf", "Data guru/karyawan telah ada")
+    </script>
+@endif
 
 </html>

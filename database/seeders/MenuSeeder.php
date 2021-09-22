@@ -162,10 +162,6 @@ class MenuSeeder extends Seeder
             ],
 
 
-
-
-
-
             [
                 'name'=>'Home',
                 'url'=>'/',
@@ -178,6 +174,15 @@ class MenuSeeder extends Seeder
             [
                 'name'=>'Biodata',
                 'url'=>'/guru/biodata',
+                'icon'=>'las la-id-card',
+                'icon_color'=>'text-success',
+                'is_active'=>'1',
+                'order'=>'2',
+                'role_id'=>'3',
+            ],
+            [
+                'name'=>'Upload Berkas',
+                'url'=>'/guru/upload_dokumen',
                 'icon'=>'las la-id-card',
                 'icon_color'=>'text-success',
                 'is_active'=>'1',
@@ -213,15 +218,7 @@ class MenuSeeder extends Seeder
                 'order'=>'3',
                 'role_id'=>'4',
             ],
-            // [
-            //     'name'=>'Jadwal Pelajaran',
-            //     'url'=>'#',
-            //     'icon'=>'las la-home',
-            //     'icon_color'=>'text-success',
-            //     'is_active'=>'1',
-            //     'order'=>'3',
-            //     'role_id'=>'4',
-            // ],
+            
             [
                 'name'=>'Upload Dokumen',
                 'url'=>'/siswa/upload_dokumen',
@@ -231,6 +228,7 @@ class MenuSeeder extends Seeder
                 'order'=>'3',
                 'role_id'=>'4',
             ],
+
             [
                 'name'=>'Contact Center',
                 'url'=>'/siswa/contact_center',

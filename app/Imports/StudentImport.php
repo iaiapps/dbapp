@@ -106,7 +106,7 @@ class StudentImport implements
     public function customValidationMessages()
     {
         return [
-            'nisn.unique' => 'Humm, Sepertinya :attribute sudah ada.',
+            'nisn.unique' => ' :attribute sudah ada.',
         ];
     }
 }

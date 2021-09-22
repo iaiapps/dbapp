@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Child;
 use App\Models\Teacher;
+use App\Models\Document;
 use App\Models\Training;
 use App\Models\Education;
+use App\Models\DocumentType;
 use Illuminate\Http\Request;
 use App\Exports\TeacherExport;
 use App\Imports\TeacherImport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+
 
 class TeacherController extends Controller
 {
@@ -52,10 +55,12 @@ class TeacherController extends Controller
     }
     function biodata()
     {
+        //cek data guru di teachers_tabel
         $item = Teacher::where('email',Auth::user()->email)->first();
-        // $cek_data_guru = 
+        //jika tidak ada, maka isi data baru
         if(!isset($item)){
-            return redirect()->route('klaim_nis');
+            return redirect()->route('guru.input');
+        //namun, jika ada, lempar ke biodata
         }else{
             return view('guru.biodata', compact('item'));
         }
@@ -69,9 +74,31 @@ class TeacherController extends Controller
     {
         $data = request()->except(['_token', '_method' ]);
         Teacher::where('email',Auth::user()->email)->update($data);
-        return redirect()->route('guru.biodata')->with('success','Berhasil Update');
+        return redirect()->route('guru.biodata')->with('error','Berhasil Update');
     }
     
+    public function uploadDokumen()
+    {
+        //cek email
+        $email = Auth::user()->email;
+        //ambil id guru
+        $teacher = Teacher::where('email',$email)->first();
+
+        //jika data tidak ada
+        if(!isset($teacher)){
+            return redirect()->route('guru.input')->with('error','Berhasil Update');
+        //namun, jika ada, lempar ke upload berkas
+        }else{
+            $teacher_id = $teacher->id;
+            // ambil jenis2 dokumen untuk ditampilkan di form upload
+            $doc = DocumentType::get();
+            //ambil data dokumen teacher
+            $data = Document::where('teacher_id',$teacher_id)->get();
+            return view('guru.upload', compact('doc','data'));
+        }
+        
+    }
+
     function inputPendidikan(request $request)
     {
         $teacher_id = Teacher::where('email',Auth::user()->email)->first()->id;

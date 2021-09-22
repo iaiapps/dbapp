@@ -81,7 +81,8 @@ class CreateStudentsTable extends Migration
             $table->string('pendidikan_wali')->nullable();
             $table->string('pekerjaan_wali')->nullable();
             $table->string('penghasilan_wali')->nullable();
-            $table->string('nik_wali')->nullable();
+            
+            $table->string('status_verifikasi')->nullable();
 
             $table->string('hp_ayah')->nullable();
             $table->string('hp_ibu')->nullable();

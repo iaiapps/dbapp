@@ -14,11 +14,15 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GradeController;
 use App\Models\Grade;
 use App\Models\User;
 
-Route::get('/cc', function () {
+//SHORTCUT KU
+
+
+ Route::get('/cc', function () {
     Artisan::call('cache:clear');
     echo '<script>alert("cache clear Success")</script>';
 });
@@ -114,6 +118,8 @@ Route::middleware('role:guru|karyawan}')->group(function () {
         Route::get('/edit',[TeacherController::class,'editTeacher'])->name('guru.edit');
         Route::put('/edit',[TeacherController::class,'updateTeacher'])->name('guru.update');
 
+        Route::get('/upload_dokumen',[TeacherController::class,'uploadDokumen'])->name('guru.upload_dokumen');
+
         route::get('/tambah_pendidikan',function ()
         {
             return view('guru.tambah_pendidikan');
@@ -156,19 +162,28 @@ Route::middleware('role:siswa')->group(function () {
     });
 });
 
+Route::post('/upload',[DocumentController::class,'store'])->name('document.store');
 
 route::get('keluar',[LoginController::class,'keluar'])->name('keluar');
 route::get('klaim_nis',function()
 {
     return view('auth.cek_nis');
 })->name('klaim_nis');
-
 route::post('input_klaim_nis',[SocialiteController::class,'inputKlaimNis'])->name('input_klaim_nis');
+
+route::get('sebagai',function()
+{
+    return view('auth.sebagai');
+})->name('tentukan_role');
+
 
 route::get('cek_nis',[LoginController::class,'cekNis'])->name('cek_nis');
 
 //Login Google
-Route::get('auth/google',[SocialiteController::class,'redirectToGoogle'])->name('login.google');
+Route::get('auth/google_guru',[SocialiteController::class,'guru_redirectToGoogle'])->name('login_guru_google');
+
+Route::get('auth/google_siswa',[SocialiteController::class,'siswa_redirectToGoogle'])->name('login_siswa_google');
+
 Route::get('auth/google/callback',[SocialiteController::class,'handleGoogleCallback']);
 
 
@@ -177,3 +192,5 @@ Route::get('change-password', [ChangePasswordController::class,'index'])->name('
 Route::post('change-password', [ChangePasswordController::class,'store'])->name('change.password');
 
  Route::get('siswa/contact_center',[SiswaController::class,'contactCenter'])->name('siswa.contact_center');
+
+

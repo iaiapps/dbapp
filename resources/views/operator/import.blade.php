@@ -13,13 +13,16 @@
         <br><br>
 
         2. Perhatikan hal berikut sebelum Import
-        <li>
+        <li> &emsp;
             A. Data siswa
             - Pastikan data siswa : <b> Nama, NISN, dan Grade_id </b> tidak kosong di excel.
         </li>
-        <li>
+        <li> &emsp;
             B. Data Guru
-            - Pastikan data siswa : <b> Nama, NISN, dan Grade_id </b> tidak kosong di excel.
+            - Pastikan data guru : <b> Nama, NIK </b> tidak kosong di excel.
+        </li>
+        <li> &emsp;
+            C. Data tidak akan diimport jika sudah ada di database.
         </li>
         <br>
 

@@ -49,6 +49,12 @@
             tata.success("OK", "{!! Session::get('success') !!}")
         </script>
     @endif
+    @if (Session::has('error'))
+        <script>
+            tata.success("Gagal", "{!! Session::get('error') !!}")
+        </script>
+    @endif
+
 
 </body>
 

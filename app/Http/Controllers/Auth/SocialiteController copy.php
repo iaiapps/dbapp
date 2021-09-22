@@ -52,12 +52,11 @@ class SocialiteController extends Controller
                         'email'=>$user->getEmail(),
                         'google_id'=>$user->getId(),
                         'password'=>bcrypt('password'),
-                        'role_id'=>3
+                        'role_id'=>4
                     ]);
-                    $newuser->assignRole('guru');
+                    $newuser->assignRole('siswa');
                     Auth::login($newuser);
-                    return redirect()->intended('home');
-                    // return redirect()->route('');
+                    return redirect()->route('');
                 }
             }catch(\Throwable $th) {
                 //throw $th;
@@ -70,33 +69,19 @@ class SocialiteController extends Controller
                 $finduser = User::where('google_id',$gid)->first();
                 //jika user ditemukan 
                 if($finduser){
-                    //cek dulu di students apakah ada nis nya atau tidak
-                    $student = Student::where('nisn',$finduser->nisn)->first();
-                    // jika tidak ada, lempar ke klaim nis
-                    if($student==null){
-                        Auth::login($finduser);
-                        return redirect()->route('klaim_nis');
-                    // jika ada maka lanjutkan ke home
-                    }else{
-                        Auth::login($finduser);
-                        return redirect()->intended('home');
-                    }
-                // jika user tidak ditemukan
+                    Auth::login($finduser);
+                    return redirect()->intended('home');
                 }else{
-                    // buatkan user baru menggunakan google
-                    $newuser= User::create([
-                        'name'=>$user->getName(),
-                        'username'=>$user->getEmail(),
-                        'email'=>$user->getEmail(),
-                        'google_id'=>$user->getId(),
-                        'password'=>bcrypt('password'),
-                        'role_id'=>4
-                    ]);
-                    // daftarkan sebagai siswa
-                    $newuser->assignRole('siswa');
-                    // login menggunaakan user baru 
-                    Auth::login($newuser);
-                    // lempar ke klaim nis
+                    // $newuser= User::create([
+                    //     'name'=>$user->getName(),
+                    //     'username'=>$user->getEmail(),
+                    //     'email'=>$user->getEmail(),
+                    //     'google_id'=>$user->getId(),
+                    //     'password'=>bcrypt('password'),
+                    //     'role_id'=>4
+                    // ]);
+                    // $newuser->assignRole('siswa');
+                    // Auth::login($newuser);
                     return redirect()->route('klaim_nis');
                 }
             }catch(\Throwable $th) {
@@ -109,16 +94,29 @@ class SocialiteController extends Controller
     {
         //cek nisn yang di input
         $id = Student::where('nisn',$request->nisn)->first();
-        // jika tidak ditemukan nisn tsb di Students
         if($id==null){
-            // maka keluar dan lempar ke login
-            auth::logout();
-            // Session()->flush();
             return redirect()->route('login');
         }else{
-            $gid = Auth::user()->google_id;
-            User::where('google_id',$gid)->update(['nisn'=>$request->nisn]);
-            return redirect()->intended('home');
+            $user = Socialite::driver('google')->stateless()->user();
+            $newuser= User::create([
+                        'name'=>$user->getName(),
+                        'username'=>$user->getEmail(),
+                        'email'=>$user->getEmail(),
+                        'google_id'=>$user->getId(),
+                        'password'=>bcrypt('password'),
+                        'role_id'=>4,
+                        'nisn'=>$request->nisn
+                    ]);
+                    $newuser->assignRole('siswa');
+                    Auth::login($newuser);
+                    return redirect()->intended('home');
+
         }
+        //ambil google_id dr sesion
+        // $gid = Auth::user()->google_id;
+        // // update data nisn di table users
+        // User::where('google_id',$gid)->update(['nisn'=>$request->nisn]);
+        // //cek apakah data sudah ada di db
+        // return redirect()->intended('home');
     }
 }

@@ -60,8 +60,8 @@
 
                 <div class="form-group">
                     <label class="form-label" for="namaibukandung">Nama Ibu Kandung</label>
-                    <input class="form-input" type="text" id="namaibukandung" name="nama_ibu" placeholder="Nama Ibu Kandung"
-                        required />
+                    <input class="form-input" type="text" id="namaibukandung" name="nama_ibu"
+                        placeholder="Nama Ibu Kandung" required />
                 </div>
 
                 <div class="form-group">
@@ -77,9 +77,6 @@
                 <div class="columns">
                     <div class="column">
                         <input type="submit" value="Simpan" class="btn float-right btn-lg col-12 btn-primary" />
-                    </div>
-                    <div class="column">
-                        <input type="submit" value="Batal" class="btn float-right btn-lg col-12 btn-primary" />
                     </div>
                 </div>
             </fieldset>
