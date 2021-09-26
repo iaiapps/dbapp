@@ -59,7 +59,7 @@ class TeacherController extends Controller
         $item = Teacher::where('email',Auth::user()->email)->first();
         //jika tidak ada, maka isi data baru
         if(!isset($item)){
-            return redirect()->route('guru.input');
+            return redirect()->route('guru.input')->with('info','Data tidak ditemukan, silahkan Input');
         //namun, jika ada, lempar ke biodata
         }else{
             return view('guru.biodata', compact('item'));
@@ -74,7 +74,7 @@ class TeacherController extends Controller
     {
         $data = request()->except(['_token', '_method' ]);
         Teacher::where('email',Auth::user()->email)->update($data);
-        return redirect()->route('guru.biodata')->with('error','Berhasil Update');
+        return redirect()->route('guru.biodata')->with('success','Berhasil Update');
     }
     
     public function uploadDokumen()
@@ -86,7 +86,7 @@ class TeacherController extends Controller
 
         //jika data tidak ada
         if(!isset($teacher)){
-            return redirect()->route('guru.input')->with('error','Berhasil Update');
+            return redirect()->route('guru.input')->with('info','Data tidak ditemukan, silahkan Input');
         //namun, jika ada, lempar ke upload berkas
         }else{
             $teacher_id = $teacher->id;

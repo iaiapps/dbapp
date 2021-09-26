@@ -114,7 +114,7 @@ class SocialiteController extends Controller
             // maka keluar dan lempar ke login
             auth::logout();
             // Session()->flush();
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error','NISN Tidak ditemukan');
         }else{
             $gid = Auth::user()->google_id;
             User::where('google_id',$gid)->update(['nisn'=>$request->nisn]);

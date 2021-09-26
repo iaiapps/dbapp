@@ -93,9 +93,14 @@
 {{-- <script src="{{ url('dbapps') }}/js/app.js"></script> --}}
 
 <script src="{{ url('dbapps') }}/js/tata.js"></script>
-@if (Session::has('success'))
+@if (Session::has('error'))
     <script>
-        tata.error("Maaf", "Data guru/karyawan telah ada")
+        tata.warn('Maaf', "{!! Session::get('error') !!}", {
+            animate: 'slide',
+            closeBtn: true,
+            duration: 10000,
+            position: 'bm'
+        })
     </script>
 @endif
 
