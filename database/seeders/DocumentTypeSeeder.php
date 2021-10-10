@@ -26,6 +26,15 @@ class DocumentTypeSeeder extends Seeder
             [
                 'name'=>'KTP',
             ],
+            [
+                'name'=>'NPWP',
+            ],
+            [
+                'name'=>'Foto Resmi',
+            ],
+            [
+                'name'=>'SK Yayasan',
+            ],
         ]);
     }
 }
