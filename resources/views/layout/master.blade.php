@@ -68,16 +68,6 @@
         </script>
     @endif
 
-    {{-- parameter lain tata.js        
-        tata.text('Hello', 'Have a nice day.', {// config})
-        tata.log('Hello', 'Have a nice day.', {// config})
-        tata.info('Hello', 'Have a nice day.', {// config})
-        tata.success('Hello', 'Have a nice day.', {// config})
-        tata.warn('Hello', 'Have a nice day.', {// config})
-        tata.error('Hello', 'Have a nice day.', {// config}) 
-        
-        docs : https://www.cssscript.com/toast-prompt-tata/ 
-        https://www.npmjs.com/package/tata-js/v/0.1.0 --}}
 
 </body>
 
