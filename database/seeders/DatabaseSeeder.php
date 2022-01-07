@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(DatabaseSettingSeeder::class);
         $this->call(GradeSeeder::class);
         $this->call(DocumentTypeSeeder::class);
+        $this->call(ExtracurricularCategorySeeder::class);
     }
 }
