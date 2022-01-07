@@ -186,3 +186,13 @@ Route::get('change-password', [ChangePasswordController::class, 'index'])->name(
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->name('siswa.contact_center');
+
+route::get('data_ekskul', function () {
+    return view('ekskul.index');
+});
+route::get('pilih_ekskul', function () {
+    return view('ekskul.create');
+});
+route::get('cek_ekskul', function () {
+    return view('ekskul.cek');
+});
