@@ -49,7 +49,16 @@
 
     @livewireScripts
     <script src="{{ url('dbapps') }}/js/tata.js"></script>
-    @yield('js')
+    @if (Session::has('success'))
+        <script>
+            tata.success('BERHASIL !!', 'Ekstrakurikuler sedang diajukan', {
+                position: 'bm',
+                duration: 5000,
+                closeBtn: true,
+            })
+        </script>
+    @endif
+
 </body>
 
 </html>
