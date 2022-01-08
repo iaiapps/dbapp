@@ -24,19 +24,17 @@ class ExtracurricularDataController extends Controller
         return view('ekskul.create',compact('ekskuls'));
     }
 
-   
     public function store(Request $request)
     {
-        dd($request->student_id);
         $request->validate([
             'class_id' => 'required',
             'student_id' => 'required',
             'extra_id' => 'required',
         ]);
 
-        $request['name'] = TempStudent::where('id',$request->student_id);
-    
-        ExtracurricularData::create($request->all());
+        $data = $request->all();
+        $data['name'] = TempStudent::where('id',$request->student_id)->first()->name;
+        ExtracurricularData::create($data);
         return redirect('/data_ekskul')->with('success','Ekstrakurikulermu telah dikirim');
     }
    

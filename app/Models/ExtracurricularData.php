@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ExtracurricularData extends Model
 {
     use HasFactory;
-    protected $fillable = ['class_id','student_id','extra_id'];
+    protected $fillable = ['name','class_id','student_id','extra_id'];
 
     public function student()
     {

@@ -1,5 +1,4 @@
 <div>
-    <livewire:search-ekskul />
     <div class="px-3 py-3 mb-3 scrollmenu">
         @foreach ($ekskulCategory as $eksCat)
             <button class="btn btn-sm btn-outline-primary rounded-pill"
