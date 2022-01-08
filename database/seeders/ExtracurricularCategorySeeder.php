@@ -7,14 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class ExtracurricularCategorySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        DB::table('grades')->insert([
+        DB::table('extracurricular_categories')->insert([
             [
                 'name'=>'Futsal',
             ],
@@ -69,18 +64,18 @@ class ExtracurricularCategorySeeder extends Seeder
             [
                 'name'=>'Sains',
             ],
-            [
-                'name'=>'Pidato',
-            ],
-            [
-                'name'=>'Robotik',
-            ],
-            [
-                'name'=>'Tartil',
-            ],
-            [
-                'name'=>'Story Telling',
-            ],
+            // [
+            //     'name'=>'Pidato',
+            // ],
+            // [
+            //     'name'=>'Robotik',
+            // ],
+            // [
+            //     'name'=>'Tartil',
+            // ],
+            // [
+            //     'name'=>'Story Telling',
+            // ],
         ]);
     }
 }
