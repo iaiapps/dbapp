@@ -1,4 +1,6 @@
-@include('ekskul.layout.head')
+@extends('ekskul.layout')
+@section('judul', 'Data Ekstrakurikuler')
+@section('content')
 <form>
     <label for="cekekskul" class="form-label">Cek Data Ekskul Siswa</label>
     <div class="input-group mb-3">
@@ -118,5 +120,4 @@
 
     </div>
 </div>
-
-@include('ekskul.layout.head')
+@endsection

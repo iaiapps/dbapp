@@ -32,7 +32,7 @@ Route::get('/ccc', function () {
     Artisan::call('config:cache');
     echo '<script>alert("config cache Success")</script>';
 });
-Route::get('/vc', function () {
+Route::get('/cv', function () {
     Artisan::call('view:clear');
     echo '<script>alert("view clear Success")</script>';
 });

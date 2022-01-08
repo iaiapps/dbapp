@@ -28,9 +28,14 @@
 </head>
 
 <body>
-    <p class="bg-primary text-white text-center p-1">Pilih Ekskul</p>
+    <p class="display-6 bg-primary text-white text-center p-1">@yield('judul')</p>
     <div class="container ">
         <div class="btn-group d-flex py-3" role="group">
             <a href="pilih_ekskul" type="button" class="btn btn-outline-primary vw-100">Pilih Ekskul</a>
             <a href="cek_ekskul" type="button" class="btn btn-outline-primary vw-100">Cek Data Siswa</a>
         </div>
+        @yield('content')
+    </div>
+</body>
+
+</html>
