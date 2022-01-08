@@ -22,7 +22,11 @@ class ExtracurricularDataFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'extra_id'=>$this->faker->randomDigitNotNull,
+            'class_id'=>$this->faker->randomDigitNotNull,
+            'student_id'=>$this->faker->randomDigitNotNull,
+            'name'=>$this->faker->name,
+
         ];
     }
 }

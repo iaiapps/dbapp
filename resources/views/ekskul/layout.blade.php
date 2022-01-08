@@ -13,11 +13,11 @@
     </script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <style>
-        /* .my-custom-scrollbar {
+        .my-custom-scrollbar {
             position: relative;
             height: 345px;
             overflow: auto;
-        } */
+        }
 
         .table-wrapper-scroll-y {
             /* display: block; */
@@ -29,18 +29,6 @@
             white-space: nowrap;
         }
 
-        /* div.scrollmenu a {
-            display: inline-block;
-            color: black;
-            text-align: center;
-            padding: 14px;
-            text-decoration: none;
-        } */
-
-        /* div.scrollmenu a:hover {
-            background-color: #777;
-        } */
-
     </style>
     @livewireStyles
 
@@ -48,9 +36,9 @@
 </head>
 
 <body>
-    <p class="display-6 bg-primary text-white text-center p-1">@yield('judul')</p>
+    <p class="p-1 text-center text-white display-6 bg-primary">@yield('judul')</p>
     <div class="container ">
-        <div class="btn-group d-flex py-3" role="group">
+        <div class="py-3 btn-group d-flex" role="group">
             <a href="{{ route('ekskul.create') }}" type="button" class="btn btn-outline-primary vw-100 rounded-0">Pilih
                 Ekskul</a>
             <a href="{{ route('ekskul.index') }}" type="button"
