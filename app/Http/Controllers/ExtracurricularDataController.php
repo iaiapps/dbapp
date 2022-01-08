@@ -26,14 +26,16 @@ class ExtracurricularDataController extends Controller
    
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
-            'name' => 'required',
-            'choice' => 'required',
+            'class_id' => 'required',
+            'student_id' => 'required',
+            'extra_id' => 'required',
         ]);
     
         ExtracurricularData::create($request->all());
-     
-        return redirect()->with('success','Ekskul created successfully.');
+        return 'success';
+        // return redirect()->with('success','Ekskul created successfully.');
     }
    
     // public function update(Request $request, ExtracurricularData $extracurricularData)

@@ -5,7 +5,7 @@
         <div class="col-md-6 mb-3">
             <div class="card">
                 <div class="card-body">
-                    <livewire:counter />
+                    <livewire:selection />
                     <br>
                     <i class="text-sm-start text-muted"><small>Jika Kuota Penuh, Ekskul tidak dapat dipilih.</small>
                     </i>

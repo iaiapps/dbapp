@@ -24,6 +24,7 @@
         }
 
     </style>
+    @livewireStyles
 
     <title>Ekstrakurikuler SDIT Harum</title>
 </head>
@@ -37,6 +38,9 @@
         </div>
         @yield('content')
     </div>
+
+    @livewireScripts
+
 </body>
 
 </html>

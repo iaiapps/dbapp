@@ -1,0 +1,7 @@
+=(1)= Membuat data siswa palsu di TempStudents tabel
+-----------------------------------------
+$ php artisan tinker
+$ TempStudent::factory()->count(100)->create(); 
+> enter
+
+
