@@ -51,8 +51,16 @@ Route::get('/storage123', function () {
 
 Auth::routes();
 
-Route::get('/ekskul',[ExtracurricularDataController::class,'index']);
-Route::get('/pilih_ekskul',[ExtracurricularDataController::class,'create']);
+
+route::get('data_ekskul', function () {
+    return view('ekskul.index');
+});
+route::get('pilih_ekskul', function () {
+    return view('ekskul.create');
+});
+route::get('cek_ekskul', function () {
+    return view('ekskul.cek');
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
