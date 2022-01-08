@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Models\Grade;
+use App\Http\Livewire\JournalIndex;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
@@ -18,7 +19,7 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Livewire\JournalIndex;
+use App\Http\Controllers\ExtracurricularDataController;
 
 //SHORTCUT KU
 
@@ -49,6 +50,9 @@ Route::get('/storage123', function () {
 });
 
 Auth::routes();
+
+Route::get('/ekskul',[ExtracurricularDataController::class,'index']);
+Route::get('/pilih_ekskul',[ExtracurricularDataController::class,'create']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
@@ -186,3 +190,4 @@ Route::get('change-password', [ChangePasswordController::class, 'index'])->name(
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->name('siswa.contact_center');
+
