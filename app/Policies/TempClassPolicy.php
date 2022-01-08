@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\ExtracurricularCategory;
+use App\Models\TempClass;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ExtracurricularCategoryPolicy
+class TempClassPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class ExtracurricularCategoryPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ExtracurricularCategory  $extracurricularCategory
+     * @param  \App\Models\TempClass  $tempClass
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, ExtracurricularCategory $extracurricularCategory)
+    public function view(User $user, TempClass $tempClass)
     {
         //
     }
@@ -48,10 +48,10 @@ class ExtracurricularCategoryPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ExtracurricularCategory  $extracurricularCategory
+     * @param  \App\Models\TempClass  $tempClass
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, ExtracurricularCategory $extracurricularCategory)
+    public function update(User $user, TempClass $tempClass)
     {
         //
     }
@@ -60,10 +60,10 @@ class ExtracurricularCategoryPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ExtracurricularCategory  $extracurricularCategory
+     * @param  \App\Models\TempClass  $tempClass
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, ExtracurricularCategory $extracurricularCategory)
+    public function delete(User $user, TempClass $tempClass)
     {
         //
     }
@@ -72,10 +72,10 @@ class ExtracurricularCategoryPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ExtracurricularCategory  $extracurricularCategory
+     * @param  \App\Models\TempClass  $tempClass
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, ExtracurricularCategory $extracurricularCategory)
+    public function restore(User $user, TempClass $tempClass)
     {
         //
     }
@@ -84,10 +84,10 @@ class ExtracurricularCategoryPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\ExtracurricularCategory  $extracurricularCategory
+     * @param  \App\Models\TempClass  $tempClass
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, ExtracurricularCategory $extracurricularCategory)
+    public function forceDelete(User $user, TempClass $tempClass)
     {
         //
     }
