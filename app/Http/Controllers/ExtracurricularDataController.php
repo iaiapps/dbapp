@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ExtracurricularCategory;
 use App\Models\ExtracurricularData;
+use App\Models\TempClass;
 use Illuminate\Http\Request;
 
 class ExtracurricularDataController extends Controller
@@ -12,14 +13,14 @@ class ExtracurricularDataController extends Controller
     public function index()
     {
         $data = ExtracurricularData::get();
-        return Response()->json($data);
-        // return view('ekskul.index');
+        return view('ekskul.index');
     }
 
     
     public function create()
     {
-        return view('ekskul.create');
+        $ekskuls = ExtracurricularCategory::get();
+        return view('ekskul.create',compact('ekskuls'));
     }
 
    
