@@ -53,9 +53,6 @@ Route::get('/storage123', function () {
 Auth::routes();
 
 
-route::get('data_ekskul', [ExtracurricularDataController::class, 'index']);
-route::get('pilih_ekskul', [ExtracurricularDataController::class, 'create']);
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
 
@@ -192,3 +189,9 @@ Route::get('change-password', [ChangePasswordController::class, 'index'])->name(
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->name('siswa.contact_center');
+
+// EKSKUL
+
+route::get('data_ekskul', [ExtracurricularDataController::class, 'index'])->name('ekskul.index');
+route::get('pilih_ekskul', [ExtracurricularDataController::class, 'create'])->name('ekskul.create');
+route::post('/ekskul_post', [ExtracurricularDataController::class, 'store'])->name('ekskul.store');

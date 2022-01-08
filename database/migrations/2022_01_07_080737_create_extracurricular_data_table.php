@@ -11,17 +11,14 @@ class CreateExtracurricularDataTable extends Migration
     {
         Schema::create('extracurricular_data', function (Blueprint $table) {
             $table->id();
+            $table->integer('class_id');
+            $table->integer('student_id');
+            $table->integer('extra_id');
             $table->string('name');
-            $table->string('choice');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('extracurricular_data');

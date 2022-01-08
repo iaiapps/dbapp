@@ -13,6 +13,5 @@ class TempStudentSeeder extends Seeder
      */
     public function run()
     {
-        //
     }
 }

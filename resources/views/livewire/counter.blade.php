@@ -1,6 +1,5 @@
-<div>
-    <div style="text-align: center">
+    <div>
         <button wire:click="increment">+</button>
         <h1>{{ $count }}</h1>
+        {{-- {{ $increment }} --}}
     </div>
-</div>

@@ -1,0 +1,13 @@
+=(1)= Membuat Dummy data siswa (di TempStudent)
+-----------------------------------------
+$ php artisan tinker
+$ TempStudent::factory()->count(100)->create(); 
+> enter
+
+=(2)= Membuat dummy data DataEkskul
+-----------------------------------------
+$ php artisan tinker
+$ ExtracurricularData::factory()->count(300)->create()
+> enter
+
+
