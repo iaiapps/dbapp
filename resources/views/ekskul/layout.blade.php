@@ -20,23 +20,45 @@
         }
 
         .table-wrapper-scroll-y {
-            display: block;
+            /* display: block; */
+        }
+
+        div.scrollmenu {
+            /* background-color: #333; */
+            overflow: auto;
+            white-space: nowrap;
         }
 
     </style>
+    @livewireStyles
 
     <title>Ekstrakurikuler SDIT Harum</title>
 </head>
 
 <body>
-    <p class="display-6 bg-primary text-white text-center p-1">@yield('judul')</p>
+    <p class="p-1 text-center text-white display-6 bg-primary">@yield('judul')</p>
     <div class="container ">
-        <div class="btn-group d-flex py-3" role="group">
-            <a href="pilih_ekskul" type="button" class="btn btn-outline-primary vw-100">Pilih Ekskul</a>
-            <a href="cek_ekskul" type="button" class="btn btn-outline-primary vw-100">Cek Data Siswa</a>
+        <div class="py-3 btn-group d-flex" role="group">
+            <a href="{{ route('ekskul.create') }}" type="button" class="btn btn-outline-primary vw-100 rounded-0">Pilih
+                Ekskul</a>
+            <a href="{{ route('ekskul.index') }}" type="button"
+                class="btn btn-outline-primary vw-100 rounded-0">Data</a>
         </div>
         @yield('content')
     </div>
+
+    @livewireScripts
+    <script src="{{ url('dbapps') }}/js/tata.js"></script>
+    @if (Session::has('success'))
+        <script>
+            tata.success('BERHASIL !!', 'Ekstrakurikuler sedang diajukan', {
+                position: 'bm',
+                duration: 5000,
+                closeBtn: true,
+            })
+        </script>
+    @endif
+
 </body>
 
 </html>
