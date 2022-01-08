@@ -32,6 +32,7 @@
                         @endforeach
                     </tbody>
                     {{-- <x-data-ekskul /> --}}
+                </table>
             </div>
         </div>
 

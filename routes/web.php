@@ -192,6 +192,6 @@ Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->n
 
 // EKSKUL
 
-route::get('data_ekskul',[ExtracurricularDataController::class,'index']);
-route::get('pilih_ekskul',[ExtracurricularDataController::class,'create']);
+route::get('data_ekskul',[ExtracurricularDataController::class,'index'])->name('ekskul.index');
+route::get('pilih_ekskul',[ExtracurricularDataController::class,'create'])->name('ekskul.create');
 route::post('/ekskul_post',[ExtracurricularDataController::class,'store'])->name('ekskul.store');

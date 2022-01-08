@@ -11,6 +11,7 @@ class CreateExtracurricularDataTable extends Migration
     {
         Schema::create('extracurricular_data', function (Blueprint $table) {
             $table->id();
+            $table->integer('name');
             $table->integer('class_id');
             $table->integer('student_id');
             $table->integer('extra_id');

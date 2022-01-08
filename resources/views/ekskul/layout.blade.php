@@ -13,15 +13,33 @@
     </script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <style>
-        .my-custom-scrollbar {
+        /* .my-custom-scrollbar {
             position: relative;
             height: 345px;
             overflow: auto;
-        }
+        } */
 
         .table-wrapper-scroll-y {
-            display: block;
+            /* display: block; */
         }
+
+        div.scrollmenu {
+            /* background-color: #333; */
+            overflow: auto;
+            white-space: nowrap;
+        }
+
+        /* div.scrollmenu a {
+            display: inline-block;
+            color: black;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        } */
+
+        /* div.scrollmenu a:hover {
+            background-color: #777;
+        } */
 
     </style>
     @livewireStyles
@@ -33,14 +51,17 @@
     <p class="display-6 bg-primary text-white text-center p-1">@yield('judul')</p>
     <div class="container ">
         <div class="btn-group d-flex py-3" role="group">
-            <a href="pilih_ekskul" type="button" class="btn btn-outline-primary vw-100">Pilih Ekskul</a>
-            <a href="cek_ekskul" type="button" class="btn btn-outline-primary vw-100">Cek Data Siswa</a>
+            <a href="{{ route('ekskul.create') }}" type="button" class="btn btn-outline-primary vw-100 rounded-0">Pilih
+                Ekskul</a>
+            <a href="{{ route('ekskul.index') }}" type="button"
+                class="btn btn-outline-primary vw-100 rounded-0">Data</a>
         </div>
         @yield('content')
     </div>
 
     @livewireScripts
-
+    <script src="{{ url('dbapps') }}/js/tata.js"></script>
+    @yield('js')
 </body>
 
 </html>

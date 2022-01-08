@@ -28,5 +28,6 @@ class Selection extends Component
     {
         $this->ekskul=ExtracurricularCategory::get();
     }
+    
 
 }
