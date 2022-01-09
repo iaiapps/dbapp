@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\ExtracurricularCategory;
 use Livewire\Component;
 use App\Models\TempClass;
 use App\Models\TempStudent;
+use Illuminate\Support\Facades\DB;
+use App\Models\ExtracurricularCategory;
 
 class Selection extends Component
 {
@@ -29,5 +30,4 @@ class Selection extends Component
         $this->ekskul=ExtracurricularCategory::get();
     }
     
-
 }

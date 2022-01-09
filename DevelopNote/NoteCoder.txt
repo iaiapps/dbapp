@@ -1,0 +1,24 @@
+referensi :
+===========(1)=========== 
+You can't do that with a whereIn, you can do that with a where statement
+$users = User::whereIn('type', $types)->where('latest', '>=', 2)->get();
+===========(2)=========== 
+After hours of searching, finally Alhamdulillah
+dengan berkali kali try. akhirnya ini kode untuk mencari mengambil data dari ekstrakurikuler yang jumlah input tidak lebih dari 20
+  $getCount = ExtracurricularData::groupBy('extra_id')
+    ->having(DB::raw('count(extra_id)'), '<=', 2)
+    ->get('extra_id'); // you may replace this with get()/select()
+===========(3)=========== 
+berawal dari ini sih diatas
+  $getCount = DB::table('extracurricular_data')
+    ->select('extra_id', DB::raw('count(*) as total'))
+    ->groupBy('extra_id')
+    ->get()
+    ->pluck('total','extra_id');
+===========(4)===========
+looping jika menggunakan eloquent ORM bisa get class yang di buat di App\Models nya
+namun, jika tidak pakai eloquent ORM tidak bisa.
+contoh yang bisa :
+  ExtracurricularData::get()
+contoh yang ga bisa :
+  DB::table('nama_tables')

@@ -20,8 +20,7 @@ class ExtracurricularDataController extends Controller
     
     public function create()
     {
-        $ekskuls = ExtracurricularCategory::get();
-        return view('ekskul.create',compact('ekskuls'));
+        return view('ekskul.create');
     }
 
     public function store(Request $request)
