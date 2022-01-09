@@ -27,9 +27,11 @@ class ExtracurricularDataController extends Controller
     {
         $request->validate([
             'class_id' => 'required',
-            'student_id' => 'required',
+            'student_id' => 'required|unique:extracurricular_data,student_id',
             'extra_id' => 'required',
-        ]);
+        ],
+        [ 'student_id.unique' => 'Maaf, Data siswa telah ada !']
+    );
 
         $data = $request->all();
         $data['name'] = TempStudent::where('id',$request->student_id)->first()->name;
