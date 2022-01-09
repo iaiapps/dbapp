@@ -7,6 +7,7 @@ use App\Models\TempClass;
 use App\Models\TempStudent;
 use Illuminate\Support\Facades\DB;
 use App\Models\ExtracurricularCategory;
+use App\Models\ExtracurricularData;
 
 class Selection extends Component
 {
@@ -27,7 +28,10 @@ class Selection extends Component
     }
     public function updatedSelectedStudent($student_id)
     {
-        $this->ekskul=ExtracurricularCategory::get();
+        // $this->ekskul=ExtracurricularData::groupBy('extra_id')
+        // ->having(DB::raw('count(extra_id)'), '<=', 2)
+        // ->get('extra_id');
+        $this->ekskul=ExtracurricularData::get();
     }
     
 }

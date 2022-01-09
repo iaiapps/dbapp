@@ -22,20 +22,13 @@ class CobaController extends Controller
 //    }
    public function hitungEkskul()
    {
-       // cari jumlah tiap ekskul yang di input
-      //  $getCount = DB::table('extracurricular_data')
-      //   ->select('extra_id', DB::raw('count(*) as total'))
-      //   ->groupBy('extra_id')
-      //   ->get()
-      //  ->pluck('total','extra_id');
-
        $getCount =ExtracurricularData::groupBy('extra_id')
-       ->having(DB::raw('count(extra_id)'), '<=', 2)
-       ->get('extra_id'); // you may replace this with get()/select()
+       ->having(DB::raw('count(extra_id)'), '>=', 3)
+       ->pluck('extra_id'); // you may replace this with get()/select()
        
       //  dd($getCount);
-       // $getCategory = ExtracurricularCategory::whereIn('id',$getCount)->get();
-       // dd($getCategory);
+       $getCategory = ExtracurricularCategory::where('id', '!=', $getCount)->get();
+       dd($getCategory);
 
        return view('coba', compact('getCount'));
    }
