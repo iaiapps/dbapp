@@ -23,7 +23,7 @@
 
                         <td>
                             @if ($sisa <= 0)
-                                <span class="badge rounded-pill bg-danger">{{ $sisa }} </span>
+                                <span class="badge rounded-pill bg-danger">Penuh</span>
                             @elseif ($sisa >= 15)
                                 <span class="badge rounded-pill bg-success">{{ $sisa }}</span>
                             @elseif($sisa <= 14 && $sisa >= 10)
@@ -31,7 +31,7 @@
                             @elseif($sisa <= 9 && $sisa >= 5)
                                 <span class="badge rounded-pill bg-warning">{{ $sisa }}</span>
                             @else
-                                <span class="badge rounded-pill bg-secondary">{{ $sisa }}</span>
+                                <span class="badge rounded-pill bg-danger">{{ $sisa }}</span>
                             @endif
                         </td>
                     </tr>

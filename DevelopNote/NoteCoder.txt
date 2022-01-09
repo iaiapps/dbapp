@@ -6,12 +6,27 @@ $users = User::whereIn('type', $types)->where('latest', '>=', 2)->get();
 After hours of searching, finally Alhamdulillah
 dengan berkali kali try. akhirnya ini kode untuk mencari mengambil data dari ekstrakurikuler yang jumlah input tidak lebih dari 20
 # jadi step pertama itu aku cari data extra_id yg ada di tabel Extra_data yang jumlahnya >= 20
-  $getCountEkskul = ExtracurricularData::groupBy('extra_id')
-    ->having(DB::raw('count(extra_id)'), '>=', 20)
+  $getCountEkskul = 
+  ExtracurricularData::having(DB::raw('count(extra_id)'), '>=', 20)
+  ->groupBy('extra_id')
 # disini aku mengambil value saja, dan menjadikannya array untuk bisa di lempar ke tahap pencarian berikutnya
     ->pluck('extra_id');
+# tapi sebelum itu cek dlu ada tidak nya array diatas
+ dengan if ($getCount->isEmpty()) kalau tidak ada, lempar aja semuanya.
 # setelah dapat noh id yg sdh 20 atau lebih besarnya, maka kecualikan ia dalam pencarian di category_ekskul
   $getEkskulCategory = ExtracurricularCategory::where('id', '!=', $getCount)->get();
+# lengkap kodenya di bwah ini
+```````````````
+$getCount = ExtracurricularData::having(DB::raw('count(extra_id)'), '>=', 20)
+        ->groupBy('extra_id')
+       ->pluck('extra_id');
+
+       if ($getCount->isEmpty()) {
+           $this->ekskul = ExtracurricularCategory::get();
+        }else{
+            $this->ekskul = ExtracurricularCategory::where('id', '!=', $getCount)->get();
+       }
+````````````````
 ===========(3)=========== 
 berawal dari ini sih diatas
   $getCount = DB::table('extracurricular_data')

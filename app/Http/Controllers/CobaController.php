@@ -29,8 +29,7 @@ class CobaController extends Controller
       //  dd($getCount);
        $getCategory = ExtracurricularCategory::where('id', '!=', $getCount)->get();
        dd($getCategory);
-
-       return view('coba', compact('getCount'));
+      //  return view('coba', compact('getCount'));
    }
    public function selectCategoryWhereNotIn()
    {

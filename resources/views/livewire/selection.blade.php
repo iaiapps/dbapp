@@ -28,7 +28,7 @@
                 <select class="form-select" name="extra_id">
                     <option selected disabled>-- Pilih --</option>
                     @foreach ($ekskul as $eks)
-                        <option value="{{ $eks->id }}">{{ $loop->index + 1 }} - {{ $eks->name }}</option>
+                        <option value="{{ $eks->id }}">{{ $eks->id }} - {{ $eks->name }}</option>
                     @endforeach
                 </select>
             </div>

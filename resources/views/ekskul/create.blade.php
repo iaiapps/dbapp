@@ -7,7 +7,8 @@
                 <div class="card-body">
                     <livewire:selection />
                     <br>
-                    <i class="text-sm-start text-muted"><small>Jika Kuota Penuh, Ekskul tidak dapat dipilih.</small>
+                    <i class="text-sm-start text-muted"><small>Jika Kuota Penuh (20 anak), Ekskul Tidak akan dapat
+                            dipilih.</small>
                     </i>
                 </div>
             </div>
