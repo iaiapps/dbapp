@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\ExtracurricularCategory;
 use Livewire\Component;
 use App\Models\TempClass;
 use App\Models\TempStudent;
+use Illuminate\Support\Facades\DB;
+use App\Models\ExtracurricularCategory;
+use App\Models\ExtracurricularData;
 
 class Selection extends Component
 {
@@ -26,8 +28,15 @@ class Selection extends Component
     }
     public function updatedSelectedStudent($student_id)
     {
-        $this->ekskul=ExtracurricularCategory::get();
+        $getCount = ExtracurricularData::having(DB::raw('count(extra_id)'), '>=', 20)
+        ->groupBy('extra_id')
+       ->pluck('extra_id');
+
+       if ($getCount->isEmpty()) {
+           $this->ekskul = ExtracurricularCategory::get();
+        }else{
+            $this->ekskul = ExtracurricularCategory::where('id', '!=', $getCount)->get();
+       }
     }
     
-
 }
