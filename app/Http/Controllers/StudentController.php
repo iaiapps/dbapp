@@ -6,6 +6,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Exports\StudentExport;
 use App\Imports\StudentImport;
+use App\Imports\TempStudentImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
@@ -129,6 +130,17 @@ class StudentController extends Controller
         if($import->failures()->isNotEmpty()){
             return back()->withFailures($import->failures());
         }
+        return back()->with('success','Excel telah sukses di import');
+    }
+     public function importTempStudent(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file')->store('import');
+        $import =new TempStudentImport;
+        $import->import($file);
         return back()->with('success','Excel telah sukses di import');
     }
 }
