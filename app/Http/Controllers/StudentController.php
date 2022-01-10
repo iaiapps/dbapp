@@ -134,13 +134,7 @@ class StudentController extends Controller
     }
      public function importTempStudent(Request $request)
     {
-        $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx'
-        ]);
-
-        $file = $request->file('file')->store('import');
-        $import =new TempStudentImport;
-        $import->import($file);
+        Excel::import(new TempStudentImport,request()->file('file'));
         return back()->with('success','Excel telah sukses di import');
     }
 }
