@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/spectre/spectre.min.css" />
+    <link rel="stylesheet" href="assets/spectre/spectre-icons.min.css" />
+    <link rel="stylesheet" href="assets/themify/themify-icons.css" />
+    <link rel="stylesheet" href="css/app.css" />
+
+    <title>Form Identitas Sekolah</title>
+  </head>
+  <body>
+    <div class="container grid-md bg-gray card">
+      <form class="px-2 mx-2" id="form">
+        <fieldset>
+          <br />
+          <h4 class="text-center bg-primary p-2">IDENTITAS SEKOLAH</h4>
+          <hr class="text-primary" />
+          <div class="form-group pt-2">
+            <label class="form-label" for="namasekolah">Nama Sekolah</label>
+            <input
+              class="form-input"
+              type="text"
+              id="namasekolah"
+              placeholder="Nama Sekolah"
+              required
+            />
+          </div>
+
+          <div class="columns">
+            <div class="column col-xs-12">
+              <div class="form-group">
+                <label class="form-label" for="nss">NSS</label>
+                <input
+                  class="form-input"
+                  type="number"
+                  id="nss"
+                  placeholder="NSS"
+                  required
+                />
+              </div>
+            </div>
+            <div class="column col-xs-12">
+              <div class="form-group">
+                <label class="form-label" for="nisn">NPSN</label>
+                <input
+                  class="form-input"
+                  type="number"
+                  id="npsn"
+                  placeholder="NPSN"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="alamatsekolah">Alamat Sekolah</label>
+            <textarea
+              class="form-input"
+              type="textarea"
+              id="alamatsekolah"
+              placeholder="Alamat Sekolah"
+              rows="2"
+              required
+            >
+            </textarea>
+          </div>
+          <br />
+          <input type="submit" value="Submit" class="btn float-right" />
+        </fieldset>
+      </form>
+    </div>
+    <script src="assets/bouncer/bouncer.polyfills.min.js"></script>
+    <script src="js/form.js"></script>
+  </body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/spectre/spectre.min.css" />
+    <link rel="stylesheet" href="assets/spectre/spectre-icons.min.css" />
+    <link rel="stylesheet" href="assets/themify/themify-icons.css" />
+    <link rel="stylesheet" href="css/app.css" />
+
+    <title>Form Siswa</title>
+  </head>
+  <body>
+    <div class="container grid-md bg-gray">
+      <form class="px-2 mx-2" id="form">
+        <fieldset>
+          <br />
+          <h3 class="text-center bg-primary p-2">FORMULIR PESERTA DIDIK</h3>
+          <br />
+
+          <!-- Data Pribadi -->
+          <h4 class="text-center">Data Pribadi</h4>
+          <hr class="text-primary" />
+
+          <div class="form-group pt-2">
+            <label class="form-label" for="namalengkap">Nama Lengkap</label>
+            <input
+              class="form-input"
+              type="text"
+              id="namalengkap"
+              placeholder="Nama Lengkap"
+              required
+            />
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="nik">NIK</label>
+                <input
+                  class="form-input"
+                  type="number"
+                  name="number"
+                  id="nik"
+                  placeholder="NIK"
+                  required
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="nik">No KK</label>
+                <input
+                  class="form-input"
+                  type="number"
+                  name="number"
+                  id="nik"
+                  placeholder="NIK"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="jeniskelamin">Jenis Kelamin </label>
+            <select class="form-select" id="jeniskelamin" required>
+              <option>---</option>
+              <option>Laki-laki</option>
+              <option>Perempuan</option>
+            </select>
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="tempatlahir">Tempat Lahir</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="tempatlahir"
+                  placeholder="Tempat Lahir"
+                  required
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="tanggallahir"
+                  >Tanggal Lahir</label
+                >
+                <input
+                  class="form-input"
+                  type="date"
+                  id="tanggallahir"
+                  placeholder="Tanggal Lahir"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="agama&kepercayaan"
+              >Agama & Kepercayaan
+            </label>
+            <select class="form-select" id="agama&kepercayaan" required>
+              <option>Pilih Agama & Kepercayaan</option>
+              <option>01) Islam</option>
+              <option>02) Kristen/Protestan</option>
+              <option>03) Katholik</option>
+              <option>04) Hindu</option>
+              <option>05) Budha</option>
+              <option>06) Khong Hu Chu</option>
+              <option>07) Kepercayaan Kpd Tuhan YME</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="kewarganegaraan"
+              >Kewarganegaraan
+            </label>
+            <select class="form-select" id="kewarganegaraan" required>
+              <option>---</option>
+              <option>Indoensia (WNI)</option>
+              <option>Asing (WNA)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="agama&kepercayaan"
+              >Bekebutuhan Khusus
+            </label>
+
+            <select class="form-select" id="agama&kepercayaan" required>
+              <option>---</option>
+              <option>01) Tidak</option>
+              <option>02) Netra (A)</option>
+              <option>03) Rungu (B)</option>
+              <option>04) Grahita ringan (C)</option>
+              <option>05) Grahita Sedang (C1)</option>
+              <option>06) Daksa Ringan (D)</option>
+              <option>07) Daksa Sedang (D1)</option>
+              <option>08) Laras (E)</option>
+              <option>09) Wicara (F)</option>
+              <option>10) Tuna ganda (G)</option>
+              <option>11) Hiper aktif (H)</option>
+              <option>12) Cerdas Istimewa (i)</option>
+              <option>13) Bakat Istimewa (J)</option>
+              <option>14) Kesulitan Belajar (K)</option>
+              <option>15) Narkoba (N)</option>
+              <option>16) Indigo (O)</option>
+              <option>17) Down Sindrome (P)</option>
+              <option>18) Autis (Q)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="alamatjalan">Alamat Jalan</label>
+            <textarea
+              class="form-input"
+              type="textarea"
+              id="alamatjalan"
+              placeholder="Alamat Jalan"
+              rows="2"
+              required
+            >
+            </textarea>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="rt"
+                  >RT
+                  <input
+                    class="form-input"
+                    type="number"
+                    id="rt"
+                    placeholder="RT"
+                    required
+                  />
+                </label>
+              </div>
+            </div>
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="rw"
+                  >RW<input
+                    class="form-input"
+                    type="number"
+                    id="rw"
+                    placeholder="RW"
+                    required
+                /></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="namadusun">Nama Dusun</label>
+            <input
+              class="form-input"
+              type="text"
+              id="namadusun"
+              placeholder="Nama Dusun"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="desa/kelurahan"
+              >Desa/Kelurahan</label
+            >
+            <input
+              class="form-input"
+              type="text"
+              id="desa/kelurahan"
+              placeholder="Desa"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="kecamatan">Kecamatan</label>
+            <input
+              class="form-input"
+              type="text"
+              id="kecamatan"
+              placeholder="Kecamatan"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="kodepos"
+              >Kode POS<input
+                class="form-input"
+                type="number"
+                id="kodepos"
+                placeholder="Kode POS"
+                required
+            /></label>
+          </div>
+
+          <div class="columns">
+            <div class="column col-6">
+              <div class="form-group">
+                <label class="form-label" for="lintang"
+                  >Lintang<input
+                    class="form-input"
+                    type="number"
+                    id="lintang"
+                    placeholder="Lintang"
+                    required
+                /></label>
+              </div>
+            </div>
+            <div class="column col-6">
+              <div class="form-group">
+                <label class="form-label" for="bujur"
+                  >Bujur<input
+                    class="form-input"
+                    type="number"
+                    id="bujur"
+                    placeholder="Bujur"
+                    required
+                /></label>
+              </div>
+            </div>
+            <div class="column">
+              <p>
+                untuk mencari garis lintang dan bujur bisa
+                <a
+                  href="https://www.google.co.id/maps"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >klik disini</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tempattinggal"
+              >Tempat Tinggal
+            </label>
+            <select class="form-select" id="tempattinggal" required>
+              <option>---</option>
+              <option>01) Bersama Orang Tua</option>
+              <option>02) Waoption</option>
+              <option>03) Kos</option>
+              <option>04) Asrama</option>
+              <option>05) Panti Asuhan</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modatransportasi"
+              >Moda Transportasi
+            </label>
+            <select class="form-select" id="modatransportasi" required>
+              <option>---</option>
+              <option>01) Jalan kaki</option>
+              <option>02) Kendaraan pribadi</option>
+              <option>03) Kendaraan Umum/angkot/Pete-pete</option>
+              <option>04) Jemputan Sekolah</option>
+              <option>05) Kereta Api</option>
+              <option>06) Ojek</option>
+              <option>07) Andong/Bendi/Sado/Dokar/Delman/Becak</option>
+              <option>08) Perahu penyebrangan/Rakit/Getek</option>
+              <option>99) Lainnya</option>
+            </select>
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="anakkeberapa"
+                  >Anak Ke berapa
+                  <input
+                    class="form-input"
+                    type="number"
+                    id="anakkeberapa"
+                    placeholder="Anak Ke Berapa"
+                    required
+                /></label>
+              </div>
+            </div>
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="jumlahsaudara"
+                  >Jumlah Saudara Kandung
+                  <input
+                    class="form-input"
+                    type="number"
+                    id="jumlahsaudara"
+                    placeholder="Jumlah Saudara Kandung"
+                    required
+                /></label>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div class="columns">
+            <div class="column">
+              <input
+                type="submit"
+                value="Batal"
+                class="btn float-right btn-lg col-12 btn-primary"
+              />
+            </div>
+            <div class="column">
+              <input
+                type="submit"
+                value="Simpan"
+                class="btn float-right btn-lg col-12 btn-primary"
+              />
+            </div>
+          </div>
+          <br />
+        </fieldset>
+      </form>
+    </div>
+
+    <script src="assets/bouncer/bouncer.polyfills.min.js"></script>
+    <script src="js/form.js"></script>
+  </body>
+</html>
