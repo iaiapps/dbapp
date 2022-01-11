@@ -24,9 +24,33 @@
         }
 
         div.scrollmenu {
-            /* background-color: #333; */
             overflow: auto;
             white-space: nowrap;
+        }
+
+        .tableFixHead {
+            overflow: auto;
+            height: 100px;
+        }
+
+        .tableFixHead thead th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px 16px;
+        }
+
+        th {
+            background: white;
         }
 
     </style>
