@@ -31,12 +31,14 @@
             <tr>
                 <td><a href="#openModalGuruImport" class="btn btn-a float-right">Guru</a></td>
                 <td><a href="#openModalImportSiswa" class="btn btn-a float-right">Siswa</a>
+                <td><a href="#openModalImportTempStudent" class="btn btn-a float-right">TempStudent</a>
                 </td>
             </tr>
         </table>
 
         @include('operator.modal.import_guru')
         @include('operator.modal.import_siswa')
+        @include('operator.modal.import_temp_student')
     </div>
     @include('operator.import_error')
 

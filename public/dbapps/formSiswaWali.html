@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/spectre/spectre.min.css" />
+    <link rel="stylesheet" href="assets/spectre/spectre-icons.min.css" />
+    <link rel="stylesheet" href="assets/themify/themify-icons.css" />
+    <link rel="stylesheet" href="css/app.css" />
+
+    <title>Form Siswa</title>
+  </head>
+  <body>
+    <div class="container grid-md bg-gray">
+      <form class="px-2 mx-2" id="form">
+        <fieldset>
+          <br />
+          <h3 class="text-center bg-primary p-2">FORMULIR PESERTA DIDIK</h3>
+          <br />
+
+          <h4 class="text-center">Data Wali</h4>
+          <hr class="text-primary" />
+
+          <div class="form-group pt-2">
+            <label class="form-label" for="namalengkap">Nama Wali</label>
+            <input
+              class="form-input"
+              type="text"
+              id="namalengkap"
+              placeholder="Nama Lengkap"
+              required
+            />
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="nik">NIK Wali</label>
+                <input
+                  class="form-input"
+                  type="number"
+                  name="number"
+                  id="nik"
+                  placeholder="NIK"
+                  required
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div class="form-group">
+                <label class="form-label" for="nik">Tahun Lahir</label>
+                <input
+                  class="form-input"
+                  type="number"
+                  name="number"
+                  id="nik"
+                  placeholder="NIK"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pendidikan">Pendidikan </label>
+            <select class="form-select" id="pendidikan" required>
+              <option>---</option>
+              <option>01) Tidak sekolah</option>
+              <option>02) Putus SD</option>
+              <option>03) SD Sederajat</option>
+              <option>04) SMP Sederajat</option>
+              <option>05) SMA Sederajat</option>
+              <option>06) D1</option>
+              <option>07) D2</option>
+              <option>08) D3</option>
+              <option>09) D4/S1</option>
+              <option>10) S2</option>
+              <option>11) S3</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pekerjaan">Pekerjaan </label>
+            <select class="form-select" id="pekerjaan" required>
+              <option>---</option>
+              <option>01) Tidak Bekerja</option>
+              <option>02) Nelayan</option>
+              <option>03) Petani</option>
+              <option>04) Peternak</option>
+              <option>05) PNS/TNI/Polri</option>
+              <option>06) GTT/PTT</option>
+              <option>07) Pedagang Kecil</option>
+              <option>08) Pedagang Besar</option>
+              <option>09) Karyawan Swasta</option>
+              <option>10) Wirausaha</option>
+              <option>11) Pensiunan</option>
+              <option>12) Buruh</option>
+              <option>13) Sudah Meninggal</option>
+              <option>14) TKI</option>
+              <option>15) Tidak Dapat Diterapkan</option>
+              <option>16) Tidak Bekerja</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="penghasilan"
+              >Penghasilan Bulanan
+            </label>
+            <select class="form-select" id="penghasilan" required>
+              <option>---</option>
+              <option>01) < Rp. 500.000</option>
+              <option>02) Rp. 500.000-Rp.999.999</option>
+              <option>03) Rp. 1.000.000-Rp.1.999.999</option>
+              <option>04) Rp.2.000.000-Rp.4.999.999</option>
+              <option>05) Rp.5.000.000-Rp.20.000.000</option>
+              <option>06) > Rp.20.000.000</option>
+              <option>07) Tidak Berpenghasilan</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="nohp">No. Telp/Hp</label>
+            <input
+              class="form-input"
+              type="number"
+              name="number"
+              id="nohp"
+              placeholder="No. Telp/Hp"
+              required
+            />
+          </div>
+
+          <br />
+          <div class="columns">
+            <div class="column">
+              <input
+                type="submit"
+                value="Simpan"
+                class="btn float-right btn-lg col-12 btn-primary"
+              />
+            </div>
+            <div class="column">
+              <input
+                type="submit"
+                value="Batal"
+                class="btn float-right btn-lg col-12 btn-primary"
+              />
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <script src="assets/bouncer/bouncer.polyfills.min.js"></script>
+    <script src="js/form.js"></script>
+  </body>
+</html>

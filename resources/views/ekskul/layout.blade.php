@@ -24,9 +24,33 @@
         }
 
         div.scrollmenu {
-            /* background-color: #333; */
             overflow: auto;
             white-space: nowrap;
+        }
+
+        .tableFixHead {
+            overflow: auto;
+            height: 100px;
+        }
+
+        .tableFixHead thead th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px 16px;
+        }
+
+        th {
+            background: white;
         }
 
     </style>
@@ -39,10 +63,9 @@
     <p class="p-1 text-center text-white display-6 bg-primary">@yield('judul')</p>
     <div class="container ">
         <div class="py-3 btn-group d-flex" role="group">
-            <a href="{{ route('ekskul.create') }}" type="button" class="btn btn-outline-primary vw-100 rounded-0">Pilih
+            <a href="{{ route('ekskul.create') }}" type="button" class="btn btn-outline-primary rounded-0">Pilih
                 Ekskul</a>
-            <a href="{{ route('ekskul.index') }}" type="button"
-                class="btn btn-outline-primary vw-100 rounded-0">Data</a>
+            <a href="{{ route('ekskul.index') }}" type="button" class="btn btn-outline-primary rounded-0">Data</a>
         </div>
         @yield('content')
     </div>

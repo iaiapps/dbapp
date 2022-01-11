@@ -1,5 +1,6 @@
 <div>
     <div class="px-3 py-3 mb-3 scrollmenu">
+        <a href="{{ route('ekskul.export') }}" class="btn btn-sm btn-success rounded-pill">Export Data</a>
         @foreach ($ekskulCategory as $eksCat)
             <button class="btn btn-sm btn-outline-primary rounded-pill"
                 wire:click="choose({{ $eksCat->id }}, '{{ $eksCat->name }}')">{{ $eksCat->name }}</button>

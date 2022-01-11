@@ -73,6 +73,7 @@ Route::middleware('role:admin')->group(function () {
         })->name('tambah_user');
         Route::post('/users/import', [UserController::class, 'import'])->name('admin.import_users');
 
+        Route::post('/students/import/tempstudent', [StudentController::class, 'importTempStudent'])->name('admin.import_temp_students');
         Route::post('/students/import', [StudentController::class, 'import'])->name('admin.import_students');
         Route::post('/teachers/import', [TeacherController::class, 'import'])->name('admin.import_teachers');
         Route::get('/students/export', [StudentController::class, 'export'])->name('admin.export_students');
@@ -196,5 +197,5 @@ Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->n
 route::get('data_ekskul', [ExtracurricularDataController::class, 'index'])->name('ekskul.index');
 route::get('pilih_ekskul', [ExtracurricularDataController::class, 'create'])->name('ekskul.create');
 route::post('/ekskul_post', [ExtracurricularDataController::class, 'store'])->name('ekskul.store');
-
 route::get('/coba', [CobaController::class, 'hitungEkskul']);
+Route::get('/ekskul/export', [ExtracurricularDataController::class, 'export'])->name('ekskul.export');

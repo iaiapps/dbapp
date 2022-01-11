@@ -15,8 +15,8 @@ class CreateTempStudentsTable extends Migration
     {
         Schema::create('temp_students', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('class_id');
-            $table->string('name');
+            $table->integer('class_id')->nullable();
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }

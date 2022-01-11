@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExtracurricularCategory;
-use App\Models\ExtracurricularData;
+use App\Exports\ExtracurricularExport;
 use App\Models\TempClass;
 use App\Models\TempStudent;
 use Illuminate\Http\Request;
+use App\Models\ExtracurricularData;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\ExtracurricularCategory;
 
 class ExtracurricularDataController extends Controller
 {
@@ -38,14 +40,8 @@ class ExtracurricularDataController extends Controller
         ExtracurricularData::create($data);
         return redirect('/data_ekskul')->with('success','Ekstrakurikulermu telah dikirim');
     }
-   
-    // public function update(Request $request, ExtracurricularData $extracurricularData)
-    // {
-    //     //
-    // }
-
-    // public function destroy(ExtracurricularData $extracurricularData)
-    // {
-    //     //
-    // }
+   public function export()
+   {
+    return Excel::download(new ExtracurricularExport(), 'ekskul.xlsx');
+   }
 }
