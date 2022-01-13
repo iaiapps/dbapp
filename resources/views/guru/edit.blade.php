@@ -184,7 +184,7 @@
                                         value="{{ $item->pekerjaan_pasangan }}"></td>
                             </tr>
                             <tr>
-                                <td>NIP</td>
+                                <td>NIP (jika ada)</td>
                                 <td><input class="form-input" type="text" name="nip_pasangan"
                                         value="{{ $item->nip_pasangan }}"></td>
                             </tr>
