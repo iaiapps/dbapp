@@ -1,6 +1,6 @@
 <div>
 
-    <table class="table mb-0 table-bordered table-striped tableFixHead">
+    <table class="table mb-0 table-bordered table-striped tableFixHead mb-4">
         <thead>
             <tr>
                 <th scope="col">#</th>
