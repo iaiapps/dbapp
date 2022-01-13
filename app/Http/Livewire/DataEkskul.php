@@ -13,12 +13,12 @@ class DataEkskul extends Component
     public function render()
     {
         $ekskulCategory=ExtracurricularCategory::get();
-        return view('livewire.data-ekskul',compact('ekskulCategory'));
+        $jumlah =  ExtracurricularData::count();
+        return view('livewire.data-ekskul',compact('ekskulCategory','jumlah'));
     }
     public function choose($id,$name)
     {
         $this->ekskuls = ExtracurricularData::where('extra_id',$id)->get();
-        // $this->ekskuls = $id;
     }
 
 }
