@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Models\Grade;
+use App\Http\Livewire\JournalIndex;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
@@ -18,7 +19,9 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Livewire\JournalIndex;
+use App\Http\Controllers\CobaController;
+use App\Http\Controllers\ExtracurricularDataController;
+use App\Models\ExtracurricularData;
 
 //SHORTCUT KU
 
@@ -31,7 +34,7 @@ Route::get('/ccc', function () {
     Artisan::call('config:cache');
     echo '<script>alert("config cache Success")</script>';
 });
-Route::get('/vc', function () {
+Route::get('/cv', function () {
     Artisan::call('view:clear');
     echo '<script>alert("view clear Success")</script>';
 });
@@ -49,6 +52,7 @@ Route::get('/storage123', function () {
 });
 
 Auth::routes();
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
@@ -69,6 +73,7 @@ Route::middleware('role:admin')->group(function () {
         })->name('tambah_user');
         Route::post('/users/import', [UserController::class, 'import'])->name('admin.import_users');
 
+        Route::post('/students/import/tempstudent', [StudentController::class, 'importTempStudent'])->name('admin.import_temp_students');
         Route::post('/students/import', [StudentController::class, 'import'])->name('admin.import_students');
         Route::post('/teachers/import', [TeacherController::class, 'import'])->name('admin.import_teachers');
         Route::get('/students/export', [StudentController::class, 'export'])->name('admin.export_students');
@@ -186,3 +191,11 @@ Route::get('change-password', [ChangePasswordController::class, 'index'])->name(
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->name('siswa.contact_center');
+
+// EKSKUL
+
+route::get('data_ekskul',[ExtracurricularDataController::class,'index'])->name('ekskul.index');
+route::get('pilih_ekskul',[ExtracurricularDataController::class,'create'])->name('ekskul.create');
+route::post('/ekskul_post',[ExtracurricularDataController::class,'store'])->name('ekskul.store');
+route::get('/coba',[CobaController::class,'hitungEkskul']);
+Route::get('/ekskul/export', [ExtracurricularDataController::class, 'export'])->name('ekskul.export');

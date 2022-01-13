@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Database</title>
+    <link rel="stylesheet" href="assets/spectre/spectre.min.css" />
+    <link rel="stylesheet" href="assets/lineawesome/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <div class="centerwrap">
+      <div class="login">
+        <div class="kiri">
+          <h4 class="text-center">DATABASE APPLICATION</h4>
+          <h5 class="text-center">SDIT Harapan Umat Jember</h5>
+          <img class="p-centered" src="img/loginback.svg" alt="" />
+        </div>
+
+        <div class="kanan bg-primary">
+          <h5 class="text-center">Selamat Datang</h5>
+          <h5 class="text-center">Sign In Untuk Masuk</h5>
+
+          <div class="toast toast-error" id="toast">
+            <button class="btn btn-clear float-right" id="closetoast"></button>
+            Lorem ipsum dolor sit amet,
+          </div>
+
+          <div class="form-group my-2">
+            <label class="form-label mt-2" for="username">Username</label>
+            <div class="has-icon-left">
+              <input
+                type="text"
+                id="username"
+                class="form-input"
+                placeholder="Username"
+              />
+              <i class="las la-user form-icon text-primary"></i>
+            </div>
+          </div>
+
+          <div class="form-group my-2">
+            <label class="form-label my-t" for="password">Password</label>
+            <div class="has-icon-left">
+              <input
+                type="text"
+                id="password"
+                class="form-input"
+                placeholder="Password"
+              />
+              <i class="las la-lock form-icon text-primary"></i>
+            </div>
+          </div>
+
+          <br />
+          <button class="btn col-12 text-large">sign in</button>
+          <div class="text-right my-2">
+            <a href="#" class="btn btn-link text-light text-small"
+              >forgot password?</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

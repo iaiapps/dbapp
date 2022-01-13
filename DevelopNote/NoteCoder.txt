@@ -1,0 +1,43 @@
+referensi :
+===========(1)=========== 
+You can't do that with a whereIn, you can do that with a where statement
+$users = User::whereIn('type', $types)->where('latest', '>=', 2)->get();
+===========(2)=========== 
+After hours of searching, finally Alhamdulillah
+dengan berkali kali try. akhirnya ini kode untuk mencari mengambil data dari ekstrakurikuler yang jumlah input tidak lebih dari 20
+# jadi step pertama itu aku cari data extra_id yg ada di tabel Extra_data yang jumlahnya >= 20
+  $getCountEkskul = 
+  ExtracurricularData::having(DB::raw('count(extra_id)'), '>=', 20)
+  ->groupBy('extra_id')
+# disini aku mengambil value saja, dan menjadikannya array untuk bisa di lempar ke tahap pencarian berikutnya
+    ->pluck('extra_id');
+# tapi sebelum itu cek dlu ada tidak nya array diatas
+ dengan if ($getCount->isEmpty()) kalau tidak ada, lempar aja semuanya.
+# setelah dapat noh id yg sdh 20 atau lebih besarnya, maka kecualikan ia dalam pencarian di category_ekskul
+  $getEkskulCategory = ExtracurricularCategory::where('id', '!=', $getCount)->get();
+# lengkap kodenya di bwah ini
+```````````````
+$getCount = ExtracurricularData::having(DB::raw('count(extra_id)'), '>=', 20)
+        ->groupBy('extra_id')
+       ->pluck('extra_id');
+
+       if ($getCount->isEmpty()) {
+           $this->ekskul = ExtracurricularCategory::get();
+        }else{
+            $this->ekskul = ExtracurricularCategory::where('id', '!=', $getCount)->get();
+       }
+````````````````
+===========(3)=========== 
+berawal dari ini sih diatas
+  $getCount = DB::table('extracurricular_data')
+    ->select('extra_id', DB::raw('count(*) as total'))
+    ->groupBy('extra_id')
+    ->get()
+    ->pluck('total','extra_id');
+===========(4)===========
+looping jika menggunakan eloquent ORM bisa get class yang di buat di App\Models nya
+namun, jika tidak pakai eloquent ORM tidak bisa.
+contoh yang bisa :
+  ExtracurricularData::get()
+contoh yang ga bisa :
+  DB::table('nama_tables')

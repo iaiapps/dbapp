@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/spectre/spectre.min.css" />
+    <link rel="stylesheet" href="assets/spectre/spectre-icons.min.css" />
+    <link rel="stylesheet" href="assets/themify/themify-icons.css" />
+    <link rel="stylesheet" href="css/app.css" />
+
+    <title>Form Guru</title>
+  </head>
+  <body>
+    <div class="container grid-md bg-gray card">
+      <form class="px-2 mx-2" id="form">
+        <fieldset>
+          <br />
+          <h4 class="text-center bg-primary p-2">
+            FORMULIR PENDIDIK DAN TENAGA KEPENDIDIKAN
+          </h4>
+
+          <br />
+          <h4 class="text-center">Data Anak</h4>
+          <hr class="text-primary" />
+
+          <div class="form-group pt-2">
+            <label class="form-label" for="namaanak">
+              <span class="badge"> Nama Anak </span>
+              <input
+                class="form-input"
+                type="text"
+                id="namaanak"
+                placeholder="Nama Anak"
+                required
+            /></label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="statusanak"
+              >Status Anak<input
+                class="form-input"
+                type="text"
+                id="statusanak"
+                placeholder="Status Anak"
+                required
+            /></label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="jenjangpendidikan"
+              >Jenjang Pendidikan<input
+                class="form-input"
+                type="text"
+                id="jenjangpendidikan"
+                placeholder="Jenjang Pendidikan"
+                required
+            /></label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="nisn"
+              >NISN<input
+                class="form-input"
+                type="text"
+                id="nisn"
+                placeholder="NISN"
+            /></label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="jeniskelamin">Jenis Kelamin </label>
+            <select class="form-select" id="jeniskelamin" required>
+              <option>---</option>
+              <option>Laki-laki</option>
+              <option>Perempuan</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tempatlahir"
+              >Tempat Lahir<input
+                class="form-input"
+                type="text"
+                id="tempatlahir"
+                placeholder="Tempat Lahir"
+                required
+            /></label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tanggallahir"
+              >Tanggal Lahir<input
+                class="form-input"
+                type="text"
+                id="tanggallahir"
+                placeholder="Tanggal Lahir"
+                required
+            /></label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tahunmasuk"
+              >Tahun Masuk<input
+                class="form-input"
+                type="text"
+                id="tahunmasuk"
+                placeholder="Tahun Masuk"
+                required
+            /></label>
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <input
+                type="submit"
+                value="Simpan"
+                class="btn float-right btn-lg col-12 btn-primary"
+              />
+            </div>
+            <div class="column">
+              <input
+                type="submit"
+                value="Batal"
+                class="btn float-right btn-lg col-12 btn-primary"
+              />
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <script src="assets/bouncer/bouncer.polyfills.min.js"></script>
+    <script src="js/form.js"></script>
+  </body>
+</html>

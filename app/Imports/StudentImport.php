@@ -19,7 +19,6 @@ class StudentImport implements
     WithHeadingRow, 
     WithValidation,
     SkipsOnFailure
-    
 {
     use Importable, SkipsErrors, SkipsFailures;
     public function model(array $row)

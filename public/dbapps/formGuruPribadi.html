@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/spectre/spectre.min.css" />
+    <link rel="stylesheet" href="assets/spectre/spectre-icons.min.css" />
+    <link rel="stylesheet" href="assets/themify/themify-icons.css" />
+    <link rel="stylesheet" href="css/app.css" />
+
+    <title>Form Guru</title>
+  </head>
+  <body>
+    <div class="container grid-md bg-gray card">
+      <form class="px-2 mx-2" id="form">
+        <fieldset>
+          <br />
+          <h4 class="text-center bg-primary p-2">
+            FORMULIR PENDIDIK DAN TENAGA KEPENDIDIKAN
+          </h4>
+
+          <!-- data pribadi -->
+          <br />
+          <h4 class="text-center">Data Pribadi</h4>
+          <hr class="text-primary" />
+
+          <div class="form-group pt-2">
+            <label class="form-label" for="alamatjalan">Alamat Jalan</label>
+            <textarea
+              class="form-input"
+              type="textarea"
+              id="alamatjalan"
+              placeholder="Alamat Jalan"
+              rows="2"
+              required
+            >
+            </textarea>
+          </div>
+
+          <div class="columns">
+            <div class="column col-xs-12">
+              <div class="form-group">
+                <label class="form-label" for="rt"
+                  >RT
+                  <input
+                    class="form-input"
+                    type="number"
+                    id="rt"
+                    placeholder="RT"
+                    required
+                  />
+                </label>
+              </div>
+            </div>
+            <div class="column col-xs-12">
+              <div class="form-group">
+                <label class="form-label" for="rw"
+                  >RW<input
+                    class="form-input"
+                    type="number"
+                    id="rw"
+                    placeholder="RW"
+                    required
+                /></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="namadusun">Nama Dusun</label>
+            <input
+              class="form-input"
+              type="text"
+              id="namadusun"
+              placeholder="Nama Dusun"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="desa/kelurahan"
+              >Desa/Kelurahan</label
+            >
+            <input
+              class="form-input"
+              type="text"
+              id="desa/kelurahan"
+              placeholder="Desa"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="kecamatan">Kecamatan</label>
+            <input
+              class="form-input"
+              type="text"
+              id="kecamatan"
+              placeholder="Kecamatan"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="kabupaten/kota"
+              >Kabupaten / Kota</label
+            >
+            <input
+              class="form-input"
+              type="text"
+              id="kabupaten/kota"
+              placeholder="Kabupaten / Kota"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="propinsi">Propinsi</label>
+            <input
+              class="form-input"
+              type="text"
+              id="propinsi"
+              placeholder="Propinsi"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="kodepos"
+              >Kode POS<input
+                class="form-input"
+                type="number"
+                id="kodepos"
+                placeholder="Kode POS"
+                required
+            /></label>
+          </div>
+          <div class="columns">
+            <div class="column col-6">
+              <div class="form-group">
+                <label class="form-label" for="lintang"
+                  >Lintang<input
+                    class="form-input"
+                    type="number"
+                    id="lintang"
+                    placeholder="Lintang"
+                    required
+                /></label>
+              </div>
+            </div>
+            <div class="column col-6">
+              <div class="form-group">
+                <label class="form-label" for="bujur"
+                  >Bujur<input
+                    class="form-input"
+                    type="number"
+                    id="bujur"
+                    placeholder="Bujur"
+                    required
+                /></label>
+              </div>
+            </div>
+            <div class="column">
+              <p>
+                untuk mencari garis lintang dan bujur bisa
+                <a
+                  href="https://www.google.co.id/maps"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >klik disini</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="agama&kepercayaan"
+              >Agama & Kepercayaan
+            </label>
+            <select class="form-select" id="agama&kepercayaan" required>
+              <option>Pilih Agama & Kepercayaan</option>
+              <option>01) Islam</option>
+              <option>02) Kristen/Protestan</option>
+              <option>03) Katholik</option>
+              <option>04) Hindu</option>
+              <option>05) Budha</option>
+              <option>06) Khong Hu Chu</option>
+              <option>07) Kepercayaan Kpd Tuhan YME</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="npwp"
+              >NPWP<input
+                class="form-input"
+                type="number"
+                id="npwp"
+                placeholder="NPWP"
+            /></label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="namawajibpajak"
+              >Nama Wajib Pajak</label
+            >
+            <input
+              class="form-input"
+              type="text"
+              id="namawajibpajak"
+              placeholder="Nama Wajib Pajak"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="kewarganegaraan"
+              >Kewarganegaraan
+            </label>
+            <select class="form-select" id="kewarganegaraan" required>
+              <option>---</option>
+              <option>Indonesia</option>
+              <option>Asing (WNA)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="statusperkawinan"
+              >Status Perkawinan
+            </label>
+            <select class="form-select" id="statusperkawinan" required>
+              <option>---</option>
+              <option>Kawin</option>
+              <option>Belum Kawin</option>
+              <option>Janda/Duda</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="namasuami/istri"
+              >Nama Suami/Istri</label
+            >
+            <input
+              class="form-input"
+              type="text"
+              id="namasuami/istri"
+              placeholder="Nama Suami/Istri"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="nipsuami/istri"
+              >NIP Suami/Istri (diisi jika PNS)<input
+                class="form-input"
+                type="number"
+                id="nipsuami/istri"
+                placeholder="NIP Suami/Istri"
+            /></label>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pekerjaansuami/istri"
+              >Pekerjaan Suami/Istri
+            </label>
+            <select class="form-select" id="pekerjaansuami/istri" required>
+              <option>pilih pekerjaan suami/istri</option>
+              <option>01) Tidak Bekerja</option>
+              <option>02) Nelayan</option>
+              <option>03) Petani</option>
+              <option>04) Peternak</option>
+              <option>05) PNS/TNI/Polri</option>
+              <option>06) GTT/PTT</option>
+              <option>07) Pedagang Kecil</option>
+              <option>08) Pedagang Besar</option>
+              <option>09) Karyawan Swasta</option>
+              <option>10) Wirausaha</option>
+              <option>11) Pensiunan</option>
+              <option>12) Buruh</option>
+              <option>13) Sudah Meninggal</option>
+              <option>14) TKI</option>
+              <option>15) Tidak Dapat Diterapkan</option>
+              <option>16) Tidak Bekerja</option>
+            </select>
+          </div>
+          <br />
+          <div class="columns">
+            <div class="column">
+              <input
+                type="submit"
+                value="Simpan"
+                class="btn float-right btn-lg col-12 btn-primary"
+              />
+            </div>
+            <div class="column">
+              <input
+                type="submit"
+                value="Batal"
+                class="btn float-right btn-lg col-12 btn-primary"
+              />
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <script src="assets/bouncer/bouncer.polyfills.min.js"></script>
+    <script src="js/form.js"></script>
+  </body>
+</html>
