@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
     "content-hash": "680a880fed6c0733c787c8a4d631b4c5",
+
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2046,6 +2048,7 @@
         },
         {
             "name": "livewire/livewire",
+
             "version": "v2.8.2",
             "source": {
                 "type": "git",
@@ -2056,6 +2059,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/livewire/livewire/zipball/f6b1726d1068a5b7315f03dc4e58d5763b928374",
                 "reference": "f6b1726d1068a5b7315f03dc4e58d5763b928374",
+
                 "shasum": ""
             },
             "require": {
@@ -2106,6 +2110,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
+
                 "source": "https://github.com/livewire/livewire/tree/v2.8.2"
             },
             "funding": [
@@ -2115,6 +2120,7 @@
                 }
             ],
             "time": "2021-12-10T19:37:40+00:00"
+
         },
         {
             "name": "maatwebsite/excel",

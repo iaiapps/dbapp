@@ -199,7 +199,7 @@
                         <td>{{ $item->pekerjaan_pasangan }}</td>
                     </tr>
                     <tr>
-                        <td>NIP</td>
+                        <td>NIP(jika ada)</td>
                         <td>{{ $item->nip_pasangan }}</td>
                     </tr>
                 </tbody>

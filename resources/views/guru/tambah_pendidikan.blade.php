@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="satuanpendidikan">Satuan Pendidikan
+                    <label class="form-label" for="satuanpendidikan">Nama Lembaga / Sekolah / Satuan Pendidikan
                     </label>
                     <input class="form-input" type="text" id="satuanpendidikan" name="nama_satuan_pendidikan"
                         placeholder="Satuan Pendidikan" required />
@@ -55,19 +55,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="nim">NIM
+                    <label class="form-label" for="nim">NISN/NIM
                     </label>
                     <input class="form-input" type="text" id="nim" name="nim" placeholder="NIM" />
                 </div>
 
-                {{-- <div class="form-group">
-                    <label class="form-label" for="masih">Masih
-                    </label>
-                    <input class="form-input" type="text" id="masih" name="masih" placeholder="Masih" />
-                </div> --}}
-
                 <div class="form-group">
-                    <label class="form-label" for="semester">Semester
+                    <label class="form-label" for="semester">Semester yang ditempuh
                     </label>
                     <input class="form-input" type="text" id="semester" name="semester" placeholder="Semester" />
                 </div>

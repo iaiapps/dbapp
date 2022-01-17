@@ -15,7 +15,7 @@
     <style>
         .my-custom-scrollbar {
             position: relative;
-            height: 345px;
+            height: 400px;
             overflow: auto;
         }
 
@@ -37,6 +37,7 @@
             position: sticky;
             top: 0;
             z-index: 1;
+            background-color: white
         }
 
         table {
