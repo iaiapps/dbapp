@@ -16,6 +16,7 @@ class CreateExtracurricularCategoriesTable extends Migration
         Schema::create('extracurricular_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('day')->nullable();
             $table->string('teacher')->nullable();
             $table->timestamps();
         });

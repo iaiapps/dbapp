@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\ExtracurricularDataController;
+use App\Http\Controllers\MunaqosahTahfidzController;
 use App\Models\ExtracurricularData;
 
 //SHORTCUT KU
@@ -199,3 +200,9 @@ route::get('pilih_ekskul',[ExtracurricularDataController::class,'create'])->name
 route::post('/ekskul_post',[ExtracurricularDataController::class,'store'])->name('ekskul.store');
 route::get('/coba',[CobaController::class,'hitungEkskul']);
 Route::get('/ekskul/export', [ExtracurricularDataController::class, 'export'])->name('ekskul.export');
+
+Route::get('daftar_munaqosah',[MunaqosahTahfidzController::class,'create']);
+Route::post('daftar_munaqosah',[MunaqosahTahfidzController::class,'store'])->name('munaqosah.store');
+Route::get('penguji',[MunaqosahTahfidzController::class,'show'])->name('munaqosah.show');
+Route::post('penguji',[MunaqosahTahfidzController::class,'update'])->name('munaqosah.update');
+Route::get('hasil_munaqosah',[MunaqosahTahfidzController::class,'hasilMunaqosah'])->name('munaqosah.hasil');
