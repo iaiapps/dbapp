@@ -38,7 +38,7 @@
                     <td>{{ $m->grade }}</td>
                     <td>{{ $m->results }}</td>
                     <td>
-                        <a href="{{ route('munaqosah.cetak', $m->id) }}" target="_blank">Cetak</a>
+                        <a href="{{ route('munaqosah.cetak', [$m->id, $m->name]) }}" target="_blank">Cetak</a>
                     </td>
 
                 </tr>

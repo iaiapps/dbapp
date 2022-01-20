@@ -103,7 +103,7 @@ class MunaqosahTahfidzController extends Controller
        $munaqosah = MunaqosahTahfidz::get();
        return view('munaqosah.index',compact('munaqosah'));
    }
-   public function cetak($id)
+   public function cetak($id,$name)
    {
     $data= MunaqosahTahfidz::where('id',$id)->first();
 
@@ -113,7 +113,7 @@ class MunaqosahTahfidzController extends Controller
     $fontBold =public_path('sertifikat_asset\MYRIADPRO-BOLD.OTF');
     $image=imagecreatefromjpeg($img_path);
     $color=imagecolorallocate($image,19,21,22);
-    $nama = strtoupper($data->name);
+    $nama = strtoupper($name);
     // Get image Width and Height
     $image_width = imagesx($image);  
     $image_height = imagesy($image);
