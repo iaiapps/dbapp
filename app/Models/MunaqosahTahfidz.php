@@ -10,4 +10,8 @@ class MunaqosahTahfidz extends Model
     use HasFactory;
     protected $guarded=['_token'];
     public $timestamps = false;
+    public function class()
+    {
+        return $this->belongsTo(TempClass::class);
+    }
 }

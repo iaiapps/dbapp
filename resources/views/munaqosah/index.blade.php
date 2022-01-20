@@ -29,7 +29,7 @@
             @foreach ($munaqosah as $m)
                 <tr>
                     <td>{{ $m->name }}</td>
-                    <td>{{ $m->class_id }}</td>
+                    <td>{{ $m->class->name }}</td>
                     <td>{{ $m->juz }}</td>
                     <td>{{ $m->exam_status }}</td>
                     <td>{{ $m->kelancaran }}</td>
