@@ -206,3 +206,4 @@ Route::post('daftar_munaqosah',[MunaqosahTahfidzController::class,'store'])->nam
 Route::get('penguji',[MunaqosahTahfidzController::class,'show'])->name('munaqosah.show');
 Route::post('penguji',[MunaqosahTahfidzController::class,'update'])->name('munaqosah.update');
 Route::get('hasil_munaqosah',[MunaqosahTahfidzController::class,'hasilMunaqosah'])->name('munaqosah.hasil');
+Route::get('cetak_sertifikat/{id}',[MunaqosahTahfidzController::class,'cetak'])->name('munaqosah.cetak');

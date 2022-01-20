@@ -103,4 +103,8 @@ class MunaqosahTahfidzController extends Controller
        $munaqosah = MunaqosahTahfidz::get();
        return view('munaqosah.index',compact('munaqosah'));
    }
+   public function cetak($id)
+   {
+       dd($id);
+   }
 }

@@ -22,6 +22,7 @@
                 <th>Tajwid</th>
                 <th>Grade</th>
                 <th>Hasil</th>
+                <th>Cetak</th>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +37,9 @@
                     <td>{{ $m->tajwid }}</td>
                     <td>{{ $m->grade }}</td>
                     <td>{{ $m->results }}</td>
+                    <td>
+                        <a href="{{ route('munaqosah.cetak', $m->id) }}" target="_blank">Cetak</a>
+                    </td>
 
                 </tr>
             @endforeach
