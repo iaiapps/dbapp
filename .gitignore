@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/sertifikat_jadi/*
 /storage/*.key
 /vendor
 .env
