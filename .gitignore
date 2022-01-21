@@ -2,7 +2,7 @@
 /public/hot
 /public/storage
 # exclude everything
-/public/sertifikat_jadi/*
+# /public/sertifikat_jadi/*
 # exception to the rule
 !public/sertifikat_jadi/.gitkeep
 /storage/*.key
