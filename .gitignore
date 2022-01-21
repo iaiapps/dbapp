@@ -1,7 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
+# exclude everything
 /public/sertifikat_jadi/*
+# exception to the rule
+!public/sertifikat_jadi/.gitkeep
 /storage/*.key
 /vendor
 .env
