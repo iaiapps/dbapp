@@ -191,3 +191,8 @@ Route::get('penguji',[MunaqosahTahfidzController::class,'show'])->name('munaqosa
 Route::post('penguji',[MunaqosahTahfidzController::class,'update'])->name('munaqosah.update');
 Route::get('hasil_munaqosah',[MunaqosahTahfidzController::class,'hasilMunaqosah'])->name('munaqosah.hasil');
 Route::get('cetak_sertifikat/{id}/{name}',[MunaqosahTahfidzController::class,'cetak'])->name('munaqosah.cetak');
+Route::get('custom_sertifikat',function ()
+{
+    return view('munaqosah.custom');
+});
+Route::post('custom_sertifika',[MunaqosahTahfidzController::class,'customSertifikat'])->name('munaqosah.custom');

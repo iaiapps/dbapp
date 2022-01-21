@@ -10,12 +10,14 @@
 </head>
 
 <body>
-    <table id="tabel-data" class="table table-striped table-bordered" width="100%" cellspacing="0">
+    <table id="tabel-data" class="table table-responsive table-bordered" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>Nama</th>
                 <th>Kelas</th>
                 <th>Juz</th>
+                <th>Daftar</th>
+                <th>Ujian</th>
                 <th>Status ujian</th>
                 <th>Kelancaran</th>
                 <th>Fasohah Makhroj</th>
@@ -31,6 +33,8 @@
                     <td>{{ $m->name }}</td>
                     <td>{{ $m->class->name }}</td>
                     <td>{{ $m->juz }}</td>
+                    <td> {{ \Carbon\Carbon::parse($m->register_date)->formatLocalized('%d-%b-%y') }}</td>
+                    <td> {{ \Carbon\Carbon::parse($m->exam_date)->formatLocalized('%d-%b-%y') }}</td>
                     <td>{{ $m->exam_status }}</td>
                     <td>{{ $m->kelancaran }}</td>
                     <td>{{ $m->fasohah_makhroj }}</td>
