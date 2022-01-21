@@ -151,7 +151,10 @@ class MunaqosahTahfidzController extends Controller
     $y = ($image_height/2) - ($text_height/2);
     //Membubuhkan tanggal
     imagettftext($image, 85, 0, $xx, 2050, $color, $fontReg, $tanggal);    
-    imagejpeg($image);
+    $fullPath = public_path('sertifikat_jadi/'.'j'.$data->juz.'-'.$data->name.'.jpg');
+    imagejpeg($image,$fullPath);
+    //gini aja buat download ke local, EZ bos. baru ketemu
+    return Response()->download($fullPath);
     imagedestroy($image);
    }
     public function customSertifikat(Request $request)
