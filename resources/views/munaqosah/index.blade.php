@@ -10,46 +10,54 @@
 </head>
 
 <body>
-    <table id="tabel-data" class="table table-responsive table-bordered" width="100%" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Nama</th>
-                <th>Kelas</th>
-                <th>Juz</th>
-                <th>Daftar</th>
-                <th>Ujian</th>
-                <th>Status ujian</th>
-                <th>Kelancaran</th>
-                <th>Fasohah Makhroj</th>
-                <th>Tajwid</th>
-                <th>Grade</th>
-                <th>Hasil</th>
-                <th>Cetak</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($munaqosah as $m)
+    <br>
+    {{-- <hr> --}}
+    <div class="container">
+        <div class="justify-content-beetwen">
+            <button class="btn btn-primary">Import</button>
+            <button class="btn btn-primary">Export</button>
+            <button class="btn btn-success">Export JPG All</button>
+        </div> <br>
+        <table id="tabel-data" class="table table-responsive table-bordered" width="100%" cellspacing="0">
+            <thead>
                 <tr>
-                    <td>{{ $m->name }}</td>
-                    <td>{{ $m->class->name }}</td>
-                    <td>{{ $m->juz }}</td>
-                    <td> {{ \Carbon\Carbon::parse($m->register_date)->formatLocalized('%d-%b-%y') }}</td>
-                    <td> {{ \Carbon\Carbon::parse($m->exam_date)->formatLocalized('%d-%b-%y') }}</td>
-                    <td>{{ $m->exam_status }}</td>
-                    <td>{{ $m->kelancaran }}</td>
-                    <td>{{ $m->fasohah_makhroj }}</td>
-                    <td>{{ $m->tajwid }}</td>
-                    <td>{{ $m->grade }}</td>
-                    <td>{{ $m->results }}</td>
-                    <td>
-                        <a href="{{ route('munaqosah.cetak', [$m->id, $m->name]) }}" target="_blank">Cetak</a>
-                    </td>
-
+                    <th>Nama</th>
+                    <th>Kelas</th>
+                    <th>Juz</th>
+                    <th>Daftar</th>
+                    <th>Ujian</th>
+                    <th>Status ujian</th>
+                    <th>Kelancaran</th>
+                    <th>Fasohah Makhroj</th>
+                    <th>Tajwid</th>
+                    <th>Grade</th>
+                    <th>Hasil</th>
+                    <th>Cetak</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($munaqosah as $m)
+                    <tr>
+                        <td>{{ $m->name }}</td>
+                        <td>{{ $m->class->name }}</td>
+                        <td>{{ $m->juz }}</td>
+                        <td> {{ \Carbon\Carbon::parse($m->register_date)->formatLocalized('%d-%b-%y') }}</td>
+                        <td> {{ \Carbon\Carbon::parse($m->exam_date)->formatLocalized('%d-%b-%y') }}</td>
+                        <td>{{ $m->exam_status }}</td>
+                        <td>{{ $m->kelancaran }}</td>
+                        <td>{{ $m->fasohah_makhroj }}</td>
+                        <td>{{ $m->tajwid }}</td>
+                        <td>{{ $m->grade }}</td>
+                        <td>{{ $m->results }}</td>
+                        <td>
+                            <a href="{{ route('munaqosah.cetak', [$m->id, $m->name]) }}" target="_blank">Cetak</a>
+                        </td>
 
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     <script>
         $(document).ready(function() {
             $('#tabel-data').DataTable();
