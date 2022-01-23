@@ -16,7 +16,7 @@
         <div class="justify-content-beetwen">
             <button class="btn btn-primary">Import</button>
             <button class="btn btn-primary">Export</button>
-            <button class="btn btn-success">Export JPG All</button>
+            <a href="{{ route('munaqosah.exportAll') }}" class="btn btn-success">Export JPG All</a>
         </div> <br>
         <table id="tabel-data" class="table table-responsive table-bordered" width="100%" cellspacing="0">
             <thead>

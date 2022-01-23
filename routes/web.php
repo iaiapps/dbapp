@@ -2,9 +2,13 @@
 
 use App\Models\User;
 use App\Models\Grade;
+use App\Models\MunaqosahTahfidz;
 use App\Http\Livewire\JournalIndex;
+use App\Models\ExtracurricularData;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\CobaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Laravel\Socialite\Facades\Socialite;
@@ -19,10 +23,8 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\CobaController;
-use App\Http\Controllers\ExtracurricularDataController;
 use App\Http\Controllers\MunaqosahTahfidzController;
-use App\Models\ExtracurricularData;
+use App\Http\Controllers\ExtracurricularDataController;
 
 //SHORTCUT KU
 
@@ -35,6 +37,17 @@ Route::get('/cc', function () {
     Artisan::call('view:clear');
     Artisan::call('route:cache');
 });
+Route::get('rj',function ()
+    {
+        Artisan::call('queue:work');
+        return 'Job Berhasil di hapus';
+    }
+);
+Route::get('cj',function ()
+    {
+        Artisan::call('queue:clear');
+    }
+);
 
 Auth::routes();
 
@@ -196,3 +209,4 @@ Route::get('custom_sertifikat',function ()
     return view('munaqosah.custom');
 });
 Route::post('custom_sertifika',[MunaqosahTahfidzController::class,'customSertifikat'])->name('munaqosah.custom');
+Route::get('export_all_sertifikat',[MunaqosahTahfidzController::class,'exportJpgAll'])->name('munaqosah.exportAll');

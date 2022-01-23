@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CreateCertificates;
 use App\Models\MunaqosahTahfidz;
 use App\Models\TempStudent;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class MunaqosahTahfidzController extends Controller
 {
@@ -218,5 +220,21 @@ class MunaqosahTahfidzController extends Controller
         return Response()->download($fullPath);
         imagedestroy($image);
     }
-
+    public function exportJpgAll()
+    {
+        $datas =MunaqosahTahfidz::where('results','Lulus')->get();
+        $jml= $datas->count();
+        ini_set('max_execution_time', 800);
+        if ($jml>100) {
+            foreach ($datas as $data) {
+                CreateCertificates::dispatch($data);
+            }
+        }else{
+            foreach ($datas as $data) {
+                CreateCertificates::dispatch($data);
+            }
+            Artisan::call('queue:work');
+        }
+        return back();
+    }
 }
