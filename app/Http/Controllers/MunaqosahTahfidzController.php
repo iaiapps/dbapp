@@ -136,7 +136,7 @@ class MunaqosahTahfidzController extends Controller
     imagettftext($image,40,0,1687,2418,$color,$fontReg,$data->tajwid);
     imagettftext($image,50,0,333,1733,$color,$fontBold,"LULUS");
     imagettftext($image,54,0,1500,1733,$color,$fontBold,'Juz '. $data->juz);
-    imagettftext($image,55,0,2250,1733,$color,$fontBold,$data->grade);
+    imagettftext($image,55,0,2250,1733,$color,$fontBold,strtoupper($data->grade));
     
     //ini Tanggal
     // nama donk
@@ -196,7 +196,7 @@ class MunaqosahTahfidzController extends Controller
         imagettftext($image, 40, 0, 1687, 2418, $color, $fontReg, $request->tajwid);
         imagettftext($image, 50, 0, 333, 1733, $color, $fontBold, "LULUS");
         imagettftext($image, 54, 0, 1500, 1733, $color, $fontBold, 'Juz '. $request->juz);
-        imagettftext($image, 55, 0, 2250, 1733, $color, $fontBold, $request->grade);
+        imagettftext($image, 55, 0, 2250, 1733, $color, $fontBold, strtoupper($request->grade));
         
         //ini Tanggal
         // nama donk
@@ -229,12 +229,12 @@ class MunaqosahTahfidzController extends Controller
             foreach ($datas as $data) {
                 CreateCertificates::dispatch($data);
             }
+            echo 'Hubungi admin, Untuk export lebih dari 100';
         }else{
             foreach ($datas as $data) {
                 CreateCertificates::dispatch($data);
             }
-            Artisan::call('queue:work');
         }
-        return back();
+        // return back();
     }
 }

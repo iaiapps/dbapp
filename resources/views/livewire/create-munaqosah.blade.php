@@ -10,7 +10,7 @@
         @csrf
         @method('POST')
         @php
-            $tgl = now()->timestamp;
+            $tgl = now();
         @endphp
         <input type="hidden" name="register_date" value="{{ $tgl }}">
         <div class="mb-3">

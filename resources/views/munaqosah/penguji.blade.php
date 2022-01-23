@@ -12,7 +12,7 @@
         @csrf
         @method('POST')
         @php
-            $tgl = now()->timestamp;
+            $tgl = now();
         @endphp
         <input type="hidden" name="exam_date" value="{{ $tgl }}">
         @if (!is_null($students))
