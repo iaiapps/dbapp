@@ -5,6 +5,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Ekskul</th>
+                <th scope="col">Hari</th>
                 <th scope="col">Sisa Kuota</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $item->name }}</td>
+                        <td>{{ $item->day }}</td>
 
                         <td>
                             @if ($sisa <= 0)
