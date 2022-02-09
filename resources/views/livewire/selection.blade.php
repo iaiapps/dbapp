@@ -35,7 +35,7 @@
         @endif
         <button type="submit" class="btn btn-primary col-12" wire:loading.attr="disable">Kirim Pilihan</button>
         <div wire:loading>
-            hold on...
+            tunggu sebentar ...
         </div>
 
     </form>

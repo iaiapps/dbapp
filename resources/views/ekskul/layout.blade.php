@@ -31,12 +31,15 @@
         .tableFixHead {
             overflow: auto;
             height: 100px;
+
         }
 
         .tableFixHead thead th {
             position: sticky;
             top: 0;
             z-index: 1;
+            background-color: #0d6efd;
+            color: white;
         }
 
         table {
