@@ -1,10 +1,11 @@
 <div>
 
-    <table class="table mb-0 table-bordered table-striped tableFixHead">
+    <table class="table mb-0 table-bordered table-striped tableFixHead mb-4">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Ekskul</th>
+                <th scope="col">Hari</th>
                 <th scope="col">Sisa Kuota</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $item->name }}</td>
+                        <td>{{ $item->day }}</td>
 
                         <td>
                             @if ($sisa <= 0)

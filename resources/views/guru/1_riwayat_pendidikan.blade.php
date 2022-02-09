@@ -10,12 +10,12 @@
         <thead>
             <tr>
                 <th>Bidang Studi</th>
-                <th>jenjang pendidikan</th>
+                <th>Jenjang Pendidikan</th>
                 <th>Gelar Akademik</th>
-                <th>nama Satuan pendidikan formal</th>
+                <th>Nama Sekolah/lembaga</th>
                 <th>Tahun masuk</th>
                 <th>Tahun Lulus</th>
-                <th>NIM</th>
+                <th>NISN/NIM</th>
                 <th>Semester</th>
                 <th>IPK</th>
                 <th>Aksi</th>

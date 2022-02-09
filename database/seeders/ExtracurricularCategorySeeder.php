@@ -11,9 +11,6 @@ class ExtracurricularCategorySeeder extends Seeder
     {
         DB::table('extracurricular_categories')->insert([
             [
-                'name'=>'Futsal',
-            ],
-            [
                 'name'=>'Badminton',
             ],
             [
@@ -64,18 +61,15 @@ class ExtracurricularCategorySeeder extends Seeder
             [
                 'name'=>'Sains',
             ],
-            // [
-            //     'name'=>'Pidato',
-            // ],
-            // [
-            //     'name'=>'Robotik',
-            // ],
-            // [
-            //     'name'=>'Tartil',
-            // ],
-            // [
-            //     'name'=>'Story Telling',
-            // ],
+            [
+                'name'=>'Dokcil',
+            ],
+            [
+                'name'=>'Gardening',
+            ],
+            [
+                'name'=>'Bahasa Arab',
+            ],
         ]);
     }
 }

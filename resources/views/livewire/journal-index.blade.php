@@ -1,6 +1,6 @@
 <div>
     <nav class="navbar bg-primary navbar-dark justify-content-between">
-        <a class="btn btn-outline-light mx-3" href="{{ url()->previous() }}">Kembali</a>
+        <a class="btn btn-outline-light mx-3" href="{{ route('home') }}">Kembali</a>
         <a class="navbar-brand mx-3" href="#">Jurnal Guru</a>
         <button class="btn btn-outline-light mx-3">{{$jmljam}}</button>
       </nav>

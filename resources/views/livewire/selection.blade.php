@@ -35,7 +35,11 @@
         @endif
         <button type="submit" class="btn btn-primary col-12" wire:loading.attr="disable">Kirim Pilihan</button>
         <div wire:loading>
+<<<<<<< HEAD
             tunggu sebentar ...
+=======
+            Loading...
+>>>>>>> 5815f502efeb7cb84807ff999392f1c871a58b31
         </div>
 
     </form>

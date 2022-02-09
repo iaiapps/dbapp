@@ -2,9 +2,13 @@
 
 use App\Models\User;
 use App\Models\Grade;
+use App\Models\MunaqosahTahfidz;
 use App\Http\Livewire\JournalIndex;
+use App\Models\ExtracurricularData;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\CobaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Laravel\Socialite\Facades\Socialite;
@@ -19,37 +23,31 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\CobaController;
+use App\Http\Controllers\MunaqosahTahfidzController;
 use App\Http\Controllers\ExtracurricularDataController;
-use App\Models\ExtracurricularData;
 
 //SHORTCUT KU
 
 
 Route::get('/cc', function () {
-    Artisan::call('cache:clear');
-    echo '<script>alert("cache clear Success")</script>';
-});
-Route::get('/ccc', function () {
-    Artisan::call('config:cache');
-    echo '<script>alert("config cache Success")</script>';
-});
-Route::get('/cv', function () {
-    Artisan::call('view:clear');
-    echo '<script>alert("view clear Success")</script>';
-});
-Route::get('/cr', function () {
-    Artisan::call('route:cache');
-    echo '<script>alert("route clear Success")</script>';
-});
-Route::get('/coc', function () {
     Artisan::call('config:clear');
-    echo '<script>alert("config clear Success")</script>';
-});
-Route::get('/storage123', function () {
     Artisan::call('storage:link');
-    echo '<script>alert("linked")</script>';
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:cache');
 });
+Route::get('rj',function ()
+    {
+        Artisan::call('queue:work');
+        return 'Job Berhasil di hapus';
+    }
+);
+Route::get('cj',function ()
+    {
+        Artisan::call('queue:clear');
+    }
+);
 
 Auth::routes();
 
@@ -199,3 +197,16 @@ route::get('pilih_ekskul', [ExtracurricularDataController::class, 'create'])->na
 route::post('/ekskul_post', [ExtracurricularDataController::class, 'store'])->name('ekskul.store');
 route::get('/coba', [CobaController::class, 'hitungEkskul']);
 Route::get('/ekskul/export', [ExtracurricularDataController::class, 'export'])->name('ekskul.export');
+
+Route::get('daftar_munaqosah',[MunaqosahTahfidzController::class,'create']);
+Route::post('daftar_munaqosah',[MunaqosahTahfidzController::class,'store'])->name('munaqosah.store');
+Route::get('penguji',[MunaqosahTahfidzController::class,'show'])->name('munaqosah.show');
+Route::post('penguji',[MunaqosahTahfidzController::class,'update'])->name('munaqosah.update');
+Route::get('hasil_munaqosah',[MunaqosahTahfidzController::class,'hasilMunaqosah'])->name('munaqosah.hasil');
+Route::get('cetak_sertifikat/{id}/{name}',[MunaqosahTahfidzController::class,'cetak'])->name('munaqosah.cetak');
+Route::get('custom_sertifikat',function ()
+{
+    return view('munaqosah.custom');
+});
+Route::post('custom_sertifika',[MunaqosahTahfidzController::class,'customSertifikat'])->name('munaqosah.custom');
+Route::get('export_all_sertifikat',[MunaqosahTahfidzController::class,'exportJpgAll'])->name('munaqosah.exportAll');
