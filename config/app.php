@@ -179,9 +179,6 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class
-        
-
-
 
     ],
 

@@ -31,7 +31,7 @@ use App\Http\Controllers\ExtracurricularDataController;
 
 Route::get('/cc', function () {
     Artisan::call('config:clear');
-    Artisan::call('storage:link');
+    // Artisan::call('storage:link');
     Artisan::call('cache:clear');
     Artisan::call('config:cache');
     Artisan::call('view:clear');
