@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\PresenceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,5 +17,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 
     // API route for logout user
-    Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
+Route::resource('presences', PresenceController::class);
+
