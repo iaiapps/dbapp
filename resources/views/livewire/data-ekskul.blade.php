@@ -1,13 +1,16 @@
 <div>
     <div class="py-2 mb-3 scrollmenu">
-        {{-- <a href="{{ route('ekskul.export') }}" class="btn btn-sm btn-success rounded-pill">Export Data </a> --}}
-        <button type="button" class="btn btn-sm btn-success rounded-pill position-relative mx-1">
+        <a type="button" href="{{ route('ekskul.export') }}"
+            class="btn btn-sm btn-success rounded-pill position-relative mx-1">Export
+            Data<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ $jumlah }}
+            </span> </a>
+        {{-- <button type="button" class="btn btn-sm btn-success rounded-pill position-relative mx-1">
             Export
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{ $jumlah }}
-                {{-- <span class="visually-hidden">unread messages</span> --}}
             </span>
-        </button>
+        </button> --}}
         @foreach ($ekskulCategory as $eksCat)
             <button class="btn btn-sm btn-outline-primary rounded-pill"
                 wire:click="choose({{ $eksCat->id }}, '{{ $eksCat->name }}')">{{ $eksCat->name }}</button>

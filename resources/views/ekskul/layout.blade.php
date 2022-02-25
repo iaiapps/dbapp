@@ -31,6 +31,7 @@
         .tableFixHead {
             overflow: auto;
             height: 100px;
+
         }
 
         .tableFixHead thead th {

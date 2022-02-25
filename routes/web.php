@@ -192,10 +192,10 @@ Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->n
 
 // EKSKUL
 
-route::get('data_ekskul',[ExtracurricularDataController::class,'index'])->name('ekskul.index');
-route::get('pilih_ekskul',[ExtracurricularDataController::class,'create'])->name('ekskul.create');
-route::post('/ekskul_post',[ExtracurricularDataController::class,'store'])->name('ekskul.store');
-route::get('/coba',[CobaController::class,'hitungEkskul']);
+route::get('data_ekskul', [ExtracurricularDataController::class, 'index'])->name('ekskul.index');
+route::get('pilih_ekskul', [ExtracurricularDataController::class, 'create'])->name('ekskul.create');
+route::post('/ekskul_post', [ExtracurricularDataController::class, 'store'])->name('ekskul.store');
+route::get('/coba', [CobaController::class, 'hitungEkskul']);
 Route::get('/ekskul/export', [ExtracurricularDataController::class, 'export'])->name('ekskul.export');
 
 Route::get('daftar_munaqosah',[MunaqosahTahfidzController::class,'create']);
