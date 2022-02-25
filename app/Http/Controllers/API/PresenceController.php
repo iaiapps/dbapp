@@ -63,6 +63,6 @@ class PresenceController extends Controller
     {
         $presence->delete();
 
-        return response()->json('Program deleted successfully');
+        return response()->json('Presence deleted successfully');
     }
 }

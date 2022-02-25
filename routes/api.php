@@ -18,6 +18,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::resource('presences', PresenceController::class);
 });
-Route::resource('presences', PresenceController::class);
 
