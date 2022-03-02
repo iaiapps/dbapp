@@ -13,7 +13,7 @@ class PresenceController extends Controller
     public function index()
     {
         $data = Presence::get();
-        return response()->json([PresenceResource::collection($data), 'Presences fetched.']);
+        return response()->json($data);
     }
 
     public function store(Request $request)
@@ -37,7 +37,7 @@ class PresenceController extends Controller
 
         $presence = Presence::create($request->all());
         
-        return response()->json(['Program created successfully.', new PresenceResource($presence)]);
+        return response()->json(['Presence created successfully.', new PresenceResource($presence)]);
     }
 
     public function show($id)

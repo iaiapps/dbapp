@@ -16,8 +16,9 @@ class CreatePresencesTable extends Migration
         Schema::create('presences', function (Blueprint $table) {
             $table->id();
             $table->integer('teacher_id')->unsigned();
-            $table->timestamp('time_in')->nullable();
-            $table->timestamp('time_out')->nullable();
+            $table->string('date')->nullable();
+            $table->string('time_in')->nullable();
+            $table->string('time_out')->nullable();
             $table->string('late')->nullable();
             $table->string('overtime')->nullable();
             $table->string('note')->nullable();
