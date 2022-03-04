@@ -30,7 +30,7 @@ class PresenceController extends Controller
         //     'teacher_id'=>$request->teacher_id,
         //     'time_in'=>$request->time_in,
         //     'time_out'=>$request->time_out,
-        //     'late'=>$request->late,
+        //     'is_late'=>$request->is_late,
         //     'overtime'=>$request->overtime,
         //     'note'=>$request->note,
         //  ]);

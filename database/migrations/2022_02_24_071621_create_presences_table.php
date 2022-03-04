@@ -19,9 +19,9 @@ class CreatePresencesTable extends Migration
             $table->string('date')->nullable();
             $table->string('time_in')->nullable();
             $table->string('time_out')->nullable();
-            $table->string('late')->nullable();
+            $table->enum('is_late', ['yes', 'no'])->default('no');
             $table->string('overtime')->nullable();
-            $table->string('note')->nullable();
+            // $table->string('note')->nullable();
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
         });
     }
