@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
@@ -28,12 +29,20 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
-         ]);
+        ]);
         $user->assignRole('admin');
         $token = $user->createToken('auth_token')->plainTextToken;
+        
+        Teacher::create([
+            'teacher_id' => $user->id,
+            'nik' => rand(0,99999),
+            'nama' => $request->name,
+            'email' => $request->email,
+         ]);
+        $teacher = Teacher::where('email',$user->email)->first();
 
         return response()
-            ->json(['data' => $user,'access_token' => $token, 'token_type' => 'Bearer', ]);
+            ->json(['name' => $teacher->nama,'access_token' => $token, 'token_type' => 'Bearer','teacher_id' => $teacher->id ]);
     }
 
     public function login(Request $request)
@@ -47,9 +56,10 @@ class AuthController extends Controller
         $user = User::where('email', $request['email'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
+        $teacher_id = Teacher::where('email',$user->email)->first()->id;
 
         return response()
-            ->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer', 'name' => $user->name,'teacher_id' => $user->teacher_id, ]);
+            ->json(['access_token' => $token, 'token_type' => 'Bearer', 'data' => $user, 'teacher_id' => $teacher_id]);
     }
 
     // method for user logout and delete token
