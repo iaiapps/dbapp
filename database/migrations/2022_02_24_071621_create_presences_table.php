@@ -22,6 +22,7 @@ class CreatePresencesTable extends Migration
             $table->enum('is_late', ['yes', 'no'])->default('no');
             $table->string('overtime')->nullable();
             // $table->string('note')->nullable();
+            $table->timestamps();
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
         });
     }

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\PresenceResource;
+use Carbon\Carbon;
 use App\Models\Presence;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PresenceResource;
 use Illuminate\Support\Facades\Validator;
 
 class PresenceController extends Controller
@@ -25,7 +26,11 @@ class PresenceController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors());       
         }
-        
+        // cek ada gak gurunya
+        // $guru = Presence::where('teacher_id',$request->teacher_id)->orderby('id','DESC')->first();
+
+        Presence::where('teacher_id',$request->teacher_id)->whereDate('created_at', '=', Carbon::today()->toDateString());
+
         // $presence = Presence::create([
         //     'teacher_id'=>$request->teacher_id,
         //     'time_in'=>$request->time_in,
@@ -35,9 +40,8 @@ class PresenceController extends Controller
         //     'note'=>$request->note,
         //  ]);
 
-        $presence = Presence::create($request->all());
-        
-        return response()->json(['Presence created successfully.', new PresenceResource($presence)]);
+        // $presence = Presence::create($request->all());
+        // return response()->json(['Presence created successfully.', new PresenceResource($presence)]);
     }
 
     public function show($id)
