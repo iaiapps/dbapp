@@ -26,6 +26,7 @@ class PresenceController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors());       
         }
+        // dd(Carbon::now()->format('H:i'));
         // dd(Carbon::now());
         // cek ada gak gurunya
         // $guru = Presence::where('teacher_id',$request->teacher_id)->orderby('id','DESC')->first();
@@ -36,7 +37,7 @@ class PresenceController extends Controller
         
         if ($guru==null) {
             // inisialisasi tepat waktu
-            $waktu_hadir = date("h:i");
+            $waktu_hadir = Carbon::now()->format('H:i');
             $waktu_normal = date("07:30");
             // logika terlambat
             if($waktu_hadir > $waktu_normal){
