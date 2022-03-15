@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Teacher;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ExtracurricularCategorySeeder::class);
         $this->call(TempStudentSeeder::class);
         $this->call(TempClassSeeder::class);
+        Teacher::factory(10)->create();
     }
 }
