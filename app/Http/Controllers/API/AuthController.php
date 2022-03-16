@@ -42,7 +42,7 @@ class AuthController extends Controller
         $teacher = Teacher::where('email',$user->email)->first();
 
         return response()
-            ->json(['name' => $teacher->nama,'access_token' => $token, 'token_type' => 'Bearer','teacher_id' => $teacher->id,'name'=>$teacher->nama ]);
+            ->json(['name' => $teacher->nama,'access_token' => $token, 'token_type' => 'Bearer','teacher_id' => $teacher->id ]);
     }
 
     public function login(Request $request)
