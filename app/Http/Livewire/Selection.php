@@ -36,7 +36,7 @@ class Selection extends Component
        if ($getCount->isEmpty()) {
            $this->ekskul = ExtracurricularCategory::get();
         }else{
-            $this->ekskul = ExtracurricularCategory::where('id', '!=', $getCount)->get();
+            $this->ekskul = ExtracurricularCategory::where('id', '!=', $getCount)->where('name','!=','Lainnya')->get();
        }
     }
     public function updatedSelectedEkskul($extra_id)
