@@ -16,7 +16,7 @@
                         $jml = DB::table('extracurricular_data')
                             ->where('extra_id', $item->id)
                             ->count();
-                        $sisa = 20 - $jml;
+                        $sisa = $item->quantity - $jml;
                     @endphp
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
@@ -24,17 +24,7 @@
                         <td>{{ $item->day }}</td>
 
                         <td>
-                            @if ($sisa <= 0)
-                                <span class="badge rounded-pill bg-danger">Penuh</span>
-                            @elseif ($sisa >= 15)
-                                <span class="badge rounded-pill bg-success">{{ $sisa }}</span>
-                            @elseif($sisa <= 14 && $sisa >= 10)
-                                <span class="badge rounded-pill bg-info">{{ $sisa }}</span>
-                            @elseif($sisa <= 9 && $sisa >= 5)
-                                <span class="badge rounded-pill bg-warning">{{ $sisa }}</span>
-                            @else
-                                <span class="badge rounded-pill bg-danger">{{ $sisa }}</span>
-                            @endif
+                            {{ $sisa }}
                         </td>
                     </tr>
                 @endforeach

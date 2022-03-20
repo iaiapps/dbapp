@@ -29,21 +29,15 @@ class Selection extends Component
     }
     public function updatedSelectedStudent($student_id)
     {
-        $getCount = ExtracurricularData::having(DB::raw('count(extra_id)'), '>=', 20)
-        ->groupBy('extra_id')
-       ->pluck('extra_id');
-
-       if ($getCount->isEmpty()) {
            $this->ekskul = ExtracurricularCategory::get();
-        }else{
-            $this->ekskul = ExtracurricularCategory::where('id', '!=', $getCount)->where('name','!=','Lainnya')->get();
-       }
     }
     public function updatedSelectedEkskul($extra_id)
     {
         $ekskul = ExtracurricularCategory::find($extra_id);
         if($ekskul->name=='Lainnya'){
             $this->formLainnya = true;
+        }else{
+            $this->formLainnya = false;
         }
     }
     

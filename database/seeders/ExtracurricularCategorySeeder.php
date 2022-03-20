@@ -15,24 +15,20 @@ class ExtracurricularCategorySeeder extends Seeder
                 'quantity'=>20,
             ],
             [
-                'name'=>'Voly',
-                'quantity'=>20,
-            ],
-            [
                 'name'=>'Basket',
-                'quantity'=>20,
+                'quantity'=>40,
             ],
             [
                 'name'=>'Panahan',
-                'quantity'=>20,
+                'quantity'=>40,
             ],
             [
                 'name'=>'Pencak Silat',
-                'quantity'=>20,
+                'quantity'=>40,
             ],
             [
                 'name'=>'Taekwondo',
-                'quantity'=>20,
+                'quantity'=>40,
             ],
             [
                 'name'=>'Hadrah',
@@ -60,7 +56,7 @@ class ExtracurricularCategorySeeder extends Seeder
             ],
             [
                 'name'=>'Craft & Kuliner',
-                'quantity'=>20,
+                'quantity'=>40,
             ],
             [
                 'name'=>'Tartil',
@@ -76,10 +72,10 @@ class ExtracurricularCategorySeeder extends Seeder
             ],
             [
                 'name'=>'Sains',
-                'quantity'=>20,
+                'quantity'=>40,
             ],
             [
-                'name'=>'Dokcil',
+                'name'=>'Dokter Kecil',
                 'quantity'=>20,
             ],
             [
@@ -95,16 +91,16 @@ class ExtracurricularCategorySeeder extends Seeder
                 'quantity'=>20,
             ],
             [
-                'name'=>'Electon',
+                'name'=>'Musik Electone',
                 'quantity'=>20,
             ],
             [
-                'name'=>'Biola',
+                'name'=>'Futsal',
                 'quantity'=>20,
             ],
             [
                 'name'=>'Lainnya',
-                'quantity'=>20,
+                'quantity'=>1000,
             ],
         ]);
     }
