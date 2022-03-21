@@ -1,32 +1,40 @@
     @extends('layout.master')
+    @section('page_judul', 'Tambah Data User')
     @section('content')
-
-
-        <div id="openModal" class="modalDialog">
-            <div> <a href="#close" title="Close" class="close">X</a>
-                <h4>Import Users</h4>
-                <form action="{{ route('admin.import_users') }}" method="POST" enctype="multipart/form-data">
-                    @method('post')
-                    @csrf
-                    <div class="form-group">
-                        <input type="file" name="file" class="form-control" required>
+        <!-- Modal -->
+        <div class="modal fade" id="tambahDataUser" tabindex="99" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Import User</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <button type="submit" class="btn btn-primary">Import</button>
-                </form>
+                    <div class="modal-body">
+                        <form action="{{ route('admin.import_users') }}" method="POST" enctype="multipart/form-data">
+                            @method('post')
+                            @csrf
+                            <div class="mb-3">
+                                <input type="file" name="file" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Import</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="leftright">
-            <div class="py-2 my-2 clear-fix">
-                <h3 class="float-left">Manajemen User</h3>
-                <a href="{{ route('tambah_user') }}" class="btn btn-primary float-right ml-1">Tambah</a>
-                {{-- <a href="#openModal" class="btn btn-s float-right">Import</a> --}}
+
+        <div id="page_info" class="card rounded p-3">
+            <div class="mb-3">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahDataUser">
+                    Tambah User
+                </button>
             </div>
 
             @if ($collection->count() == 0)
                 Belum ada data
             @else
-                <div class="table table-responsive">
-                    <table id="example" class="display table-striped" style="width:100%">
+                <div class="table-responsive">
+                    <table id="example" class="table" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -46,12 +54,12 @@
                                     <td>
                                         <form action="{{ route('user.destroy', $item->id) }}" method="POST">
                                             </a>
-                                            <a href="{{ route('user.edit', $item->id) }}" class="btn btn-primary">
+                                            <a href="{{ route('user.edit', $item->id) }}" class="btn btn-warning">
                                                 <span><i class="las la-edit"></i></span>
                                             </a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-primary"
+                                            <button type="submit" class="btn btn-danger"
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                 <span><i class="las la-trash"></i></span></button>
                                         </form>
@@ -67,13 +75,6 @@
 
     @endsection
 
-    @section('css')
-
-        <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-
-    @endsection
     @section('js')
 
 

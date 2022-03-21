@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('content')
     <div class="leftright">
-        <div class="form-group">
+        <div class="mb-3">
             <form action="{{ route('document.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label class="form-label" for="jenisprestasi">Jenis Dokumen
@@ -18,19 +18,8 @@
         </div>
         @include('siswa.list_dokumen')
     </div>
-    </div>
-
-
-
-
 @endsection
 
-@section('css')
-    {{-- <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> --}}
-
-@endsection
 @section('js')
 
     <script>

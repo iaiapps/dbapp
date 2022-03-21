@@ -1,0 +1,246 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    background-color: #e8f2dd;
+}
+
+/* css background */
+.background {
+    background-image: url("../img/bgedu.svg");
+    position: absolute;
+    height: 325px;
+    width: 100%;
+    z-index: -1;
+}
+
+/* css sidebar */
+#sidebar {
+    width: 250px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: scroll;
+    /* flex: 0 0 250px; */
+}
+/* hide sidebar scroll */
+#sidebar::-webkit-scrollbar {
+    display: none;
+}
+#sidebar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+#avatar {
+    /* background-image: url("../img/bgedu.svg"); */
+    /* background-color: #146e45; */
+    height: 125px;
+}
+#avatar img {
+    width: 60px;
+    height: 60px;
+}
+
+.menu-icon {
+    font-size: 1.3rem;
+}
+
+.rounded-1 {
+    border-radius: 5px;
+}
+.hover {
+    border: 2px solid transparent;
+}
+.hover:hover {
+    background-color: #198754 !important;
+    color: white !important;
+    border-radius: 10px;
+}
+.hover:focus {
+    color: #198754;
+    border: 2px solid #198754;
+}
+
+#logout {
+    width: 55px;
+    height: 55px;
+    display: block;
+    text-decoration: none;
+    margin: 10px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+#logout:hover,
+#logout:focus {
+    transform: scale(0.95);
+}
+
+.version {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 10px 0;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* css page */
+#page {
+    margin-left: 266px;
+}
+.ket {
+    font-size: 1.25rem !important;
+}
+.dropdown-menu {
+    width: 270px !important;
+}
+.square {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+/* tab */
+.tab {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #146e45;
+    border-top: 15px solid #13653f;
+    border-bottom: 5px solid #e8f2dd;
+}
+.tablinks {
+    color: white;
+    padding: 10px 10px;
+}
+.tablinks:hover {
+    color: #13653f;
+    background-color: white;
+}
+.activetab {
+    display: block;
+    background-color: white;
+    color: #13653f !important;
+    border-bottom: 5px solid #198754;
+}
+
+/* css static menu */
+.img-menu {
+    width: 80px;
+    height: 80px;
+}
+.menu {
+    text-decoration: none;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+}
+.menu:hover {
+    transform: scale(0.96);
+    border-bottom: 4px solid #13653f;
+    border-top: 1px solid #13653f;
+}
+.menu a {
+    text-decoration: none;
+    color: white;
+}
+.info-bottom {
+    margin-top: 75px;
+}
+
+/* css form */
+.top-left-radius {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.form-card {
+    text-align: left;
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+.card {
+    z-index: 0;
+    border: none;
+    position: relative;
+}
+
+.progress {
+    height: 20px;
+}
+
+.progress-bar {
+    background-color: #198754;
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* helper */
+.rounded {
+    border-radius: 10px !important;
+}
+
+.hr {
+    margin-top: 20px;
+    display: block;
+    border-radius: 20px;
+    border: 3px solid white !important;
+    width: 50%;
+}
+
+@media (max-width: 600px) {
+    #sidebar {
+        width: 70px;
+    }
+    #avatar {
+        height: 105px;
+    }
+    #avatar img {
+        width: 45px;
+        height: 45px;
+    }
+    #avatar p {
+        font-size: 1.05rem !important;
+    }
+    .menu-icon {
+        font-size: 1.5rem;
+    }
+    #page {
+        margin-left: 86px;
+    }
+    .square {
+        width: 35px;
+        height: 35px;
+    }
+    .ket {
+        font-size: 1rem !important;
+    }
+    .hr {
+        width: 100%;
+    }
+    .hr-end {
+        padding-right: 0 !important;
+    }
+    .menu {
+        text-decoration: none;
+        width: 110px;
+        height: 110px;
+    }
+    .img-menu {
+        width: 60px;
+        height: 60px;
+        padding: 10px !important;
+    }
+}

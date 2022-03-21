@@ -42,7 +42,6 @@ class TeacherExport implements FromCollection, WithHeadings, WithMapping
            'nama_wajib_pajak',
            'status_perkawinan',
            'nama_pasangan',
-           'nip_pasangan',
            'pekerjaan_pasangan',
         ];
     }
@@ -75,7 +74,6 @@ class TeacherExport implements FromCollection, WithHeadings, WithMapping
             $guru->nama_wajib_pajak,
             $guru->status_perkawinan,
             $guru->nama_pasangan,
-            $guru->nip_pasangan,
             $guru->pekerjaan_pasangan,
         ];
     }

@@ -2,7 +2,7 @@
     @section('alert')
         <section class="navbar-section">
             <div class="toast toast-warning" id="pemberitahuantoast">
-                {{-- <button class="btn btn-clear float-right" id="closepemberitahuantoast"></button> --}}
+                {{-- <button class="btn btn-clear float-end" id="closepemberitahuantoast"></button> --}}
                 @if ($dataOld->status_verifikasi == 1)
                     {{ 'Telah di verifikasi' }}
                 @elseif($dataOld->status_verifikasi == 2)
@@ -16,7 +16,7 @@
     @section('content')
         <div class="leftright">
             <h3 class="bg-primary p-2">Revisi data</h3>
-            <table class="table table-striped tab-content" id="1">
+            <table class="table ">
                 <thead>
                     <tr>
                         <th>Form</th>
@@ -52,9 +52,11 @@
                     </tr>
                     <tr>
                         <td @if ($dataOld->no_kk !== $dataNew->no_kk) style="background-color:yellow" @endif>No. KK</td>
-                        <td @if ($dataOld->no_kk !== $dataNew->no_kk) style="background-color:yellow" @endif>{{ $dataOld->no_kk }}
+                        <td @if ($dataOld->no_kk !== $dataNew->no_kk) style="background-color:yellow" @endif>
+                            {{ $dataOld->no_kk }}
                         </td>
-                        <td @if ($dataOld->no_kk !== $dataNew->no_kk) style="background-color:yellow" @endif>{{ $dataNew->no_kk }}
+                        <td @if ($dataOld->no_kk !== $dataNew->no_kk) style="background-color:yellow" @endif>
+                            {{ $dataNew->no_kk }}
                         </td>
                     </tr>
 
@@ -73,14 +75,18 @@
                             {{ $dataNew->tanggal_lahir }}</td>
                     </tr>
                     <tr>
-                        <td @if ($dataOld->agama !== $dataNew->agama) style="background-color:yellow" @endif>Agama & Kepercayaan</td>
-                        <td @if ($dataOld->agama !== $dataNew->agama) style="background-color:yellow" @endif>{{ $dataOld->agama }}
+                        <td @if ($dataOld->agama !== $dataNew->agama) style="background-color:yellow" @endif>Agama & Kepercayaan
                         </td>
-                        <td @if ($dataOld->agama !== $dataNew->agama) style="background-color:yellow" @endif>{{ $dataNew->agama }}
+                        <td @if ($dataOld->agama !== $dataNew->agama) style="background-color:yellow" @endif>
+                            {{ $dataOld->agama }}
+                        </td>
+                        <td @if ($dataOld->agama !== $dataNew->agama) style="background-color:yellow" @endif>
+                            {{ $dataNew->agama }}
                         </td>
                     </tr>
                     <tr>
-                        <td @if ($dataOld->kebutuhan_khusus !== $dataNew->kebutuhan_khusus) style="background-color:yellow" @endif>Berkebutuhan Khusus</td>
+                        <td @if ($dataOld->kebutuhan_khusus !== $dataNew->kebutuhan_khusus) style="background-color:yellow" @endif>Berkebutuhan Khusus
+                        </td>
                         <td @if ($dataOld->kebutuhan_khusus !== $dataNew->kebutuhan_khusus) style="background-color:yellow" @endif>
                             {{ $dataOld->kebutuhan_khusus }}</td>
                         <td @if ($dataOld->kebutuhan_khusus !== $dataNew->kebutuhan_khusus) style="background-color:yellow" @endif>
@@ -109,9 +115,11 @@
                     </tr>
                     <tr>
                         <td @if ($dataOld->dusun !== $dataNew->dusun) style="background-color:yellow" @endif>Dusun</td>
-                        <td @if ($dataOld->dusun !== $dataNew->dusun) style="background-color:yellow" @endif>{{ $dataOld->dusun }}
+                        <td @if ($dataOld->dusun !== $dataNew->dusun) style="background-color:yellow" @endif>
+                            {{ $dataOld->dusun }}
                         </td>
-                        <td @if ($dataOld->dusun !== $dataNew->dusun) style="background-color:yellow" @endif>{{ $dataNew->dusun }}
+                        <td @if ($dataOld->dusun !== $dataNew->dusun) style="background-color:yellow" @endif>
+                            {{ $dataNew->dusun }}
                         </td>
                     </tr>
                     <tr>
@@ -130,9 +138,11 @@
                     </tr>
                     <tr>
                         <td @if ($dataOld->kota !== $dataNew->kota) style="background-color:yellow" @endif>Kabupaten/Kota</td>
-                        <td @if ($dataOld->kota !== $dataNew->kota) style="background-color:yellow" @endif>{{ $dataOld->kota }}
+                        <td @if ($dataOld->kota !== $dataNew->kota) style="background-color:yellow" @endif>
+                            {{ $dataOld->kota }}
                         </td>
-                        <td @if ($dataOld->kota !== $dataNew->kota) style="background-color:yellow" @endif>{{ $dataNew->kota }}
+                        <td @if ($dataOld->kota !== $dataNew->kota) style="background-color:yellow" @endif>
+                            {{ $dataNew->kota }}
                         </td>
                     </tr>
                     <tr>
@@ -158,9 +168,11 @@
                     </tr>
                     <tr>
                         <td @if ($dataOld->bujur !== $dataNew->bujur) style="background-color:yellow" @endif>Bujur</td>
-                        <td @if ($dataOld->bujur !== $dataNew->bujur) style="background-color:yellow" @endif>{{ $dataOld->bujur }}
+                        <td @if ($dataOld->bujur !== $dataNew->bujur) style="background-color:yellow" @endif>
+                            {{ $dataOld->bujur }}
                         </td>
-                        <td @if ($dataOld->bujur !== $dataNew->bujur) style="background-color:yellow" @endif>{{ $dataNew->bujur }}
+                        <td @if ($dataOld->bujur !== $dataNew->bujur) style="background-color:yellow" @endif>
+                            {{ $dataNew->bujur }}
                         </td>
                     </tr>
 
@@ -172,7 +184,8 @@
                             {{ $dataNew->jenis_tinggal }}</td>
                     </tr>
                     <tr>
-                        <td @if ($dataOld->alat_transportasi !== $dataNew->alat_transportasi) style="background-color:yellow" @endif>Moda Transportasi</td>
+                        <td @if ($dataOld->alat_transportasi !== $dataNew->alat_transportasi) style="background-color:yellow" @endif>Moda Transportasi
+                        </td>
                         <td @if ($dataOld->alat_transportasi !== $dataNew->alat_transportasi) style="background-color:yellow" @endif>
                             {{ $dataOld->alat_transportasi }}</td>
                         <td @if ($dataOld->alat_transportasi !== $dataNew->alat_transportasi) style="background-color:yellow" @endif>
@@ -195,7 +208,8 @@
                     </tr>
                     {{-- DATA_AYAH --}}
                     <tr>
-                        <td @if ($dataOld->nama_ayah !== $dataNew->nama_ayah) style="background-color:yellow" @endif>Nama ayah Kandung</td>
+                        <td @if ($dataOld->nama_ayah !== $dataNew->nama_ayah) style="background-color:yellow" @endif>Nama ayah Kandung
+                        </td>
                         <td @if ($dataOld->nama_ayah !== $dataNew->nama_ayah) style="background-color:yellow" @endif>
                             {{ $dataOld->nama_ayah }}</td>
                         <td @if ($dataOld->nama_ayah !== $dataNew->nama_ayah) style="background-color:yellow" @endif>
@@ -230,7 +244,8 @@
                             {{ $dataNew->pekerjaan_ayah }}</td>
                     </tr>
                     <tr>
-                        <td @if ($dataOld->penghasilan_ayah !== $dataNew->penghasilan_ayah) style="background-color:yellow" @endif>Penghasilan Bulanan</td>
+                        <td @if ($dataOld->penghasilan_ayah !== $dataNew->penghasilan_ayah) style="background-color:yellow" @endif>Penghasilan Bulanan
+                        </td>
                         <td @if ($dataOld->penghasilan_ayah !== $dataNew->penghasilan_ayah) style="background-color:yellow" @endif>
                             {{ $dataOld->penghasilan_ayah }}</td>
                         <td @if ($dataOld->penghasilan_ayah !== $dataNew->penghasilan_ayah) style="background-color:yellow" @endif>
@@ -280,7 +295,8 @@
                             {{ $dataNew->pekerjaan_ibu }}</td>
                     </tr>
                     <tr>
-                        <td @if ($dataOld->penghasilan_ibu !== $dataNew->penghasilan_ibu) style="background-color:yellow" @endif>Penghasilan Bulanan</td>
+                        <td @if ($dataOld->penghasilan_ibu !== $dataNew->penghasilan_ibu) style="background-color:yellow" @endif>Penghasilan Bulanan
+                        </td>
                         <td @if ($dataOld->penghasilan_ibu !== $dataNew->penghasilan_ibu) style="background-color:yellow" @endif>
                             {{ $dataOld->penghasilan_ibu }}</td>
                         <td @if ($dataOld->penghasilan_ibu !== $dataNew->penghasilan_ibu) style="background-color:yellow" @endif>
@@ -330,7 +346,8 @@
                             {{ $dataNew->pekerjaan_wali }}</td>
                     </tr>
                     <tr>
-                        <td @if ($dataOld->penghasilan_wali !== $dataNew->penghasilan_wali) style="background-color:yellow" @endif>Penghasilan Bulanan</td>
+                        <td @if ($dataOld->penghasilan_wali !== $dataNew->penghasilan_wali) style="background-color:yellow" @endif>Penghasilan Bulanan
+                        </td>
                         <td @if ($dataOld->penghasilan_wali !== $dataNew->penghasilan_wali) style="background-color:yellow" @endif>
                             {{ $dataOld->penghasilan_wali }}</td>
                         <td @if ($dataOld->penghasilan_wali !== $dataNew->penghasilan_wali) style="background-color:yellow" @endif>

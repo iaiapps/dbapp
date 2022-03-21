@@ -1,7 +1,6 @@
 @extends('layout.master')
 
 @section('content')
-
     <div class="container">
 
         <div class="row justify-content-center">
@@ -15,14 +14,12 @@
 
 
                     @foreach ($errors->all() as $error)
-
                         <p class="text-danger">{{ $error }}</p>
-
                     @endforeach
 
 
 
-                    <div class="form-group row">
+                    <div class="mb-3 row">
 
                         <label for="password" class="col-md-4 col-form-label text-md-right">Current Password</label>
 
@@ -39,7 +36,7 @@
 
 
 
-                    <div class="form-group row">
+                    <div class="mb-3 row">
 
                         <label for="password" class="col-md-4 col-form-label text-md-right">New Password</label>
 
@@ -56,7 +53,7 @@
 
 
 
-                    <div class="form-group row">
+                    <div class="mb-3 row">
 
                         <label for="password" class="col-md-4 col-form-label text-md-right">New Confirm
                             Password</label>
@@ -74,7 +71,7 @@
 
 
 
-                    <div class="form-group row mb-0">
+                    <div class="mb-3 row mb-0">
 
                         <div class="col-md-8 offset-md-4">
 
@@ -96,5 +93,4 @@
         </div>
 
     </div>
-
 @endsection

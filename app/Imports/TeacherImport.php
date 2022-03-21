@@ -48,8 +48,7 @@ class TeacherImport implements
             'npwp'=>$row['npwp'],
             'nama_wajib_pajak'=>$row['nama_wajib_pajak'],
             'status_perkawinan'=>$row['status_perkawinan'],
-            'nama_pasangan'=>$row['nama_pasangan'],
-            'nip_pasangan'=>$row['nip_pasangan'],
+            'nama_pasangan'=>$row['nama_pasangan'],    
             'pekerjaan_pasangan'=>$row['pekerjaan_pasangan'],
         ]);
     }

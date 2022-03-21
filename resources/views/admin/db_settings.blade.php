@@ -1,16 +1,20 @@
     @extends('layout.master')
+    @section('page_judul', 'Database Setting')
     @section('content')
-        <div class="leftright">
-            <div class="py-2 my-2 clear-fix">
-                <h3 class="float-left">DB Setting</h3>
-                <a href="#" class="btn btn-primary float-right"> Tambah </a>
-            </div>
+        <div id="page_info" class="card rounded p-3">
+            {{-- <div class="py-2 my-2 clear-fix">
+                <a href="#" class="btn btn-primary float-end"> Tambah Data </a>
+            </div> --}}
 
             @if ($collection->count() == 0)
-                Belum ada data
+                <div class="card text-center p-4">
+                    <h1 class="display-6">
+                        Maaf belum ada data yang tersimpan ...
+                    </h1>
+                </div>
             @else
-                <div class="table table-responsive">
-                    <table id="example" class="display table-striped" style="width:100%">
+                <div class=" table-responsive">
+                    <table id="data" class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -50,18 +54,10 @@
         </div>
     @endsection
 
-    @section('css')
-
-        <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-
-    @endsection
     @section('js')
-
         <script>
             $(document).ready(function() {
-                $('#example').DataTable();
+                $('#data').DataTable();
             });
         </script>
     @stop

@@ -1,9 +1,9 @@
     @extends('layout.master')
+    @section('page_judul', 'List Revisi')
     @section('content')
-        <div class="leftright">
-
-            <div class="table table-responsive">
-                <table id="example" class="display table-striped" style="width:100%">
+        <div id="page_info" class="card rounded p-3">
+            <div class="table-responsive">
+                <table id="example" class="table">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -34,23 +34,15 @@
                             </tr>
                         @endforeach
                     </tbody>
-
                 </table>
+            </div>
+        </div>
+    @endsection
 
-            @endsection
-
-            @section('css')
-
-                <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
-                <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-
-            @endsection
-            @section('js')
-
-                <script>
-                    $(document).ready(function() {
-                        $('#example').DataTable();
-                    });
-                </script>
-            @stop
+    @section('js')
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            });
+        </script>
+    @stop
