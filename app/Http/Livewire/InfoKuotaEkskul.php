@@ -10,7 +10,7 @@ class InfoKuotaEkskul extends Component
 {
     public function render()
     {
-        $ekskuls = ExtracurricularCategory::get();
+        $ekskuls = ExtracurricularCategory::where('name','!=','Lainnya')->get();
         return view('livewire.info-kuota-ekskul',compact('ekskuls'));
     }
 }
