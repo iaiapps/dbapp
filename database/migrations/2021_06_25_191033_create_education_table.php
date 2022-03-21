@@ -18,7 +18,7 @@ class CreateEducationTable extends Migration
         $table->increments('id');
         $table->integer('teacher_id')->unsigned();
         //rest of fields then...
-
+        $table->string('bidang_study')->nullable();
         $table->string('jenjang_pendidikan')->nullable();
         $table->string('gelar_akademik')->nullable();
         $table->string('nama_satuan_pendidikan')->nullable();

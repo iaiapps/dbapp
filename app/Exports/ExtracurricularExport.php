@@ -19,6 +19,7 @@ class ExtracurricularExport implements FromCollection, WithHeadings, WithMapping
             'Nama',
             'Extrakurikuler',
             'Kelas',
+            'Keterangan',
         ];   
     }
     public function map($a): array
@@ -27,6 +28,7 @@ class ExtracurricularExport implements FromCollection, WithHeadings, WithMapping
             $a->name,
             $a->extra->name,
             $a->class->name,
+            $a->optional,
         ];   
     }
 }

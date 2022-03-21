@@ -29,7 +29,7 @@ use App\Http\Controllers\ExtracurricularDataController;
 //SHORTCUT KU
 Route::get('/cc', function () {
     Artisan::call('config:clear');
-    Artisan::call('storage:link');
+    // Artisan::call('storage:link');
     Artisan::call('cache:clear');
     Artisan::call('config:cache');
     Artisan::call('view:clear');
@@ -193,7 +193,6 @@ Route::post('change-password', [ChangePasswordController::class, 'store'])->name
 Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->name('siswa.contact_center');
 
 // EKSKUL
-
 route::get('data_ekskul', [ExtracurricularDataController::class, 'index'])->name('ekskul.index');
 route::get('pilih_ekskul', [ExtracurricularDataController::class, 'create'])->name('ekskul.create');
 route::post('/ekskul_post', [ExtracurricularDataController::class, 'store'])->name('ekskul.store');

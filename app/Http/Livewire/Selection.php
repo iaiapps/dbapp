@@ -16,6 +16,7 @@ class Selection extends Component
     public $selectedEkskul = null;
     public $students = null;
     public $ekskul = null;
+    public $formLainnya = null;
     
     public function render()
     {       
@@ -37,6 +38,13 @@ class Selection extends Component
         }else{
             $this->ekskul = ExtracurricularCategory::where('id', '!=', $getCount)->get();
        }
+    }
+    public function updatedSelectedEkskul($extra_id)
+    {
+        $ekskul = ExtracurricularCategory::find($extra_id);
+        if($ekskul->name=='Lainnya'){
+            $this->formLainnya = true;
+        }
     }
     
 }

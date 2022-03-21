@@ -25,13 +25,20 @@
         @if (!is_null($ekskul))
             <div class="mb-3">
                 <label class="form-label">Pilih Ekstrakurikuler</label>
-                <select class="form-select" name="extra_id">
+                <select class="form-select" name="extra_id" wire:model="selectedEkskul">
                     <option selected disabled>-- Pilih --</option>
                     @foreach ($ekskul as $eks)
                         <option value="{{ $eks->id }}">{{ $eks->id }} - {{ $eks->name }}</option>
                     @endforeach
                 </select>
             </div>
+        @endif
+        @if ($formLainnya)
+            <div class="form-group">
+                <label for="lainnya" class="form-label">Lainnya</label>
+                <input type="text" class="form-control" name="optional" />
+            </div>
+            <br>
         @endif
         <button type="submit" class="btn btn-primary col-12" wire:loading.attr="disable">Kirim Pilihan</button>
         <div wire:loading>
