@@ -1,44 +1,52 @@
 @extends('layout.master')
+@section('page_judul', 'IMPORT')
 @section('content')
-    <div class="leftright">
-        <div class="py-2 my-2 clear-fix">
-            <h3 class="float-left">Import</h3>
-            {{-- <a href="#" class="btn btn-primary float-right"> x </a> --}}
+    @include('operator.modal.import_guru')
+    @include('operator.modal.import_siswa')
+    @include('operator.modal.import_temp_student')
+    <div id="page_info" class="card rounded  p-3">
+        <div class="mb-3">
+            <p class="fs-5">
+                1. Download template disini
+            </p>
+            <a href="{{ route('admin.export_teachers') }}" class="btn btn-primary">Guru</a>
+            <a href="{{ route('admin.export_students') }}" class="btn btn-primary">Siswa</a>
         </div>
-        <br>
-        <br>
-        1. Download template disini <br>
-        <a href="{{ route('admin.export_teachers') }}" class="btn btn-primary">Guru</a>
-        <a href="{{ route('admin.export_students') }}" class="btn btn-primary">Siswa</a>
-        <br><br>
+        <div class="mb-3">
+            <p class="fs-5">
+                2. Perhatikan hal berikut sebelum Import
+            </p>
+            <ul>
+                <li class="list-group-item">
+                    A. Data siswa
+                    - Pastikan data siswa : <b> Nama, NISN, dan Grade_id </b> tidak kosong di excel.
+                </li>
+                <li class="list-group-item">
+                    B. Data Guru
+                    - Pastikan data guru : <b> Nama, NIK </b> tidak kosong di excel.
+                </li>
+                <li class="list-group-item">
+                    C. Data tidak akan diimport jika sudah ada di database.
+                </li>
+            </ul>
 
-        2. Perhatikan hal berikut sebelum Import
-        <li> &emsp;
-            A. Data siswa
-            - Pastikan data siswa : <b> Nama, NISN, dan Grade_id </b> tidak kosong di excel.
-        </li>
-        <li> &emsp;
-            B. Data Guru
-            - Pastikan data guru : <b> Nama, NIK </b> tidak kosong di excel.
-        </li>
-        <li> &emsp;
-            C. Data tidak akan diimport jika sudah ada di database.
-        </li>
-        <br>
+        </div>
+        <div class="mb-3">
+            <p class="fs-5">
+                3. Import
+            </p>
 
-        3. Import
-        <table>
-            <tr>
-                <td><a href="#openModalGuruImport" class="btn btn-a float-right">Guru</a></td>
-                <td><a href="#openModalImportSiswa" class="btn btn-a float-right">Siswa</a>
-                <td><a href="#openModalImportTempStudent" class="btn btn-a float-right">TempStudent</a>
-                </td>
-            </tr>
-        </table>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importGuru">
+                Import Guru
+            </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importSiswa">
+                Import Siswa
+            </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tempStudent">
+                Temp Student
+            </button>
+        </div>
 
-        @include('operator.modal.import_guru')
-        @include('operator.modal.import_siswa')
-        @include('operator.modal.import_temp_student')
     </div>
     @include('operator.import_error')
 

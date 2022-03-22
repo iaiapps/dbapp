@@ -1,18 +1,24 @@
     @extends('layout.master')
+    @section('page_judul', 'Data Kelas')
     @section('content')
-        <div class="leftright">
-            <div class="py-2 my-2 clear-fix">
-                <h3 class="float-left">Manajemen Kelas</h3>
-                <a href="#modalAddGrade" class="btn btn-primary float-right ml-1">Tambah </a>
+        @include('grades.add')
+        <div id="page_info" class="card rounded p-3">
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahData">
+                    Tambah Kelas
+                </button>
             </div>
 
             @include('grades.add')
-
             @if ($collection->count() == 0)
-                Belum Kelas
+                <div class="card text-center p-4">
+                    <h1 class="display-6">
+                        Maaf belum ada data yang tersimpan ...
+                    </h1>
+                </div>
             @else
-                <div class="table table-responsive">
-                    <table id="example" class="display table-striped" style="width:100%">
+                <div class="table-responsive">
+                    <table id="example" class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -47,29 +53,20 @@
 
                                             <button type="submit" class="btn btn-primary"
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                                <span><i class="las la-trash"></i></span></button>
+                                                <span><i class="las la-trash"></i></span>
+                                            </button>
                                         </form>
-
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-
                     </table>
                 </div>
             @endif
         </div>
     @endsection
 
-    @section('css')
-
-        <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
-
-
-    @endsection
     @section('js')
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
         <script>
             $(document).ready(function() {
                 $('#example').DataTable();

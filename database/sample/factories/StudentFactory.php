@@ -36,7 +36,6 @@ class StudentFactory extends Factory
             'alamat_sekolah_asal'=>$this->faker->name,
             'no_un'=>$this->faker->name,
             'no_seri_ijazah'=>$this->faker->name,
-            'no_skhun'=>$this->faker->name,
             'prestasi'=>$this->faker->name,
             'tingkat_prestasi'=>$this->faker->name,
 

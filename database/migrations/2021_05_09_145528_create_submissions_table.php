@@ -31,9 +31,6 @@ class CreateSubmissionsTable extends Migration
             $table->string('telepon')->nullable();
             $table->string('hp')->nullable();
             $table->string('email')->nullable();
-            $table->string('skhun')->nullable();
-            $table->string('penerima_kps')->nullable();
-            $table->string('no_kps')->nullable();
 
             $table->string('nama_ayah')->nullable();
             $table->string('tanggal_lahir_ayah')->nullable();
@@ -59,15 +56,11 @@ class CreateSubmissionsTable extends Migration
             $table->string('rombel_saat_ini')->nullable();
             $table->string('no_un')->nullable();
             $table->string('no_ijazah')->nullable();
-            $table->string('penerima_kip')->nullable();
-            $table->string('no_kip')->nullable();
             $table->string('no_kks')->nullable();
             $table->string('no_akta')->nullable();
             $table->string('bank')->nullable();
             $table->string('no_rekening')->nullable();
             $table->string('rekening_atas_nama')->nullable();
-            $table->string('layak_pip')->nullable();
-            $table->string('alasan_layak_pip')->nullable();
             $table->string('kebutuhan_khusus')->nullable();
             
             $table->string('sekolah_asal')->nullable();

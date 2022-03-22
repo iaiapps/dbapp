@@ -3,7 +3,7 @@
     @section('alert')
         <section class="navbar-section">
             <div class="toast toast-warning" id="pemberitahuantoast">
-                {{-- <button class="btn btn-clear float-right" id="closepemberitahuantoast"></button> --}}
+                {{-- <button class="btn btn-clear float-end" id="closepemberitahuantoast"></button> --}}
                 @if ($item->status_verifikasi == 1)
                     {{ 'Telah di verifikasi' }}
                 @elseif($item->status_verifikasi == 2)
@@ -58,11 +58,11 @@
             <div id="1" class="tabcontent">
                 <br />
                 <div class="clearfix">
-                    <h4 class="float-left">Identitas Peserta Didik</h4>
-                    <a class="btn btn-primary float-right" href="{{ route('siswa_edit') }}">{{ $button_edit }}</a>
+                    <h4 class="float-start">Identitas Peserta Didik</h4>
+                    <a class="btn btn-primary float-end" href="{{ route('siswa_edit') }}">{{ $button_edit }}</a>
                 </div>
                 <hr class="text-primary" />
-                <table class="table table-striped tab-content" id="1">
+                <table class="table ">
                     <thead>
                         <tr>
                             <th>Form</th>
@@ -178,12 +178,12 @@
                 <br />
 
                 <div class="clearfix">
-                    <h4 class="float-left">Data Ayah Kandung</h4>
-                    <a class="btn btn-primary float-right" href="{{ route('siswa_edit') }}">{{ $button_edit }}</a>
+                    <h4 class="float-start">Data Ayah Kandung</h4>
+                    <a class="btn btn-primary float-end" href="{{ route('siswa_edit') }}">{{ $button_edit }}</a>
                 </div>
 
                 <hr class="text-primary" />
-                <table class="table table-striped tab-content" id="2">
+                <table class="table ">
                     <thead>
                         <tr>
                             <th>Form</th>
@@ -226,11 +226,11 @@
             <div id="3" class="tabcontent">
                 <br />
                 <div class="clearfix">
-                    <h4 class="float-left">Data Ibu Kandung</h4>
-                    <a class="btn btn-primary float-right" href="{{ route('siswa_edit') }}">{{ $button_edit }}</a>
+                    <h4 class="float-start">Data Ibu Kandung</h4>
+                    <a class="btn btn-primary float-end" href="{{ route('siswa_edit') }}">{{ $button_edit }}</a>
                 </div>
                 <hr class="text-primary" />
-                <table class="table table-striped tab-content" id="2">
+                <table class="table ">
                     <thead>
                         <tr>
                             <th>Form</th>
@@ -273,11 +273,11 @@
             <div id="4" class="tabcontent">
                 <br />
                 <div class="clearfix">
-                    <h4 class="float-left">Data Wali</h4>
-                    <a class="btn btn-primary float-right" href="{{ route('siswa_edit') }}">{{ $button_edit }}</a>
+                    <h4 class="float-start">Data Wali</h4>
+                    <a class="btn btn-primary float-end" href="{{ route('siswa_edit') }}">{{ $button_edit }}</a>
                 </div>
                 <hr class="text-primary" />
-                <table class="table table-striped tab-content" id="2">
+                <table class="table ">
                     <thead>
                         <tr>
                             <th>Form</th>
@@ -320,8 +320,8 @@
             <div id="5" class="tabcontent">
                 <br />
                 <div class="clearfix">
-                    <h4 class="float-left">Data Prestasi</h4>
-                    <a class="btn btn-primary float-right" href="{{ route('siswa_prestasi') }}">Tambah Prestasi</a>
+                    <h4 class="float-start">Data Prestasi</h4>
+                    <a class="btn btn-primary float-end" href="{{ route('siswa_prestasi') }}">Tambah Prestasi</a>
                 </div>
                 <hr class="text-primary" />
                 <table class="table table-striped tab-content" id="8">

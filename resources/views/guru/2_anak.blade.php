@@ -1,8 +1,8 @@
  <div id="4" class="tabcontent">
      <br />
      <div class="clearfix">
-         <h4 class="float-left">Anak</h4>
-         <a class="btn btn-primary float-right" href="{{ route('guru.tambah_anak') }}">Tambah</a>
+         <h4 class="float-start">Anak</h4>
+         <a class="btn btn-primary float-end" href="{{ route('guru.tambah_anak') }}">Tambah</a>
      </div>
      <hr class="text-primary" />
      <table class="table table-striped tab-content" id="4">
@@ -39,7 +39,6 @@
                              </button>
                          </td>
                      </form>
-
                  </tr>
              @endforeach
          </tbody>

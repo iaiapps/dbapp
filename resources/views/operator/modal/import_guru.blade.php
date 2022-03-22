@@ -1,12 +1,20 @@
-<div id="openModalGuruImport" class="modalDialog">
-    <div> <a href="#close" title="Close" class="close">X</a>
-        <h4>Import Guru</h4>
-        <form action="{{ route('admin.import_teachers') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
-                <input type="file" name="file" class="form-control" required>
+<!-- Modal -->
+<div class="modal fade " id="importGuru" tabindex="99" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import Guru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <button type="submit" class="btn btn-primary">Import</button>
-        </form>
+            <div class="modal-body">
+                <form action="{{ route('admin.import_teachers') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3 mb-3">
+                        <input type="file" name="file" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Import</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

@@ -11,7 +11,7 @@
                 <h4 class="text-center">Prestasi</h4>
                 <hr class="text-primary" />
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-label" for="jenisprestasi">Jenis Prestasi
                     </label>
                     <select class="form-select" id="jenisprestasi" required name="jenis_prestasi">
@@ -24,7 +24,7 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-label" for="tingkat">Tingkat </label>
                     <select class="form-select" id="tingkat" required name="tingkat">
                         <option>---</option>
@@ -37,26 +37,26 @@
                     </select>
                 </div>
 
-                <div class="form-group pt-2">
+                <div class="mb-3 pt-2">
                     <label class="form-label" for="namaprestasi">Nama Prestasi</label>
-                    <input class="form-input" type="text" id="namaprestasi" placeholder="Nama Prestasi" required
+                    <input class="form-control" type="text" id="namaprestasi" placeholder="Nama Prestasi" required
                         name="nama_prestasi" />
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-label" for="tahun">Tahun</label>
-                    <input class="form-input" type="number" id="tahun" placeholder="Tahun" required name="tahun" />
+                    <input class="form-control" type="number" id="tahun" placeholder="Tahun" required name="tahun" />
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-label" for="penyelenggara">Penyelenggara</label>
-                    <input class="form-input" type="text" id="keterangan" placeholder="Keterangan" name="penyelenggara">
+                    <input class="form-control" type="text" id="keterangan" placeholder="Keterangan" name="penyelenggara">
 
                     </input>
                 </div>
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-label" for="peringkat">Peringkat</label>
-                    <input class="form-input" type="text" id="keterangan" placeholder="Keterangan" name="peringkat">
+                    <input class="form-control" type="text" id="keterangan" placeholder="Keterangan" name="peringkat">
 
                     </input>
                 </div>
@@ -64,10 +64,10 @@
                 <br />
                 <div class="columns">
                     <div class="column">
-                        <input type="submit" value="Simpan" class="btn float-right btn-lg col-12 btn-primary" />
+                        <input type="submit" value="Simpan" class="btn float-end btn-lg col-12 btn-primary" />
                     </div>
                     <div class="column">
-                        {{-- <input type="submit" value="Batal" class="btn float-right btn-lg col-12 btn-primary" /> --}}
+                        {{-- <input type="submit" value="Batal" class="btn float-end btn-lg col-12 btn-primary" /> --}}
                     </div>
                 </div>
             </fieldset>

@@ -44,7 +44,6 @@ class SiswaExport implements FromQuery, WithMapping, WithHeadings
             $siswa->alamat_sekolah_asal,
             '`'.$siswa->no_un,
             $siswa->no_seri_ijazah,
-            $siswa->no_skhun,
             $siswa->prestasi,
             $siswa->tingkat_prestasi,
             
@@ -99,7 +98,6 @@ class SiswaExport implements FromQuery, WithMapping, WithHeadings
            'alamat_sekolah_asal',
            'no_un',
            'no_seri_ijazah',
-           'no_skhun',
            'prestasi',
            'tingkat_prestasi',
             

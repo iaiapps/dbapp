@@ -27,8 +27,6 @@ use App\Http\Controllers\MunaqosahTahfidzController;
 use App\Http\Controllers\ExtracurricularDataController;
 
 //SHORTCUT KU
-
-
 Route::get('/cc', function () {
     Artisan::call('config:clear');
     // Artisan::call('storage:link');
@@ -37,46 +35,50 @@ Route::get('/cc', function () {
     Artisan::call('view:clear');
     Artisan::call('route:cache');
 });
-Route::get('rj',function ()
-    {
+Route::get(
+    'rj',
+    function () {
         Artisan::call('queue:work');
         return 'Job Berhasil di hapus';
     }
 );
-Route::get('cj',function ()
-    {
+Route::get(
+    'cj',
+    function () {
         Artisan::call('queue:clear');
     }
 );
 
 Auth::routes();
-
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/login_siswa',function ()
+{
+    return view('auth.login_siswa');
+})->name('login.siswa');
 
 // ROUTE::ADMIN
 Route::middleware('role:admin')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('grade', GradeController::class);
     Route::prefix('/admin')->group(function () {
-
+        
         Route::get('/db_settings', [AdminController::class, 'dbSettings']);
         Route::get('/edit_db_set/{id}', [AdminController::class, 'editDbset'])->name('admin.editDbset');
         Route::delete('/hapus_db_set/{id}', [AdminController::class, 'hapusDbset'])->name('admin.hapusDbset');
-
+        
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
         Route::get('/tambah_user', function () {
             return view('user.create');
         })->name('tambah_user');
         Route::post('/users/import', [UserController::class, 'import'])->name('admin.import_users');
-
+        
         Route::post('/students/import/tempstudent', [StudentController::class, 'importTempStudent'])->name('admin.import_temp_students');
         Route::post('/students/import', [StudentController::class, 'import'])->name('admin.import_students');
         Route::post('/teachers/import', [TeacherController::class, 'import'])->name('admin.import_teachers');
         Route::get('/students/export', [StudentController::class, 'export'])->name('admin.export_students');
         Route::get('/teachers/export', [TeacherController::class, 'export'])->name('admin.export_teachers');
-
+        
         Route::post('/create_user', [AdminController::class, 'createUser'])->name('admin.create_user');
     });
 });
@@ -90,20 +92,20 @@ Route::middleware('role:operator|admin')->group(function () {
         Route::put('/student/edit/{id}', [OperatorController::class, 'updateStudent'])->name('student_update');
         Route::delete('/student/{id}', [OperatorController::class, 'destroy'])->name('student_delete');
         Route::get('/import', [OperatorController::class, 'import']);
-
+        
         Route::get('/teachers', [OperatorController::class, 'getTeachers'])->name('teachers');
         Route::get('/teacher/{id}', [OperatorController::class, 'getTeacher'])->name('teacher_detail');
         Route::get('/teacher/edit/{id}', [OperatorController::class, 'editTeacher'])->name('teacher_edit');
         Route::put('/teacher/edit/{id}', [OperatorController::class, 'updateTeacher'])->name('teacher_update');
         Route::delete('/teacher/{id}', [OperatorController::class, 'destroyTeacher'])->name('teacher_delete');
-
+        
         Route::get('/revisi_data', [OperatorController::class, 'revisiData'])->name('operator.revisi_data');
         Route::get('/compare_revisi/{id}', [OperatorController::class, 'compareRevisi'])->name('compare_revisi');
-
+        
         Route::get('/identitas_sekolah', [OperatorController::class, 'schoolId'])->name('operator.school_id');
         Route::get('/identitas_sekolah/{id}', [OperatorController::class, 'editSchool'])->name('operator.edit_schoolid');
         Route::put('/identitas_sekolah/{id}', [OperatorController::class, 'updateSchool'])->name('operator.update_schoolid');
-
+        
         Route::get('/siswa_kelas/{id}', [OperatorController::class, 'siswaKelas'])->name('operator.siswa_kelas');
     });
 });
@@ -117,28 +119,28 @@ Route::middleware('role:guru|karyawan}')->group(function () {
         route::get('/biodata', [TeacherController::class, 'biodata'])->name('guru.biodata');
         Route::get('/edit', [TeacherController::class, 'editTeacher'])->name('guru.edit');
         Route::put('/edit', [TeacherController::class, 'updateTeacher'])->name('guru.update');
-
+        
         Route::get('/upload_dokumen', [TeacherController::class, 'uploadDokumen'])->name('guru.upload_dokumen');
-
+        
         route::get('/tambah_pendidikan', function () {
             return view('guru.tambah_pendidikan');
         })->name('guru.tambah_pendidikan');
         route::post('/tambah_pendidikan', [TeacherController::class, 'inputPendidikan'])->name('guru.input_pendidikan');
-
+        
         route::get('/tambah_anak', function () {
             return view('guru.tambah_anak');
         })->name('guru.tambah_anak');
         route::post('/tambah_anak', [TeacherController::class, 'inputAnak'])->name('guru.input_anak');
-
+        
         route::get('/tambah_diklat', function () {
             return view('guru.tambah_diklat');
         })->name('guru.tambah_diklat');
         route::post('/tambah_diklat', [TeacherController::class, 'inputDiklat'])->name('guru.input_diklat');
-
+        
         route::delete('/hapus_pendidikan/{id}', [TeacherController::class, 'hapusPendidikan'])->name('guru.hapus_pendidikan');
         route::delete('/hapus_diklat/{id}', [TeacherController::class, 'hapusDiklat'])->name('guru.hapus_diklat');
         route::delete('/hapus_anak/{id}', [TeacherController::class, 'hapusAnak'])->name('guru.hapus_anak');
-
+        
         route::get('/journal', function () {
             return view('guru.jurnal');
         });
@@ -198,15 +200,14 @@ route::get('/coba', [CobaController::class, 'hitungEkskul']);
 Route::get('/ekskul/export', [ExtracurricularDataController::class, 'export'])->name('ekskul.export');
 Route::delete('/ekskul/delete/{id}', [ExtracurricularDataController::class, 'destroy'])->name('ekskul.delete');
 
-Route::get('daftar_munaqosah',[MunaqosahTahfidzController::class,'create']);
-Route::post('daftar_munaqosah',[MunaqosahTahfidzController::class,'store'])->name('munaqosah.store');
-Route::get('penguji',[MunaqosahTahfidzController::class,'show'])->name('munaqosah.show');
-Route::post('penguji',[MunaqosahTahfidzController::class,'update'])->name('munaqosah.update');
-Route::get('hasil_munaqosah',[MunaqosahTahfidzController::class,'hasilMunaqosah'])->name('munaqosah.hasil');
-Route::get('cetak_sertifikat/{id}/{name}',[MunaqosahTahfidzController::class,'cetak'])->name('munaqosah.cetak');
-Route::get('custom_sertifikat',function ()
-{
+Route::get('daftar_munaqosah', [MunaqosahTahfidzController::class, 'create']);
+Route::post('daftar_munaqosah', [MunaqosahTahfidzController::class, 'store'])->name('munaqosah.store');
+Route::get('penguji', [MunaqosahTahfidzController::class, 'show'])->name('munaqosah.show');
+Route::post('penguji', [MunaqosahTahfidzController::class, 'update'])->name('munaqosah.update');
+Route::get('hasil_munaqosah', [MunaqosahTahfidzController::class, 'hasilMunaqosah'])->name('munaqosah.hasil');
+Route::get('cetak_sertifikat/{id}/{name}', [MunaqosahTahfidzController::class, 'cetak'])->name('munaqosah.cetak');
+Route::get('custom_sertifikat', function () {
     return view('munaqosah.custom');
 });
-Route::post('custom_sertifika',[MunaqosahTahfidzController::class,'customSertifikat'])->name('munaqosah.custom');
-Route::get('export_all_sertifikat',[MunaqosahTahfidzController::class,'exportJpgAll'])->name('munaqosah.exportAll');
+Route::post('custom_sertifika', [MunaqosahTahfidzController::class, 'customSertifikat'])->name('munaqosah.custom');
+Route::get('export_all_sertifikat', [MunaqosahTahfidzController::class, 'exportJpgAll'])->name('munaqosah.exportAll');

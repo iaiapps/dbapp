@@ -2,28 +2,28 @@
 @section('content')
     <div class="leftright">
         <div class="py-2 my-2 clear-fix">
-            <h3 class="float-left">Tambah User</h3>
+            <h3 class="float-start">Tambah User</h3>
         </div>
         <form action="{{ route('admin.create_user') }}" method="POST">
             @csrf
-            <table class="table table-striped tab-content" id="1">
+            <table class="table ">
                 <tbody>
                     <tr>
                         <td>Name</td>
                         <td>
-                            <input class="form-input" type="text" name="name" required>
+                            <input class="form-control" type="text" name="name" required>
                         </td>
                     </tr>
                     <tr>
                         <td>Email</td>
                         <td>
-                            <input class="form-input" type="text" name="email" required>
+                            <input class="form-control" type="text" name="email" required>
                         </td>
                     </tr>
                     <tr>
                         <td>Password</td>
                         <td>
-                            <input class="form-input" type="text" name="password" required>
+                            <input class="form-control" type="text" name="password" required>
                         </td>
                     </tr>
                     <tr>
