@@ -22,7 +22,9 @@
                 <td>#</td>
                 <td>Nama</td>
                 <td>Kelas</td>
-                <td>Act</td>
+                @if (isset($user))
+                    <td>Act</td>
+                @endif
             </thead>
             <tbody>
                 @if (!is_null($ekskuls))
