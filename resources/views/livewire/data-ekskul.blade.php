@@ -22,6 +22,7 @@
                 <td>#</td>
                 <td>Nama</td>
                 <td>Kelas</td>
+                <td>Act</td>
             </thead>
             <tbody>
                 @if (!is_null($ekskuls))
@@ -30,6 +31,20 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $item->student->name }}</td>
                             <td>{{ $item->class->name }}</td>
+                            @php
+                                $user = Auth::user();
+                                // dd($item);
+                            @endphp
+                            @if (isset($user))
+                                <td>
+                                    <form action="{{ route('ekskul.delete', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="confirm('Yakin bro?')" type="submit"
+                                            class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 @endif

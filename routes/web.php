@@ -196,6 +196,7 @@ route::get('pilih_ekskul', [ExtracurricularDataController::class, 'create'])->na
 route::post('/ekskul_post', [ExtracurricularDataController::class, 'store'])->name('ekskul.store');
 route::get('/coba', [CobaController::class, 'hitungEkskul']);
 Route::get('/ekskul/export', [ExtracurricularDataController::class, 'export'])->name('ekskul.export');
+Route::delete('/ekskul/delete/{id}', [ExtracurricularDataController::class, 'destroy'])->name('ekskul.delete');
 
 Route::get('daftar_munaqosah',[MunaqosahTahfidzController::class,'create']);
 Route::post('daftar_munaqosah',[MunaqosahTahfidzController::class,'store'])->name('munaqosah.store');

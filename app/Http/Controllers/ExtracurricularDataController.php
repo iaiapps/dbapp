@@ -53,4 +53,9 @@ public function export()
 {
     return Excel::download(new ExtracurricularExport(), 'ekskul.xlsx');
 }
+public function destroy($id)
+{
+    ExtracurricularData::where('id',$id)->delete();
+    return back();
+}
 }
