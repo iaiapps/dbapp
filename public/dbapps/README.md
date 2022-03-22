@@ -1,2 +1,0 @@
-# dbapps
-database application
