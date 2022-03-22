@@ -4,7 +4,7 @@
             <a href="{{ route('login') }}" type="button" class="btn btn-outline-success">
                 Login Guru
             </a>
-            <a href="{{ route('login.siswa') }}" type="button" class="btn btn-outline-success">
+            <a href="" type="button" class="btn btn-outline-success">
                 login Siswa
             </a>
         </div>
