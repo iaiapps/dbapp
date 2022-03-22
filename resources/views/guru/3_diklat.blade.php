@@ -1,8 +1,8 @@
 <div id="5" class="tabcontent">
     <br />
     <div class="clearfix">
-        <h4 class="float-left">Diklat</h4>
-        <a class="btn btn-primary float-right" href="{{ route('guru.tambah_diklat') }}">Tambah</a>
+        <h4 class="float-start">Diklat</h4>
+        <a class="btn btn-primary float-end" href="{{ route('guru.tambah_diklat') }}">Tambah</a>
     </div>
     <hr class="text-primary" />
     <table class="table table-striped tab-content" id="5">

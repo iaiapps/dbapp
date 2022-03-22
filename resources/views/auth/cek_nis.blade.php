@@ -1,42 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url('/dbapps') }}/css/login.css" />
-
-    <title>Klaim NIS</title>
-
-
-</head>
-
-<body>
-    <div class="judul">
-        <h2>DATABASE APPLICATION</h2>
-        <h3>SDIT Harapan Umat Jember</h3>
-    </div>
-    <div class="containernis">
-        <div class="klaimnis">
-            <form method="POST" action="{{ route('input_klaim_nis') }}">
-                @csrf
-                @method('POST')
-                <h3>KLAIM NIS</h3>
-                <input type="text" placeholder="Nomor Induk Siswa " class="input" name="nisn" />
-                <button type="submit" class="button">klaim</button>
-            </form>
+@extends('auth.layouts.login_master')
+@section('page_title', 'Klaim NISN')
+@section('content')
+    <div class="d-flex justify-content-center mt-5 pt-5">
+        <div class="card col-md-6 col-12 rounded">
+            <div class="title text-center">
+                <img src="{{ asset('new_theme') }}/img/book.png"
+                    class="border bg-white rounded-circle p-1 avatar mb-1 mt-3" alt="NIS" />
+                <p class="text-white display-6">KLAIM NISN</p>
+            </div>
+            <div class="p-3">
+                <form class="form" method="POST" action="{{ route('input_klaim_nis') }}">
+                    @csrf
+                    @method('POST')
+                    <div class="mb-3 text-center">
+                        <input type="text" class="form-control form-control-lg text-center" id="floatingInput"
+                            placeholder="masukkan NISN siswa" name="nisn" />
+                    </div>
+                    <button class="btn btn-success btn-lg w-100" type="submit">
+                        KLAIM NISN
+                    </button>
+                </form>
+            </div>
+            <p class="small px-3">
+                NB: NISN didapat dari masing-masing Wali Kelas
+            </p>
         </div>
     </div>
-    </div>
-</body>
-<script src="{{ url('dbapps') }}/js/tata.js"></script>
-
-
-@if (Session::has('success'))
-    <script>
-        tata.success("OK", "{!! Session::get('success') !!}")
-    </script>
-@endif
-
-</html>
+@endsection

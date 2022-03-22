@@ -1,4 +1,4 @@
-<table class="table table-striped tab-content" id="1">
+<table class="table ">
     <thead>
         <tr>
             <th>No</th>

@@ -21,7 +21,7 @@
         <form method="POST" action="{{ route('munaqosah.custom') }}">
             @csrf
             @method('POST')
-            <div class="form-group col-sm-4">
+            <div class="mb-3 col-sm-4">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Nama">
                 <select name="juz" class="form-control">
                     <option selected disabled>Juz</option>
@@ -30,13 +30,13 @@
                     @endfor
                 </select>
             </div>
-            <div class="form-group col-sm-4">
+            <div class="mb-3 col-sm-4">
                 <input type="number" name="kelancaran" class="form-control" placeholder="kelancaran">
                 <input type="number" name="fasohah_makhroj" class="form-control" placeholder="fasohah makhroj">
                 <input type="number" name="tajwid" class="form-control" placeholder="tajwid">
                 <input type="text" name="grade" class="form-control" placeholder="grade">
             </div>
-            <div class="form-group col-sm-4">
+            <div class="mb-3 col-sm-4">
                 <input type="date" class="form-control" name="exam_date">
             </div>
             <button type="submit" class="btn btn-primary">Generate</button>

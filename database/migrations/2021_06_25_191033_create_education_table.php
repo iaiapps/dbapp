@@ -22,13 +22,11 @@ class CreateEducationTable extends Migration
         $table->string('jenjang_pendidikan')->nullable();
         $table->string('gelar_akademik')->nullable();
         $table->string('nama_satuan_pendidikan')->nullable();
-        // $table->string('fakultas')->nullable();
+        $table->string('fakultas')->nullable();
         // $table->string('kependidikan')->nullable();
         $table->string('tahun_masuk')->nullable();
         $table->string('tahun_lulus')->nullable();
         $table->string('nim')->nullable();
-        $table->string('semester')->nullable();
-        $table->string('ipk')->nullable();
 
         $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
         $table->timestamps();

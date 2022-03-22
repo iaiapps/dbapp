@@ -1,8 +1,8 @@
 @extends('layout.master')
 @section('content')
     <div class="py-2 my-2 clear-fix">
-        <h3 class="float-left">Data Sekolah</h3>
-        <a href="{{ route('operator.edit_schoolid', $item->id) }}" class="btn btn-primary float-right ml-1">Edit </a>
+        <h3 class="float-start">Data Sekolah</h3>
+        <a href="{{ route('operator.edit_schoolid', $item->id) }}" class="btn btn-primary float-end ml-1">Edit </a>
     </div>
     <div class="table table-responsive">
         <table id="example" class="display table-striped" style="width:100%">

@@ -1,87 +1,70 @@
 @extends('layout.master')
+@section('page_judul', 'Tambah Pendidikan')
 @section('content')
-    <div class="container grid-md bg-gray card">
+
+    <div class="card shadow rounded">
+        <p class="fs-4 mb-3 px-3 py-3 bg-light rounded">
+            Riwayat Pendidikan Formal
+        </p>
         <form class="px-2 mx-2" id="form" method="POST" action="{{ route('guru.input_pendidikan') }}">
             @csrf
             <fieldset>
-                <br />
-                <h4 class="text-center bg-primary p-2">
-                    Riwayat Pendidikan Formal
-                </h4>
-
-                <br />
-                <hr class="text-primary" />
-
-                <div class="form-group pt-2">
-                    <label class="form-label" for="bidangstudi">Bidang Studi
-                    </label>
-                    <input class="form-input" type="text" id="bidangstudi" name="bidang_study" placeholder="Bidang Studi" />
-                </div>
-
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-label" for="jenjangpendidikan">Jenjang Pendidikan
-
                     </label>
-                    <input class="form-input" type="text" id="jenjangpendidikan" name="jenjang_pendidikan"
-                        placeholder="Jenjang  Pendidikan" required />
+                    <input class="form-control" type="text" id="jenjangpendidikan" name="jenjang_pendidikan"
+                        placeholder="Jenjang Pendidikan" required />
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-label" for="gelarakademik">Gelar Akademik
                     </label>
-                    <input class="form-input" type="text" id="gelarakademik" name="gelar_akademik"
+                    <input class="form-control" type="text" id="gelarakademik" name="gelar_akademik"
                         placeholder="Gelar Akademik" />
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label" for="satuanpendidikan">Nama Lembaga / Sekolah / Satuan Pendidikan
+                <div class="mb-3">
+                    <label class="form-label" for="satuanpendidikan">Nama Lembaga / Sekolah / Satuan
+                        Pendidikan
                     </label>
-                    <input class="form-input" type="text" id="satuanpendidikan" name="nama_satuan_pendidikan"
+                    <input class="form-control" type="text" id="satuanpendidikan" name="nama_satuan_pendidikan"
                         placeholder="Satuan Pendidikan" required />
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
+                    <label class="form-label" for="fakultas">Nama Fakultas
+                    </label>
+                    <input class="form-control" type="text" id="fakultas" name="fakultas" placeholder="Fakultas"
+                        required />
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label" for="tahunmasuk">Tahun Masuk
                     </label>
-                    <input class="form-input" type="text" id="tahunmasuk" name="tahun_masuk" placeholder="Tahun Masuk"
+                    <input class="form-control" type="text" id="tahunmasuk" name="tahun_masuk" placeholder="Tahun Masuk"
                         required />
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-label" for="tahunlulus">Tahun Lulus
                     </label>
-                    <input class="form-input" type="text" id="tahunlulus" name="tahun_lulus" placeholder="Tahun Lulus"
+                    <input class="form-control" type="text" id="tahunlulus" name="tahun_lulus" placeholder="Tahun Lulus"
                         required />
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-label" for="nim">NISN/NIM
                     </label>
-                    <input class="form-input" type="text" id="nim" name="nim" placeholder="NIM" />
+                    <input class="form-control" type="text" id="nim" name="nim" placeholder="NIM" />
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="semester">Semester yang ditempuh
-                    </label>
-                    <input class="form-input" type="text" id="semester" name="semester" placeholder="Semester" />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="ipk">IPK
-                    </label>
-                    <input class="form-input" type="text" id="ipk" name="ipk" placeholder="IPK" />
-                </div>
-
-                <div class="columns">
-                    <div class="column">
-                        <input type="submit" value="Simpan" class="btn float-right btn-lg col-12 btn-primary" />
-                    </div>
-                    <div class="column">
-                        <a href="{{ URL::previous() }}" class="btn float-right btn-lg col-12 btn-secondary">Kembali</a>
-                    </div>
+                <div class="btn-group mb-3 w-100">
+                    <input type="submit" value="Simpan" class="btn float-end btn-primary" />
+                    <a href="{{ URL::previous() }}" class="btn float-start btn-secondary">Kembali</a>
                 </div>
             </fieldset>
         </form>
+        <p class="small px-3">
+            NB: Jika ada form yang tidak sesuai bisa diisi "-" (tanpa kutip).
+        </p>
     </div>
-
 @endsection

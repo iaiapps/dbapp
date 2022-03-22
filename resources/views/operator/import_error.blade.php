@@ -1,9 +1,9 @@
  @if (isset($errors) && $errors->any)
-     <div class="alert aler-danger">
-         @foreach ($errors->all() as $error)
+     @foreach ($errors->all() as $error)
+         <div class="alert alert-danger">
              {{ $error }}
-         @endforeach
-     </div>
+         </div>
+     @endforeach
  @endif
 
  @if (session()->has('failures'))

@@ -42,7 +42,6 @@ class CreateTeachersTable extends Migration
             $table->string('nama_wajib_pajak')->nullable();
             $table->string('status_perkawinan')->nullable();
             $table->string('nama_pasangan')->nullable();
-            $table->string('nip_pasangan')->nullable();
             $table->string('pekerjaan_pasangan')->nullable();
             
             $table->string('role_id')->nullable();

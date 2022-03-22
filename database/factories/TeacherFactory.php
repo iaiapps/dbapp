@@ -48,7 +48,7 @@ class TeacherFactory extends Factory
             'status_perkawinan'=>$this->faker->name(),
             'nama_pasangan'=>$this->faker->name(),
             'pekerjaan_pasangan'=>$this->faker->name(),
-            'nip_pasangan'=>$this->faker->name(),
+          
         ];
     }
 }
