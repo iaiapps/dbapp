@@ -41,8 +41,11 @@
                         <td>{{ $m->name }}</td>
                         <td>{{ $m->class->name }}</td>
                         <td>{{ $m->juz }}</td>
-                        <td> {{ \Carbon\Carbon::parse($m->register_date)->formatLocalized('%d-%b-%y') }}</td>
-                        <td> {{ \Carbon\Carbon::parse($m->exam_date)->formatLocalized('%d-%b-%y') }}</td>
+                        @php
+                            \Carbon\Carbon::setLocale('id');
+                        @endphp
+                        <td> {{ \Carbon\Carbon::parse($m->register_date)->isoFormat('D MMMM Y') }}</td>
+                        <td> {{ \Carbon\Carbon::parse($m->exam_date)->isoFormat('D MMMM Y') }}</td>
                         <td>{{ $m->exam_status }}</td>
                         <td>{{ $m->kelancaran }}</td>
                         <td>{{ $m->fasohah_makhroj }}</td>

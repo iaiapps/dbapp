@@ -108,6 +108,7 @@ class MunaqosahTahfidzController extends Controller
    }
    public function cetak($id,$name)
    {
+
     $data= MunaqosahTahfidz::where('id',$id)->first();
 
     header('content-type:image/jpeg');
@@ -140,7 +141,7 @@ class MunaqosahTahfidzController extends Controller
     
     //ini Tanggal
     // nama donk
-    $tanggal = Carbon::parse($data->exam_date)->formatLocalized("%d %B %Y");
+    $tanggal = Carbon::parse($data->exam_date)->isoFormat('dddd, D MMMM Y');
     // Get image Width and Height
     $image_width = imagesx($image);  
     $image_height = imagesy($image);
@@ -200,7 +201,7 @@ class MunaqosahTahfidzController extends Controller
         
         //ini Tanggal
         // nama donk
-        $tanggal = Carbon::parse($request->exam_date)->formatLocalized("%d %B %Y");
+        $tanggal = Carbon::parse($request->exam_date)->isoFormat('dddd, D MMMM Y');
         // Get image Width and Height
         $image_width = imagesx($image);
         $image_height = imagesy($image);
