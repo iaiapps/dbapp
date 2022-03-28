@@ -37,13 +37,9 @@
                                     <td>{{ $item->nama }}</td>
                                     <td>{{ $item->no_hp }}</td>
                                     <td>
-
                                         <form action="{{ route('teacher_delete', $item->id) }}" method="POST">
                                             <a href="{{ route('teacher_detail', $item->id) }}" class="btn btn-success">
                                                 <span><i class="las la-info-circle"></i></span>
-                                            </a>
-                                            <a href="#" class="btn btn-primary">
-                                                <span><i class="las la-image"></i></span>
                                             </a>
                                             <a href="{{ route('teacher_edit', $item->id) }}" class="btn btn-warning">
                                                 <span><i class="las la-edit"></i></span>

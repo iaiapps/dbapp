@@ -130,7 +130,9 @@ body {
     color: #13653f !important;
     border-bottom: 5px solid #198754;
 }
-
+.img_upload {
+    width: 200px;
+}
 /* css static menu */
 .img-menu {
     width: 80px;

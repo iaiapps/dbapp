@@ -7,6 +7,7 @@ use App\Models\Journal;
 use App\Models\Document;
 use App\Models\Training;
 use App\Models\Education;
+use App\Models\Presence;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -38,5 +39,9 @@ class Teacher extends Model
    public function journals()
    {
       return $this->hasMany(Journal::class);
+   }
+   public function presences()
+   {
+      return $this->hasMany(Presence::class);
    }
 }

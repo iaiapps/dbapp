@@ -16,7 +16,7 @@
                     </select>
                 </div>
                 <input class="form-control" type="file" name="dokumen" class="pt-2">
-                <button type="submit" class="btn btn-primary mt-2">Upload</button>
+                <button type="submit" class="btn btn-primary mt-3">Upload</button>
             </form>
         </div>
         @include('siswa.list_dokumen')

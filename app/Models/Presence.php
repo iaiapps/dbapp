@@ -11,4 +11,9 @@ class Presence extends Model
     // public $timestamps = false;
     protected $table = 'presences';
     protected $guarded = [];
+
+    public function teacher()
+   {
+      return $this->belongsTo(Teacher::class);
+   }
 }

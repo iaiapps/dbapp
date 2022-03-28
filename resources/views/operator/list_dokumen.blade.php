@@ -8,7 +8,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $item)
+            {{-- @php
+                $doc = DB::table('documents')
+                    ->where('teacher_id', $item->id)
+                    ->get();
+                dd($doc);
+            @endphp --}}
+            @foreach ($item->documents as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->document_type->name }}</td>

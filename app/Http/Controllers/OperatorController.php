@@ -14,7 +14,6 @@ class OperatorController extends Controller
     function getStudents()
     {
         $collection = Student::get();
-       
         return view('operator.students',compact('collection'));
     }
     function getStudent($id)

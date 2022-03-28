@@ -10,6 +10,7 @@ class MenuSeeder extends Seeder
     public function run()
     {
         DB::table('menus')->insert([
+            // MENU ADMIN
             [
                 'name' => 'Home',
                 'url' => '/',
@@ -79,6 +80,15 @@ class MenuSeeder extends Seeder
                 'name' => 'Setting Aplikasi',
                 'url' => '/admin/db_settings',
                 'icon' => 'las la-tools',
+                'icon_color' => 'text-success',
+                'is_active' => '1',
+                'order' => '1',
+                'role_id' => '1',
+            ],
+            [
+                'name' => 'Inventaris',
+                'url' => '/inventaris',
+                'icon' => 'las la-warehouse',
                 'icon_color' => 'text-success',
                 'is_active' => '1',
                 'order' => '1',
@@ -257,6 +267,25 @@ class MenuSeeder extends Seeder
                 'is_active' => '1',
                 'order' => '1',
                 'role_id' => '5',
+            ],
+            //MENU KEUANGAN
+            [
+                'name' => 'Home',
+                'url' => '/',
+                'icon' => 'las la-home',
+                'icon_color' => 'text-success',
+                'is_active' => '1',
+                'order' => '1',
+                'role_id' => '6',
+            ],
+            [
+                'name' => 'Inventaris',
+                'url' => '/inventaris',
+                'icon' => 'las la-warehouse',
+                'icon_color' => 'text-success',
+                'is_active' => '1',
+                'order' => '2',
+                'role_id' => '6',
             ],
         ]);
     }

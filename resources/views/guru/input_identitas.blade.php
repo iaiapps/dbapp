@@ -1,23 +1,20 @@
 @extends('layout.master')
+@section('page_judul', 'Form Identitas')
 @section('content')
-    <div class="container grid-md bg-gray card">
+    <div class="container grid-md bg-gray card rounded">
         <form class="px-2 mx-2" id="form" action="{{ route('guru.input_data') }}" method="POST">
             @method('POST')
             @csrf
             <fieldset>
-                <br />
-                <h4 class="text-center bg-primary p-2">
-                    FORMULIR PENDIDIK DAN TENAGA KEPENDIDIKAN
-                </h4>
                 @foreach ($errors->all() as $error)
-                    <p style="color:#e74c3c">
-                        {{ $error }}<br />
-                    </p>
+                    <div class="alert alert-danger text-center" role="alert">
+                        {{ $error }}
+                    </div>
                 @endforeach
                 <br />
                 <!-- Identitas Pendidik dan Tenaga Kependidikan -->
                 <h4 class="text-center">
-                    Identitas
+                    IDENTITAS
                 </h4>
                 <hr class="text-primary" />
 
@@ -41,15 +38,15 @@
                     </select>
                 </div>
 
-                <div class="columns">
-                    <div class="column">
+                <div class="row">
+                    <div class="col">
                         <div class="mb-3">
                             <label class="form-label" for="tempatlahir">Tempat Lahir</label>
                             <input class="form-control" type="text" id="tempatlahir" name="tempat_lahir"
                                 placeholder="Tempat Lahir" required />
                         </div>
                     </div>
-                    <div class="column">
+                    <div class="col">
                         <div class="mb-3">
                             <label class="form-label" for="tanggallahir">Tanggal Lahir</label>
                             <input class="form-control" type="date" id="tanggallahir" name="tanggal_lahir"
@@ -74,8 +71,8 @@
                         readonly />
                 </div>
                 <br />
-                <div class="columns">
-                    <div class="column">
+                <div class="row">
+                    <div class="col">
                         <input type="submit" value="Simpan" class="btn float-end btn-lg col-12 btn-primary" />
                     </div>
                 </div>

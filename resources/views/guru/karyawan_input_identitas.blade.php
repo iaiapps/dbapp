@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('content')
-    <div class="container grid-md bg-gray card">
+    <div class="container grid-md bg-gray card rounded">
         <form class="px-2 mx-2" id="form" action="{{ route('guru.input_data') }}" method="POST">
             @csrf
             <fieldset>
@@ -53,11 +53,11 @@
                     </div>
                 </div>
 
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label class="form-label" for="namaibukandung">Nama Ibu Kandung</label>
                     <input class="form-control" type="text" id="namaibukandung" name="nama_ibu"
                         placeholder="Nama Ibu Kandung" required />
-                </div>
+                </div> --}}
 
                 <div class="mb-3">
                     <label class="form-label" for="nohp">No.Telp/HP</label>
