@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="{{ url('new_theme') }}/assets/bootstrap-5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('new_theme') }}/assets/bootstrap-icons/bootstrap-icons.css" />
     <link rel="stylesheet" href="{{ url('new_theme') }}/assets/datatables/datatables.min.css" />
-
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"> --}}
-
     <link rel="stylesheet" href="{{ url('new_theme') }}/css/app.css" />
     <link rel="stylesheet" href="{{ url('new_theme') }}/css/login.css" />
     @yield('css')

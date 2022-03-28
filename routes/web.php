@@ -25,6 +25,8 @@ use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\MunaqosahTahfidzController;
 use App\Http\Controllers\ExtracurricularDataController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\PresenceController;
 
 //SHORTCUT KU
 Route::get('/cc', function () {
@@ -175,24 +177,17 @@ route::get('sebagai', function () {
     return view('auth.sebagai');
 })->name('tentukan_role');
 
-
 route::get('cek_nis', [LoginController::class, 'cekNis'])->name('cek_nis');
 
 //Login Google
 Route::get('auth/google_guru', [SocialiteController::class, 'guru_redirectToGoogle'])->name('login_guru_google');
-
 Route::get('auth/google_siswa', [SocialiteController::class, 'siswa_redirectToGoogle'])->name('login_siswa_google');
-
 Route::get('auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
-
-
 Route::get('change-password', [ChangePasswordController::class, 'index'])->name('ganti-pass');
-
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
-
 Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->name('siswa.contact_center');
 
-// EKSKUL
+// Ekskul
 route::get('data_ekskul', [ExtracurricularDataController::class, 'index'])->name('ekskul.index');
 route::get('pilih_ekskul', [ExtracurricularDataController::class, 'create'])->name('ekskul.create');
 route::post('/ekskul_post', [ExtracurricularDataController::class, 'store'])->name('ekskul.store');
@@ -200,6 +195,7 @@ route::get('/coba', [CobaController::class, 'hitungEkskul']);
 Route::get('/ekskul/export', [ExtracurricularDataController::class, 'export'])->name('ekskul.export');
 Route::delete('/ekskul/delete/{id}', [ExtracurricularDataController::class, 'destroy'])->name('ekskul.delete');
 
+//Munaqosah
 Route::get('daftar_munaqosah', [MunaqosahTahfidzController::class, 'create']);
 Route::post('daftar_munaqosah', [MunaqosahTahfidzController::class, 'store'])->name('munaqosah.store');
 Route::get('penguji', [MunaqosahTahfidzController::class, 'show'])->name('munaqosah.show');
@@ -211,3 +207,14 @@ Route::get('custom_sertifikat', function () {
 });
 Route::post('custom_sertifika', [MunaqosahTahfidzController::class, 'customSertifikat'])->name('munaqosah.custom');
 Route::get('export_all_sertifikat', [MunaqosahTahfidzController::class, 'exportJpgAll'])->name('munaqosah.exportAll');
+
+//Inventaris Bos
+Route::get('inventaris', [InventoryController::class, 'getInventory'])->name('inventaris.index');
+Route::post('inventaris', [InventoryController::class, 'storeInventory'])->name('inventaris.store');
+Route::get('inventaris/{id}', [InventoryController::class, 'detailInventory'])->name('inventaris.details');
+Route::get('inventaris/edit/{id}', [InventoryController::class, 'editInventory'])->name('inventaris.edit');
+Route::put('inventaris/edit/{id}', [InventoryController::class, 'updateInventory'])->name('inventaris.update');
+Route::delete('inventaris/{id}', [InventoryController::class, 'hapusInventory'])->name('inventaris.delete');
+
+//Presensi
+Route::get('presensi', [PresenceController::class, 'getPresences'])->name('presensi.index');

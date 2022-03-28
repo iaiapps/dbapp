@@ -15,7 +15,7 @@
                  <th>JK</th>
                  <th>tempat lahir</th>
                  <th>tanggal lahir</th>
-                 <th>tahun masuk</th>
+                 {{-- <th>tahun masuk</th> --}}
                  <th>Aksi</th>
              </tr>
          </thead>

@@ -7,8 +7,6 @@
     @section('content')
         <div id="page_info" class="card rounded">
             <div id="tab-menu">
-
-
                 <!-- tombol tab -->
                 <ul class="nav tab px-1">
                     <li class="nav-item">
@@ -36,6 +34,11 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link tablinks" onclick="openTab(event, '5')">
                             Diklat
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link tablinks" onclick="openTab(event, '6')">
+                            Dokumen
                         </a>
                     </li>
                 </ul>
@@ -187,6 +190,7 @@
                 @include('guru.1_riwayat_pendidikan')
                 @include('guru.2_anak')
                 @include('guru.3_diklat')
+                @include('operator.list_dokumen')
             </div>
         </div>
     @endsection
