@@ -21,16 +21,7 @@
     <div id="wrapper">
         <div class="background position-absolute"></div>
 
-        {{-- @php
-            $nama_apk = DB::table('database_settings')
-                ->where('name', 'app_name')
-                ->first();
-        @endphp --}}
-
         <aside id="sidebar" class="position-fixed bg-white rounded shadow m-3">
-            {{-- <h1 id="titleApp" class="fs-2 text-center fw-bold text-success py-2 mb-0 bg-light">
-                {{ $nama_apk->value }}
-            </h1> --}}
             @include('layout.partials.avatar')
             <hr class="m-0">
             @include('layout.partials.menu')
