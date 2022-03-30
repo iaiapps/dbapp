@@ -8,40 +8,17 @@ if ($role_id) {
     $role_id = 4;
 }
 @endphp
-<div id="scrolll" class="p-1 p-sm-2 scroll">
+
+<div class="p-1 p-sm-2">
     <ul id="menu" class="nav flex-column px-0 px-sm-2">
-        @foreach ($menus as $menu)
-            <li class="nav-item">
+        <li class="nav-item">
+            @foreach ($menus as $menu)
                 <a href="{{ $menu->url }}"
-                    class="nav-link hover text-success py-2  rounded-1 text-center text-sm-start">
+                    class="nav-link hover text-success py-2 rounded-1 text-center text-sm-start">
                     <i class="{{ $menu->icon }} menu-icon"></i>
                     <span class="ms-2 d-none d-sm-inline"> {{ $menu->name }} </span>
                 </a>
-            </li>
-        @endforeach
+            @endforeach
+        </li>
     </ul>
 </div>
-
-@push('js')
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            OverlayScrollbars(document.querySelector("#scrolll"), {
-                className: "os-theme-dark",
-                resize: "none",
-                paddingAbsolute: true,
-                scrollbars: {
-                    visibility: "auto",
-                    autoHide: "move",
-                    autoHideDelay: 800,
-                    dragScrolling: true,
-                    clickScrolling: false,
-                    touchSupport: true,
-                },
-                overflowBehavior: {
-                    x: "hidden",
-                    y: "scroll"
-                },
-            });
-        });
-    </script>
-@endpush

@@ -15,7 +15,7 @@ class AdminController extends Controller
         $menus= DB::table('menus')->where('role_id',$role_id)->get();
         return view('admin.home',compact('menus'));
     }
-        public function dbSettings()
+    public function dbSettings()
     {
         $collection = DB::table('database_settings')->get();
         return view('admin.db_settings',compact('collection'));
@@ -24,12 +24,6 @@ class AdminController extends Controller
     {
         $item = DB::table('database_settings')->where('id',$id)->first();
         return view('admin.edit_db_set',compact('item'));
-    }
-    public function hapusDBset($id)
-    {
-        // Inventory::where('id', $id)->delete();
-        DB::table('database_settings')->where('id',$id)->delete();
-        return route('admin.DBset');
     }
     public function createUser(Request $request)
     {

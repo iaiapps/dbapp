@@ -1,54 +1,26 @@
-<div id="nav" class="clearfix bg-white p-3 rounded ">
-    <div class="float-start">
-        <button id="buttonSidebar" class="btn btn-success btn-sm hover bg-light text-success rounded fs-5">
-            <i class="bi bi-grid-1x2-fill"></i>
-        </button>
-    </div>
-    <div class="float-end d-flex">
-        <div class="d-none d-sm-block bg-light py-1 py-sm-2 px-2 px-sm-3 mx-3 mx-sm-3 rounded lh-md">
+<div id="nav" class="clearfix">
+    <span class="float-end d-flex">
+        <div class=" card py-1 py-sm-2 px-2 px-sm-3 mx-3 mx-sm-3 rounded lh-md">
             <span id="jam" class="fw-bold"> hari </span>
         </div>
-        <div class="dropdown  me-3">
-            <button class="btn btn-success btn-sm hover bg-light text-success rounded fs-5" type="button"
-                data-bs-toggle="dropdown" data-bs-toggle="dropdown" id="dropdownmenu" aria-expanded="false">
+        <div class="dropdown">
+            <button class="square bg-white text-success rounded fs-5" type="button" data-bs-toggle="dropdown"
+                data-bs-toggle="dropdown" id="dropdownmenu" aria-expanded="false">
                 <i class="bi bi-envelope-fill"></i>
             </button>
 
-            <div class="dropdown-menu shadow p-3 mt-3 rounded" aria-labelledby="dropdownmenu">
-                <div class="text-center">
-                    <i class="bi bi-envelope-fill display-5 text-success"></i>
-                    <p class="text-center my-3">Pusat Informasi</p>
-                    @php
-                        $collection = DB::table('database_settings')
-                            ->where('id', '!=', 1)
-                            ->get();
-                        // dd($collection);
-                    @endphp
-                    @foreach ($collection as $item)
-                        <a href="https://wa.me/{{ $item->value }}" target="_blank"
-                            class="btn btn-outline-success w-100 mb-3">{{ $item->info }}</a>
-                    @endforeach
-
-                </div>
+            <div class="dropdown-menu shadow p-3 mt-3" aria-labelledby="dropdownmenu">
+                <a href="#" class=" btn btn-outline-success mb-3 w-100 text-start">
+                    <i class="bi bi-envelope-fill"></i>
+                    <span class="ms-1 ">Hubungi Admin</span>
+                </a>
+                <a href="#" class=" btn btn-outline-success w-100 text-start">
+                    <i class="bi bi-envelope-fill"></i>
+                    <span class="ms-1 ">Hubungi Keuangan</span>
+                </a>
             </div>
         </div>
-        <div class="dropdown">
-            <button class="btn btn-success btn-sm hover bg-light text-success rounded fs-5" type="button"
-                data-bs-toggle="dropdown" data-bs-toggle="dropdown" id="dropdownmenu" aria-expanded="false">
-                <i class="bi bi-person-circle"></i>
-            </button>
-
-            <div class="dropdown-menu shadow p-3 mt-3 rounded" aria-labelledby="dropdownmenu">
-                <div class="text-center">
-                    <i class="bi bi-person-circle display-5 text-success"></i>
-                    <p class="text-center my-3">Pengaturan Akun</p>
-                    <a href="{{ route('ganti-pass') }}" class=" btn btn-outline-success mb-3 w-100">
-                        Ganti Password
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    </span>
 </div>
 
 <script>
@@ -60,16 +32,6 @@
     });
     const day = document.getElementById("jam");
     day.innerHTML = `${hari}`
-
-    const buttonSidebar = document.getElementById("buttonSidebar");
-    const sidebar = document.getElementById("sidebar")
-    const page = document.getElementById("page")
-
-    buttonSidebar.addEventListener("click", () => {
-        sidebar.classList.toggle("d-none")
-        sidebar.classList.toggle("d-sm-none")
-        page.classList.toggle("page-margin")
-    })
 </script>
 @push('js')
 @endpush

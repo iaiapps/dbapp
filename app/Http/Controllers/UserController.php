@@ -85,7 +85,4 @@ class UserController extends Controller
             dd("berhasil");
         }
     }
-    public function addUser(){
-        return view('user.create');
-    }
 }

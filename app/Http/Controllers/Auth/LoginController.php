@@ -35,10 +35,5 @@ class LoginController extends Controller
     {
         return view('auth.cek_nis');
     }
-     public function siswaLogin()
-    { 
-        // return "dd";
-        return view('auth.login_siswa');
-    }
 
 }

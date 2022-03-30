@@ -5,7 +5,7 @@
         <form action="#" method="POST">
             @csrf
             @method('PUT')
-            <table class="table">
+            <table class="table table-striped">
                 <tbody>
                     <tr>
                         <td>Name</td>
