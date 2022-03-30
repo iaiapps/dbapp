@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Grade;
 use App\Models\MunaqosahTahfidz;
@@ -20,13 +21,13 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\OperatorController;
+use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\MunaqosahTahfidzController;
 use App\Http\Controllers\ExtracurricularDataController;
-use App\Http\Controllers\InventoryController;
-use App\Http\Controllers\PresenceController;
 
 //SHORTCUT KU
 Route::get('/cc', function () {
@@ -218,3 +219,8 @@ Route::delete('inventaris/{id}', [InventoryController::class, 'hapusInventory'])
 
 //Presensi
 Route::get('presensi', [PresenceController::class, 'getPresences'])->name('presensi.index');
+
+// tes
+Route::get('tes', function () {
+   return view('tes');
+});

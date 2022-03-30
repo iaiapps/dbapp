@@ -19,45 +19,58 @@ class PresenceController extends Controller
     
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        // cek dulu waktu presensi benar atau tidak
+        $now = Carbon::now();
+        if ($now >= Carbon::parse('06:30') && $now <= Carbon::parse('09:00')) {
+            $scannable = true;
+        } elseif ($now >= Carbon::parse('14:00') && $now <= Carbon::parse('16:30')) {
+            $scannable = true;
+        } else {
+            $scannable = false;
+        }
+
+        if ($scannable==true) {
+            $validator = Validator::make($request->all(), [
             'teacher_id'=>'required',
         ]);
         
-        if($validator->fails()){
-            return response()->json($validator->errors());       
-        }
-        // dd(Carbon::now()->format('H:i'));
-        // dd(Carbon::now());
-        // cek ada gak gurunya
-        // $guru = Presence::where('teacher_id',$request->teacher_id)->orderby('id','DESC')->first();
-        $guru = Presence::where('teacher_id',$request->teacher_id)
+            if ($validator->fails()) {
+                return response()->json($validator->errors());
+            }
+        
+            // cek ada gak gurunya
+            $guru = Presence::where('teacher_id', $request->teacher_id)
         ->whereDate('created_at', '=', Carbon::today()
         ->toDateString())
         ->first();
         
-        if ($guru==null) {
-            // inisialisasi tepat waktu
-            $waktu_hadir = Carbon::now()->format('H:i');
-            $waktu_normal = date("07:30");
-            // logika terlambat
-            if($waktu_hadir > $waktu_normal){
-                $is_late = 'yes';
-            }else{
-                $is_late = 'no';
-            }
+            // jika tidak ada data absen hari ini
+            if ($guru==null) {
+                // inisialisasi tepat waktu
+                $waktu_hadir = Carbon::now()->format('H:i');
+                $waktu_normal = date("07:30");
+                // logika terlambat
+                if ($waktu_hadir > $waktu_normal) {
+                    $is_late = 'yes';
+                } else {
+                    $is_late = 'no';
+                }
             
-            Presence::create([
+                Presence::create([
                 'teacher_id'=>$request->teacher_id,
                 'date'=>date("d/m/y"),
                 'time_in'=>date("h:i:s"),
                 'is_late'=>$is_late
             ]);
-            return response()->json(['time_in'=>$waktu_hadir,'is_late'=>$is_late]);
-        }else{
-            $guru->update([
+                return response()->json(['time_in'=>$waktu_hadir,'is_late'=>$is_late]);
+            } else {
+                $guru->update([
                 'time_out'=>date("h:i:s"),
             ]);
-            return response()->json(['Berhasil Absen Pulang']);
+                return response()->json(['Berhasil Absen Pulang']);
+            }
+        }else{
+            return response()->json(['error'=>'Waktu Absen Tidak Valid']);
         }
     }
     
