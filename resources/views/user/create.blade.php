@@ -1,9 +1,7 @@
 @extends('layout.master')
+@section('page_judul', 'Tambah User')
 @section('content')
-    <div class="leftright">
-        <div class="py-2 my-2 clear-fix">
-            <h3 class="float-start">Tambah User</h3>
-        </div>
+    <div class="card rounded p-3">
         <form action="{{ route('admin.create_user') }}" method="POST">
             @csrf
             <table class="table ">
@@ -39,27 +37,9 @@
                             </select>
                         </td>
                     </tr>
-
                 </tbody>
             </table>
-            <br>
-            <button type="SUBMIT" class="btn btn-primary"> Tambah </button>
+            <button type="SUBMIT" class="btn btn-primary"> Tambah User </button>
         </form>
     </div>
 @endsection
-
-@section('css')
-
-    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-
-@endsection
-@section('js')
-
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        });
-    </script>
-@stop

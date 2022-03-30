@@ -3,7 +3,7 @@
     <x-datatables />
     @section('content')
         <!-- Modal -->
-        <div class="modal fade" id="tambahDataUser" tabindex="99" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {{-- <div class="modal fade" id="tambahDataUser" tabindex="99" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -22,13 +22,16 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div id="page_info" class="card rounded p-3">
             <div class="mb-3">
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahDataUser">
+                {{-- <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahDataUser">
+                    Import User
+                </button> --}}
+                <a href="{{ route('tambah_user') }}" type="button" class="btn btn-success">
                     Tambah User
-                </button>
+                </a>
             </div>
 
             @if ($collection->count() == 0)
@@ -68,10 +71,8 @@
                                 </tr>
                             @endforeach
                         </tbody>
-
                     </table>
                 </div>
             @endif
         </div>
-
     @endsection
