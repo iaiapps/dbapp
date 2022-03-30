@@ -220,7 +220,3 @@ Route::delete('inventaris/{id}', [InventoryController::class, 'hapusInventory'])
 //Presensi
 Route::get('presensi', [PresenceController::class, 'getPresences'])->name('presensi.index');
 
-// tes
-Route::get('tes', function () {
-   return view('tes');
-});

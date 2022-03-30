@@ -28,22 +28,22 @@ class PresenceController extends Controller
         } else {
             $scannable = false;
         }
-
+        
         if ($scannable==true) {
             $validator = Validator::make($request->all(), [
-            'teacher_id'=>'required',
-        ]);
-        
+                'teacher_id'=>'required',
+            ]);
+            
             if ($validator->fails()) {
                 return response()->json($validator->errors());
             }
-        
+            
             // cek ada gak gurunya
             $guru = Presence::where('teacher_id', $request->teacher_id)
-        ->whereDate('created_at', '=', Carbon::today()
-        ->toDateString())
-        ->first();
-        
+            ->whereDate('created_at', '=', Carbon::today()
+            ->toDateString())
+            ->first();
+            
             // jika tidak ada data absen hari ini
             if ($guru==null) {
                 // inisialisasi tepat waktu
@@ -55,18 +55,17 @@ class PresenceController extends Controller
                 } else {
                     $is_late = 'no';
                 }
-            
                 Presence::create([
-                'teacher_id'=>$request->teacher_id,
-                'date'=>date("d/m/y"),
-                'time_in'=>date("h:i:s"),
-                'is_late'=>$is_late
-            ]);
+                    'teacher_id'=>$request->teacher_id,
+                    'date'=>date("d/m/y"),
+                    'time_in'=>date("h:i:s"),
+                    'is_late'=>$is_late
+                ]);
                 return response()->json(['time_in'=>$waktu_hadir,'is_late'=>$is_late]);
             } else {
                 $guru->update([
-                'time_out'=>date("h:i:s"),
-            ]);
+                    'time_out'=>date("h:i:s"),
+                ]);
                 return response()->json(['Berhasil Absen Pulang']);
             }
         }else{
