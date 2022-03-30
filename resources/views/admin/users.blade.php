@@ -1,5 +1,6 @@
     @extends('layout.master')
     @section('page_judul', 'Tambah Data User')
+    <x-datatables />
     @section('content')
         <!-- Modal -->
         <div class="modal fade" id="tambahDataUser" tabindex="99" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -34,7 +35,7 @@
                 Belum ada data
             @else
                 <div class="table-responsive">
-                    <table id="example" class="table" style="width:100%">
+                    <table id="datatable" class="table" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -74,13 +75,3 @@
         </div>
 
     @endsection
-
-    @section('js')
-
-
-        <script>
-            $(document).ready(function() {
-                $('#example').DataTable();
-            });
-        </script>
-    @stop

@@ -37,34 +37,6 @@ class OperatorController extends Controller
         return redirect()->route('students')->with('success','Berhasil dihapus');
     }
 
-    // DATA_GURU
-
-    function getteachers()
-    {
-        $collection = Teacher::get();
-        return view('operator.teachers',compact('collection'));
-    }
-    function getteacher($id)
-    {
-        $item = Teacher::find($id);
-        return view('operator.teacher_detail',compact('item'));
-    }
-    function editteacher($id)
-    {
-        $item = Teacher::find($id);
-        return view('operator.teacher_edit',compact('item'));
-    }
-     public function updateteacher(Request $request, $id)
-    { 
-        Teacher::find($id)->update($request->all());
-        return redirect()->route('teachers');
-    }
-    public function destroyTeacher($id)
-    {
-        Teacher::where('id',$id)->delete();
-        return redirect()->route('teachers')->with('success','Berhasil dihapus');
-    }
-
     public function import()
     {
         return view('operator.import');

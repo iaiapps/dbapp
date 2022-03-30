@@ -19,6 +19,34 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
+    // INI METHOD UNTUK HANDLE DARI OPERATOR ATAU ADMIN
+    function index()
+    {
+        $collection = Teacher::get();
+        return view('teachers.index',compact('collection'));
+    }
+    function show($id)
+    {
+        $item = Teacher::find($id);
+        return view('teachers.show',compact('item'));
+    }
+    function edit($id)
+    {
+        $item = Teacher::find($id);
+        return view('teachers.edit',compact('item'));
+    }
+    public function update(Request $request, $id)
+    { 
+        Teacher::find($id)->update($request->all());
+        return redirect()->route('teachers');
+    }
+    public function destroy($id)
+    {
+        Teacher::where('id',$id)->delete();
+        return redirect()->route('teachers')->with('success','Berhasil dihapus');
+    }
+    
+    // DI BAWAH INI METHOD UNTUK HANDLE DARI INTERFACE GURU
     function input()
     {
         $id = Auth::user()->id;
@@ -26,7 +54,7 @@ class TeacherController extends Controller
         DB::table('model_has_roles')->where('model_id', $id)->update(['role_id' => 3]);
         return view('guru.input_identitas')->with('success', 'Berhasil');
     }
-
+    
     function inputData(Request $request)
     {
         $request->validate([
@@ -78,14 +106,14 @@ class TeacherController extends Controller
         $request->session()->put('tabname', 'pribadi');
         return redirect()->route('guru.biodata')->with('success', 'Berhasil Update');
     }
-
+    
     public function uploadDokumen()
     {
         //cek email
         $email = Auth::user()->email;
         //ambil id guru
         $teacher = Teacher::where('email', $email)->first();
-
+        
         //jika data tidak ada
         if (!isset($teacher)) {
             return redirect()->route('guru.input')->with('info', 'Data tidak ditemukan, silahkan Input');
@@ -99,7 +127,7 @@ class TeacherController extends Controller
             return view('guru.upload', compact('doc', 'data'))->with('success', 'Berhasil');
         }
     }
-
+    
     function inputPendidikan(request $request)
     {
         $teacher_id = Teacher::where('email', Auth::user()->email)->first()->id;
@@ -123,7 +151,7 @@ class TeacherController extends Controller
             'tahun_masuk' => 'required',
             'teacher_id' => 'required',
         ]);
-
+        
         $teacher_id = Teacher::where('email', Auth::user()->email)->first()->id;
         $data = request()->except(['_token', '_method']);
         $data['teacher_id'] = $teacher_id;
@@ -156,23 +184,23 @@ class TeacherController extends Controller
         Child::where('id', $id)->delete();
         return redirect()->route('guru.biodata')->with('success', 'Berhasil dihapus');
     }
-
+    
     public function export()
     {
         return Excel::download(new TeacherExport(), 'guru.xlsx');
     }
-
+    
     public function import(Request $request)
     {
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
-
+        
         // CARA 2
         $file = $request->file('file')->store('import');
         $import = new TeacherImport;
         $import->import($file);
-
+        
         if ($import->failures()->isNotEmpty()) {
             return back()->withFailures($import->failures())->with('success', 'Berhasil dg pengecualian');
         }

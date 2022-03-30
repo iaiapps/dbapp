@@ -96,11 +96,11 @@ Route::middleware('role:operator|admin')->group(function () {
         Route::delete('/student/{id}', [OperatorController::class, 'destroy'])->name('student_delete');
         Route::get('/import', [OperatorController::class, 'import']);
         
-        Route::get('/teachers', [OperatorController::class, 'getTeachers'])->name('teachers');
-        Route::get('/teacher/{id}', [OperatorController::class, 'getTeacher'])->name('teacher_detail');
-        Route::get('/teacher/edit/{id}', [OperatorController::class, 'editTeacher'])->name('teacher_edit');
-        Route::put('/teacher/edit/{id}', [OperatorController::class, 'updateTeacher'])->name('teacher_update');
-        Route::delete('/teacher/{id}', [OperatorController::class, 'destroyTeacher'])->name('teacher_delete');
+        Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers');
+        Route::get('/teacher/{id}', [TeacherController::class, 'show'])->name('teacher_detail');
+        Route::get('/teacher/edit/{id}', [TeacherController::class, 'edit'])->name('teacher_edit');
+        Route::put('/teacher/edit/{id}', [TeacherController::class, 'update'])->name('teacher_update');
+        Route::delete('/teacher/{id}', [TeacherController::class, 'destroy'])->name('teacher_delete');
         
         Route::get('/revisi_data', [OperatorController::class, 'revisiData'])->name('operator.revisi_data');
         Route::get('/compare_revisi/{id}', [OperatorController::class, 'compareRevisi'])->name('compare_revisi');

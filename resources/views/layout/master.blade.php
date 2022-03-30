@@ -39,13 +39,12 @@
         </main>
 
     </div>
+
+    @stack('foot')
     <script src="{{ url('new_theme') }}/assets/bootstrap-5/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url('new_theme') }}/assets/jquery/jquery-3.6.0.min.js"></script>
-    <script src="{{ url('new_theme') }}/assets/datatables/datatables.min.js"></script>
     <script src="{{ url('new_theme') }}/js/tata.js"></script>
     <script src="{{ url('new_theme') }}/js/app.js"></script>
     <script src="{{ url('new_theme') }}/js/tabdetail.js"></script>
-
     @yield('js')
     @stack('js')
     @if (Session::has('success'))

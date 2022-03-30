@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('page_judul', 'Data Inventaris Bos')
+<x-datatables />
 @section('content')
     @include('inventarisbos.form')
     <div class="card p-3">
@@ -16,7 +17,7 @@
             </div>
         @else
             <div class="table-responsive">
-                <table class="table" id="data-table">
+                <table class="table" id="datatable">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -58,11 +59,3 @@
         @endif
     </div>
 @endsection
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            $('#data-table').DataTable();
-        });
-    </script>
-@stop
