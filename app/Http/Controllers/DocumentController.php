@@ -77,7 +77,7 @@ class DocumentController extends Controller
                         ]
                     );
                 // Lempar
-                return redirect()->route('guru.upload_dokumen')->with('success','Dokumen berhasil di upload');
+                return redirect()->route('teachers_page.upload_dokumen')->with('success','Dokumen berhasil di upload');
 
             //Jika DIA SISWA
             }else{

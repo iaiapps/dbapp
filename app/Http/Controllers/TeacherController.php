@@ -52,7 +52,7 @@ class TeacherController extends Controller
         $id = Auth::user()->id;
         User::where('id', $id)->update(['role_id' => 3]);
         DB::table('model_has_roles')->where('model_id', $id)->update(['role_id' => 3]);
-        return view('guru.input_identitas')->with('success', 'Berhasil');
+        return view('teachers_page.input_identitas')->with('success', 'Berhasil');
     }
     
     function inputData(Request $request)
@@ -73,14 +73,14 @@ class TeacherController extends Controller
         if ($cek_data == null) {
             Teacher::create($request->all());
             $tablename = 'rp';
-            return redirect()->route('guru.biodata', compact('tablename'))->with('success', 'Selanjutnya, Lengkapi biodata anda!');
+            return redirect()->route('teachers_page.biodata', compact('tablename'))->with('success', 'Selanjutnya, Lengkapi biodata anda!');
             //Jika sudah ada, maka keluarkan dan suruh login dengan email yang telah ada
         } else {
             $request->session()->invalidate();
             return redirect()->route('login')->with('success', 'Prestasi berhasil ditambah');
             // dd('data sdh ada');
         }
-        // redirect()->route('guru.biodata');
+        // redirect()->route('teachers_page.biodata');
     }
     function biodata()
     {
@@ -88,23 +88,23 @@ class TeacherController extends Controller
         $item = Teacher::where('email', Auth::user()->email)->first();
         //jika tidak ada, maka isi data baru
         if (!isset($item)) {
-            return redirect()->route('guru.input')->with('info', 'Data tidak ditemukan, silahkan Input');
+            return redirect()->route('teachers_page.input')->with('info', 'Data tidak ditemukan, silahkan Input');
             //namun, jika ada, lempar ke biodata
         } else {
-            return view('guru.biodata', compact('item'));
+            return view('teachers_page.biodata', compact('item'));
         }
     }
     function editTeacher()
     {
         $item = Teacher::where('email', Auth::user()->email)->first();
-        return view('guru.edit', compact('item'));
+        return view('teachers_page.edit', compact('item'));
     }
     public function updateTeacher(Request $request)
     {
         $data = request()->except(['_token', '_method']);
         Teacher::where('email', Auth::user()->email)->update($data);
         $request->session()->put('tabname', 'pribadi');
-        return redirect()->route('guru.biodata')->with('success', 'Berhasil Update');
+        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil Update');
     }
     
     public function uploadDokumen()
@@ -116,7 +116,7 @@ class TeacherController extends Controller
         
         //jika data tidak ada
         if (!isset($teacher)) {
-            return redirect()->route('guru.input')->with('info', 'Data tidak ditemukan, silahkan Input');
+            return redirect()->route('teachers_page.input')->with('info', 'Data tidak ditemukan, silahkan Input');
             //namun, jika ada, lempar ke upload berkas
         } else {
             $teacher_id = $teacher->id;
@@ -124,7 +124,7 @@ class TeacherController extends Controller
             $doc = DocumentType::get();
             //ambil data dokumen teacher
             $data = Document::where('teacher_id', $teacher_id)->get();
-            return view('guru.upload', compact('doc', 'data'))->with('success', 'Berhasil');
+            return view('teachers_page.upload', compact('doc', 'data'))->with('success', 'Berhasil');
         }
     }
     
@@ -136,7 +136,7 @@ class TeacherController extends Controller
         $data['teacher_id'] = $teacher_id;
         Education::Create($data);
         $request->session()->put('tabname', 'pendidikan');
-        return redirect()->route('guru.biodata')->with('success', 'Berhasil');;
+        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil');;
     }
     function inputAnak(request $request)
     {
@@ -158,7 +158,7 @@ class TeacherController extends Controller
         dd($data);
         Child::Create($data);
         $request->session()->put('tabname', 'anak');
-        return redirect()->route('guru.biodata')->with('success', 'Berhasil');;
+        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil');;
     }
     function inputDiklat(request $request)
     {
@@ -167,27 +167,27 @@ class TeacherController extends Controller
         $data['teacher_id'] = $teacher_id;
         Training::Create($data);
         $request->session()->put('tabname', 'diklat');
-        return redirect()->route('guru.biodata')->with('success', 'Berhasil');;
+        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil');;
     }
     function hapusPendidikan($id)
     {
         Education::where('id', $id)->delete();
-        return redirect()->route('guru.biodata')->with('success', 'Berhasil dihapus');
+        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil dihapus');
     }
     function hapusDiklat($id)
     {
         Training::where('id', $id)->delete();
-        return redirect()->route('guru.biodata')->with('success', 'Berhasil dihapus');
+        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil dihapus');
     }
     function hapusAnak($id)
     {
         Child::where('id', $id)->delete();
-        return redirect()->route('guru.biodata')->with('success', 'Berhasil dihapus');
+        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil dihapus');
     }
     
     public function export()
     {
-        return Excel::download(new TeacherExport(), 'guru.xlsx');
+        return Excel::download(new TeacherExport(), 'teachers_page.xlsx');
     }
     
     public function import(Request $request)
