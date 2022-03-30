@@ -6,6 +6,7 @@ use App\Models\Grade;
 use App\Models\MunaqosahTahfidz;
 use App\Http\Livewire\JournalIndex;
 use App\Models\ExtracurricularData;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -38,27 +39,25 @@ Route::get('/cc', function () {
     Artisan::call('view:clear');
     Artisan::call('route:cache');
 });
-Route::get(
-    'rj',
-    function () {
-        Artisan::call('queue:work');
-        return 'Job Berhasil di hapus';
-    }
+
+Route::get('rj',function () {
+    Artisan::call('queue:work');
+    return 'Job Berhasil di hapus';
+}
 );
-Route::get(
-    'cj',
-    function () {
-        Artisan::call('queue:clear');
-    }
+
+Route::get('cj',function () {
+    Artisan::call('queue:clear');
+}
 );
 
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/login_siswa',function ()
-{
-    return view('auth.login_siswa');
-})->name('login.siswa');
+// Route::get('/login_siswa',function (){
+//     return view('auth.login_siswa');
+// })->name('login.siswa');
+Route::get('/login_siswa',[LoginController::class, 'siswaLogin'])->name('login.siswa');
 
 // ROUTE::ADMIN
 Route::middleware('role:admin')->group(function () {
@@ -66,14 +65,15 @@ Route::middleware('role:admin')->group(function () {
     Route::resource('grade', GradeController::class);
     Route::prefix('/admin')->group(function () {
         
-        Route::get('/db_settings', [AdminController::class, 'dbSettings']);
+        Route::get('/db_settings', [AdminController::class, 'dbSettings'])->name('admin.DBset');
         Route::get('/edit_db_set/{id}', [AdminController::class, 'editDbset'])->name('admin.editDbset');
         Route::delete('/hapus_db_set/{id}', [AdminController::class, 'hapusDbset'])->name('admin.hapusDbset');
         
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
-        Route::get('/tambah_user', function () {
-            return view('user.create');
-        })->name('tambah_user');
+        Route::get('/tambah_user', [UserController::class, 'addUser'])->name('tambah_user');
+        // Route::get('/tambah_user', function () {
+        //     return view('user.create');
+        // })->name('tambah_user');
         Route::post('/users/import', [UserController::class, 'import'])->name('admin.import_users');
         
         Route::post('/students/import/tempstudent', [StudentController::class, 'importTempStudent'])->name('admin.import_temp_students');
@@ -115,7 +115,7 @@ Route::middleware('role:operator|admin')->group(function () {
 
 
 // ROUTE::GURU
-route::get('/guru/input', [TeacherController::class, 'input'])->name('guru.input');
+Route::get('/guru/input', [TeacherController::class, 'input'])->name('guru.input');
 Route::middleware('role:guru|karyawan}')->group(function () {
     Route::prefix('guru')->group(function () {
         route::post('input', [TeacherController::class, 'inputData'])->name('guru.input_data');
@@ -184,9 +184,9 @@ route::get('cek_nis', [LoginController::class, 'cekNis'])->name('cek_nis');
 Route::get('auth/google_guru', [SocialiteController::class, 'guru_redirectToGoogle'])->name('login_guru_google');
 Route::get('auth/google_siswa', [SocialiteController::class, 'siswa_redirectToGoogle'])->name('login_siswa_google');
 Route::get('auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
+
 Route::get('change-password', [ChangePasswordController::class, 'index'])->name('ganti-pass');
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
-Route::get('siswa/contact_center', [SiswaController::class, 'contactCenter'])->name('siswa.contact_center');
 
 // Ekskul
 route::get('data_ekskul', [ExtracurricularDataController::class, 'index'])->name('ekskul.index');

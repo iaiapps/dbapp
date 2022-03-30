@@ -66,14 +66,7 @@ class SiswaController extends Controller
             return view('siswa.pengajuan_revisi', compact('dataOld', 'dataNew'));
         }
     }
-    public function contactCenter()
-    {
-        $humas = DB::table('database_settings')->where('name','cc_humas')->first();
-        $keuangan = DB::table('database_settings')->where('name','cc_keuangan')->first();
-        $admin = DB::table('database_settings')->where('name','cc_admin')->first();
-
-        return view('siswa.contact_center',compact('humas','admin','keuangan'));
-    }
+    
     public function uploadDokumen()
     {
         $nisn = Auth::user()->nisn;
