@@ -4,10 +4,10 @@
         <div id="page_info" class="card rounded p-3">
             <div class="mb-3">
                 <a href="{{ route('admin.export_teachers') }}" class="btn btn-success ">
-                    <i class="las la-download"></i> Dowload Data
+                    <i class="las la-download"></i> Dowload
                 </a>
                 <a href="#openModalGuruImport" class="btn btn-success ">
-                    <i class="las la-upload"></i> Upload Data
+                    <i class="las la-upload"></i> Upload
                 </a>
             </div>
             {{-- @include('operator.import_error')
