@@ -4,6 +4,8 @@
  @endphp
  <div id="avatar" class="text-center pt-1 p-sm-2">
      {{-- <img src="{{ $avatar->setColor('#ffffff', '#000000') }}" class="m-2 border-white" alt="avatar pic" /> --}}
-     <img src="{{ $avatar->setColor('#198754', '#ffffff') }}" class="m-2 border-white" alt="avatar pic" />
-     <p class="fs-5 mb-0 ">{{ Auth::user()->name }}</p>
+     <img src="{{ $avatar->setColor('#198754', '#ffffff') }}" class="my-3 m-sm-2 border-white" alt="avatar pic" />
+     <p class="mb-1 d-none d-sm-block">{{ Auth::user()->name }}</p>
+
  </div>
+ <hr class="m-0">
