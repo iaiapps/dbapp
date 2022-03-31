@@ -11,6 +11,7 @@ class Presence extends Model
     // public $timestamps = false;
     protected $table = 'presences';
     protected $guarded = [];
+    protected $with = ['teacher'];
 
     public function teacher()
    {
