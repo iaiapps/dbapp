@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +21,7 @@ class TeacherFactory extends Factory
      */
     public function definition()
     {
-        $teacher = [
+        return [
             'nama'=>$this->faker->name(),
             'nik'=>$this->faker->numberBetween($min = 700, $max = 9000),
             'jk'=>$this->faker->name(),
@@ -34,11 +33,11 @@ class TeacherFactory extends Factory
             'alamat'=>$this->faker->name(),
             'rt'=>$this->faker->randomDigitNotNull,
             'rw'=>$this->faker->randomDigitNotNull,
-            'dusun'=>$this->faker->city,
-            'kelurahan'=>$this->faker->city,
-            'kecamatan'=>$this->faker->city,
-            'kota'=>$this->faker->city,
-            'provinsi'=>$this->faker->city,
+            'dusun'=>$this->faker->cityPrefix,
+            'kelurahan'=>$this->faker->cityPrefix,
+            'kecamatan'=>$this->faker->cityPrefix,
+            'kota'=>$this->faker->cityPrefix,
+            'provinsi'=>$this->faker->cityPrefix,
             'kode_pos'=>$this->faker->numberBetween($min = 700, $max = 9000),
             'lintang'=>$this->faker->name(),
             'bujur'=>$this->faker->name(),
@@ -49,16 +48,7 @@ class TeacherFactory extends Factory
             'status_perkawinan'=>$this->faker->name(),
             'nama_pasangan'=>$this->faker->name(),
             'pekerjaan_pasangan'=>$this->faker->name(),
+          
         ];
-
-        $user = User::create([
-            'name' => $teacher['nama'],
-            'email' => $teacher['email'],
-            'password' => bcrypt('password'),
-        ]);
-
-        $user->assignRole('guru');
-
-        return $teacher;
     }
 }
