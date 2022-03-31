@@ -92,15 +92,6 @@ class PresenceController extends Controller
         return response()->json([new PresenceResource($presence)]);
     }
     
-    public function update(Request $request,$id)
-    {
-        $presence=Presence::find($id);
-        $presence->update($request->all());
-        return $presence;
-        
-        return response()->json(['updated successfully.', new PresenceResource($presence)]);
-    }
-    
     public function destroy(Presence $presence)
     {
         $presence->delete();
