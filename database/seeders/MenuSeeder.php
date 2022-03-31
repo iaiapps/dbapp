@@ -86,6 +86,15 @@ class MenuSeeder extends Seeder
                 'role_id' => '1',
             ],
             [
+                'name' => 'Presensi',
+                'url' => '/presensi',
+                'icon' => 'las la-fingerprint',
+                'icon_color' => 'text-success',
+                'is_active' => '1',
+                'order' => '1',
+                'role_id' => '1',
+            ],
+            [
                 'name' => 'Inventaris',
                 'url' => '/inventaris',
                 'icon' => 'las la-warehouse',

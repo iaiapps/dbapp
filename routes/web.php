@@ -218,5 +218,4 @@ Route::put('inventaris/edit/{id}', [InventoryController::class, 'updateInventory
 Route::delete('inventaris/{id}', [InventoryController::class, 'hapusInventory'])->name('inventaris.delete');
 
 //Presensi
-Route::get('presensi', [PresenceController::class, 'getPresences'])->name('presensi.index');
-
+Route::resource('presence', PresenceController::class);

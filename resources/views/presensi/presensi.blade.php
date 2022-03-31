@@ -32,13 +32,13 @@
                                 <td>{{ $item->time_out }}</td>
                                 <td>{{ $item->is_late }}</td>
                                 <td>
-                                    <a href="{{ route('inventaris.details', $item->id) }}" class="btn btn-success">
+                                    <a href="{{ route('presences.details', $item->id) }}" class="btn btn-success">
                                         <span><i class="las la-info-circle"></i></span>
                                     </a>
-                                    <a href="{{ route('inventaris.edit', $item->id) }}" class="btn btn-warning">
+                                    <a href="{{ route('presences.edit', $item->id) }}" class="btn btn-warning">
                                         <span><i class="las la-edit"></i></span>
                                     </a>
-                                    <form action="{{ route('inventaris.delete', $item->id) }}" method="POST" onsubmit="">
+                                    <form action="{{ route('presences.delete', $item->id) }}" method="POST" onsubmit="">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"
