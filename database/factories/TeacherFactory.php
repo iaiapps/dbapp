@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +22,7 @@ class TeacherFactory extends Factory
      */
     public function definition()
     {
-        return [
+        $teacher = [
             'nama'=>$this->faker->name(),
             'nik'=>$this->faker->numberBetween($min = 700, $max = 9000),
             'jk'=>$this->faker->name(),
@@ -48,7 +49,16 @@ class TeacherFactory extends Factory
             'status_perkawinan'=>$this->faker->name(),
             'nama_pasangan'=>$this->faker->name(),
             'pekerjaan_pasangan'=>$this->faker->name(),
-          
         ];
+
+        $user = User::create([
+            'name' => $teacher['nama'],
+            'email' => $teacher['email'],
+            'password' => bcrypt('password'),
+        ]);
+
+        $user->assignRole('guru');
+
+        return $teacher;
     }
 }

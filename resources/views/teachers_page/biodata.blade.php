@@ -1,18 +1,6 @@
 @extends('layout.master')
 @section('page_judul', 'Biodata Guru')
 @section('alert')
-    {{-- <section class="navbar-section">
-        <div class="toast toast-error" id="pemberitahuantoast">
-            <button class="btn btn-clear float-end" id="closepemberitahuantoast"></button>
-            @if ($item->status_verifikasi == 1)
-                {{ 'Berhasil Verifikasi' }}
-            @elseif($item->status_verifikasi == 2)
-                {{ 'Menunggu Verifikasi' }}
-            @else
-                {{ 'Perubahan sedang ditinjau' }}
-            @endif
-        </div>
-    </section> --}}
 @endsection
 @section('content')
     <div id="page_info" class="card rounded">
