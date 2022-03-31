@@ -56,13 +56,6 @@ class TeacherFactory extends Factory
             'email'=>$teacher['email'],
             'password'=>bcrypt('password'),
         ])->assignRole('guru');
-        
-        // $this->call(PresenceFactory::class, [
-        //     'count'=>$this->faker->numberBetween($min = 1, $max = 10),
-        //     'states'=>[
-        //         'teacher_id'=>$user->id,
-        //     ]
-        // ]);
 
         return $teacher;
     }

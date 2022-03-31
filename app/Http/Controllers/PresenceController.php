@@ -27,7 +27,7 @@ class PresenceController extends Controller
                 
             $presences = Presence::
                 // select('teacher_id')
-                select('teacher_id', DB::raw('count(is_late) as total_telat'))
+                select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
                 ->groupBy('teacher_id')
                 ->with([
                     'teacher'  => function ($q) {

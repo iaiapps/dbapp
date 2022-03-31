@@ -15,34 +15,32 @@
                         <tr>
                             <th>No.</th>
                             <th>Nama Guru</th>
-                            <th>Tanggal</th>
-                            <th>Kedatangan</th>
-                            <th>Pulang</th>
-                            <th>Terlambat</th>
+                            <th>Σ Kehadiran</th>
+                            <th>Σ Tepat Waktu</th>
+                            <th>Σ Telat</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @php
-                            dd($presences);
+                            // dd($presences);
                         @endphp
                         @foreach ($presences as $presence)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $presence->teacher->nama }}</td>
-                                {{-- <td>{{ $presence->nama }}</td>
-                                <td>{{ $presence->date }}</td>
-                                <td>{{ $presence->time_in }}</td>
-                                <td>{{ $presence->time_out }}</td>
-                                <td>{{ $presence->is_late }}</td>
+                                <td>{{ $presence->total_kehadiran }}</td>
+                                <td>{{ $presence->total_telat }}</td>
+                                <td>{{ $presence->total_kehadiran - $presence->total_telat }}</td>
+
                                 <td>
-                                    <a href="{{ route('presences.details', $presence->id) }}" class="btn btn-success">
+                                    <a href="{{ route('presence.show', $presence->teacher->id) }}" class="btn btn-success">
                                         <span><i class="las la-info-circle"></i></span>
                                     </a>
-                                    <a href="{{ route('presences.edit', $presence->id) }}" class="btn btn-warning">
+                                    {{-- <a href="{{ route('presence.edit', $presence->teacher->id) }}" class="btn btn-warning">
                                         <span><i class="las la-edit"></i></span>
                                     </a>
-                                    <form action="{{ route('presences.delete', $presence->id) }}" method="POST"
+                                    <form action="{{ route('presence.delete', $presence->id) }}" method="POST"
                                         onsubmit="">
                                         @csrf
                                         @method('DELETE')
