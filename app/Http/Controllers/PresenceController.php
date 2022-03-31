@@ -13,4 +13,6 @@ class PresenceController extends Controller
         $collection = Presence::orderBy('id', 'DESC')->get();
         return view('presensi.presensi',compact('collection'));
     }
+
+    
 }

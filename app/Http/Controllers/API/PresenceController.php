@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Carbon\Carbon;
 use App\Models\Presence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PresenceResource;
 use Illuminate\Support\Facades\Validator;
@@ -19,14 +20,10 @@ class PresenceController extends Controller
     
     public function store(Request $request)
     {
-        // cek dulu waktu presensi benar atau tidak
-        $now = Carbon::now();
-        if ($now >= Carbon::parse('06:30') && $now <= Carbon::parse('09:00')) {
-            $scannable = true;
-        } elseif ($now >= Carbon::parse('14:00') && $now <= Carbon::parse('16:30')) {
-            $scannable = true;
-        } else {
-            $scannable = false;
+        //  cek apakah kita memakai batas waktu
+        if ($this->_isDeadline()==true) {
+            // cek dulu waktu presensi benar atau tidak
+            $scannable = $this->_scannable();
         }
         
         if ($scannable==true) {
@@ -98,4 +95,32 @@ class PresenceController extends Controller
         
         return response()->json('Presence deleted successfully');
     }
+    
+    // check deadline is setting_presence
+    private function _isDeadline()
+    {
+        $setting = DB::table('presence_setting')->where('name', 'dateline')->first();
+        return $setting->value;
+    }
+    
+    private function _timeScan($for)
+    {
+        $setting = DB::table('presence_setting')->where('name', $for)->first();
+        return $setting->value;
+    }
+    
+    private function _scannable()
+    {
+        $now = Carbon::now();
+        if ($now >= Carbon::parse($this->_timeScan('early_time_come')) && $now <= Carbon::parse($this->_timeScan('end_time_come'))) {
+            $scannable = true;
+        } elseif ($now >= Carbon::parse($this->_timeScan('early_time_leave')) && $now <= Carbon::parse($this->_timeScan('end_time_leave'))) {
+            $scannable = true;
+        } else {
+            $scannable = false;
+        }
+        return $scannable;
+    }
+    
+    
 }

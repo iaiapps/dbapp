@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ExtracurricularCategorySeeder::class);
         $this->call(TempStudentSeeder::class);
         $this->call(TempClassSeeder::class);
+        $this->call(PresenceSettingSeeder::class);
         Teacher::factory(10)->create();
     }
 }
