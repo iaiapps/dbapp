@@ -11,7 +11,7 @@
                 <p class="text-white display-6">LOGIN GURU</p>
             </div>
             <div class="p-3">
-                <a href="#" class="btnG btn btn-outline-success img-fluid">
+                <a href="{{ route('login_guru_google') }}" class="btnG btn btn-outline-success img-fluid">
                     <img src="{{ asset('new_theme') }}/img/google.svg" alt="google" /> Login with "Google"
                 </a>
                 <div class="line"><span> atau </span></div>

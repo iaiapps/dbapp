@@ -115,37 +115,37 @@ Route::middleware('role:operator|admin')->group(function () {
 
 
 // ROUTE::GURU
-Route::get('/guru/input', [TeacherController::class, 'input'])->name('guru.input');
+Route::get('/guru/input', [TeacherController::class, 'input'])->name('teachers_page.input');
 Route::middleware('role:guru|karyawan}')->group(function () {
     Route::prefix('guru')->group(function () {
-        route::post('input', [TeacherController::class, 'inputData'])->name('guru.input_data');
-        route::get('/biodata', [TeacherController::class, 'biodata'])->name('guru.biodata');
-        Route::get('/edit', [TeacherController::class, 'editTeacher'])->name('guru.edit');
-        Route::put('/edit', [TeacherController::class, 'updateTeacher'])->name('guru.update');
+        route::post('input', [TeacherController::class, 'inputData'])->name('teachers.input_data');
+        route::get('/biodata', [TeacherController::class, 'biodata'])->name('teachers.biodata');
+        Route::get('/edit', [TeacherController::class, 'editTeacher'])->name('teachers.edit');
+        Route::put('/edit', [TeacherController::class, 'updateTeacher'])->name('teachers.update');
         
-        Route::get('/upload_dokumen', [TeacherController::class, 'uploadDokumen'])->name('guru.upload_dokumen');
+        Route::get('/upload_dokumen', [TeacherController::class, 'uploadDokumen'])->name('teachers.upload_dokumen');
         
         route::get('/tambah_pendidikan', function () {
-            return view('guru.tambah_pendidikan');
-        })->name('guru.tambah_pendidikan');
-        route::post('/tambah_pendidikan', [TeacherController::class, 'inputPendidikan'])->name('guru.input_pendidikan');
+            return view('teachers_page.tambah_pendidikan');
+        })->name('teachers.tambah_pendidikan');
+        route::post('/tambah_pendidikan', [TeacherController::class, 'inputPendidikan'])->name('teachers.input_pendidikan');
         
         route::get('/tambah_anak', function () {
-            return view('guru.tambah_anak');
-        })->name('guru.tambah_anak');
-        route::post('/tambah_anak', [TeacherController::class, 'inputAnak'])->name('guru.input_anak');
+            return view('teachers_page.tambah_anak');
+        })->name('teachers.tambah_anak');
+        route::post('/tambah_anak', [TeacherController::class, 'inputAnak'])->name('teachers.input_anak');
         
         route::get('/tambah_diklat', function () {
-            return view('guru.tambah_diklat');
-        })->name('guru.tambah_diklat');
-        route::post('/tambah_diklat', [TeacherController::class, 'inputDiklat'])->name('guru.input_diklat');
+            return view('teachers_page.tambah_diklat');
+        })->name('teachers.tambah_diklat');
+        route::post('/tambah_diklat', [TeacherController::class, 'inputDiklat'])->name('teachers.input_diklat');
         
-        route::delete('/hapus_pendidikan/{id}', [TeacherController::class, 'hapusPendidikan'])->name('guru.hapus_pendidikan');
-        route::delete('/hapus_diklat/{id}', [TeacherController::class, 'hapusDiklat'])->name('guru.hapus_diklat');
-        route::delete('/hapus_anak/{id}', [TeacherController::class, 'hapusAnak'])->name('guru.hapus_anak');
+        route::delete('/hapus_pendidikan/{id}', [TeacherController::class, 'hapusPendidikan'])->name('teachers.hapus_pendidikan');
+        route::delete('/hapus_diklat/{id}', [TeacherController::class, 'hapusDiklat'])->name('teachers.hapus_diklat');
+        route::delete('/hapus_anak/{id}', [TeacherController::class, 'hapusAnak'])->name('teachers.hapus_anak');
         
         route::get('/journal', function () {
-            return view('guru.jurnal');
+            return view('teachers_page.jurnal');
         });
         route::get('/journal_export', [JournalIndex::class, 'exportExcel'])->name('journal_export');
     });

@@ -2,6 +2,6 @@
 @section('page_judul', 'Jurnal Guru')
 @livewireStyles
 @section('content')
-    <livewire:journal-index>
-    @endsection
-    @livewireScripts
+    <livewire:journal-index />
+@endsection
+@livewireScripts
