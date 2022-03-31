@@ -29,7 +29,8 @@ class PresenceFactory extends Factory
             'date'=>$events->format('d/m/Y'),
             'time_in'=>$events->format('H:i:s'),
             'time_out'=>$events->format('H:i:s'),
-            'is_late'=>$this->faker->randomElement(['tepat waktu', 'telat','izin','sakit']),
+            'is_late'=>$this->faker->boolean,
+            'note'=>$this->faker->randomElement(['tepat waktu', 'telat','izin','sakit']),
         ];
     }
 }

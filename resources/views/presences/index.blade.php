@@ -23,6 +23,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            dd($presences);
+                        @endphp
                         @foreach ($presences as $presence)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>

@@ -25,10 +25,15 @@ class PresenceController extends Controller
                 //     $query->select('id', 'nama');
                 // }])->get());
                 
-            $presences = Presence::select('teacher_id')->groupBy('teacher_id')->with([
-            'teacher'  => function ($q) {
-                $q->select('id', 'nama');
-            }])->get();
+            $presences = Presence::
+                // select('teacher_id')
+                select('teacher_id', DB::raw('count(is_late) as total_telat'))
+                ->groupBy('teacher_id')
+                ->with([
+                    'teacher'  => function ($q) {
+                        $q->select('id', 'nama');
+                    }])
+                ->get();
 
             return view('presences.index', compact('presences'));
         }
