@@ -30,7 +30,7 @@ class TeacherFactory extends Factory
             'tanggal_lahir'=>$this->faker->name(),
             'nama_ibu'=>$this->faker->name(),
             'no_hp'=>$this->faker->name(),
-            'email'=>$this->faker->unique()->safeEmail,
+            'email'=>$this->faker->unique()->safeEmail(),
             'alamat'=>$this->faker->name(),
             'rt'=>$this->faker->randomDigitNotNull(),
             'rw'=>$this->faker->randomDigitNotNull(),

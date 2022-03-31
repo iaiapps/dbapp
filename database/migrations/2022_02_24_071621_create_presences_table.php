@@ -19,7 +19,7 @@ class CreatePresencesTable extends Migration
             $table->string('date')->nullable();
             $table->string('time_in')->nullable();
             $table->string('time_out')->nullable();
-            $table->enum('is_late', ['yes', 'no'])->default('no');
+            $table->string('is_late')->nullable();
             $table->string('overtime')->nullable();
             // $table->string('note')->nullable();
             $table->timestamps();
