@@ -1,5 +1,6 @@
     @extends('layout.master')
     @section('page_judul', 'Data Kelas')
+    <x-datatables />
     @section('content')
         @include('grades.add')
         <div id="page_info" class="card rounded p-3">
@@ -18,7 +19,7 @@
                 </div>
             @else
                 <div class="table-responsive">
-                    <table id="example" class="table">
+                    <table id="datatable" class="table">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -65,11 +66,3 @@
             @endif
         </div>
     @endsection
-
-    @section('js')
-        <script>
-            $(document).ready(function() {
-                $('#example').DataTable();
-            });
-        </script>
-    @stop
