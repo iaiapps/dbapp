@@ -44,8 +44,8 @@ class PresenceController extends Controller
             // jika tidak ada data absen hari ini
             if ($guru==null) {
                 // inisialisasi tepat waktu
-                $waktu_hadir = Carbon::now()->format('H:i');
-                $waktu_normal = date("07:30");
+                $waktu_hadir = Carbon::now()->isoformat('H:m:s');
+                $waktu_normal = $this->_timeScan('ontime_until');
                 // logika terlambat
                 if ($waktu_hadir > $waktu_normal) {
                     $is_late = 'yes';
@@ -61,7 +61,7 @@ class PresenceController extends Controller
                 return response()->json(['time_in'=>$waktu_hadir,'is_late'=>$is_late]);
             } else {
                 $guru->update([
-                    'time_out'=>date("h:i:s"),
+                    'time_out'=>Carbon::now()->isoformat('H:m:s'),
                 ]);
                 return response()->json(['Berhasil Absen Pulang']);
             }
@@ -78,7 +78,6 @@ class PresenceController extends Controller
         }
         return response()->json([new PresenceResource($presence)]);
     }
-    
     
     public function update(Request $request,$id)
     {
