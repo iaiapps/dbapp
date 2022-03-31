@@ -1,13 +1,7 @@
 @extends('layout.master')
 @section('page_judul', 'Data Presensi')
 @section('content')
-    {{-- @include('inventarisbos.form') --}}
     <div class="card p-3">
-        {{-- <div class="mb-3">
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalForm">
-            <i class="las la-plus-circle"></i> Tambah Data Inventaris
-        </button>
-    </div> --}}
         @if ($collection->count() == 0)
             <div class="card text-center p-4">
                 <h1 class="display-6">
