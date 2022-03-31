@@ -22,10 +22,8 @@ class PresenceController extends Controller
     {
         //  cek apakah kita memakai batas waktu
         if ($this->_isDeadline()==true) {
-            // cek dulu waktu presensi benar atau tidak
             $scannable = $this->_scannable();
         }
-        
         if ($scannable==true) {
             $validator = Validator::make($request->all(), [
                 'teacher_id'=>'required',
@@ -43,22 +41,37 @@ class PresenceController extends Controller
             
             // jika tidak ada data absen hari ini
             if ($guru==null) {
-                // inisialisasi tepat waktu
-                $waktu_hadir = Carbon::now()->isoformat('H:m:s');
-                $waktu_normal = $this->_timeScan('ontime_until');
-                // logika terlambat
-                if ($waktu_hadir > $waktu_normal) {
-                    $is_late = 'yes';
-                } else {
-                    $is_late = 'no';
+                // INI ISI PULANG AJA (DIA GA NGISI DATANG)
+                // DATANG GA ABSEN
+                $jamNow = Carbon::now()->isoformat('H:m:s');
+                if($jamNow > $this->_timeScan('early_time_leave')){
+                    // maka dia langsung isi datang dan pulang
+                    Presence::create([
+                        'teacher_id'=>$request->teacher_id,
+                        'date'=>date("d/m/y"),
+                        'time_in'=> $this->_timeScan('end_time_come'),
+                        'time_out'=> $jamNow,
+                        'is_late'=>'Telat'
+                    ]);
+                    $is_late = 'Telat';
+                }else{
+                    // DATANG ABSEN
+                    $jamNow = Carbon::now()->isoformat('H:m:s');
+                    $waktu_normal = $this->_timeScan('ontime_until');
+                    // logika terlambat
+                    if ($jamNow > $waktu_normal) {
+                        $is_late = 'Telat';
+                    } else {
+                        $is_late = 'Tepat Waktu';
+                    }
+                    Presence::create([
+                        'teacher_id'=>$request->teacher_id,
+                        'date'=>date("d/m/y"),
+                        'time_in'=> $jamNow,
+                        'is_late'=>$is_late
+                    ]);
                 }
-                Presence::create([
-                    'teacher_id'=>$request->teacher_id,
-                    'date'=>date("d/m/y"),
-                    'time_in'=>date("h:i:s"),
-                    'is_late'=>$is_late
-                ]);
-                return response()->json(['time_in'=>$waktu_hadir,'is_late'=>$is_late]);
+                return response()->json(['time_in'=>$jamNow,'is_late'=>$is_late]);
             } else {
                 $guru->update([
                     'time_out'=>Carbon::now()->isoformat('H:m:s'),
@@ -72,7 +85,7 @@ class PresenceController extends Controller
     
     public function show($id)
     {
-        $presence = Presence::find($id);
+        $presence = Presence::where('teacher_id',$id)->get();
         if (is_null($presence)) {
             return response()->json('Data not found', 404); 
         }
@@ -91,11 +104,9 @@ class PresenceController extends Controller
     public function destroy(Presence $presence)
     {
         $presence->delete();
-        
         return response()->json('Presence deleted successfully');
     }
     
-    // check deadline is setting_presence
     private function _isDeadline()
     {
         $setting = DB::table('presence_setting')->where('name', 'dateline')->first();
