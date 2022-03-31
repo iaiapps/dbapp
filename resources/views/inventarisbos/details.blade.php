@@ -59,7 +59,7 @@
                         </tr>
                         <tr>
                             <th>Kondisi Barang</th>
-                            <td><img src="{{ asset('img_dokumen') . '/' . $item->dokumen }}" alt="image"
+                            <td><img src="{{ asset('img_inventaris') . '/' . $item->dokumen }}" alt="image"
                                     class="img_upload"> </td>
                         </tr>
                     </tbody>
