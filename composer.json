@@ -23,6 +23,7 @@
         "predis/predis": "^1.1",
         "realrashid/sweet-alert": "^3.2",
         "spatie/laravel-permission": "^4.0",
+        "wire-elements/modal": "^1.0",
         "yohang88/letter-avatar": "^2.2"
     },
     "require-dev": {

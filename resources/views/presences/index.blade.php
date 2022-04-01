@@ -1,6 +1,8 @@
 @extends('layout.master')
 @section('page_judul', 'Data Presensi')
+<x-datatables />
 @section('content')
+
     <div class="card p-3">
         @if ($presences->count() == 0)
             <div class="card text-center p-4">
@@ -10,7 +12,7 @@
             </div>
         @else
             <div class="table-responsive">
-                <table class="table" id="data-table">
+                <table class="table" id="datatable">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -22,9 +24,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            // dd($presences);
-                        @endphp
                         @foreach ($presences as $presence)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
@@ -34,20 +33,9 @@
                                 <td>{{ $presence->total_kehadiran - $presence->total_telat }}</td>
 
                                 <td>
-                                    <a href="{{ route('presence.show', $presence->teacher->id) }}" class="btn btn-success">
-                                        <span><i class="las la-info-circle"></i></span>
-                                    </a>
-                                    {{-- <a href="{{ route('presence.edit', $presence->teacher->id) }}" class="btn btn-warning">
-                                        <span><i class="las la-edit"></i></span>
-                                    </a>
-                                    <form action="{{ route('presence.delete', $presence->id) }}" method="POST"
-                                        onsubmit="">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                            <span><i class="las la-trash"></i></span></button>
-                                    </form> --}}
+                                    <a href="{{ route('presence.show', $presence->teacher->id) }}"
+                                        class="btn btn-primary btn-sm">
+                                        <span><i class="las la-search"></i></span></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -57,11 +45,3 @@
         @endif
     </div>
 @endsection
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            $('#data-table').DataTable();
-        });
-    </script>
-@stop

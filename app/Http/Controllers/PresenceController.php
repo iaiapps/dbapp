@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use App\Models\Presence;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Laravel\Ui\Presets\Preset;
@@ -11,38 +12,41 @@ use Laravel\Ui\Presets\Preset;
 class PresenceController extends Controller
 {
     public function index(){            
-        // NOTED:MALIK
-        // ini penting banget untuk di catat, jarang aku pake ini soalnya. 
-        // akhirnya query panjang nya bs jadi pendek gini
-        // perhatikan bahwa sebelum di groupby kamu harus select dulu kolom yang akan di groupby
-        // kalo kamu pake select * kamu harus pake select kolom yang akan di groupby
-        // select count(*) 
-        // select count(*) as jumlah 
+    // NOTED:MALIK
+    // ini penting banget untuk di catat, jarang aku pake ini soalnya. 
+    // akhirnya query panjang nya bs jadi pendek gini
+    // perhatikan bahwa sebelum di groupby kamu harus select dulu kolom yang akan di groupby                
+    $presences = Presence::
+    select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
+    ->groupBy('teacher_id')
+    ->with([
+        'teacher'  => function ($q) {
+            $q->select('id', 'nama');
+        }])
+        ->get();
         
-        // bisa kaya gini :
-        // dd(Presence::select('teacher_id')->groupBy('teacher_id')->with([
-            // 'teacher'  => function ($query) {
-                //     $query->select('id', 'nama');
-                // }])->get());
-                
-            $presences = Presence::
-                // select('teacher_id')
-                select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
-                ->groupBy('teacher_id')
-                ->with([
-                    'teacher'  => function ($q) {
-                        $q->select('id', 'nama');
-                    }])
-                ->get();
+        return view('presences.index', compact('presences'));
+    }
+    
+    public function show($id){
+        $id = (int)$id;
+        $presences = Presence::where('teacher_id', $id)->get();
+        return view('presences.show',compact('presences','id'));
+    }       
+    
+    public function rangePresence(Request $request){
+        $start = $request->start_date;
+        $end = $request->end_date;
+        // 2022-04-01 to timestamp laravel
+        $start = Carbon::createFromFormat('Y-m-d', $start);
+        $end = Carbon::createFromFormat('Y-m-d', $end);
+        $presences = Presence::whereBetween('created_at', [$start, $end])
+        ->where('teacher_id', $request->id)
+        ->get();
 
-            return view('presences.index', compact('presences'));
-        }
-                    // method show
-                    public function show($id){
-                        $presence = Presence::find($id);
-                        return view('presensi.show',compact('presence'));
-                    }   
-                    
-                    
-                }
-                
+        $id = $request->id;
+        return view('presences.show', compact('presences','id'));
+    }
+
+}
+    
