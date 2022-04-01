@@ -176,9 +176,3 @@ class PresenceController extends Controller
     // jika jam_pulang last_day is null,
         //maka isikan ke 14.30
         
-
-
-Schema::dropIfExists('sdf
-sdf
-sfd
-');
