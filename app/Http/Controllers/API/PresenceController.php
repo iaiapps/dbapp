@@ -178,3 +178,7 @@ class PresenceController extends Controller
         
 
 
+Schema::dropIfExists('sdf
+sdf
+sfd
+');
