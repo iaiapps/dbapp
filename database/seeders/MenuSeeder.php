@@ -87,7 +87,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'name' => 'Presensi',
-                'url' => '/presensi',
+                'url' => '/presence',
                 'icon' => 'las la-fingerprint',
                 'icon_color' => 'text-success',
                 'is_active' => '1',
