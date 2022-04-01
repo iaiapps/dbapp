@@ -12,88 +12,12 @@ use Illuminate\Support\Facades\Validator;
 
 class PresenceController extends Controller
 {
+    // INI NORMAL
     public function index()
     {
         $data = Presence::get();
         return response()->json($data);
     }
-    
-    public function store(Request $request)
-    {
-        //cek apakah ada note request('izin atau sakit') 
-        if ($request->has('note')) {
-            $this->thereIsANote($request->teacher_id, $request->note);
-        } else {
-            //  cek apakah kita memakai batas waktu
-            if ($this->_isDeadline()==false) {
-                $deadline = true;
-            }else{
-                $deadline = false;
-            }
-            if ($deadline==true) {
-                $validator = Validator::make($request->all(), [
-                    'teacher_id'=>'required',
-                ]);
-                
-                if ($validator->fails()) {
-                    return response()->json($validator->errors());
-                }
-                
-                // cek ada gak gurunya
-                $guru = Presence::where('teacher_id', $request->teacher_id)
-                ->whereDate('created_at', '=', Carbon::today()
-                ->toDateString())
-                ->first();
-                
-                // jika tidak ada data absen hari ini
-                if ($guru==null) {
-                    // INI ISI PULANG AJA (DIA GA NGISI DATANG)
-                    // DATANG GA ABSEN
-                    $jamNow = Carbon::now()->isoformat('H:m:s');
-                    if ($jamNow > $this->_timeScan('early_time_leave')) {
-                        // maka dia langsung isi datang dan pulang
-                        Presence::create([
-                            'teacher_id'=>$request->teacher_id,
-                            'date'=>date("d/m/y"),
-                            'time_in'=> $this->_timeScan('end_time_come'),
-                            'time_out'=> $jamNow,
-                            'is_late'=>true,
-                            'note'=>'Telat'
-                        ]);
-                        $is_late = true;
-                    } else {
-                        // DATANG ABSEN
-                        $jamNow = Carbon::now()->isoformat('H:m:s');
-                        $waktu_normal = $this->_timeScan('ontime_until');
-                        // logika terlambat
-                        if ($jamNow > $waktu_normal) {
-                            $is_late = true;
-                            $note = 'Telat';
-                        } else {
-                            $is_late = false;
-                            $note = 'Tepat waktu';
-                        }
-                        Presence::create([
-                            'teacher_id'=>$request->teacher_id,
-                            'date'=>date("d/m/y"),
-                            'time_in'=> $jamNow,
-                            'is_late'=>$is_late,
-                            'note'=>$note
-                        ]);
-                    }
-                    return response()->json(['time_in'=>$jamNow,'note'=>$note]);
-                } else {
-                    $guru->update([
-                        'time_out'=>Carbon::now()->isoformat('H:m:s'),
-                    ]);
-                    return response()->json(['Berhasil Absen Pulang']);
-                }
-            } else {
-                return response()->json(['error'=>'Waktu Absen Tidak Valid']);
-            }
-        }
-    }
-    
     public function show($id)
     {
         $presence = Presence::where('teacher_id',$id)->get();
@@ -102,77 +26,184 @@ class PresenceController extends Controller
         }
         return response()->json([new PresenceResource($presence)]);
     }
-    
     public function destroy(Presence $presence)
     {
         $presence->delete();
         return response()->json('Presence deleted successfully');
     }
     
-    private function _isDeadline()
+    // INI BUTUH MIKIR DAN KERJA EXTRA wkwkw
+    // step cek :
+    // 1. note
+    // 2. timeline
+    // 3. scannable
+    // 4. is_late
+    // 5. default leave
+    
+    public function store(Request $request)
     {
-        $setting = DB::table('presence_setting')->where('name', 'dateline')->first();
-        if($setting->value==1){
-            $setting = true;
+        $now = Carbon::now()->isoformat('H:m:s');
+        if($request->has('note')){
+            $this->_note($request->teacher_id, $request->note);
+            return response()->json('Catatan Izin berhasil ditambahkan',200);
         }else{
-            $setting = false;
+            if ($this->_timeline()==true) {
+                if($this->_scannable()==true){
+                    if($this->validateAndCheck($request)==true){
+                        $now = Carbon::now();
+                        $early_time_leave = Carbon::createFromTimeString($this->_settingValue('early_time_leave'));
+                        $end_time_leave = Carbon::createFromTimeString($this->_settingValue('end_time_leave'));
+                        // absen pulang sekaligus datang
+                        if($now->between($early_time_leave, $end_time_leave)){
+                            $this->scanLeaveOnly($request);
+                            return response()->json('Berhasil absen datang sekaligus pulang',200);
+                        }else{
+                            $this->saveData($request, $this->_isLate());
+                        }
+                    }else{
+                        $this->absenPulang($request);
+                    }
+                }else{
+                    return response()->json('Waktu scan tidak Valid.', 400);
+                }
+            }else{
+                if($this->validateAndCheck($request)==true){
+                    $this->saveData($request, $this->_isLate());
+                }else{
+                    Presence::where('teacher_id', $request->teacher_id)
+                    ->whereDate('created_at', '=', Carbon::today()
+                    ->toDateString())
+                    ->update(['time_out'=>$now]);
+                    return response()->json(['message'=>'Berhasil absen pulang','pulang'=>$now],200);
+                }
+            }
         }
-        return $setting;
     }
-    
-    private function _timeScan($for)
-    {
-        $setting = DB::table('presence_setting')->where('name', $for)->first();
-        return $setting->value;
-    }
-    
     private function _scannable()
     {
         $now = Carbon::now();
-        if ($now >= Carbon::parse($this->_timeScan('early_time_come')) && $now <= Carbon::parse($this->_timeScan('end_time_come'))) {
-            $scannable = true;
-        } elseif ($now >= Carbon::parse($this->_timeScan('early_time_leave')) && $now <= Carbon::parse($this->_timeScan('end_time_leave'))) {
-            $scannable = true;
-        } else {
-            $scannable = false;
+        $early_time_come = Carbon::createFromTimeString($this->_settingValue('early_time_come'));
+        $end_time_come = Carbon::createFromTimeString($this->_settingValue('end_time_come'));
+        $early_time_leave = Carbon::createFromTimeString($this->_settingValue('early_time_leave'));
+        $end_time_leave = Carbon::createFromTimeString($this->_settingValue('end_time_leave'));
+        if($now->between($early_time_come, $end_time_come)){
+            return true;
+        }elseif($now->between($early_time_leave, $end_time_leave)){
+            return true;
+        }else{
+            return false;
         }
-        return $scannable;
     }
-    
-    public function thereIsANote($teacher_id,$note)
+    private function _note($teacher_id, $note)
     {
+        $presence = Presence::where('teacher_id',$teacher_id)->whereDate('created_at', '=', Carbon::today())->first();
+        if ($presence==null) {
+            $presence = Presence::create([
+                'teacher_id'=>$teacher_id,
+                'date'=>date("d/m/y"),
+                'time_in'=> '-',
+                'time_out'=> '-',
+                'is_late'=>false,
+                'note'=>$note
+            ]);
+        }else{
+            return response()->json('Data already exist', 404);
+        }
+    }
+    private function _timeline()
+    {
+        if($this->_settingValue('timeline')=='1'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    private function _settingValue($for)
+    {
+        return DB::table('presence_setting')->where('name',$for)->first()->value;
+    }
+    private function _isLate()
+    {
+        $now = Carbon::now();
+        $ontime = Carbon::createFromTimeString($this->_settingValue('ontime_until'));
+        $early_time_come = Carbon::createFromTimeString($this->_settingValue('early_time_come'));
+        if ($now->between($early_time_come, $ontime)) {
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public function validateAndCheck($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'teacher_id'=>'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+        $presence = Presence::where('teacher_id', $request->teacher_id)
+        ->whereDate('created_at', '=', Carbon::today()
+        ->toDateString())
+        ->first();
+        
+        if($presence==null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public function saveData($request,$is_late)
+    {
+        if ($is_late==false) {
+            $note = 'Tepat waktu';
+        }else{
+            $note = 'Telat';
+        }
+        $jamNow = Carbon::now()->isoformat('H:m:s');
         $presence = Presence::create([
-            'teacher_id'=>$teacher_id,
+            'teacher_id'=>$request->teacher_id,
             'date'=>date("d/m/y"),
-            'time_in'=> '-',
-            'time_out'=> '-',
-            'is_late'=>false,
+            'time_in'=> $jamNow,
+            'time_out'=> '',
+            'is_late'=>$is_late,
             'note'=>$note
         ]);
     }
+    public function absenPulang($request)
+    {
+        // cek dulu takut ada note nya
+        $presence = Presence::where('teacher_id', $request->teacher_id)->orderBy('id','desc')->first();
+        if($presence->time_in=='-'){
+            $presence->time_out = '-';
+            $presence->save();
+            return response()->json('Berhasil',200);
+        }else{
+            //cek dulu, jika sdh ada, jangan absen lagi. nunggu waktu
+            $now = Carbon::now();
+            $early_time_leave = Carbon::createFromTimeString($this->_settingValue('early_time_leave'));
+            $end_time_leave = Carbon::createFromTimeString($this->_settingValue('end_time_leave'));
+            if ($now->between($early_time_leave, $early_time_leave)) {
+                Presence::where('teacher_id', $request->teacher_id)
+                ->whereDate('created_at', '=', Carbon::today()
+                ->toDateString())
+                ->update(['time_out'=>Carbon::now()->isoformat('H:m:s')]);
+                return response()->json(['message'=>'Berhasil absen pulang','pulang'=>$now], 200);
+            }else{
+                return response()->json('Belum saatnya pulang', 200);
+            }
+        }
+    }
+    public function scanLeaveOnly($request)
+    {
+        $jamNow = Carbon::now()->isoformat('H:m:s');
+        $presence = Presence::create([
+            'teacher_id'=>$request->teacher_id,
+            'date'=>date("d/m/y"),
+            'time_in'=> '09:00:00',
+            'time_out'=> $jamNow,
+            'is_late'=>true,
+            'note'=>'Telat'
+        ]);
+    }
+    
 }
-
-// coba mainkan lagi logikanya, takut salah
-
-// kondisi 1 : dateline(batas waktu)
-    // jika true
-        // maka $scannable = true (hanya bisa scan di jam yang di tentukan)
-    // jika false
-        // maka $scannable = false (bisa scan kapanpun)
-
-// kondisi 2 : scannable (waktu scan)
-    // jika waktu scan > erly_time_come & waktu scan < end_time_come
-        // maka bernilai true
-    // jika waktu scan > early_time_leave & waktu scan < end_time_leave
-        // maka bernilai true
-    // jika tidak keduanya
-        // maka false
-
-// kondisi 3 : is_late (telat apa tidak)
-    // jika jam_datang diantara ontime_until dan early_time_leave (7.30-14)
-        // maka is_late = true
-
-// kondisi 4 : default leave at 14.30
-    // jika jam_pulang last_day is null,
-        //maka isikan ke 14.30
-        

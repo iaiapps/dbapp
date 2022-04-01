@@ -31,7 +31,7 @@ class PresenceSettingSeeder extends Seeder
                 'value' => '16:30',
             ],
             [
-                'name' => 'dateline',
+                'name' => 'timeline',
                 'value' => true,
             ]
         ]);
