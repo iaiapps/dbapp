@@ -41,3 +41,13 @@ contoh yang bisa :
   ExtracurricularData::get()
 contoh yang ga bisa :
   DB::table('nama_tables')
+
+===========(5)=========== 
+contoh kode : jam diantara
+
+$now = Carbon::now();
+$start = Carbon::createFromTimeString('22:00');
+$end = Carbon::createFromTimeString('08:00')->addDay();
+if ($now->between($start, $end)) {
+  'yes i can'
+}

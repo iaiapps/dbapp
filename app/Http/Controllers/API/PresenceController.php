@@ -151,3 +151,33 @@ class PresenceController extends Controller
         ]);
     }
 }
+
+// coba mainkan lagi logikanya, takut salah
+
+// kondisi 1 : dateline(batas waktu)
+    // jika true
+        // maka $scannable = true (hanya bisa scan di jam yang di tentukan)
+    // jika false
+        // maka $scannable = false (bisa scan kapanpun)
+
+// kondisi 2 : scannable (waktu scan)
+    // jika waktu scan > erly_time_come & waktu scan < end_time_come
+        // maka bernilai true
+    // jika waktu scan > early_time_leave & waktu scan < end_time_leave
+        // maka bernilai true
+    // jika tidak keduanya
+        // maka false
+
+// kondisi 3 : is_late (telat apa tidak)
+    // jika jam_datang diantara ontime_until dan early_time_leave (7.30-14)
+        // maka is_late = true
+
+// kondisi 4 : default leave at 14.30
+    // jika jam_pulang last_day is null,
+        //maka isikan ke 14.30
+        
+//
+
+
+
+
