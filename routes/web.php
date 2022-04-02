@@ -218,5 +218,5 @@ Route::put('inventaris/edit/{id}', [InventoryController::class, 'updateInventory
 Route::delete('inventaris/{id}', [InventoryController::class, 'hapusInventory'])->name('inventaris.delete');
 
 //Presensi
-Route::post('presence/daterange', [PresenceController::class, 'rangePresence'])->name('presence.daterange');
+Route::get('presence/daterange', [PresenceController::class, 'betweenDate'])->name('presence.daterange');
 Route::resource('presence', PresenceController::class);

@@ -106,7 +106,6 @@ class PresenceController extends Controller
             return response()->json(['pesan'=>'Berhasil menambahkan catatan izin/sakit'], 404);
         }else{
             return response()->json('Data already exist', 404);
-            // return ['pesan' => 'Berhasil menambahkan catatan izin/sakit'];
         }
     }
     private function _timeline()

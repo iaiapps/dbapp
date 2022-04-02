@@ -3,13 +3,18 @@
     @section('page_judul', 'Data Presensi')
     <x-datatables />
     @section('content')
-        <div class="card p-3">
-            <form action="{{ route('presence.daterange') }}" method="POST">
+        <div class="p-3 card">
+            <form action="{{ route('presence.daterange') }}" method="GET">
                 @csrf
-                <div class="col-6 d-flex justify-content-around">
-                    <input type="hidden" name="id" value="20">
-                    <input class="form-control m-1" type="date" name="start_date" value="{{ date('Y-m-d') }}">
-                    <input class="form-control m-1" type="date" name="end_date" value="{{ date('Y-m-d') }}">
+                @method('GET')
+                @php
+                    $first = new Carbon\Carbon('first day of this month');
+                    $end = Carbon\Carbon::now();
+                @endphp
+                <div class="col-md-6 col-sm-12 d-flex justify-content-around">
+                    <input type="hidden" name="teacher_id" value="{{ $id }}">
+                    <input class="m-1 form-control" type="date" name="start_date" value="{{ date('Y-m-01') }}">
+                    <input class="m-1 form-control" type="date" name="end_date" value="{{ date('Y-m-d') }}">
                     <button type="submit" class="btn btn-sm btn-success">
                         Submit
                     </button>
@@ -18,7 +23,7 @@
 
 
             @if ($presences->count() == 0)
-                <div class="card text-center p-4">
+                <div class="p-4 text-center card">
                     <h1 class="display-6">
                         Maaf belum ada data yang tersimpan ...
                     </h1>
@@ -39,7 +44,8 @@
                             @foreach ($presences as $presence)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $presence->date }}</td>
+                                    <td>{{ Carbon\Carbon::parse($presence->created_at)->isoFormat('dddd, D MMMM Y') }}
+                                    </td>
                                     <td>{{ $presence->time_in }}</td>
                                     <td>{{ $presence->time_out }}</td>
                                     <td>{{ $presence->note }}</td>
