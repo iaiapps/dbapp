@@ -3,14 +3,15 @@
 <x-datatables />
 @section('content')
 
-    <div class="card p-3">
+    <div class="p-3 card">
         @if ($presences->count() == 0)
-            <div class="card text-center p-4">
+            <div class="p-4 text-center card">
                 <h1 class="display-6">
                     Maaf belum ada data yang tersimpan ...
                 </h1>
             </div>
         @else
+            <h6>{{ $bulan_yang_ditampilkan }}</h6>
             <div class="table-responsive">
                 <table class="table" id="datatable">
                     <thead>

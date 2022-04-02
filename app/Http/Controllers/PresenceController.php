@@ -15,17 +15,22 @@ class PresenceController extends Controller
         // NOTED:MALIK
         // ini penting banget untuk di catat, jarang aku pake ini soalnya. 
         // akhirnya query panjang nya bs jadi pendek gini
-        // perhatikan bahwa sebelum di groupby kamu harus select dulu kolom yang akan di groupby                
+        // perhatikan bahwa sebelum di groupby kamu harus select dulu kolom yang akan di groupby     
+        // di index kita akan menampilkan data bulan ini
+        $start_date = new Carbon('last day of last month');
+        $end_date = Carbon::now()->addDay();
+        $bulan_yang_ditampilkan = Carbon::now()->isoFormat('MMMM').' '.$start_date->year;
         $presences = Presence::
         select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
+        ->whereBetween('created_at', [$start_date, $end_date])
         ->groupBy('teacher_id')
         ->with([
             'teacher'  => function ($q) {
                 $q->select('id', 'nama');
             }])
             ->get();
-            
-            return view('presences.index', compact('presences'));
+        
+            return view('presences.index', compact('presences','bulan_yang_ditampilkan'));
         }
         
         public function show($id){
