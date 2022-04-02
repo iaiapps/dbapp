@@ -39,7 +39,7 @@
                             @foreach ($presences as $presence)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ Carbon\Carbon::parse($presence->date)->isoFormat('dddd, D MMM Y') }}</td>
+                                    <td>{{ $presence->date }}</td>
                                     <td>{{ $presence->time_in }}</td>
                                     <td>{{ $presence->time_out }}</td>
                                     <td>{{ $presence->note }}</td>

@@ -44,8 +44,7 @@ class PresenceController extends Controller
     {
         $now = Carbon::now()->isoformat('H:m:s');
         if($request->has('note')){
-            $this->_note($request->teacher_id, $request->note);
-            return response()->json('Catatan Izin berhasil ditambahkan',200);
+            return $this->_note($request->teacher_id, $request->note);
         }else{
             if ($this->_timeline()==true) {
                 if($this->_scannable()==true){
@@ -53,28 +52,26 @@ class PresenceController extends Controller
                         $now = Carbon::now();
                         $early_time_leave = Carbon::createFromTimeString($this->_settingValue('early_time_leave'));
                         $end_time_leave = Carbon::createFromTimeString($this->_settingValue('end_time_leave'));
-                        // absen pulang sekaligus datang
                         if($now->between($early_time_leave, $end_time_leave)){
-                            $this->scanLeaveOnly($request);
-                            return response()->json('Berhasil absen datang sekaligus pulang',200);
+                            return $this->scanLeaveOnly($request);
                         }else{
-                            $this->saveData($request, $this->_isLate());
+                            return $this->saveData($request, $this->_isLate());
                         }
                     }else{
-                        $this->absenPulang($request);
+                        return $this->absenPulang($request);
                     }
                 }else{
                     return response()->json('Waktu scan tidak Valid.', 400);
                 }
             }else{
                 if($this->validateAndCheck($request)==true){
-                    $this->saveData($request, $this->_isLate());
+                    return $this->saveData($request, $this->_isLate());
                 }else{
                     Presence::where('teacher_id', $request->teacher_id)
                     ->whereDate('created_at', '=', Carbon::today()
                     ->toDateString())
                     ->update(['time_out'=>$now]);
-                    return response()->json(['message'=>'Berhasil absen pulang','pulang'=>$now],200);
+                    return response()->json(['pesan'=>'Berhasil absen pulang','pulang'=>$now],200);
                 }
             }
         }
@@ -106,8 +103,10 @@ class PresenceController extends Controller
                 'is_late'=>false,
                 'note'=>$note
             ]);
+            return response()->json(['pesan'=>'Berhasil menambahkan catatan izin/sakit'], 404);
         }else{
             return response()->json('Data already exist', 404);
+            // return ['pesan' => 'Berhasil menambahkan catatan izin/sakit'];
         }
     }
     private function _timeline()
@@ -159,7 +158,7 @@ class PresenceController extends Controller
         }else{
             $note = 'Telat';
         }
-        $jamNow = Carbon::now()->isoformat('H:m:s');
+        $jamNow = date('H:i:s');
         $presence = Presence::create([
             'teacher_id'=>$request->teacher_id,
             'date'=>date("d/m/y"),
@@ -168,6 +167,7 @@ class PresenceController extends Controller
             'is_late'=>$is_late,
             'note'=>$note
         ]);
+        return response()->json(['pesan'=>'Berhasil absen datang','datang'=>$jamNow],200);
     }
     public function absenPulang($request)
     {
@@ -182,17 +182,17 @@ class PresenceController extends Controller
             $now = Carbon::now();
             $early_time_leave = Carbon::createFromTimeString($this->_settingValue('early_time_leave'));
             $end_time_leave = Carbon::createFromTimeString($this->_settingValue('end_time_leave'));
-            if ($now->between($early_time_leave, $early_time_leave)) {
+            if ($now->between($early_time_leave, $end_time_leave)) {
                 Presence::where('teacher_id', $request->teacher_id)
                 ->whereDate('created_at', '=', Carbon::today()
                 ->toDateString())
                 ->update(['time_out'=>Carbon::now()->isoformat('H:m:s')]);
-                return response()->json(['message'=>'Berhasil absen pulang','pulang'=>$now], 200);
+                return response()->json(['pesan'=>'Berhasil absen pulang','pulang'=>Carbon::now()->format('H:m:s')], 200);
             }else{
                 return response()->json('Belum saatnya pulang', 200);
             }
         }
-    }
+    }   
     public function scanLeaveOnly($request)
     {
         $jamNow = Carbon::now()->isoformat('H:m:s');
@@ -204,6 +204,7 @@ class PresenceController extends Controller
             'is_late'=>true,
             'note'=>'Telat'
         ]);
+        return response()->json('Berhasil absen datang sekaligus pulang',200);
     }
     
 }
