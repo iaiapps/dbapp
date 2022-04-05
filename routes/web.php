@@ -29,16 +29,17 @@ use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\MunaqosahTahfidzController;
 use App\Http\Controllers\ExtracurricularDataController;
+use Psy\CodeCleaner\ValidConstructorPass;
 
-//SHORTCUT KU
-Route::get('/cc', function () {
+function __construct()
+{
     Artisan::call('config:clear');
-    // Artisan::call('storage:link');
     Artisan::call('cache:clear');
     Artisan::call('config:cache');
     Artisan::call('view:clear');
     Artisan::call('route:cache');
-});
+}
+
 
 Route::get('rj',function () {
     Artisan::call('queue:work');
@@ -219,4 +220,5 @@ Route::delete('inventaris/{id}', [InventoryController::class, 'hapusInventory'])
 
 //Presensi
 Route::get('presence/daterange', [PresenceController::class, 'betweenDate'])->name('presence.daterange');
+Route::get('presence/monthly',[PresenceController::class, 'monthlyPresence'])->name('presence.monthly');
 Route::resource('presence', PresenceController::class);

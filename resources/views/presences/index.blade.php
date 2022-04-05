@@ -2,7 +2,6 @@
 @section('page_judul', 'Data Presensi')
 <x-datatables />
 @section('content')
-
     <div class="p-3 card">
         @if ($presences->count() == 0)
             <div class="p-4 text-center card">
@@ -11,7 +10,12 @@
                 </h1>
             </div>
         @else
-            <h6>{{ $bulan_yang_ditampilkan }}</h6>
+            <form action="{{ route('presence.monthly') }}" method="GET">
+                @csrf
+                <input type="month" id="start" name="date" value="{{ date('Y-m') }}" class="form-control" />
+                <button type="submit">Terapkan</button>
+            </form>
+
             <div class="table-responsive">
                 <table class="table" id="datatable">
                     <thead>

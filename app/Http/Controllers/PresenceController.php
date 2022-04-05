@@ -19,10 +19,11 @@ class PresenceController extends Controller
         // di index kita akan menampilkan data bulan ini
         $start_date = new Carbon('last day of last month');
         $end_date = Carbon::now()->addDay();
-        $bulan_yang_ditampilkan = Carbon::now()->isoFormat('MMMM').' '.$start_date->year;
+        // $bulan_yang_ditampilkan = Carbon::now()->isoFormat('MMMM').' '.$start_date->year;
+
         $presences = Presence::
         select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
-        ->whereBetween('created_at', [$start_date, $end_date])
+        ->whereBetween('created_at', [$start_date, $end_date]) 
         ->groupBy('teacher_id')
         ->with([
             'teacher'  => function ($q) {
@@ -30,7 +31,7 @@ class PresenceController extends Controller
             }])
             ->get();
         
-            return view('presences.index', compact('presences','bulan_yang_ditampilkan'));
+            return view('presences.index', compact('presences'));
         }
         
         public function show($id){
