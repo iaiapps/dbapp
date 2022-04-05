@@ -16,20 +16,23 @@ class PresenceController extends Controller
     public function index()
     {
         $data = Presence::get();
-        return response()->json($data);
+        return response()->json([
+            'pesan' => 'success',
+            'data' => $data
+        ], 200);
     }
     public function show($id)
     {
         $presence = Presence::where('teacher_id',$id)->get();
         if (is_null($presence)) {
-            return response()->json('Data not found', 404); 
+            return response()->json(['pesan'=>'Data tidak ditemukan'], 404); 
         }
-        return response()->json([new PresenceResource($presence)]);
+        return response()->json([new PresenceResource($presence),'pesan'=>'Data ditemukan'], 200);
     }
     public function destroy(Presence $presence)
     {
         $presence->delete();
-        return response()->json('Presence deleted successfully');
+        return response()->json(['pesan'=>'Data berhasil dihapus'], 200);
     }
     
     // INI BUTUH MIKIR DAN KERJA EXTRA wkwkw
@@ -61,7 +64,7 @@ class PresenceController extends Controller
                         return $this->absenPulang($request);
                     }
                 }else{
-                    return response()->json('Waktu scan tidak Valid.', 400);
+                    return response()->json(['pesan'=>'waktu scan tidak valid'], 404);
                 }
             }else{
                 if($this->validateAndCheck($request)==true){
@@ -71,7 +74,7 @@ class PresenceController extends Controller
                     ->whereDate('created_at', '=', Carbon::today()
                     ->toDateString())
                     ->update(['time_out'=>$now]);
-                    return response()->json(['pesan'=>'Berhasil absen pulang','pulang'=>$now],200);
+                    return response()->json(['pesan'=>'Berhasil absen pulang','time'=>$now],200);
                 }
             }
         }
@@ -103,9 +106,12 @@ class PresenceController extends Controller
                 'is_late'=>false,
                 'note'=>$note
             ]);
-            return response()->json(['pesan'=>'Berhasil menambahkan catatan izin/sakit'], 404);
+            return response()->json(['pesan'=>'Berhasil menambahkan catatan izin/sakit'], 200);
         }else{
-            return response()->json('Data already exist', 404);
+            return response()->json([
+                'pesan'=>'Data sudah ada',
+                'data'=>$presence
+            ], 200);
         }
     }
     private function _timeline()
@@ -137,7 +143,10 @@ class PresenceController extends Controller
             'teacher_id'=>'required',
         ]);
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json([
+                'pesan'=>'Data tidak valid',
+                'errors'=>$validator->errors()
+            ], 404);
         }
         $presence = Presence::where('teacher_id', $request->teacher_id)
         ->whereDate('created_at', '=', Carbon::today()
@@ -166,7 +175,10 @@ class PresenceController extends Controller
             'is_late'=>$is_late,
             'note'=>$note
         ]);
-        return response()->json(['pesan'=>'Berhasil absen datang','datang'=>$jamNow],200);
+        return response()->json([
+            'pesan'=>'Berhasil absen masuk',
+            'data'=>$presence
+        ], 200);
     }
     public function absenPulang($request)
     {
@@ -175,7 +187,10 @@ class PresenceController extends Controller
         if($presence->time_in=='-'){
             $presence->time_out = '-';
             $presence->save();
-            return response()->json('Berhasil',200);
+            return response()->json([
+                'pesan'=>'Berhasil absen pulang',
+                'data'=>$presence
+            ], 200);
         }else{
             //cek dulu, jika sdh ada, jangan absen lagi. nunggu waktu
             $now = Carbon::now();
@@ -203,7 +218,9 @@ class PresenceController extends Controller
             'is_late'=>true,
             'note'=>'Telat'
         ]);
-        return response()->json('Berhasil absen datang sekaligus pulang',200);
+        return response()->json([
+            'pesan'=>'Berhasil absen masuk',
+            'data'=>$presence
+        ], 200);
     }
-    
 }
