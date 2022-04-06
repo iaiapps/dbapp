@@ -13,7 +13,7 @@
                     </h1>
                 </div>
             @else
-                <div class=" table-responsive">
+                <div class="table-responsive">
                     <table id="data" class="table">
                         <thead>
                             <tr>
@@ -47,10 +47,44 @@
                                 </tr>
                             @endforeach
                         </tbody>
-
                     </table>
                 </div>
             @endif
+        </div>
+        <div class="card rounded p-3 mt-3">
+            <table id="data" class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($presence as $item)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->value }}</td>
+                            <td>
+                                <form action="{{ route('admin.hapusDbset', $item->id) }}" method="POST">
+                                    </a>
+                                    <a href="{{ route('admin.editSettingPresence', $item->id) }}"
+                                        class="btn btn-primary">
+                                        <span><i class="las la-edit"></i></span>
+                                    </a>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-primary"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                        <span><i class="las la-trash"></i></span></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     @endsection
 

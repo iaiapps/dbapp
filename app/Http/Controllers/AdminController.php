@@ -18,7 +18,14 @@ class AdminController extends Controller
     public function dbSettings()
     {
         $collection = DB::table('database_settings')->get();
-        return view('admin.db_settings',compact('collection'));
+        $presence = new PresenceController();
+        $presence = $presence->getSetting();
+        return view('admin.db_settings',compact('collection','presence'));
+    }
+    public function editPresenceSetting($id)
+    {
+        $item = DB::table('presence_setting')->where('id',$id)->first();
+        return view('admin.edit_presence_set',compact('item'));
     }
     public function editDbset($id)
     {

@@ -65,7 +65,9 @@ Route::middleware('role:admin')->group(function () {
     Route::resource('grade', GradeController::class);
     Route::prefix('/admin')->group(function () {
         
+        Route::post('/presence/setting', [AdminController::class, 'updateSettingPresence'])->name('admin.update.setPresence');
         Route::get('/db_settings', [AdminController::class, 'dbSettings'])->name('admin.DBset');
+        Route::get('/edit_set_presence/{id}', [AdminController::class, 'editPresenceSetting'])->name('admin.editSettingPresence');
         Route::get('/edit_db_set/{id}', [AdminController::class, 'editDbset'])->name('admin.editDbset');
         Route::delete('/hapus_db_set/{id}', [AdminController::class, 'hapusDbset'])->name('admin.hapusDbset');
         

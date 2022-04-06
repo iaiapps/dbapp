@@ -82,6 +82,9 @@ class PresenceController extends Controller
             // return Excel::download(new PresencesExport($date->month,$date->year), 'PresensiGuru-'. $name .'.xlsx');
             return Excel::download(new PresencesExport(), 'PresensiGuru-'. $name .'.xlsx');
         }
-        
+        public function getSetting()
+        {
+            return DB::table('presence_setting')->get();
+        }
 }
         
