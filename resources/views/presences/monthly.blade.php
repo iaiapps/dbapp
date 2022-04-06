@@ -13,7 +13,7 @@
             <form action="{{ route('presence.monthly') }}" method="GET">
                 @csrf
                 <div class="col-md-4 d-md-flex">
-                    <input type="month" id="start" name="date" value="{{ date('Y-m') }}" class="form-control" />
+                    <input type="month" id="start" name="date" value="{{ $year . '-' . $month }}" class="form-control" />
                     <button type="submit" class="btn btn-success">Terapkan</button>
                 </div>
             </form>

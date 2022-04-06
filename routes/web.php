@@ -40,7 +40,6 @@ function __construct()
     Artisan::call('route:cache');
 }
 
-
 Route::get('rj',function () {
     Artisan::call('queue:work');
     return 'Job Berhasil di hapus';
