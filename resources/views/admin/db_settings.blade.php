@@ -68,18 +68,9 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->value }}</td>
                             <td>
-                                <form action="{{ route('admin.hapusDbset', $item->id) }}" method="POST">
-                                    </a>
-                                    <a href="{{ route('admin.editSettingPresence', $item->id) }}"
-                                        class="btn btn-primary">
-                                        <span><i class="las la-edit"></i></span>
-                                    </a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-primary"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                        <span><i class="las la-trash"></i></span></button>
-                                </form>
+                                <a href="{{ route('admin.editSettingPresence', $item->id) }}" class="btn btn-primary">
+                                    <span><i class="las la-edit"></i></span>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

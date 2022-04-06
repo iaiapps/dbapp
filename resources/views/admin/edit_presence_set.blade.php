@@ -13,6 +13,7 @@
                     <tr>
                         <td>Name</td>
                         <td>
+                            <input type="hidden" name="id" value="{{ $item->id }}">
                             <input class="form-control" type="text" name="name" value="{{ $item->name }}" disabled>
                         </td>
                     </tr>

@@ -27,6 +27,13 @@ class AdminController extends Controller
         $item = DB::table('presence_setting')->where('id',$id)->first();
         return view('admin.edit_presence_set',compact('item'));
     }
+    public function updateSettingPresence(Request $request)
+    {
+        DB::table('presence_setting')->where('id',$request->id)->update([
+            'value' => $request->value
+        ]);
+        return redirect()->route('admin.DBset');
+    }
     public function editDbset($id)
     {
         $item = DB::table('database_settings')->where('id',$id)->first();
