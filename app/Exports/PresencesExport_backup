@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Exports;
+
+use App\Models\Presence;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+
+class PresencesExport_bu implements FromQuery, WithHeadings, ShouldAutoSize, WithEvents
+{
+    use Exportable;
+
+    protected $month, $year;
+    public function __construct($month, $year)
+    {
+        $this->month = $month;
+        $this->year = $year;
+    }
+    public function query()
+    {
+        return Presence::query()
+        ->select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
+        ->whereYear('created_at', $this->year) 
+        ->whereMonth('created_at', $this->month)
+        ->groupBy('teacher_id')
+        ->with([
+            'teacher'  => function ($q) {
+                $q->select('id', 'nama');
+            }
+        ]);
+    }
+
+    public function headings(): array
+    {
+        return [
+            '#',
+            'id',
+            'id',
+            'id',
+            'Email',
+            'Created at',
+            'Updated at'
+        ];
+    }
+    public function registerEvents(): array
+    {        
+        $styleArray = [
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['rgb' => '000000'],
+                ],
+            ],
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            ],
+            'font' => [
+                'name'      =>  'Calibri',
+                'size'      =>  15,
+                'bold'      =>  true,
+                'color' => ['rgb' => '000000'],
+            ],
+
+            //Set background style
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'startColor' => [
+                    'rgb' => 'cfcfcf',
+                 ]           
+            ],
+
+        ];
+        return [
+            AfterSheet::class => function(AfterSheet $event) use ($styleArray) {
+                $event->sheet->getDelegate()->getStyle('A1:W1')->applyFromArray($styleArray);
+            },
+        ];
+    }
+}

@@ -48,12 +48,16 @@ class PresenceController extends Controller
             // akhirnya query panjang nya bs jadi pendek gini
             // perhatikan bahwa sebelum di groupby kamu harus select dulu kolom yang akan di groupby     
             // di index kita akan menampilkan data bulan ini
+
+            // $arr = ['sakit','izin'];
+            // $arr = join(",",$arr);
+
             $month = Carbon::parse($date)->month;
             $year = Carbon::parse($date)->year;
             $presences = Presence::
-            select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
-            ->whereYear('created_at', $year) 
+            whereYear('created_at', $year)
             ->whereMonth('created_at', $month)
+            ->select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
             ->groupBy('teacher_id')
             ->with([
             'teacher'  => function ($q) {
@@ -75,6 +79,7 @@ class PresenceController extends Controller
             $month = $date->month()->isoFormat('MMMM');
             $year= $date->month()->isoFormat('Y');
             $name = $month.' '.$year;
+            // return Excel::download(new PresencesExport($date->month,$date->year), 'PresensiGuru-'. $name .'.xlsx');
             return Excel::download(new PresencesExport(), 'PresensiGuru-'. $name .'.xlsx');
         }
         
