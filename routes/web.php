@@ -219,5 +219,6 @@ Route::delete('inventaris/{id}', [InventoryController::class, 'hapusInventory'])
 
 //Presensi
 Route::get('presence/daterange', [PresenceController::class, 'betweenDate'])->name('presence.daterange');
+Route::get('presence/exportExcel',[PresenceController::class, 'exportExcel'])->name('presence.excel');
 Route::get('presence/monthly',[PresenceController::class, 'monthlyPresence'])->name('presence.monthly');
 Route::resource('presence', PresenceController::class);

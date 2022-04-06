@@ -5,16 +5,30 @@
     <div class="p-3 card">
         @if ($presences->count() == 0)
             <div class="p-4 text-center card">
-                <h1 class="display-6">
-                    Maaf belum ada data yang tersimpan ...
-                </h1>
+                <a href="{{ URL::previous() }}">Kembali</a>
+                <h3>
+                    Tidak ditemukan
+                </h3>
             </div>
         @else
             <form action="{{ route('presence.monthly') }}" method="GET">
                 @csrf
-                <div class="col-md-4 d-md-flex">
-                    <input type="month" id="start" name="date" value="{{ date('Y-m') }}" class="form-control" />
-                    <button type="submit" class="btn btn-success">Terapkan</button>
+                @php
+                    $year = $year ?? date('Y');
+                    $month = $month ?? date('m');
+                    $date = $year . '-' . $month;
+                @endphp
+                <div class="col-md-12 d-md-flex justify-content-between">
+                    <div>
+                        <a href="{{ route('presence.excel', ['date' => $date]) }}" class="btn btn-sm btn-success"><i
+                                class="bi bi-download"></i></a>
+                        <h6 style=" border-bottom: solid 2px #000000; display: inline; padding-bottom: 3px;">
+                            {{ Carbon\Carbon::parse($date)->isoFormat('MMMM Y') }}</h6>
+                    </div>
+                    <div class="d-flex">
+                        <input type="month" id="start" name="date" value="{{ $date }}" class="form-control" />
+                        <button type="submit" class="btn btn-success">Terapkan</button>
+                    </div>
                 </div>
             </form>
 

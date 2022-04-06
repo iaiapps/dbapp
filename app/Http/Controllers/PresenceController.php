@@ -2,38 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PresencesExport;
+use Carbon\Carbon;
 use App\Models\Teacher;
 use App\Models\Presence;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Laravel\Ui\Presets\Preset;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class PresenceController extends Controller
 {
     public function index(){            
-        // NOTED:MALIK
-        // ini penting banget untuk di catat, jarang aku pake ini soalnya. 
-        // akhirnya query panjang nya bs jadi pendek gini
-        // perhatikan bahwa sebelum di groupby kamu harus select dulu kolom yang akan di groupby     
-        // di index kita akan menampilkan data bulan ini
         $month = Carbon::now()->month;
         $year = Carbon::now()->year;
-
-        // $bulan_yang_ditampilkan = Carbon::now()->isoFormat('MMMM').' '.$start_date->year;
-        
-        $presences = Presence::
-        select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
-        ->whereMonth('created_at', $month)
-        ->whereYear('created_at', $year) 
-        ->groupBy('teacher_id')
-        ->with([
-            'teacher'  => function ($q) {
-                $q->select('id', 'nama');
-            }])
-            ->get();
-            
+        $presences = $this->getPresencesWhereMonth(Carbon::now());
             return view('presences.index', compact('presences'));
         }
         
@@ -57,10 +41,15 @@ class PresenceController extends Controller
                 $this->show($id);
             }
         }
-        public function monthlyPresence(Request $request)
+        public function getPresencesWhereMonth($date)
         {
-            $month = Carbon::parse($request->date)->month;
-            $year = Carbon::parse($request->date)->year;
+            // NOTED:MALIK
+            // ini penting banget untuk di catat, jarang aku pake ini soalnya. 
+            // akhirnya query panjang nya bs jadi pendek gini
+            // perhatikan bahwa sebelum di groupby kamu harus select dulu kolom yang akan di groupby     
+            // di index kita akan menampilkan data bulan ini
+            $month = Carbon::parse($date)->month;
+            $year = Carbon::parse($date)->year;
             $presences = Presence::
             select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
             ->whereYear('created_at', $year) 
@@ -71,7 +60,23 @@ class PresenceController extends Controller
                 $q->select('id', 'nama');
             }])
             ->get(); 
-            return view('presences.monthly', compact('presences','month','year'));
+            return $presences;
         }
-    }
+        public function monthlyPresence(Request $request)
+        {
+            $month = Carbon::parse($request->date)->month;
+            $year = Carbon::parse($request->date)->year;
+            $presences = $this->getPresencesWhereMonth($request->date);
+            return view('presences.index', compact('presences','month','year'));
+        }
+        function exportExcel(Request $request)
+        {
+            $date = Carbon::parse($request->date);
+            $month = $date->month()->isoFormat('MMMM');
+            $year= $date->month()->isoFormat('Y');
+            $name = $month.' '.$year;
+            return Excel::download(new PresencesExport(), 'PresensiGuru-'. $name .'.xlsx');
+        }
+        
+}
         
