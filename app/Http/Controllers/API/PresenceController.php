@@ -27,7 +27,7 @@ class PresenceController extends Controller
         if (is_null($presence)) {
             return response()->json(['pesan'=>'Data tidak ditemukan'], 404); 
         }
-        return response()->json([new PresenceResource($presence),'pesan'=>'Data ditemukan'], 200);
+        return response()->json(['pesan'=>'Data ditemukan','data'=> new PresenceResource($presence)], 200);
     }
     public function destroy(Presence $presence)
     {

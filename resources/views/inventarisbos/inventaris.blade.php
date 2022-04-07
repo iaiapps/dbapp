@@ -44,7 +44,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_barang }}</td>
                                 <td>{{ $item->tanggal_pembelian }}</td>
-                                <td>Rp. {{ $item->harga }}</td>
+                                <td>Rp. {{ number_format($item->harga) }}</td>
                                 <td>{{ $item->sumber_dana }}</td>
                                 <td>
                                     <a href="{{ route('inventaris.details', $item->id) }}" class="btn btn-success">
