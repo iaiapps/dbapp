@@ -33,16 +33,15 @@ class AuthController extends Controller
         $user->assignRole('admin');
         $token = $user->createToken('auth_token')->plainTextToken;
         
-        Teacher::create([
+        $teacher = Teacher::create([
             'teacher_id' => $user->id,
             'nik' => rand(0,99999),
             'nama' => $request->name,
             'email' => $request->email,
          ]);
-        $teacher = Teacher::where('email',$user->email)->first();
 
         return response()
-            ->json(['name' => $teacher->nama,'access_token' => $token, 'token_type' => 'Bearer','teacher_id' => $teacher->id ]);
+            ->json(['teacher_id' => $teacher->id,'name' => $teacher->nama,'email' => $teacher->email,'access_token' => $token, 'token_type' => 'Bearer' ]);
     }
 
     public function login(Request $request)
@@ -59,7 +58,7 @@ class AuthController extends Controller
         $teacher_id = Teacher::where('email',$user->email)->first()->id;
 
         return response()
-            ->json(['access_token' => $token, 'token_type' => 'Bearer', 'data' => $user, 'teacher_id' => $teacher_id]);
+            ->json(['access_token' => $token, 'token_type' => 'Bearer', 'teacher_id' => $teacher_id]);
     }
 
     // method for user logout and delete token

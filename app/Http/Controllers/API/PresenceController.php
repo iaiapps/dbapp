@@ -74,7 +74,7 @@ class PresenceController extends Controller
                     ->whereDate('created_at', '=', Carbon::today()
                     ->toDateString())
                     ->update(['time_out'=>$now]);
-                    return response()->json(['pesan'=>'Berhasil absen pulang','time'=>$now],200);
+                    return response()->json(['pesan'=>'Berhasil absen pulang','data'=>$now],200);
                 }
             }
         }
@@ -106,7 +106,7 @@ class PresenceController extends Controller
                 'is_late'=>false,
                 'note'=>$note
             ]);
-            return response()->json(['pesan'=>'Berhasil menambahkan catatan izin/sakit'], 200);
+            return response()->json(['pesan'=>'Berhasil menambahkan catatan izin/sakit','data'=>$presence], 200);
         }else{
             return response()->json([
                 'pesan'=>'Data sudah ada',
@@ -201,9 +201,9 @@ class PresenceController extends Controller
                 ->whereDate('created_at', '=', Carbon::today()
                 ->toDateString())
                 ->update(['time_out'=>Carbon::now()->isoformat('H:m:s')]);
-                return response()->json(['pesan'=>'Berhasil absen pulang','pulang'=>Carbon::now()->format('H:m:s')], 200);
+                return response()->json(['pesan'=>'Berhasil absen pulang','data'=>Carbon::now()->format('H:m:s')], 200);
             }else{
-                return response()->json('Belum saatnya pulang', 200);
+                return response()->json(['pesan'=>'Belum saatnya pulang'], 200);
             }
         }
     }   
