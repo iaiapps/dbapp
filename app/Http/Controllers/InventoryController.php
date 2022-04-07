@@ -21,14 +21,14 @@ class InventoryController extends Controller
     
     public function storeInventory(Request $request)
     {
+        $this->_validate();
         $data = $request->all();
         $file = $request->file('dokumen');
         $nama = time() . $file->getClientOriginalName();
         $data['dokumen']=$nama;
-        
         $file->move(\base_path() ."/public/img_inventaris", $nama);
         Inventory::create($data);
-        return redirect()->route('inventaris.index');
+        return redirect()->route('inventaris.index')->with('success','Berhasil menambah data inventaris');
     }
     
     function editInventory($id)
@@ -52,4 +52,20 @@ class InventoryController extends Controller
         
         return redirect()->route('inventaris.index')->with('success', 'Berhasil dihapus');
     }
+    private function _validate()
+    {
+        return request()->validate([
+            'nama_barang' => 'required',
+            'tanggal_pembelian' => 'required',
+            'kuantitas' => 'required',
+            'pembuat' => 'required',
+            'harga' => 'required',
+            'sumber_dana' => 'required',
+            'tanggal_penerimaan' => 'required',
+            'tempat_pembelian' => 'required',
+            'kondisi_barang' => 'required',
+            'dokumen' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+    }
+    
 }

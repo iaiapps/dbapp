@@ -9,6 +9,16 @@
                 <i class="las la-plus-circle"></i> Tambah Data Inventaris
             </button>
         </div>
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <strong>Error!</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @if ($collection->count() == 0)
             <div class="card text-center p-4">
                 <h1 class="display-6">
