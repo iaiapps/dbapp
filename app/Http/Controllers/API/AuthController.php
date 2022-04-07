@@ -58,7 +58,7 @@ class AuthController extends Controller
         $teacher_id = Teacher::where('email',$user->email)->first()->id;
 
         return response()
-            ->json(['access_token' => $token, 'token_type' => 'Bearer', 'teacher_id' => $teacher_id]);
+            ->json(['access_token' => $token, 'data' => $user,'token_type' => 'Bearer', 'teacher_id' => $teacher_id]);
     }
 
     // method for user logout and delete token
