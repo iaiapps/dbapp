@@ -31,6 +31,9 @@ use App\Http\Controllers\MunaqosahTahfidzController;
 use App\Http\Controllers\ExtracurricularDataController;
 use Psy\CodeCleaner\ValidConstructorPass;
 
+// developer mode only
+// comment if production starting
+// =====================================
 function __construct()
 {
     Artisan::call('config:clear');
@@ -39,6 +42,15 @@ function __construct()
     Artisan::call('view:clear');
     Artisan::call('route:cache');
 }
+// =====================================
+Route::get('cc',function ()
+{
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:cache');
+});
 
 Route::get('rj',function () {
     Artisan::call('queue:work');
