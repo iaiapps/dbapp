@@ -1,34 +1,31 @@
 <div>
+    <x-modal id="qrcodeModal">
+        <x-slot name="title">
+            Ubah QrCode
+        </x-slot>
+        <x-slot name="body">
+            <form action="{{ route('qrcode.update') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3 mb-3">
+                    <input type="text" name="qrcode" value="{{ $qrcode }}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Update</button>
+            </form>
+        </x-slot>
+    </x-modal>
+
     <div class="card rounded p-3 mt-3">
-        <table id="data" class="table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Value</th>
-                    <th>Desc</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($qrcode as $item)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->value }}</td>
-                        <td>{{ $item->desc }}</td>
-                        <td>
-                            <button wire:click="generate({{ $item->id }})"
-                                class="btn btn-sm btn-success">Perbarui</button>
-                            <a class="btn btn-outline-success btn-sm" target="_blank"
-                                href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ $item->value }}">Qr</a>
-                            <a class="btn btn-outline-success btn-sm" target="_blank"
-                                href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ $item->value }}">Yg
-                                baru</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
+        <table>
+            <tr>
+                <th>QRCODE</th>
+                <th>{{ $qrcode }}</th>
+                <th>
+                    <button type="button" class="btn btn-success me-1 " data-bs-toggle="modal"
+                        data-bs-target="#qrcodeModal">
+                        Ubah
+                    </button>
+                </th>
+            </tr>
         </table>
     </div>
 </div>

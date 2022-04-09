@@ -90,5 +90,10 @@ class PresenceController extends Controller
         {
             return DB::table('presence_setting')->where('name','qrcode')->get();
         }
+        public function updateQrCode(Request $request)
+        {
+            DB::table('presence_setting')->where('desc','gedung1')->update(['value'=>$request->qrcode]);
+            return back()->with('success','QR Code berhasil di update');
+        }
 }
         

@@ -31,7 +31,9 @@ class Qrcode extends Component
     }
     public function render()
     {
-        $this->qrcode = DB::table('presence_setting')->where('name','qrcode')->get();
+        // $this->qrcode 
+        $qrcode = DB::table('presence_setting')->where('desc','gedung1')->first()->value;
+        $this->qrcode = $qrcode;
         return view('livewire.qrcode');
     }
 }

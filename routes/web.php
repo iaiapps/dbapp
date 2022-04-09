@@ -228,3 +228,4 @@ Route::get('presence/daterange', [PresenceController::class, 'betweenDate'])->na
 Route::get('presence/exportExcel',[PresenceController::class, 'exportExcel'])->name('presence.excel');
 Route::get('presence/monthly',[PresenceController::class, 'monthlyPresence'])->name('presence.monthly');
 Route::resource('presence', PresenceController::class);
+Route::post('qrcode/update',[PresenceController::class, 'updateQrCode'])->name('qrcode.update');

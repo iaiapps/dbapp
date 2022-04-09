@@ -21,5 +21,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/settings', [PresenceController::class, 'getTimeSettings']);
     Route::resource('presences', PresenceController::class);
 });
-    Route::get('/qrcodes', [PresenceController::class, 'getQrCode']);
+    Route::get('/qrcodes', [PresenceController::class, 'getQrCodes']);
+    Route::get('/qrcode', [PresenceController::class, 'getQrCode']);
 
