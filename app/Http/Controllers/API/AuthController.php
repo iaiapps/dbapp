@@ -56,7 +56,7 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
         $teacher_id = Teacher::where('email',$user->email)->first()->id;
-        $q = new API\PresenceController();
+        $q = new PresenceController();
         return response()
             ->json(['access_token' => $token, 'data' => $user, 'token_type' => 'Bearer', 'teacher_id' => $teacher_id,'qrcode'=> $q->getQrCode()]);
     }
