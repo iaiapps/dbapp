@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ url('new_theme') }}/css/login.css" />
     @yield('css')
     @stack('css')
+    @livewireStyles
 
 </head>
 
@@ -36,7 +37,7 @@
         </main>
 
     </div>
-
+    @livewireScripts
     @stack('foot')
     <script src="{{ url('new_theme') }}/assets/bootstrap-5/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url('new_theme') }}/assets/jquery/jquery-3.6.0.min.js"></script>

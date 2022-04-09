@@ -7,7 +7,7 @@
                     <th>Name</th>
                     <th>Value</th>
                     <th>Desc</th>
-                    <th>Cetak</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,9 +18,10 @@
                         <td>{{ $item->value }}</td>
                         <td>{{ $item->desc }}</td>
                         <td>
-                            <a href="{{ route('admin.editSettingPresence', $item->id) }}" class="btn btn-primary">
-                                <span><i class="las la-print"></i></span>
-                            </a>
+                            <button wire:click="generate({{ $item->id }})"
+                                class="btn btn-sm btn-success">Perbarui</button>
+                            <a class="btn btn-outline-success btn-sm" target="_blank"
+                                href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ $item->value }}">Qr</a>
                         </td>
                     </tr>
                 @endforeach
