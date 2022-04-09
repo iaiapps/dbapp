@@ -13,26 +13,27 @@ class PresenceSettingSeeder extends Seeder
             [
                 'name' => 'ontime_until',
                 'value' => '07:31',
+                'desc'=>''
             ],
             [
                 'name' => 'early_time_come',
-                'value' => '06:30',
+                'value' => '06:30','desc'=>''
             ],
             [
                 'name' => 'end_time_come',
-                'value' => '09:00',
+                'value' => '09:00','desc'=>''
             ],
             [
                 'name' => 'early_time_leave',
-                'value' => '14:00',
+                'value' => '14:00','desc'=>''
             ],
             [
                 'name' => 'end_time_leave',
-                'value' => '16:30',
+                'value' => '16:30','desc'=>''
             ],
             [
                 'name' => 'timeline',
-                'value' => true,
+                'value' => true,'desc'=>''
             ],
             
             [
