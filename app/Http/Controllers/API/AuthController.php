@@ -39,9 +39,9 @@ class AuthController extends Controller
             'nama' => $request->name,
             'email' => $request->email,
          ]);
-
+         $q = new PresenceController();
         return response()
-            ->json(['teacher_id' => $teacher->id,'name' => $teacher->nama,'email' => $teacher->email,'access_token' => $token, 'token_type' => 'Bearer' ]);
+            ->json(['teacher_id' => $teacher->id,'name' => $teacher->nama,'email' => $teacher->email,'access_token' => $token, 'token_type' => 'Bearer','qrcode'=>$q->getQrCode()]);
     }
 
     public function login(Request $request)
