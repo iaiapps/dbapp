@@ -223,4 +223,21 @@ class PresenceController extends Controller
             'data'=>$presence
         ], 200);
     }
+
+    public function getQrCode()
+    {
+        $qr = DB::table('presence_setting')->where('name','qrcode')->get();
+        return response()->json([
+            'pesan'=>'Berhasil mendapatkan kode qr-code',
+            'data'=>$qr
+        ], 200);
+    }
+    public function getTimeSettings()
+    {
+        $qr = DB::table('presence_setting')->where('name','!=','qrcode')->get();
+        return response()->json([
+            'pesan'=>'Berhasil mendapatkan Settings',
+            'data'=>$qr
+        ], 200);
+    }
 }

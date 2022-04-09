@@ -22,6 +22,9 @@
                                 class="btn btn-sm btn-success">Perbarui</button>
                             <a class="btn btn-outline-success btn-sm" target="_blank"
                                 href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ $item->value }}">Qr</a>
+                            <a class="btn btn-outline-success btn-sm" target="_blank"
+                                href="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ $item->value }}">Yg
+                                baru</a>
                         </td>
                     </tr>
                 @endforeach

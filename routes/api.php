@@ -18,6 +18,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // API route for logout user
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/qrcodes', [PresenceController::class, 'getQrCode']);
+    Route::get('/settings', [PresenceController::class, 'getTimeSettings']);
     Route::resource('presences', PresenceController::class);
 });
 
