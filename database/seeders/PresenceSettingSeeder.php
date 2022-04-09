@@ -17,23 +17,28 @@ class PresenceSettingSeeder extends Seeder
             ],
             [
                 'name' => 'early_time_come',
-                'value' => '06:30','desc'=>''
+                'value' => '06:30',
+                'desc'=>''
             ],
             [
                 'name' => 'end_time_come',
-                'value' => '09:00','desc'=>''
+                'value' => '09:00',
+                'desc'=>''
             ],
             [
                 'name' => 'early_time_leave',
-                'value' => '14:00','desc'=>''
+                'value' => '14:00',
+                'desc'=>''
             ],
             [
                 'name' => 'end_time_leave',
-                'value' => '16:30','desc'=>''
+                'value' => '16:30',
+                'desc'=>''
             ],
             [
                 'name' => 'timeline',
-                'value' => true,'desc'=>''
+                'value' => true,
+                'desc'=>''
             ],
             
             [
@@ -56,7 +61,7 @@ class PresenceSettingSeeder extends Seeder
                 'value' => time(),
                 'desc' => 'gedung4',
             ],
-
+            
         ]);
     }
 }

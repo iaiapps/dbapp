@@ -235,10 +235,7 @@ class PresenceController extends Controller
     public function getQrCode()
     {
         $qr = DB::table('presence_setting')->where('desc','gedung1')->first();
-        return response()->json([
-            'pesan'=>'Berhasil mendapatkan kode qr-code',
-            'data'=>$qr
-        ], 200);
+        return $qr;
     }
     public function getTimeSettings()
     {
