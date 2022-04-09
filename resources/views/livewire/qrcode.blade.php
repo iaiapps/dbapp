@@ -20,11 +20,11 @@
                 <th>QRCODE</th>
                 <th>{{ $qrcode }}</th>
                 <th>
-                    <button type="button" class="btn btn-success me-1 " data-bs-toggle="modal"
+                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal"
                         data-bs-target="#qrcodeModal">
                         Ubah
                     </button>
-                    <a href="">Save</a>
+                    <a href="" download="filename" class="btn btn-sm btn-outline-success">Save Qr</a>
                 </th>
             </tr>
         </table>
