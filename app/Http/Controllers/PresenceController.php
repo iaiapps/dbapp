@@ -84,7 +84,11 @@ class PresenceController extends Controller
         }
         public function getSetting()
         {
-            return DB::table('presence_setting')->get();
+            return DB::table('presence_setting')->where('name','!=','qrcode')->get();
+        }
+        public function qrCode()
+        {
+            return DB::table('presence_setting')->where('name','qrcode')->get();
         }
 }
         

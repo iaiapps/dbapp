@@ -20,7 +20,7 @@ class AdminController extends Controller
         $collection = DB::table('database_settings')->get();
         $presence = new PresenceController();
         $presence = $presence->getSetting();
-        return view('admin.db_settings',compact('collection','presence'));
+        return view('admin.db_settings', compact('collection','presence'));
     }
     public function editPresenceSetting($id)
     {

@@ -77,6 +77,7 @@
                 </tbody>
             </table>
         </div>
+        <livewire:qrcode />
     @endsection
 
     @section('js')
