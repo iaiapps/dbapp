@@ -24,6 +24,7 @@
                         data-bs-target="#qrcodeModal">
                         Ubah
                     </button>
+                    <a href="">Save</a>
                 </th>
             </tr>
         </table>
