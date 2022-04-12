@@ -43,7 +43,7 @@
                 <br />
                 <div class="clearfix">
                     <h4 class="float-start">Identitas PTK</h4>
-                    <a class="btn btn-success float-end" href="{{ route('guru.edit') }}">Edit</a>
+                    <a class="btn btn-success float-end" href="{{ route('teachers.edit') }}">Edit</a>
                 </div>
                 <hr class="text-primary" />
                 <table class="table ">
@@ -94,7 +94,7 @@
                 <br />
                 <div class="clearfix">
                     <h4 class="float-start">Data Pribadi</h4>
-                    <a class="btn btn-success float-end" href="{{ route('guru.edit') }}">Edit</a>
+                    <a class="btn btn-success float-end" href="{{ route('teachers.edit') }}">Edit</a>
                 </div>
                 <hr class="text-primary" />
                 <table class="table ">

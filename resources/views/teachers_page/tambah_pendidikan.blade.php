@@ -6,7 +6,7 @@
         <p class="fs-4 mb-3 px-3 py-3 bg-light rounded">
             Riwayat Pendidikan Formal
         </p>
-        <form class="px-2 mx-2" id="form" method="POST" action="{{ route('guru.input_pendidikan') }}">
+        <form class="px-2 mx-2" id="form" method="POST" action="{{ route('teachers.input_pendidikan') }}">
             @csrf
             <fieldset>
                 <div class="mb-3">

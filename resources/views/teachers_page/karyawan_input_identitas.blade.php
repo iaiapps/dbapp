@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('content')
     <div class="container grid-md bg-gray card rounded">
-        <form class="px-2 mx-2" id="form" action="{{ route('guru.input_data') }}" method="POST">
+        <form class="px-2 mx-2" id="form" action="{{ route('teachers.input_data') }}" method="POST">
             @csrf
             <fieldset>
                 <br />

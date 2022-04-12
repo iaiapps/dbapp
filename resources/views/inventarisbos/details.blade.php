@@ -1,7 +1,6 @@
     @extends('layout.master')
     @section('page_judul', 'Detail Barang')
     @section('content')
-
         <div class="card p-3">
             <div class="mb-3">
                 <a href="{{ route('inventaris.index') }}" class="btn btn-success ">kembali</a>
@@ -58,7 +57,7 @@
                             <td>{{ $item->kondisi_barang }}</td>
                         </tr>
                         <tr>
-                            <th>Kondisi Barang</th>
+                            <th>Foto Barang</th>
                             <td><img src="{{ asset('img_inventaris') . '/' . $item->dokumen }}" alt="image"
                                     class="img_upload"> </td>
                         </tr>
@@ -66,5 +65,4 @@
                 </table>
             </div>
         </div>
-
     @endsection

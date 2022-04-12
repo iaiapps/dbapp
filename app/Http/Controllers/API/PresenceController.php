@@ -219,7 +219,7 @@ class PresenceController extends Controller
             'note'=>'Telat'
         ]);
         return response()->json([
-            'pesan'=>'Berhasil absen masuk',
+            'pesan'=>'Berhasil absen pulang',
             'data'=>$presence
         ], 200);
     }

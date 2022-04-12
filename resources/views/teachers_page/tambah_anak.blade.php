@@ -5,7 +5,7 @@
         <p class="fs-4 mb-3 px-3 py-3 bg-light rounded">
             Form Anak
         </p>
-        <form class="px-2 mx-2" id="form" method="POST" action="{{ route('guru.tambah_anak') }}">
+        <form class="px-2 mx-2" id="form" method="POST" action="{{ route('teachers.tambah_anak') }}">
             @csrf
             <fieldset>
                 <div class="mb-3">

@@ -194,9 +194,9 @@
                         </table>
                     </div>
                 </div>
-                @include('guru.1_riwayat_pendidikan')
-                @include('guru.2_anak')
-                @include('guru.3_diklat')
+                @include('teachers_page.1_riwayat_pendidikan')
+                @include('teachers_page.2_anak')
+                @include('teachers_page.3_diklat')
                 @include('operator.list_dokumen')
             </div>
         </div>

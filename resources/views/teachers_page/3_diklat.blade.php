@@ -2,7 +2,7 @@
     <br />
     <div class="clearfix">
         <h4 class="float-start">Diklat</h4>
-        <a class="btn btn-primary float-end" href="{{ route('guru.tambah_diklat') }}">Tambah</a>
+        <a class="btn btn-primary float-end" href="{{ route('teachers.tambah_diklat') }}">Tambah</a>
     </div>
     <hr class="text-primary" />
     <div class="table-responsive">
@@ -27,7 +27,7 @@
                         <td>{{ $item->penyelenggara }}</td>
                         <td>{{ $item->tahun }}</td>
                         <td>{{ $item->peran }}</td>
-                        <form action="{{ route('guru.hapus_diklat', $item->id) }}" method="POST">
+                        <form action="{{ route('teachers.hapus_diklat', $item->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <td>

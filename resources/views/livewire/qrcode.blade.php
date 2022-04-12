@@ -15,6 +15,7 @@
     </x-modal>
 
     <div class="card rounded p-3 mt-3">
+        <p class="fs-4">QR Code Setting</p>
         <table>
             <tr>
                 <th>QRCODE</th>
@@ -22,9 +23,11 @@
                 <th>
                     <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal"
                         data-bs-target="#qrcodeModal">
-                        Ubah
+                        Ubah QR
                     </button>
-                    <a href="" download="filename" class="btn btn-sm btn-outline-success">Save Qr</a>
+                    <a target="_blank"
+                        href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&margin=20&data={{ $qrcode }}"
+                        download="filename" class="btn btn-sm btn-outline-success">Save QR</a>
                 </th>
             </tr>
         </table>

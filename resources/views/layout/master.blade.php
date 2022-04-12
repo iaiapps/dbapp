@@ -23,7 +23,7 @@
     <div id="wrapper">
         <div class="background position-absolute"></div>
 
-        <aside id="sidebar" class="position-fixed bg-white rounded shadow m-3">
+        <aside id="sidebar" class="position-fixed bg-white rounded shadow m-3 d-none d-sm-block">
             @include('layout.partials.avatar')
             @include('layout.partials.menu')
             @include('layout.partials.logout')

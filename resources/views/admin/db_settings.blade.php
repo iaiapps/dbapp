@@ -1,11 +1,7 @@
     @extends('layout.master')
     @section('page_judul', 'Database Setting')
     @section('content')
-        <div id="page_info" class="card rounded p-3">
-            {{-- <div class="py-2 my-2 clear-fix">
-                <a href="#" class="btn btn-primary float-end"> Tambah Data </a>
-            </div> --}}
-
+        <div class="card rounded p-3">
             @if ($collection->count() == 0)
                 <div class="card text-center p-4">
                     <h1 class="display-6">
@@ -13,6 +9,7 @@
                     </h1>
                 </div>
             @else
+                <p class="fs-4">Apps Setting</p>
                 <div class="table-responsive">
                     <table id="data" class="table">
                         <thead>
@@ -52,6 +49,7 @@
             @endif
         </div>
         <div class="card rounded p-3 mt-3">
+            <p class="fs-4">Time Setting</p>
             <table id="data" class="table">
                 <thead>
                     <tr>
@@ -80,10 +78,10 @@
         <livewire:qrcode />
     @endsection
 
-    @section('js')
+    {{-- @section('js')
         <script>
             $(document).ready(function() {
                 $('#data').DataTable();
             });
         </script>
-    @stop
+    @stop --}}
