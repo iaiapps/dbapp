@@ -2,7 +2,7 @@
 @section('page_judul', 'Data Presensi')
 <x-datatables />
 @section('content')
-    <div class="p-3 card">
+    <div class="p-3 bg-white rounded">
         @if ($presences->count() == 0)
             <div class="p-4 text-center card">
                 <a href="{{ URL::previous() }}">Kembali</a>
@@ -18,20 +18,20 @@
                     $month = $month ?? date('m');
                     $date = $year . '-' . $month;
                 @endphp
-                <div class="col-md-12 d-md-flex justify-content-between">
-                    <div>
-                        <a href="{{ route('presence.excel', ['date' => $date]) }}" class="btn btn-sm btn-success"><i
-                                class="bi bi-download"></i></a>
-                        <h6 style=" border-bottom: solid 2px #000000; display: inline; padding-bottom: 3px;">
+                <div class="row gy-2">
+                    <div class="col-12 col-md-6">
+                        <a href="{{ route('presence.excel', ['date' => $date]) }}" class="btn btn-success">
+                            <i class="bi bi-download"></i></a>
+                        <h6 class="d-inline border-bottom border-success pb-2 border-3"> Data bulan :
                             {{ Carbon\Carbon::parse($date)->isoFormat('MMMM Y') }}</h6>
                     </div>
-                    <div class="d-flex">
-                        <input type="month" id="start" name="date" value="{{ $date }}" class="form-control" />
-                        <button type="submit" class="btn btn-success">Terapkan</button>
+                    <div class="col col-12 col-md-6 d-flex">
+                        <input type="month" id="start" name="date" value="{{ $date }}" class="form-control " />
+                        <button type="submit" class="btn btn-success ">Terapkan</button>
                     </div>
                 </div>
             </form>
-
+            <br>
             <div class="table-responsive">
                 <table class="table" id="datatable">
                     <thead>
@@ -46,7 +46,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         @foreach ($presences as $presence)
                             @php
                                 $tanggal = DB::table('presences')

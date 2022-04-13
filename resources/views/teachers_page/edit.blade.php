@@ -22,7 +22,7 @@
                 </ul>
             </div>
             <div class="px-3">
-                <form action="{{ route('guru.update') }}" method="POST">
+                <form action="{{ route('teachers.update') }}" method="POST">
                     @csrf
                     @method('PUT')
 
