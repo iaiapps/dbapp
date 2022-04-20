@@ -15,8 +15,8 @@
         <div class="col-12 col-sm-6">
             <div class="mt-3 card rounded p-3 flex-row justify-content-between align-items-center">
                 <div class="flex-fill">
-                    <button class="float-start btn btn-success rounded fs-5">
-                        <i class="bi bi-people-fill"></i>
+                    <button class="float-start btn btn-success rounded">
+                        <i class="las la-user-check la-lg"></i>
                     </button>
                     <span class="ms-2 fs-5"> Total Siswa </span>
                 </div>
@@ -26,8 +26,8 @@
         <div class="col-12 col-sm-6">
             <div class="mt-3 card rounded p-3 flex-row justify-content-between align-items-center">
                 <div class="flex-fill">
-                    <span class="float-start btn btn-success rounded fs-5">
-                        <i class="bi bi-people-fill"></i>
+                    <span class="float-start btn btn-success rounded">
+                        <i class="las la-user-check la-lg"></i>
                     </span>
                     <span class="ms-2 fs-5"> Guru/Karyawan </span>
                 </div>
@@ -48,21 +48,21 @@
             <tbody>
                 <tr>
                     <th><button class="btn btn-success btn-sm rounded">
-                            <i class="bi bi-building"></i>
+                            <i class="las la-school la-lg"></i>
                         </button></th>
                     <td>Sekolah</td>
                     <td> {{ $sekolah->nama_sekolah }}</td>
                 </tr>
                 <tr>
                     <th><button class="btn btn-success btn-sm rounded">
-                            <i class="bi bi-123"></i>
+                            <i class="las la-code la-lg"></i>
                         </button></th>
                     <td>NPSN</td>
                     <td> {{ $sekolah->npsn }}</td>
                 </tr>
                 <tr>
                     <th><button class="btn btn-success btn-sm rounded">
-                            <i class="bi bi-signpost-2-fill"></i>
+                            <i class="las la-map-marked la-lg"></i>
                         </button></th>
                     <td>Alamat</td>
                     <td> {{ $sekolah->alamat_sekolah }}
@@ -72,14 +72,14 @@
                 </tr>
                 <tr>
                     <th><button class="btn btn-success btn-sm rounded">
-                            <i class="bi bi-globe"></i>
+                            <i class="las la-atlas la-lg"></i>
                         </button></th>
                     <td>Website</td>
                     <td> <a href="https://{{ $sekolah->website }}">{{ $sekolah->website }}</a> </td>
                 </tr>
                 <tr>
                     <th><button class="btn btn-success btn-sm rounded">
-                            <i class="bi bi-envelope-fill"></i>
+                            <i class="las la-envelope-open-text la-lg"></i>
                         </button></th>
                     <td>Email</td>
                     <td> {{ $sekolah->email }}</td>

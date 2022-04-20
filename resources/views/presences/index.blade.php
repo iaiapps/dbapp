@@ -20,8 +20,9 @@
                 @endphp
                 <div class="row gy-2">
                     <div class="col-12 col-md-6">
-                        <a href="{{ route('presence.excel', ['date' => $date]) }}" class="btn btn-success">
-                            <i class="bi bi-download"></i></a>
+                        <a href="{{ route('presence.excel', ['date' => $date]) }}"
+                            class="btn btn-success btn-sm rounded fs-5 ">
+                            <i class="las la-download la-lg"></i></a>
                         <h6 class="d-inline border-bottom border-success pb-2 border-3"> Data bulan :
                             {{ Carbon\Carbon::parse($date)->isoFormat('MMMM Y') }}</h6>
                     </div>
@@ -83,7 +84,7 @@
                                 <td>{{ $izin }}</td>
                                 <td>
                                     <a href="{{ route('presence.show', $presence->teacher->id) }}"
-                                        class="btn btn-primary btn-sm">
+                                        class="btn btn-success btn-sm">
                                         <span><i class="las la-search"></i></span></a>
                                 </td>
                             </tr>
