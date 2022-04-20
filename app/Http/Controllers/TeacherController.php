@@ -104,7 +104,7 @@ class TeacherController extends Controller
         $data = request()->except(['_token', '_method']);
         Teacher::where('email', Auth::user()->email)->update($data);
         $request->session()->put('tabname', 'pribadi');
-        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil Update');
+        return redirect()->route('teachers.biodata')->with('success', 'Berhasil Update');
     }
     
     public function uploadDokumen()
@@ -136,29 +136,30 @@ class TeacherController extends Controller
         $data['teacher_id'] = $teacher_id;
         Education::Create($data);
         $request->session()->put('tabname', 'pendidikan');
-        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil');;
+        return redirect()->route('teachers.biodata')->with('success', 'Berhasil');;
     }
     function inputAnak(request $request)
     {
         $this->validate($request, [
             'nama' => 'required',
-            'status' => 'required',
+            // 'status' => 'required',
             'jenjang_pendidikan' => 'required',
-            'nisn' => 'required',
+            // 'nisn' => 'required',
             'jk' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
-            'tahun_masuk' => 'required',
-            'teacher_id' => 'required',
+            // 'tahun_masuk' => 'required',
+            
         ]);
         
+        // $data = request()->except(['_token', '_method']);
+        $data = $request->all();
         $teacher_id = Teacher::where('email', Auth::user()->email)->first()->id;
-        $data = request()->except(['_token', '_method']);
         $data['teacher_id'] = $teacher_id;
-        dd($data);
+       
         Child::Create($data);
         $request->session()->put('tabname', 'anak');
-        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil');;
+        return redirect()->route('teachers.biodata')->with('success', 'Berhasil');;
     }
     function inputDiklat(request $request)
     {
@@ -167,7 +168,7 @@ class TeacherController extends Controller
         $data['teacher_id'] = $teacher_id;
         Training::Create($data);
         $request->session()->put('tabname', 'diklat');
-        return redirect()->route('teachers_page.biodata')->with('success', 'Berhasil');;
+        return redirect()->route('teachers.biodata')->with('success', 'Berhasil');;
     }
     function hapusPendidikan($id)
     {

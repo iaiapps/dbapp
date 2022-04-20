@@ -2,12 +2,10 @@
     <br />
     <div class="clearfix">
         <h4 class="float-start">Diklat</h4>
-        <a class="btn btn-primary float-end" href="{{ route('teachers.tambah_diklat') }}">Tambah</a>
+        <a class="btn btn-success float-end" href="{{ route('teachers.tambah_diklat') }}">Tambah</a>
     </div>
     <hr class="text-primary" />
     <div class="table-responsive">
-
-
         <table class="table table-striped tab-content" id="5">
             <thead>
                 <tr>
@@ -31,7 +29,7 @@
                             @csrf
                             @method('DELETE')
                             <td>
-                                <button type="submit" onClick="confirm('Yakin mau di hapus?')" class="btn btn-primary">
+                                <button type="submit" onClick="confirm('Yakin mau di hapus?')" class="btn btn-success">
                                     <span><i class="las la-trash"></i></span>
                                 </button>
                             </td>

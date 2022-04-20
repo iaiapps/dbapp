@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Laravel\Ui\Presets\React;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert;
+// use RealRashid\SweetAlert\Facades\Alert;
 
 class SiswaController extends Controller
 {

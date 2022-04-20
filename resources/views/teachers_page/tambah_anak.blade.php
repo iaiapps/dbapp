@@ -58,9 +58,6 @@
                     <input class="form-control" type="text" id="nisn" name="nisn" placeholder="NISN" />
                 </div> --}}
 
-
-
-
                 {{-- <div class="mb-3">
                         <label class="form-label" for="tahunmasuk">Tahun Masuk
                         </label>
