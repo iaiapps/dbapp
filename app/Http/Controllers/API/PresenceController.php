@@ -23,7 +23,8 @@ class PresenceController extends Controller
     }
     public function show($id)
     {
-        $presence = Presence::where('teacher_id',$id)->get();
+        $month = Carbon::now();
+        $presence = Presence::where('teacher_id',$id)->whereMonth('created_at',$month)->get();
         if (is_null($presence)) {
             return response()->json(['pesan'=>'Data tidak ditemukan'], 404); 
         }
