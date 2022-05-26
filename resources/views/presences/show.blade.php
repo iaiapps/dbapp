@@ -43,6 +43,7 @@
                             <th>Datang</th>
                             <th>Pulang</th>
                             <th>Ket</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,11 +55,73 @@
                                 <td>{{ $presence->time_in }}</td>
                                 <td>{{ $presence->time_out }}</td>
                                 <td>{{ $presence->note }}</td>
+                                <td>
+
+                                    <a href="#" data-toggle="modal" data-id="{!! $presence->id !!}"
+                                        class="btn btn-sm btn-primary editModalBtn"><i class="las la-edit "></i></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+
+                <div id="editModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel2">Update Jam</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('presence.update_jam') }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <input type="hidden" name="id" value="id" id="id">
+                                        <input type="datetime-local" name="time_in" class="form-control">
+                                        <input type="datetime-local" name="time_out" class="form-control">
+                                        <select name="is_late" id="">
+                                            <option value="0">Tidak Terlambat</option>
+                                            <option value="1">Terlambat</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-check-circle"></i> Update
+                                        !</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         @endif
     </div>
+
 @endsection
+
+@push('foot')
+    {{-- <script src="{{ url('new_theme') }}/assets/jquery/jquery-3.6.0.min.js"></script> --}}
+
+    <script>
+        $(document).ready(function() {
+            $('.editModalBtn').click(function() {
+                var id = $(this).data('id');
+                var url = '{{ URL::to('edit_jam') }}';
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    data: {
+                        'id': id
+                    },
+                    success: function(data) {
+                        $('#id').val(data.id);
+                        // $('.created_at').val(data.created_at);
+                        // $('.updated_at').val(data.updated_at);
+                        $('#editModal').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
