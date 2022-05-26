@@ -9,7 +9,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Child extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $fillable=[
+        'teacher_id',
+        'nama',
+        'jenjang_pendidikan',
+        'jk',
+        'tempat_lahir',
+        'tanggal_lahir',
+    ];
 
     public function teacher()
     {

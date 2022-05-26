@@ -2,7 +2,7 @@
     <br />
     <div class="clearfix">
         <h4 class="float-start">Riwayat Pendidikan</h4>
-        <a class="btn btn-primary float-end" href="{{ route('teachers.tambah_pendidikan') }}">Tambah</a>
+        <a class="btn btn-success float-end" href="{{ route('teachers.tambah_pendidikan') }}">Tambah</a>
     </div>
 
     <hr class="text-primary" />
@@ -36,7 +36,7 @@
                             @csrf
                             @method('DELETE')
                             <td>
-                                <button type="submit" onClick="confirm('Yakin mau di hapus?')" class="btn btn-primary">
+                                <button type="submit" onClick="confirm('Yakin mau di hapus?')" class="btn btn-success">
                                     <span><i class="las la-trash"></i></span>
                                 </button>
                             </td>

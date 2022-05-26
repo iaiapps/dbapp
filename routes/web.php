@@ -34,14 +34,14 @@ use Psy\CodeCleaner\ValidConstructorPass;
 // developer mode only
 // comment if production starting
 // =====================================
-function __construct()
-{
-    Artisan::call('config:clear');
-    Artisan::call('cache:clear');
-    Artisan::call('config:cache');
-    Artisan::call('view:clear');
-    Artisan::call('route:cache');
-}
+// function __construct()
+// {
+//     Artisan::call('config:clear');
+//     Artisan::call('cache:clear');
+//     Artisan::call('config:cache');
+//     Artisan::call('view:clear');
+//     Artisan::call('route:cache');
+// }
 // =====================================
 
 Route::get('rj',function () {
@@ -54,6 +54,15 @@ Route::get('cj',function () {
     Artisan::call('queue:clear');
 }
 );
+
+Route::get('cekImagick', function ()
+{
+    
+if (!extension_loaded('imagick')){
+    echo 'imagick not installed';
+}
+// phpinfo();
+});
 
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');

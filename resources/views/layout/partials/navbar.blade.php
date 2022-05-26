@@ -1,7 +1,7 @@
 <div id="nav" class="clearfix bg-white p-3 rounded ">
     <div class="float-start">
         <button id="buttonSidebar" class="btn btn-success btn-sm hover bg-light text-success rounded fs-5">
-            <i class="bi bi-grid-1x2-fill"></i>
+            <i class="las la-icons la-lg"></i>
         </button>
     </div>
     <div class="float-end d-flex">
@@ -11,13 +11,13 @@
         <div class="dropdown  me-3">
             <button class="btn btn-success btn-sm hover bg-light text-success rounded fs-5" type="button"
                 data-bs-toggle="dropdown" data-bs-toggle="dropdown" id="dropdownmenu" aria-expanded="false">
-                <i class="bi bi-envelope-fill"></i>
+                <i class="las la-envelope la-lg"></i>
             </button>
 
             <div class="dropdown-menu shadow p-3 mt-3 rounded" aria-labelledby="dropdownmenu">
                 <div class="text-center">
-                    <i class="bi bi-envelope-fill display-5 text-success"></i>
-                    <p class="text-center my-3">Pusat Informasi</p>
+                    <i class="las la-paper-plane la-4x text-success"></i>
+                    <p class="text-center mb-3">Pusat Informasi</p>
                     @php
                         $collection = DB::table('database_settings')
                             ->where('id', '!=', 1)
@@ -35,13 +35,13 @@
         <div class="dropdown">
             <button class="btn btn-success btn-sm hover bg-light text-success rounded fs-5" type="button"
                 data-bs-toggle="dropdown" data-bs-toggle="dropdown" id="dropdownmenu" aria-expanded="false">
-                <i class="bi bi-person-circle"></i>
+                <i class="las la-user-circle la-lg"></i>
             </button>
 
             <div class="dropdown-menu shadow p-3 mt-3 rounded" aria-labelledby="dropdownmenu">
                 <div class="text-center">
-                    <i class="bi bi-person-circle display-5 text-success"></i>
-                    <p class="text-center my-3">Pengaturan Akun</p>
+                    <i class="las la-user-circle la-4x text-success"></i>
+                    <p class="text-center mb-3">Pengaturan Akun</p>
                     <a href="{{ route('ganti-pass') }}" class=" btn btn-outline-success mb-3 w-100">
                         Ganti Password
                     </a>

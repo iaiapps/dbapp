@@ -1,5 +1,5 @@
 @extends('auth.layouts.login_master')
-@section('page_title', 'Login Guru')
+@section('page_title', 'Login Guru/Karyawan')
 
 @section('content')
     @include('auth.layouts.login_nav')
@@ -8,7 +8,7 @@
             <div class="title text-center">
                 <img src="{{ asset('new_theme') }}/img/teacher.png"
                     class="border bg-white rounded-circle p-1 avatar mb-1 mt-3" alt="teacher" />
-                <p class="text-white display-6">LOGIN GURU</p>
+                <p class="text-white display-6">LOGIN GURU/KARYAWAN</p>
             </div>
             <div class="p-3">
                 <a href="{{ route('login_guru_google') }}" class="btnG btn btn-outline-success img-fluid">

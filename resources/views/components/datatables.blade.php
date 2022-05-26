@@ -1,5 +1,6 @@
-@push('foot')
-    <script src="{{ url('new_theme') }}/assets/jquery/jquery-3.6.0.min.js"></script>
+@push('datatables')
+    <link rel="stylesheet" href="{{ url('new_theme') }}/assets/datatables/datatables.min.css" />
+
     <script src="{{ url('new_theme') }}/assets/datatables/datatables.min.js"></script>
     <script>
         $(document).ready(function() {

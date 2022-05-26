@@ -77,11 +77,3 @@
         </div>
         <livewire:qrcode />
     @endsection
-
-    {{-- @section('js')
-        <script>
-            $(document).ready(function() {
-                $('#data').DataTable();
-            });
-        </script>
-    @stop --}}

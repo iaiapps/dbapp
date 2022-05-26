@@ -96,12 +96,12 @@ class PresenceController extends Controller
         {
             DB::table('presence_setting')->where('desc','gedung1')->update(['value'=>$request->qrcode]);
             // buatkan juga qrnya
-            $image = QrCode::format('png')
-            ->merge('http://s.sim.siap-online.com//upload/sekolah/20554128.150326103424.png', 0.1, true)
-            ->size(200)->errorCorrection('H')
-            ->generate($request->qrcode);
-            $output_file = '/qrcode/img-' . $request->qrcode . '.png';
-            Storage::disk('local')->put($output_file, $image); //storage/app/public/img/qr-code/img-1557309130.png
+            // $image = QrCode::format('png')
+            //      ->merge('http://s.sim.siap-online.com//upload/sekolah/20554128.150326103424.png', 0.1, true)
+            //      ->size(200)->errorCorrection('H')
+            //      ->generate($request->qrcode);
+            // $output_file = '/qrcode/img-' . $request->qrcode . '.png';
+            // Storage::disk('local')->put($output_file, $image); //storage/app/public/img/qr-code/img-1557309130.png
             return back()->with('success','QR Code berhasil di update');
         }
         public function edit(Request $request, $id)
