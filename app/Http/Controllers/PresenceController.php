@@ -97,12 +97,16 @@ class PresenceController extends Controller
             DB::table('presence_setting')->where('desc','gedung1')->update(['value'=>$request->qrcode]);
             // buatkan juga qrnya
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> bf11d4af1ed0dcfc658b165efd7f2b2aafbb63f6
             // $image = QrCode::format('png')
             //      ->merge('http://s.sim.siap-online.com//upload/sekolah/20554128.150326103424.png', 0.1, true)
             //      ->size(200)->errorCorrection('H')
             //      ->generate($request->qrcode);
             // $output_file = '/qrcode/img-' . $request->qrcode . '.png';
             // Storage::disk('local')->put($output_file, $image); //storage/app/public/img/qr-code/img-1557309130.png
+<<<<<<< HEAD
 =======
             $image = QrCode::format('png')
             ->merge('http://s.sim.siap-online.com//upload/sekolah/20554128.150326103424.png', 0.1, true)
@@ -111,6 +115,8 @@ class PresenceController extends Controller
             $output_file = '/qrcode/img-' . $request->qrcode . '.png';
             Storage::disk('local')->put($output_file, $image); //storage/app/public/img/qr-code/img-1557309130.png
 >>>>>>> 2d5ea2926fe326683a5956b9c4cfb329aa8b482c
+=======
+>>>>>>> bf11d4af1ed0dcfc658b165efd7f2b2aafbb63f6
             return back()->with('success','QR Code berhasil di update');
         }
         public function edit(Request $request, $id)
