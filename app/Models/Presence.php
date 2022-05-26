@@ -10,7 +10,17 @@ class Presence extends Model
     use HasFactory;
     // public $timestamps = false;
     protected $table = 'presences';
-    protected $guarded = [];
+      protected $fillable = [
+         'teacher_id',
+         'date',
+         'time_in',
+         'time_out',
+         'is_late',
+         'overtime',
+         'note',
+         'created_at',
+         'updated_at'
+      ];
     protected $with = ['teacher'];
 
     public function teacher()

@@ -224,6 +224,8 @@ Route::put('inventaris/edit/{id}', [InventoryController::class, 'updateInventory
 Route::delete('inventaris/{id}', [InventoryController::class, 'hapusInventory'])->name('inventaris.delete');
 
 //Presensi
+Route::get('edit_jam',  [PresenceController::class, 'editJam'])->name('presence.edit_jam');
+Route::put('update_jam',  [PresenceController::class, 'updateJam'])->name('presence.update_jam');
 Route::get('presence/daterange', [PresenceController::class, 'betweenDate'])->name('presence.daterange');
 Route::get('presence/exportExcel',[PresenceController::class, 'exportExcel'])->name('presence.excel');
 Route::get('presence/monthly',[PresenceController::class, 'monthlyPresence'])->name('presence.monthly');

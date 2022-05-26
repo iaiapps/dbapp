@@ -10,4 +10,16 @@ $ php artisan tinker
 $ ExtracurricularData::factory()->count(300)->create()
 > enter
 
+=(3)= Membuat dummy data GURU
+-----------------------------------------
+$ php artisan tinker
+$ Teacher::factory()->count(300)->create()
+> enter
+
+=(4)= Membuat dummy data Presence
+-----------------------------------------
+$ php artisan tinker
+$ Presence::factory()->count(300)->create()
+> enter
+
 
