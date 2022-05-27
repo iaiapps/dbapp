@@ -96,12 +96,27 @@ class PresenceController extends Controller
         {
             DB::table('presence_setting')->where('desc','gedung1')->update(['value'=>$request->qrcode]);
             // buatkan juga qrnya
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> bf11d4af1ed0dcfc658b165efd7f2b2aafbb63f6
+            // $image = QrCode::format('png')
+            //      ->merge('http://s.sim.siap-online.com//upload/sekolah/20554128.150326103424.png', 0.1, true)
+            //      ->size(200)->errorCorrection('H')
+            //      ->generate($request->qrcode);
+            // $output_file = '/qrcode/img-' . $request->qrcode . '.png';
+            // Storage::disk('local')->put($output_file, $image); //storage/app/public/img/qr-code/img-1557309130.png
+<<<<<<< HEAD
+=======
             $image = QrCode::format('png')
             ->merge('http://s.sim.siap-online.com//upload/sekolah/20554128.150326103424.png', 0.1, true)
             ->size(200)->errorCorrection('H')
             ->generate($request->qrcode);
             $output_file = '/qrcode/img-' . $request->qrcode . '.png';
             Storage::disk('local')->put($output_file, $image); //storage/app/public/img/qr-code/img-1557309130.png
+>>>>>>> 2d5ea2926fe326683a5956b9c4cfb329aa8b482c
+=======
+>>>>>>> bf11d4af1ed0dcfc658b165efd7f2b2aafbb63f6
             return back()->with('success','QR Code berhasil di update');
         }
         public function edit(Request $request, $id)
@@ -124,12 +139,14 @@ class PresenceController extends Controller
         {
             $time_in = Carbon::parse($request->time_in)->format('H:i:s');
             $time_out = Carbon::parse($request->time_out)->format('H:i:s');
+            $created_at = Carbon::parse($request->time_in)->toDateTimeString();
+            $updated_at = Carbon::parse($request->time_out)->toDateTimeString();
             $date= Carbon::parse($request->time_in)->format('d/m/Y');
             $is_late = $request->is_late;
             if($is_late == 1){
-                $note ='Telat';
+                $note ='telat';
             }else{
-                $note ='Tepat Waktu';
+                $note ='tepat Waktu';
             }
 
             $presence = Presence::where('id',$request->id);
@@ -137,6 +154,8 @@ class PresenceController extends Controller
             $presence->update([
                 'time_in' => $time_in,
                 'time_out' => $time_out,
+                'created_at' => $created_at,
+                'updated_at' => $updated_at,
                 'is_late' => $is_late,
                 'note' => $note,
                 'date'=>$date

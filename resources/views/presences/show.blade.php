@@ -78,14 +78,18 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                         <input type="hidden" name="id" value="id" id="id">
-                                        <input type="datetime-local" name="time_in" class="form-control">
-                                        <input type="datetime-local" name="time_out" class="form-control">
-                                        <select name="is_late" id="">
+                                        <input type="time" name="time_in" class="form-control time_in">
+                                        <input type="time" name="time_out" class="form-control time_out">
+                                    </div><br>
+                                    <div class="form-group">
+                                        <select name="is_late" id="" class="form-control">
                                             <option value="0">Tidak Terlambat</option>
                                             <option value="1">Terlambat</option>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-check-circle"></i> Update
+                                    <br>
+                                    <button type="submit" class="btn btn-primary w-100"><i class="fa fa-check-circle"></i>
+                                        Update
                                         !</button>
 
                                 </form>
@@ -100,14 +104,13 @@
 
 @endsection
 
-@push('foot')
-    {{-- <script src="{{ url('new_theme') }}/assets/jquery/jquery-3.6.0.min.js"></script> --}}
-
+@push('js')
     <script>
         $(document).ready(function() {
             $('.editModalBtn').click(function() {
                 var id = $(this).data('id');
-                var url = '{{ URL::to('edit_jam') }}';
+                console.log(id);
+                var url = '{{ URL::to('/edit_jam') }}';
                 $.ajax({
                     type: 'get',
                     url: url,
@@ -116,8 +119,8 @@
                     },
                     success: function(data) {
                         $('#id').val(data.id);
-                        // $('.created_at').val(data.created_at);
-                        // $('.updated_at').val(data.updated_at);
+                        $('.time_in').val(data.time_in);
+                        $('.time_out').val(data.time_out);
                         $('#editModal').modal('show');
                     }
                 });
