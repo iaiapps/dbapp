@@ -67,7 +67,9 @@
                                     ->whereMonth('created_at', $bulan)
                                     ->whereYear('created_at', $tahun)
                                     ->where('note', 'sakit')
-                                    ->count();
+                                    // ->count();
+                                    ->get();
+                                dd($sakit);
                                 
                                 $izin = DB::table('presences')
                                     ->where('teacher_id', $presence->teacher->id)
