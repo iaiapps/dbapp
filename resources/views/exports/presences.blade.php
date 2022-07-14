@@ -17,6 +17,7 @@
             @php
                 $tanggal = DB::table('presences')
                     ->where('teacher_id', $presence->teacher->id)
+                    ->orderBy('id', 'DESC')
                     ->first();
                 // dd($pre);
                 
@@ -33,6 +34,7 @@
                     ->whereYear('created_at', $tahun)
                     ->where('note', 'sakit')
                     ->count();
+                // ->get();
                 
                 $izin = DB::table('presences')
                     ->where('teacher_id', $presence->teacher->id)
