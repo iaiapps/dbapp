@@ -118,9 +118,9 @@ class PresenceController extends Controller
                     'is_late'=>false,
                     'note'=>$note
                 ]);
-                $pesan = 'Berhasil menambahkan catatan ' . $note;
-                return response()->json(['pesan'=>$pesan,'data'=>$presence], 200);
             }
+            $pesan = 'Berhasil menambahkan catatan ' . $note;
+            return response()->json(['pesan'=>$pesan,'data'=>$presence], 200);
         }else{
             return response()->json([
                 'pesan'=>'Data sudah ada',
