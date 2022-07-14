@@ -44,7 +44,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $presence->teacher->nama }}</td>
-                <td>{{ $presence->total_kehadiran }}</td>
+                <td>{{ $presence->total_kehadiran - $izin - $sakit }}</td>
                 <td>{{ $presence->total_telat }}</td>
                 <td>{{ $sakit }}</td>
                 <td>{{ $izin }}</td>

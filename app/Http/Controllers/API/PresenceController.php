@@ -97,21 +97,33 @@ class PresenceController extends Controller
     }
     private function _note($teacher_id, $note)
     {
+        
         $presence = Presence::where('teacher_id',$teacher_id)->whereDate('created_at', '=', Carbon::today())->first();
         if ($presence==null) {
-            $presence = Presence::create([
-                'teacher_id'=>$teacher_id,
-                'date'=>date("d/m/y"),
-                'time_in'=> '-',
-                'time_out'=> '-',
-                'is_late'=>false,
-                'note'=>$note
-            ]);
-            return response()->json(['pesan'=>'Berhasil menambahkan catatan izin/sakit','data'=>$presence], 200);
+            if($note=='Tugas kedinasan'){ 
+                $presence = Presence::create([
+                    'teacher_id'=>$teacher_id,
+                    'date'=>date("d/m/y"),
+                    'time_in'=> date('H:i:s'),
+                    'time_out'=> '-',
+                    'is_late'=>false,
+                    'note'=>$note
+                ]);
+            }else{
+                $presence = Presence::create([
+                    'teacher_id'=>$teacher_id,
+                    'date'=>date("d/m/y"),
+                    'time_in'=> '-',
+                    'time_out'=> '-',
+                    'is_late'=>false,
+                    'note'=>$note
+                ]);
+                $pesan = 'Berhasil menambahkan catatan ' . $note;
+                return response()->json(['pesan'=>$pesan,'data'=>$presence], 200);
+            }
         }else{
             return response()->json([
                 'pesan'=>'Data sudah ada',
-                'data'=>$presence
             ], 200);
         }
     }
@@ -224,7 +236,7 @@ class PresenceController extends Controller
             'data'=>$presence
         ], 200);
     }
-
+    
     public function getQrCodes()
     {
         $qr = DB::table('presence_setting')->where('name','qrcode')->get();
