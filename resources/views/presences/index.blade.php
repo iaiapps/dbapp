@@ -27,7 +27,8 @@
                             {{ Carbon\Carbon::parse($date)->isoFormat('MMMM Y') }}</h6>
                     </div>
                     <div class="col col-12 col-md-6 d-flex">
-                        <input type="month" id="start" name="date" value="{{ $date }}" class="form-control " />
+                        <input type="month" id="start" name="date" value="{{ $date }}"
+                            class="form-control " />
                         <button type="submit" class="btn btn-success ">Terapkan</button>
                     </div>
                 </div>
@@ -39,8 +40,8 @@
                         <tr>
                             <th>#</th>
                             <th>Nama Guru</th>
+                            <td>Jml Kehadiran</td>
                             <th>Telat</th>
-                            <th>Tepat Waktu</th>
                             <th>Sakit</th>
                             <th>Izin</th>
                             <th>Action</th>
@@ -65,21 +66,22 @@
                                     ->where('teacher_id', $presence->teacher->id)
                                     ->whereMonth('created_at', $bulan)
                                     ->whereYear('created_at', $tahun)
-                                    ->where('note', 'sakit')
+                                    ->where('note', 'LIKE', '%sakit%')
                                     ->count();
                                 
                                 $izin = DB::table('presences')
                                     ->where('teacher_id', $presence->teacher->id)
                                     ->whereMonth('created_at', $bulan)
                                     ->whereYear('created_at', $tahun)
-                                    ->where('note', 'izin')
+                                    ->where('note', 'LIKE', '%izin%')
                                     ->count();
+                                
                             @endphp
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $presence->teacher->nama }}</td>
+                                <td>{{ $presence->total_kehadiran }}</td>
                                 <td>{{ $presence->total_telat }}</td>
-                                <td>{{ $presence->total_kehadiran - $presence->total_telat - $sakit - $izin }}</td>
                                 <td>{{ $sakit }}</td>
                                 <td>{{ $izin }}</td>
                                 <td>

@@ -10,11 +10,17 @@ use App\Http\Controllers\PresenceController;
 
 class PresencesExport implements FromView
 {
-   
+    private $month;
+
+    public function __construct($month) 
+    {
+        $this->month = $month;
+    }
     public function view(): View
     {
+        $monthExport = Carbon::createFromFormat('Y-m',$this->month);
         $presences = new PresenceController();
-        $presences = $presences->getPresencesWhereMonth(Carbon::now());
+        $presences = $presences->getPresencesWhereMonth($monthExport);
         return view('exports.presences', [
             'presences' => $presences
         ]);

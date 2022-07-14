@@ -77,12 +77,8 @@ class PresenceController extends Controller
         }
         function exportExcel(Request $request)
         {
-            $date = Carbon::parse($request->date);
-            $month = $date->month()->isoFormat('MMMM');
-            $year= $date->month()->isoFormat('Y');
-            $name = $month.' '.$year;
-            // return Excel::download(new PresencesExport($date->month,$date->year), 'PresensiGuru-'. $name .'.xlsx');
-            return Excel::download(new PresencesExport(), 'PresensiGuru-'. $name .'.xlsx');
+            $month = $request->date;
+            return Excel::download(new PresencesExport($month), 'PresensiGuru-'. $request->date .'.xlsx');
         }
         public function getSetting()
         {

@@ -3,8 +3,8 @@
         <tr>
             <th>#</th>
             <th>Nama</th>
+            <th>Total Kehadiran</th>
             <th>Telat</th>
-            <th>Tepat Waktu</th>
             <th>Sakit</th>
             <th>Izin</th>
         </tr>
@@ -44,8 +44,8 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $presence->teacher->nama }}</td>
+                <td>{{ $presence->total_kehadiran }}</td>
                 <td>{{ $presence->total_telat }}</td>
-                <td>{{ $presence->total_kehadiran - $presence->total_telat - $sakit - $izin }}</td>
                 <td>{{ $sakit }}</td>
                 <td>{{ $izin }}</td>
             </tr>
