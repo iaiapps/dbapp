@@ -70,7 +70,6 @@
                                     ->where('note', 'sakit')
                                     // ->count();
                                     ->get();
-                                dd($sakit);
                                 
                                 $izin = DB::table('presences')
                                     ->where('teacher_id', $presence->teacher->id)
