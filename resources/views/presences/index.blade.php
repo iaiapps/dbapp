@@ -66,14 +66,14 @@
                                     ->where('teacher_id', $presence->teacher->id)
                                     ->whereMonth('created_at', $bulan)
                                     ->whereYear('created_at', $tahun)
-                                    ->where('note', 'LIKE', '%sakit%')
+                                    ->where('note', 'sakit')
                                     ->count();
                                 
                                 $izin = DB::table('presences')
                                     ->where('teacher_id', $presence->teacher->id)
                                     ->whereMonth('created_at', $bulan)
                                     ->whereYear('created_at', $tahun)
-                                    ->where('note', 'LIKE', '%izin%')
+                                    ->where('note', 'ijin')
                                     ->count();
                                 
                             @endphp
