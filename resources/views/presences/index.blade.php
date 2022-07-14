@@ -52,6 +52,7 @@
                             @php
                                 $tanggal = DB::table('presences')
                                     ->where('teacher_id', $presence->teacher->id)
+                                    ->orderBy('id', 'DESC')
                                     ->first();
                                 // dd($pre);
                                 
