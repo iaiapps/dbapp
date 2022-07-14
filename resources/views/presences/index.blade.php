@@ -40,7 +40,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nama Guru</th>
-                            <td>Jml Kehadiran</td>
+                            <th>Jml Kehadiran</th>
                             <th>Telat</th>
                             <th>Sakit</th>
                             <th>Izin</th>
