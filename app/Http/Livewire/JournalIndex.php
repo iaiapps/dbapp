@@ -68,5 +68,6 @@ class JournalIndex extends Component
             'created_at' => Carbon::now()->subMinutes(15)->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->subMinutes(15)->format('Y-m-d H:i:s'),
         ]);
+        return abort(403, 'Unauthorized action.');
     }
 }
