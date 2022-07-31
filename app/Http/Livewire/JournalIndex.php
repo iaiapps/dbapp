@@ -62,11 +62,11 @@ class JournalIndex extends Component
         Presence::create([
             'teacher_id' => $id,
             'date' => date("d/m/y"),
-            'time_in' => Carbon::now()->subMinutes(10)->format('H:i:s'),
+            'time_in' => Carbon::now()->subMinutes(15)->format('H:i:s'),
             'is_late' => false,
             'note' => 'Tepat waktu',
-            'created_at' => Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s'),
+            'created_at' => Carbon::now()->subMinutes(15)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->subMinutes(15)->format('Y-m-d H:i:s'),
         ]);
     }
 }
