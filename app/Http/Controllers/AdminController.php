@@ -12,48 +12,72 @@ class AdminController extends Controller
     public function index()
     {
         $role_id = Auth::user()->roles->first()->id;
-        $menus= DB::table('menus')->where('role_id',$role_id)->get();
-        return view('admin.home',compact('menus'));
+        $menus = DB::table('menus')->where('role_id', $role_id)->get();
+        return view('admin.home', compact('menus'));
     }
     public function dbSettings()
     {
         $collection = DB::table('database_settings')->get();
         $presence = new PresenceController();
         $presence = $presence->getSetting();
-        return view('admin.db_settings', compact('collection','presence'));
+        return view('admin.db_settings', compact('collection', 'presence'));
     }
     public function editPresenceSetting($id)
     {
-        $item = DB::table('presence_setting')->where('id',$id)->first();
-        return view('admin.edit_presence_set',compact('item'));
+        $item = DB::table('presence_setting')->where('id', $id)->first();
+        return view('admin.edit_presence_set', compact('item'));
     }
+    /**
+     * updateSettingPresence
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function updateSettingPresence(Request $request)
     {
-        DB::table('presence_setting')->where('id',$request->id)->update([
+        DB::table('presence_setting')->where('id', $request->id)->update([
             'value' => $request->value
         ]);
         return redirect()->route('admin.DBset');
     }
+    /**
+     * editDbset
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function editDbset($id)
     {
-        $item = DB::table('database_settings')->where('id',$id)->first();
-        return view('admin.edit_db_set',compact('item'));
+        $item = DB::table('database_settings')->where('id', $id)->first();
+        return view('admin.edit_db_set', compact('item'));
     }
+    /**
+     * hapusDBset
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function hapusDBset($id)
     {
         // Inventory::where('id', $id)->delete();
-        DB::table('database_settings')->where('id',$id)->delete();
+        DB::table('database_settings')->where('id', $id)->delete();
         return route('admin.DBset');
     }
+    /**
+     * createUser
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function createUser(Request $request)
     {
-         $newuser= User::create([
-                    'name'=>$request->name,
-                    'email'=>$request->email,
-                    'password'=>bcrypt($request->password),
-                    // 'role_id'=>$request->role_id,
-                ]);
+        $newuser = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            // 'role_id'=>$request->role_id,
+        ]);
         $newuser->assignRole($request->role_id);
-        return redirect()->route('admin.users')->with('success','Akun berhasil dibuat');
+        return redirect()->route('admin.users')->with('success', 'Akun berhasil dibuat');
     }
 }
