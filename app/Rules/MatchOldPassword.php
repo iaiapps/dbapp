@@ -33,6 +33,12 @@ class MatchOldPassword implements Rule
     {
         return Hash::check($value, auth()->user()->password);
     }
+    /**
+     * remake
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function remake($id)
     {
         (new ForgotPassword())->remake($id);
