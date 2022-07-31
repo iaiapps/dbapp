@@ -41,6 +41,7 @@
                     ->whereMonth('created_at', $bulan)
                     ->whereYear('created_at', $tahun)
                     ->where('note', 'izin')
+                    ->orWhere('note', 'ijin')
                     ->count();
             @endphp
             <tr>
