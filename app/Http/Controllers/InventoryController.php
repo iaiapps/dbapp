@@ -8,50 +8,69 @@ use App\Models\Inventory;
 
 class InventoryController extends Controller
 {
-    
+
     public function getInventory()
     {
         $collection = Inventory::orderBy('id', 'DESC')->get();
-        return view('inventarisbos.inventaris',compact('collection'));
+        return view('inventarisbos.inventaris', compact('collection'));
     }
-    function detailInventory($id){
+    function detailInventory($id)
+    {
         $item = Inventory::find($id);
-        return view('inventarisbos.details',compact('item'));
+        return view('inventarisbos.details', compact('item'));
     }
-    
+
+    /**
+     * storeInventory
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function storeInventory(Request $request)
     {
         $this->_validate();
         $data = $request->all();
         $file = $request->file('dokumen');
         $nama = time() . $file->getClientOriginalName();
-        $data['dokumen']=$nama;
-        $file->move(\base_path() ."/public/img_inventaris", $nama);
+        $data['dokumen'] = $nama;
+        $file->move(\base_path() . "/public/img_inventaris", $nama);
         Inventory::create($data);
-        return redirect()->route('inventaris.index')->with('success','Berhasil menambah data inventaris');
+        return redirect()->route('inventaris.index')->with('success', 'Berhasil menambah data inventaris');
     }
-    
+
     function editInventory($id)
     {
         $item = Inventory::find($id);
-        return view('inventarisbos.edit',compact('item'));
+        return view('inventarisbos.edit', compact('item'));
     }
-    
+
+    /**
+     * updateInventory
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
+     */
     public function updateInventory(Request $request, $id)
-    { 
+    {
         Inventory::find($id)->update($request->all());
         return redirect()->route('inventaris.index');
     }
-    
+
     function hapusInventory($id)
     {
         $file = Inventory::find($id, 'dokumen');
         // dd($file);
-        unlink(\base_path() ."/public/img_inventaris/".$file->dokumen);
+        unlink(\base_path() . "/public/img_inventaris/" . $file->dokumen);
         Inventory::where('id', $id)->delete();
-        
+
         return redirect()->route('inventaris.index')->with('success', 'Berhasil dihapus');
     }
+    /**
+     * _validate
+     *
+     * @return void
+     */
     private function _validate()
     {
         return request()->validate([
@@ -67,5 +86,4 @@ class InventoryController extends Controller
             'dokumen' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
         ]);
     }
-    
 }
