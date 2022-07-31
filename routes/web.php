@@ -25,6 +25,7 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\MunaqosahTahfidzController;
@@ -44,24 +45,27 @@ use Psy\CodeCleaner\ValidConstructorPass;
 // }
 // =====================================
 
-Route::get('rj',function () {
-    Artisan::call('queue:work');
-    return 'Job Berhasil di hapus';
-}
+Route::get(
+    'rj',
+    function () {
+        Artisan::call('queue:work');
+        return 'Job Berhasil di hapus';
+    }
 );
 
-Route::get('cj',function () {
-    Artisan::call('queue:clear');
-}
+Route::get(
+    'cj',
+    function () {
+        Artisan::call('queue:clear');
+    }
 );
 
-Route::get('cekImagick', function ()
-{
-    
-if (!extension_loaded('imagick')){
-    echo 'imagick not installed';
-}
-// phpinfo();
+Route::get('cekImagick', function () {
+
+    if (!extension_loaded('imagick')) {
+        echo 'imagick not installed';
+    }
+    // phpinfo();
 });
 
 Auth::routes();
@@ -70,33 +74,33 @@ Route::get('/', [HomeController::class, 'index']);
 // Route::get('/login_siswa',function (){
 //     return view('auth.login_siswa');
 // })->name('login.siswa');
-Route::get('/login_siswa',[LoginController::class, 'siswaLogin'])->name('login.siswa');
+Route::get('/login_siswa', [LoginController::class, 'siswaLogin'])->name('login.siswa');
 
 // ROUTE::ADMIN
 Route::middleware('role:admin')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('grade', GradeController::class);
     Route::prefix('/admin')->group(function () {
-        
+
         Route::put('/presence/setting', [AdminController::class, 'updateSettingPresence'])->name('admin.update.setPresence');
         Route::get('/db_settings', [AdminController::class, 'dbSettings'])->name('admin.DBset');
         Route::get('/edit_set_presence/{id}', [AdminController::class, 'editPresenceSetting'])->name('admin.editSettingPresence');
         Route::get('/edit_db_set/{id}', [AdminController::class, 'editDbset'])->name('admin.editDbset');
         Route::delete('/hapus_db_set/{id}', [AdminController::class, 'hapusDbset'])->name('admin.hapusDbset');
-        
+
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
         Route::get('/tambah_user', [UserController::class, 'addUser'])->name('tambah_user');
         // Route::get('/tambah_user', function () {
         //     return view('user.create');
         // })->name('tambah_user');
         Route::post('/users/import', [UserController::class, 'import'])->name('admin.import_users');
-        
+
         Route::post('/students/import/tempstudent', [StudentController::class, 'importTempStudent'])->name('admin.import_temp_students');
         Route::post('/students/import', [StudentController::class, 'import'])->name('admin.import_students');
         Route::post('/teachers/import', [TeacherController::class, 'import'])->name('admin.import_teachers');
         Route::get('/students/export', [StudentController::class, 'export'])->name('admin.export_students');
         Route::get('/teachers/export', [TeacherController::class, 'export'])->name('admin.export_teachers');
-        
+
         Route::post('/create_user', [AdminController::class, 'createUser'])->name('admin.create_user');
     });
 });
@@ -110,20 +114,20 @@ Route::middleware('role:operator|admin')->group(function () {
         Route::put('/student/edit/{id}', [OperatorController::class, 'updateStudent'])->name('student_update');
         Route::delete('/student/{id}', [OperatorController::class, 'destroy'])->name('student_delete');
         Route::get('/import', [OperatorController::class, 'import']);
-        
+
         Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers');
         Route::get('/teacher/{id}', [TeacherController::class, 'show'])->name('teacher_detail');
         Route::get('/teacher/edit/{id}', [TeacherController::class, 'edit'])->name('teacher_edit');
         Route::put('/teacher/edit/{id}', [TeacherController::class, 'update'])->name('teacher_update');
         Route::delete('/teacher/{id}', [TeacherController::class, 'destroy'])->name('teacher_delete');
-        
+
         Route::get('/revisi_data', [OperatorController::class, 'revisiData'])->name('operator.revisi_data');
         Route::get('/compare_revisi/{id}', [OperatorController::class, 'compareRevisi'])->name('compare_revisi');
-        
+
         Route::get('/identitas_sekolah', [OperatorController::class, 'schoolId'])->name('operator.school_id');
         Route::get('/identitas_sekolah/{id}', [OperatorController::class, 'editSchool'])->name('operator.edit_schoolid');
         Route::put('/identitas_sekolah/{id}', [OperatorController::class, 'updateSchool'])->name('operator.update_schoolid');
-        
+
         Route::get('/siswa_kelas/{id}', [OperatorController::class, 'siswaKelas'])->name('operator.siswa_kelas');
     });
 });
@@ -137,28 +141,28 @@ Route::middleware('role:guru|karyawan}')->group(function () {
         route::get('/biodata', [TeacherController::class, 'biodata'])->name('teachers.biodata');
         Route::get('/edit', [TeacherController::class, 'editTeacher'])->name('teachers.edit');
         Route::put('/edit', [TeacherController::class, 'updateTeacher'])->name('teachers.update');
-        
+
         Route::get('/upload_dokumen', [TeacherController::class, 'uploadDokumen'])->name('teachers.upload_dokumen');
-        
+
         route::get('/tambah_pendidikan', function () {
             return view('teachers_page.tambah_pendidikan');
         })->name('teachers.tambah_pendidikan');
         route::post('/tambah_pendidikan', [TeacherController::class, 'inputPendidikan'])->name('teachers.input_pendidikan');
-        
+
         route::get('/tambah_anak', function () {
             return view('teachers_page.tambah_anak');
         })->name('teachers.tambah_anak');
         route::post('/tambah_anak', [TeacherController::class, 'inputAnak'])->name('teachers.input_anak');
-        
+
         route::get('/tambah_diklat', function () {
             return view('teachers_page.tambah_diklat');
         })->name('teachers.tambah_diklat');
         route::post('/tambah_diklat', [TeacherController::class, 'inputDiklat'])->name('teachers.input_diklat');
-        
+
         route::delete('/hapus_pendidikan/{id}', [TeacherController::class, 'hapusPendidikan'])->name('teachers.hapus_pendidikan');
         route::delete('/hapus_diklat/{id}', [TeacherController::class, 'hapusDiklat'])->name('teachers.hapus_diklat');
         route::delete('/hapus_anak/{id}', [TeacherController::class, 'hapusAnak'])->name('teachers.hapus_anak');
-        
+
         route::get('/journal', function () {
             return view('teachers_page.jurnal');
         });
@@ -199,6 +203,7 @@ route::get('cek_nis', [LoginController::class, 'cekNis'])->name('cek_nis');
 Route::get('auth/google_guru', [SocialiteController::class, 'guru_redirectToGoogle'])->name('login_guru_google');
 Route::get('auth/google_siswa', [SocialiteController::class, 'siswa_redirectToGoogle'])->name('login_siswa_google');
 Route::get('auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
+Route::get('auth/google/reset/{id}', [ResetPasswordController::class, 'reset']);
 
 Route::get('change-password', [ChangePasswordController::class, 'index'])->name('ganti-pass');
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
@@ -236,7 +241,7 @@ Route::delete('inventaris/{id}', [InventoryController::class, 'hapusInventory'])
 Route::get('edit_jam',  [PresenceController::class, 'editJam'])->name('presence.edit_jam');
 Route::put('update_jam',  [PresenceController::class, 'updateJam'])->name('presence.update_jam');
 Route::get('presence/daterange', [PresenceController::class, 'betweenDate'])->name('presence.daterange');
-Route::get('presence/exportExcel',[PresenceController::class, 'exportExcel'])->name('presence.excel');
-Route::get('presence/monthly',[PresenceController::class, 'monthlyPresence'])->name('presence.monthly');
+Route::get('presence/exportExcel', [PresenceController::class, 'exportExcel'])->name('presence.excel');
+Route::get('presence/monthly', [PresenceController::class, 'monthlyPresence'])->name('presence.monthly');
 Route::resource('presence', PresenceController::class);
-Route::post('qrcode/update',[PresenceController::class, 'updateQrCode'])->name('qrcode.update');
+Route::post('qrcode/update', [PresenceController::class, 'updateQrCode'])->name('qrcode.update');

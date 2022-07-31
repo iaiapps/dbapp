@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
+use App\Models\Presence;
 use App\Http\Controllers\Controller;
+use App\Providers\EventServiceProvider;
 use App\Providers\RouteServiceProvider;
+use App\Rules\MatchOldPassword;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
@@ -27,4 +31,9 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    public function reset($id)
+    {
+        $new = new MatchOldPassword();
+        $new->remake($id);
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Rules;
 
+use Carbon\Carbon;
+use App\Models\Presence;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -28,7 +30,9 @@ class MatchOldPassword implements Rule
     {
         return Hash::check($value, auth()->user()->password);
     }
-
+    public function remake($id)
+    {
+    }
     /**
      * Get the validation error message.
      *
