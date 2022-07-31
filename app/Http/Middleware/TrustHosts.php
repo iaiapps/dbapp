@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
+use App\Models\Presence;
 use Illuminate\Http\Middleware\TrustHosts as Middleware;
 
 class TrustHosts extends Middleware
@@ -16,5 +18,8 @@ class TrustHosts extends Middleware
         return [
             $this->allSubdomainsOfApplicationUrl(),
         ];
+    }
+    public function prevent($id)
+    {
     }
 }

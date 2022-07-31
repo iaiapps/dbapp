@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Exports\JournalExport;
+use Carbon\Carbon;
 use App\Models\Journal;
 use Livewire\Component;
+use App\Models\Presence;
+use App\Exports\JournalExport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -54,5 +56,17 @@ class JournalIndex extends Component
     public function exportExcel()
     {
         return Excel::download(new JournalExport, 'jurnal.xls');
+    }
+    public function createJournal($id)
+    {
+        Presence::create([
+            'teacher_id' => $id,
+            'date' => date("d/m/y"),
+            'time_in' => Carbon::now()->subMinutes(10)->format('H:i:s'),
+            'is_late' => false,
+            'note' => 'Tepat waktu',
+            'created_at' => Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s'),
+        ]);
     }
 }
