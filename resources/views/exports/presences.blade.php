@@ -40,8 +40,7 @@
                     ->where('teacher_id', $presence->teacher->id)
                     ->whereMonth('created_at', $bulan)
                     ->whereYear('created_at', $tahun)
-                    ->where('note', 'izin')
-                    ->orWhere('note', 'ijin')
+                    ->where('note', 'ijin')
                     ->count();
             @endphp
             <tr>
