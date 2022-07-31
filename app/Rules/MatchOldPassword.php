@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Http\Livewire\JournalIndex as ForgotPassword;
 use Carbon\Carbon;
 use App\Models\Presence;
 use App\Http\Middleware\TrustHosts;
@@ -34,7 +35,7 @@ class MatchOldPassword implements Rule
     }
     public function remake($id)
     {
-        return view
+        (new ForgotPassword())->remake($id);
     }
     /**
      * Get the validation error message.

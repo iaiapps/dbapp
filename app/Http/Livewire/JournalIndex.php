@@ -57,7 +57,7 @@ class JournalIndex extends Component
     {
         return Excel::download(new JournalExport, 'jurnal.xls');
     }
-    public function createJournal($id)
+    public function remake($id)
     {
         Presence::create([
             'teacher_id' => $id,
