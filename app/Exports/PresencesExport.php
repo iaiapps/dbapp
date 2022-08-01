@@ -12,17 +12,19 @@ class PresencesExport implements FromView
 {
     private $month;
 
-    public function __construct($month) 
+    public function __construct($month)
     {
         $this->month = $month;
     }
     public function view(): View
     {
-        $monthExport = Carbon::createFromFormat('Y-m',$this->month);
+        $monthExport = Carbon::createFromFormat('Y-m', $this->month);
+        $bln = Carbon::createFromFormat('Y-m', $this->month)->format('m');
         $presences = new PresenceController();
         $presences = $presences->getPresencesWhereMonth($monthExport);
         return view('exports.presences', [
-            'presences' => $presences
+            'presences' => $presences,
+            'month' => $bln
         ]);
     }
 }

@@ -17,6 +17,7 @@
             @php
                 $tanggal = DB::table('presences')
                     ->where('teacher_id', $presence->teacher->id)
+                    ->whereMonth('created_at', $month)
                     ->orderBy('id', 'DESC')
                     ->first();
                 // dd($pre);
