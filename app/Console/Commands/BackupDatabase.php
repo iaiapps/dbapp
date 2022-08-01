@@ -40,13 +40,13 @@ class BackupDatabase extends Command
     {
         // echo 'Cron kita sudah jalan!';
         // \Log::info('Cron kita sudah jalan!');
-        $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
+        // $filename = "backup-" . Carbon::now()->format('Y-m-d') . ".gz";
 
-        $command = "mysqldump --user=" . env('DB_USERNAME') . " --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  | gzip > " . storage_path() . "/app/backup/" . $filename;
+        // $command = "mysqldump --user=" . env('DB_USERNAME') . " --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  | gzip > " . storage_path() . "/app/backup/" . $filename;
 
-        $returnVar = NULL;
-        $output  = NULL;
+        // $returnVar = NULL;
+        // $output  = NULL;
 
-        exec($command, $output, $returnVar);
+        // exec($command, $output, $returnVar);
     }
 }
