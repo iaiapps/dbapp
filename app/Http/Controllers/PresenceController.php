@@ -83,7 +83,13 @@ class PresenceController extends Controller
         $year = Carbon::parse($date)->year;
         $presences = Presence::whereYear('created_at', $year)
             ->whereMonth('created_at', $month)
-            ->select('teacher_id', DB::raw('SUM(is_late) as total_telat'), DB::raw('count(*) as total_kehadiran'))
+            ->select(
+                'teacher_id',
+                DB::raw("SUM(is_late) as total_telat"),
+                // DB::raw("SUM(IF(note = 'ijin')) as total_ijin"),
+                // DB::raw("SUM(IF(note = 'ijin')) as total_sakit"),
+                DB::raw("count(*) as total_kehadiran"),
+            )
             ->groupBy('teacher_id')
             ->with([
                 'teacher'  => function ($q) {

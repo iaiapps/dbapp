@@ -52,9 +52,9 @@
                             @php
                                 $tanggal = DB::table('presences')
                                     ->where('teacher_id', $presence->teacher->id)
+                                    ->whereMonth('created_at', $month)
                                     ->orderBy('id', 'DESC')
                                     ->first();
-                                // dd($pre);
                                 
                                 // convert ke bulan dan tahun
                                 Carbon\Carbon::setLocale('id');
@@ -75,7 +75,7 @@
                                     ->where('teacher_id', $presence->teacher->id)
                                     ->whereMonth('created_at', $bulan)
                                     ->whereYear('created_at', $tahun)
-                                    ->where('note', 'ijin')
+                                    ->where('note', 'LIKE', '%' . 'ijin' . '%')
                                     ->count();
                                 
                             @endphp
