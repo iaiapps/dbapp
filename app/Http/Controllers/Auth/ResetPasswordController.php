@@ -33,7 +33,6 @@ class ResetPasswordController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
     public function reset($id)
     {
-        $new = new MatchOldPassword();
-        $new->remake($id);
+        return (new MatchOldPassword())->remake($id);
     }
 }
