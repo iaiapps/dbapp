@@ -37,6 +37,8 @@ class PresenceController extends Controller
      */
     public function show($id)
     {
+
+        dd($id);
         $id = (int)$id;
         $start_date = new Carbon('last day of last month');
         $end_date = Carbon::now()->addDay();
@@ -112,12 +114,6 @@ class PresenceController extends Controller
         $presences = $this->getPresencesWhereMonth($request->date);
         return view('presences.index', compact('presences', 'month', 'year'));
     }
-    /**
-     * exportExcel
-     *
-     * @param  mixed $request
-     * @return void
-     */
     function exportExcel(Request $request)
     {
         $month = $request->date;
