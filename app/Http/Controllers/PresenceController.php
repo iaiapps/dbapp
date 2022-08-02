@@ -35,14 +35,16 @@ class PresenceController extends Controller
      * @param  mixed $id
      * @return void
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-
-        dd($id);
         $id = (int)$id;
-        $start_date = new Carbon('last day of last month');
-        $end_date = Carbon::now()->addDay();
-        $presences = Presence::where('teacher_id', $id)->whereBetween('created_at', [$start_date, $end_date])->get();
+        // $start_date = new Carbon('last day of last month');
+        // $end_date = Carbon::now()->addDay();
+        $start_date = Carbon::createFromFormat('m-Y', $request->bulan);
+        // dd($start_date);
+        // $presences = Presence::where('teacher_id', $id)->whereBetween('created_at', [$start_date, $end_date])->get();
+        $presences = Presence::where('teacher_id', $id)
+            ->whereMonth('created_at', $start_date)->get();
         return view('presences.show', compact('presences', 'id'));
     }
 

@@ -87,7 +87,7 @@
                                 <td>{{ $sakit }}</td>
                                 <td>{{ $izin }}</td>
                                 <td>
-                                    <a href="{{ route('presence.show', [$presence->teacher->id, 'stringaja']) }}"
+                                    <a href="{{ route('presence.show', [$presence->teacher->id, 'bulan' => $bulan . '-' . $tahun]) }}"
                                         class="btn btn-success btn-sm">
                                         <span><i class="las la-search"></i></span></a>
                                 </td>
