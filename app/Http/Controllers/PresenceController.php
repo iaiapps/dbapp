@@ -45,7 +45,8 @@ class PresenceController extends Controller
         // $presences = Presence::where('teacher_id', $id)->whereBetween('created_at', [$start_date, $end_date])->get();
         $presences = Presence::where('teacher_id', $id)
             ->whereMonth('created_at', $start_date)->get();
-        return view('presences.show', compact('presences', 'id'));
+        $name = $presences[0]->teacher->nama;
+        return view('presences.show', compact('presences', 'id', 'name'));
     }
 
     /**

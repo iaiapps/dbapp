@@ -33,7 +33,8 @@
             </div>
         @else
             <hr>
-            <p class="text-center fs-5">Data Detail Presensi </p>
+            <p class="text-center fs-5">Data Detail Presensi <strong> {{ $name }}</strong></p>
+
             <div class="table-responsive">
                 <table class="table" id="datatable">
                     <thead>
