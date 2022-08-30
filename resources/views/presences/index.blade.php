@@ -38,7 +38,7 @@
                 <table class="table" id="datatable">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>ID</th>
                             <th>Nama Guru</th>
                             <th>Jml Kehadiran</th>
                             <th>Telat</th>
@@ -80,7 +80,7 @@
                                 
                             @endphp
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $presence->teacher->id }}</td>
                                 <td>{{ $presence->teacher->nama }}</td>
                                 <td>{{ $presence->total_kehadiran - $izin - $sakit }}</td>
                                 <td>{{ $presence->total_telat }}</td>

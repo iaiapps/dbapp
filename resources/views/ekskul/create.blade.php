@@ -21,19 +21,14 @@
                 <div class="card-body">
                     <livewire:selection />
                     <br>
-                    <a class="text-sm-start text-muted"><small>NOTE</small>
-                    </a>
-                    <ul>
-                        <li>Kuota tiap ekstrakurikuler adalah 20 siswa</li>
-                        <li>Ekstrakurikuler akan dilaksanakan jika peminat minimal 10 siswa</li>
-                    </ul>
+                  
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            Informasi Kuota :
+            {{-- Informasi Kuota : --}}
             <div class="mt-2 table-wrapper-scroll-y my-custom-scrollbar">
-                <livewire:info-kuota-ekskul />
+                {{-- <livewire:info-kuota-ekskul /> --}}
             </div>
         </div>
 
