@@ -3,9 +3,7 @@
 <x-datatables />
 @section('content')
     <div class="p-3 bg-white rounded">
-        <form action="{{ route('presence.daterange') }}" method="GET">
-            @csrf
-            @method('GET')
+        <form action="{{ route('presence.daterange') }}">
             @php
                 $first = new Carbon\Carbon('first day of this month');
                 $end = Carbon\Carbon::now();

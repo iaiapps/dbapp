@@ -62,7 +62,8 @@ class PresenceController extends Controller
             $start_date = Carbon::parse($request->start_date)->toDateTimeString();
             $end_date = Carbon::parse($request->end_date)->addDay()->toDateTimeString();
             $presences = Presence::where('teacher_id', $id)->whereBetween('created_at', [$start_date, $end_date])->get();
-            return view('presences.show', compact('presences', 'id'));
+            $name = $presences[0]->teacher->nama;
+            return view('presences.show', compact('presences', 'id', 'name'));
         } else {
             $this->show($id);
         }
