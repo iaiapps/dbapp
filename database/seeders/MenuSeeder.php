@@ -298,7 +298,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'name' => 'Acara',
-                'url' => '/admin/acara/index',
+                'url' => '/acara/index',
                 'icon' => 'las la-warehouse',
                 'icon_color' => 'text-success',
                 'is_active' => '1',
