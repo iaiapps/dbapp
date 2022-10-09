@@ -29,8 +29,10 @@
         "bootstrap-icons": "^1.9.1",
         "chart.js": "^3.7.1",
         "cross-env": "^7.0.3",
+        "sweetalert2": "^11.4.38",
         "tata-js": "^0.1.5",
         "vue-loader": "^17.0.0",
+        "vue-select": "^4.0.0-beta.5",
         "ziggy-js": "^1.5.0"
     }
 }

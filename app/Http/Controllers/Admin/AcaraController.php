@@ -112,4 +112,21 @@ class AcaraController extends Controller
         });
         return Inertia::render('Teacher/Show', compact('acara'));
     }
+    public function hadir()
+    {
+        $guru = Teacher::all();
+        $acara = Acara::where('is_active', true)->select('id', 'nama_acara')->get();
+        return Inertia::render('Acara/Acara/Hadir', compact('acara', 'guru'));
+    }
+    public function hadirPost(Request $req)
+    {
+        DB::table('acara_teacher')->insert(
+            [
+                'acara_id' => $req->acara,
+                'teacher_id' => $req->guru,
+                "created_at" =>  \Carbon\Carbon::now(),
+                "updated_at" =>  \Carbon\Carbon::now(),
+            ]
+        );
+    }
 }
