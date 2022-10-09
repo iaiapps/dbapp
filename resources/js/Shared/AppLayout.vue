@@ -63,14 +63,12 @@
                             >
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input
-                            class="form-control me-2"
-                            type="search"
-                            placeholder="Cari"
-                            aria-label="Search"
-                        />
-                    </form>
+                    <Link
+                        as="button"
+                        class="btn btn-outline-light"
+                        href="/saya_hadir"
+                        >Hadir</Link
+                    >
                 </div>
             </div>
         </nav>
@@ -80,7 +78,8 @@
     </div>
     <a
         style="position: fixed; bottom: 20px; right: 20px"
-        href="https://wa.me/sss"
+        href="whatsapp://send?text=http%3A%2F%2Fsister.sditharum.id%3A8000%2Fsaya_hadir"
+        data-action="share/whatsapp/share"
         class="btn btn-sm btn-secondary"
         ><svg
             xmlns="http://www.w3.org/2000/svg"
