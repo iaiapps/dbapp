@@ -39,19 +39,19 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <a
+                            <Link
                                 class="nav-link active"
                                 aria-current="page"
                                 href="/acara/index"
-                                >Acara</a
+                                >Acara</Link
                             >
                         </li>
                         <li class="nav-item">
-                            <a
+                            <Link
                                 class="nav-link active"
                                 aria-current="page"
                                 href="/acara/teachers"
-                                >Guru</a
+                                >Guru</Link
                             >
                         </li>
                     </ul>

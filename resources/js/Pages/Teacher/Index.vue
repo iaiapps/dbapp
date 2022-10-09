@@ -5,31 +5,34 @@
                 <h4>Rekap</h4>
             </div>
             <div>
-                <div class="input-group">
-                    <label for="" class="input-group-text">Bulan</label>
-                    <select name="" id="" class="form-select me-2">
-                        <option selected disabled>Pilih</option>
-                        <option value="1">Januari</option>
-                        <option value="2">Februari</option>
-                        <option value="3">Maret</option>
-                        <option value="4">April</option>
-                        <option value="5">Mei</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">Agustus</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Desember</option>
-                    </select>
-                    <label for="" class="input-group-text">Tahun</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        :value="currentYear"
-                    />
-                </div>
-                <div class="input-group"></div>
+                <form @submit.prevent="handleFilter">
+                    <div class="input-group">
+                        <label class="input-group-text">Bulan</label>
+                        <select
+                            class="form-select me-2"
+                            @change="filterBulan"
+                            v-model="bulan"
+                        >
+                            <option selected disabled>Pilih</option>
+                            <option
+                                v-for="item in namaBulan"
+                                :value="item.id"
+                                v-html="item.label"
+                            />
+                        </select>
+                        <label class="input-group-text">Tahun</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            v-model="tahun"
+                        />
+                        <input
+                            class="input-group-text ms-1"
+                            type="submit"
+                            value="Filter"
+                        />
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -39,7 +42,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Jml_hadir_acara</th>
+                        <th scope="col">Jml_hadir</th>
                         <th scope="col">Detail</th>
                     </tr>
                 </thead>
@@ -51,10 +54,11 @@
                         <td>
                             {{ item.nama }}
                         </td>
-                        <td>jml</td>
+                        <td>{{ item.jml }}</td>
                         <td>
                             <Link
                                 as="button"
+                                :href="'/acara/teacher/' + item.id"
                                 class="btn btn-success btn-sm mx-1"
                                 >Detail</Link
                             >
@@ -65,20 +69,36 @@
         </div>
     </AppLayout>
 </template>
-<script>
+<script setup>
+import { Inertia } from "@inertiajs/inertia";
+import { useForm } from "@inertiajs/inertia-vue3";
+import { ref } from "vue";
 import AppLayout from "../../Shared/AppLayout.vue";
-export default {
-    data() {
-        return {
-            currentYear: new Date().getFullYear(),
-        };
-    },
-    components: {
-        AppLayout,
-    },
-
-    props: {
-        teachers: Object,
-    },
+const now = new Date();
+let bulan = ref(now.getMonth() + 1);
+let tahun = ref(now.getFullYear());
+defineProps({
+    teachers: Object,
+    filters: Object,
+});
+const handleFilter = () => {
+    Inertia.get("/acara/teachers", {
+        bulan: bulan.value,
+        tahun: tahun.value,
+    });
 };
+const namaBulan = [
+    { id: 1, label: "Januari" },
+    { id: 2, label: "Februari" },
+    { id: 3, label: "Maret" },
+    { id: 4, label: "April" },
+    { id: 5, label: "Mei" },
+    { id: 6, label: "Juni" },
+    { id: 7, label: "Juli" },
+    { id: 8, label: "Agustus" },
+    { id: 9, label: "September" },
+    { id: 10, label: "Oktober" },
+    { id: 11, label: "November" },
+    { id: 12, label: "Desember" },
+];
 </script>

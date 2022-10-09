@@ -47,6 +47,7 @@ class Teacher extends Model
    }
    public function acaras()
    {
-      return $this->belongsToMany(Acara::class, 'acara_teacher')->withPivot('created_at');
+      return $this->belongsToMany(Acara::class, 'acara_teacher')->withPivot('created_at')
+         ->orderByDesc('id');
    }
 }

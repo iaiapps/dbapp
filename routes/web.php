@@ -259,4 +259,5 @@ Route::middleware('role:operator|admin')->group(function () {
     Route::get('/acara/{id}/show', [AcaraController::class, 'acaraShow'])->name('acara.show');
 
     Route::get('/acara/teachers', [AcaraController::class, 'teachers'])->name('acara.teachers');
+    Route::get('/acara/teacher/{id}', [AcaraController::class, 'teacherShow']);
 });
