@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Acara;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Database\Seeder;
@@ -27,5 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TempClassSeeder::class);
         $this->call(PresenceSettingSeeder::class);
         Teacher::factory(10)->create();
+        $this->call(KategoriAcaraSeeder::class);
+        Acara::factory(5)->create();
     }
 }

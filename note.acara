@@ -1,0 +1,19 @@
+1. Operator membuat kategori acara
+2. Kategori Acara di aktifkan berdasarkan tanggal yg ditentukan
+3. guru dapat memilih acara yang sedang aktif tanggalnya/sedang berlangsung
+4. Operator, dapat membuat catatan acara pada saat acara berlangsung
+5. jika acara berakhir / beda tanggal, maka acara tidak tersedia di pilihan
+
+
+erd :
+===========================
+tb_kategori_acara
+id, nama_kategori (eg. rapat kerja pekanan, maulid nabi, muharram)
+
+bikin acara ->masuk ke kategori mana, nama acaranya apa, tgl brp, aktifkan?
+tb_acara
+id, id_kategori, nama_acara, tgl_acara, catatan, is_active
+
+tb_acara_dihadiri
+id, id_acara, id_guru
+

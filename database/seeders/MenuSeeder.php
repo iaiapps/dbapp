@@ -296,6 +296,15 @@ class MenuSeeder extends Seeder
                 'order' => '2',
                 'role_id' => '6',
             ],
+            [
+                'name' => 'Acara',
+                'url' => '/admin/acara/index',
+                'icon' => 'las la-warehouse',
+                'icon_color' => 'text-success',
+                'is_active' => '1',
+                'order' => '2',
+                'role_id' => '1',
+            ]
         ]);
     }
 }
