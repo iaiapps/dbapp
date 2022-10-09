@@ -15,7 +15,18 @@ class AcaraController extends Controller
 {
     public function index()
     {
-        // return Inertia::render('Acara/Index');
+    }
+    public function history()
+    {
+        $history = DB::table('acara_teacher')
+            ->leftJoin('acara', 'acara_teacher.acara_id', '=', 'acara.id')
+            ->leftJoin('teachers', 'acara_teacher.teacher_id', '=', 'teachers.id')
+            ->select('nama', 'nama_acara')
+            // ->get();
+
+            ->paginate();
+        // dd($history);
+        return Inertia::render('Acara/Acara/History', compact('history'));
     }
     public function acaraIndex()
     {
@@ -66,14 +77,31 @@ class AcaraController extends Controller
                 'jml' => $acara
             ];
         })->toArray();
-        return Inertia::render('Teacher/Index', ['teachers' => $teachers]);
+        $filters = $req->only(['bulan', 'tahun']);
+        return Inertia::render('Teacher/Index', ['teachers' => $teachers, 'filters' => $filters]);
     }
 
+    // public function teacherShow($id)
+    // {
+    //     $acara = DB::table('acara_teacher')
+    //         ->where('teacher_id', $id)
+    //         ->paginate(4)
+    //         ->through(function ($item) {
+    //             $ca = Carbon::parse($item->created_at);
+    //             $na = Acara::where('id', $item->acara_id)->first();
+    //             return [
+    //                 'id' => $item->id,
+    //                 'nama_acara' => $na->nama_acara,
+    //                 'tanggal' => $ca->format('d M Y'),
+    //                 'jam' => $ca->format('H:i:s'),
+    //             ];
+    //         });
+    //     return Inertia::render('Teacher/Show', compact('acara'));
+    // }
     public function teacherShow($id)
     {
         $acara = Teacher::find($id)->acaras->map(function ($item) {
             $ca = Carbon::parse($item->pivot->created_at);
-            // dd($item->kategoriAcara);
             return [
                 'id' => $item->id,
                 'nama_acara' => $item->nama_acara,

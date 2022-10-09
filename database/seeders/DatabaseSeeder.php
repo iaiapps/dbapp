@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Acara;
 use App\Models\Student;
 use App\Models\Teacher;
+use Database\Factories\AcaraTeacherFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
