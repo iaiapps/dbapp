@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AcaraController;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Grade;
@@ -245,3 +246,17 @@ Route::get('presence/exportExcel', [PresenceController::class, 'exportExcel'])->
 Route::get('presence/monthly', [PresenceController::class, 'monthlyPresence'])->name('presence.monthly');
 Route::resource('presence', PresenceController::class);
 Route::post('qrcode/update', [PresenceController::class, 'updateQrCode'])->name('qrcode.update');
+
+//kehadiranAcara
+Route::middleware('role:operator|admin')->group(function () {
+    // Route::get('/admin/acara/index', [AcaraController::class, 'index'])->name('admin.acara.index');
+    Route::get('/acara/index', [AcaraController::class, 'acaraIndex']);
+    Route::get('/acara/{id}/jadwalkan', [AcaraController::class, 'toggleAcara'])->name('acara.jadwalkan');
+    // Route::get('/acara/edit', [AcaraController::class, 'editIndex']);
+
+    Route::get('/kategori-acara/index', [AcaraController::class, 'kategoriIndex']);
+
+    Route::get('/acara/{id}/show', [AcaraController::class, 'acaraShow'])->name('acara.show');
+
+    Route::get('/acara/teachers', [AcaraController::class, 'teachers'])->name('acara.teachers');
+});

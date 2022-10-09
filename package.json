@@ -22,8 +22,14 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@inertiajs/inertia": "^0.11.1",
+        "@inertiajs/inertia-vue3": "^0.6.0",
+        "@inertiajs/progress": "^0.2.7",
         "chart.js": "^3.7.1",
         "cross-env": "^7.0.3",
-        "tata-js": "^0.1.5"
+        "tata-js": "^0.1.5",
+        "vue-loader": "^17.0.0",
+        "ziggy-js": "^1.5.0"
     }
 }
