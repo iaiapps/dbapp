@@ -2,10 +2,10 @@
     <AppLayout>
         <div class="d-md-flex justify-content-between mb-3">
             <div class="">
-                <h4>Rekap</h4>
+                <h4>History</h4>
             </div>
             <div>
-                <form @submit.prevent="handleFilter">
+                <!-- <form @submit.prevent="handleFilter">
                     <div class="input-group">
                         <label class="input-group-text">Bulan</label>
                         <select
@@ -38,7 +38,7 @@
                             Reset
                         </Link>
                     </div>
-                </form>
+                </form> -->
             </div>
         </div>
 
@@ -48,71 +48,58 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Jml_hadir</th>
-                        <th scope="col">Detail</th>
+                        <th scope="col">Acara</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item, index) in teachers">
-                        <td>
-                            {{ index + 1 }}
-                        </td>
-                        <td>
-                            {{ item.nama }}
-                        </td>
-                        <td>{{ item.jml }}</td>
-                        <td>
-                            <Link
-                                as="button"
-                                :href="'/acara/teacher/' + item.id"
-                                class="btn btn-success btn-sm mx-1"
-                                >Detail</Link
-                            >
-                        </td>
+                    <tr v-for="(item, index) in history.data" :key="item.id">
+                        <td>{{ index + 1 }}</td>
+                        <td>{{ item.nama }}</td>
+                        <td>{{ item.nama_acara }}</td>
                     </tr>
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                <Link
+                    as="button"
+                    class="btn btn-outline-primary btn-sm mx-1"
+                    :href="history.first_page_url"
+                    v-if="history.first_page_url"
+                    >First</Link
+                >
+                <Link
+                    as="button"
+                    class="btn btn-outline-primary btn-sm mx-1"
+                    :href="history.prev_page_url"
+                    >&laquo</Link
+                >
+                <Link
+                    as="button"
+                    class="btn btn-primary btn-sm mx-1"
+                    :href="history.prev_page_url"
+                    >{{ history.current_page }}</Link
+                >
+                <Link
+                    as="button"
+                    class="btn btn-outline-primary btn-sm mx-1"
+                    :href="history.next_page_url"
+                    >&raquo</Link
+                >
+                <Link
+                    as="button"
+                    class="btn btn-outline-primary btn-sm mx-1"
+                    :href="history.last_page_url"
+                    v-if="history.last_page_url"
+                    >Last</Link
+                >
+            </div>
         </div>
     </AppLayout>
 </template>
 <script setup>
 import { Inertia } from "@inertiajs/inertia";
-import { useForm } from "@inertiajs/inertia-vue3";
-import { ref, defineProps } from "vue";
-import AppLayout from "../../Shared/AppLayout.vue";
-const now = new Date();
-let bulan = ref(props.filters.bulan);
-let tahun = ref(props.filters.tahun);
-
-const props = defineProps({
-    teachers: Object,
-    filters: Object,
+import AppLayout from "../../../Shared/AppLayout.vue";
+defineProps({
+    history: Object,
 });
-const handleFilter = () => {
-    Inertia.get(
-        "/acara/teachers",
-        {
-            bulan: bulan.value,
-            tahun: tahun.value,
-        },
-        {
-            preserveState: true,
-            replace: true,
-        }
-    );
-};
-const namaBulan = [
-    { id: 1, label: "Januari" },
-    { id: 2, label: "Februari" },
-    { id: 3, label: "Maret" },
-    { id: 4, label: "April" },
-    { id: 5, label: "Mei" },
-    { id: 6, label: "Juni" },
-    { id: 7, label: "Juli" },
-    { id: 8, label: "Agustus" },
-    { id: 9, label: "September" },
-    { id: 10, label: "Oktober" },
-    { id: 11, label: "November" },
-    { id: 12, label: "Desember" },
-];
 </script>
