@@ -10,6 +10,7 @@ class Acara extends Model
 {
     use HasFactory;
     protected $table = 'acara';
+    protected $guarded = [];
     public function kategoriAcara()
     {
         return $this->belongsTo(KategoriAcara::class)->orderByDesc('id');

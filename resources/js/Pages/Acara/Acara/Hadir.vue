@@ -4,8 +4,6 @@
             <card>
                 <div class="card-body">
                     <H1>Pilih</H1>
-                    <h1>{{ form.guru }}</h1>
-                    <h1>{{ form.acara }}</h1>
                 </div>
             </card>
             <div class="col-md-6" style="float: none; margin: auto">
@@ -65,10 +63,10 @@ const submit = () => {
         preserveScroll: true,
         onSuccess: () => {
             Swal.fire({
-                title: "Good Job",
-                text: "Terima kasih, telah berpartisipasi",
+                title: "Jazakumullah",
+                text: "Terima kasih, atas kehadirannya",
                 icon: "success",
-                confirmButtonText: "Harum",
+                confirmButtonText: "Aamiin",
             });
             Inertia.get("/saya_hadir");
         },

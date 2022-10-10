@@ -22,22 +22,40 @@ class AcaraController extends Controller
             ->leftJoin('acara', 'acara_teacher.acara_id', '=', 'acara.id')
             ->leftJoin('teachers', 'acara_teacher.teacher_id', '=', 'teachers.id')
             ->select('nama', 'nama_acara')
-            // ->get();
-
             ->paginate();
-        // dd($history);
         return Inertia::render('Acara/Acara/History', compact('history'));
     }
-    public function acaraIndex()
+    public function acaraIndex(Request $req)
     {
-        $acara = Acara::query()
-            ->with('kategoriAcara')->get();
-        return Inertia::render('Acara/Acara/Index', compact('acara'));
+        $kategori = KategoriAcara::all();
+        $tahun = $req->input('tahun') ?: date('Y');
+        $acara = Acara::whereYear('untuk_tanggal', $tahun)
+            ->orderByDesc('untuk_tanggal')
+            ->paginate()
+            ->withQueryString()
+            ->through(function ($i) {
+                return [
+                    'id' => $i->id,
+                    'kategori' => $i->kategoriAcara->nama_kategori,
+                    'nama' => $i->nama_acara,
+                    'tanggal' => $i->untuk_tanggal,
+                    'lokasi' => $i->lokasi,
+                    'catatan' => $i->catatan,
+                    'is_active' => $i->is_active,
+                ];
+            });
+        return Inertia::render('Acara/Acara/Index', compact('acara', 'tahun', 'kategori'));
     }
     public function kategoriIndex()
     {
         $kategori = KategoriAcara::all();
         return Inertia::render('Acara/Kategori/Index', compact('kategori'));
+    }
+    public function kategoriStore(Request $req)
+    {
+        $k = new KategoriAcara;
+        $k->nama_kategori = $req->nama;
+        $k->save();
     }
     public function toggleAcara(int $id)
     {
@@ -61,6 +79,10 @@ class AcaraController extends Controller
             ];
         })->toArray();
         return Inertia::render('Acara/Acara/Show', compact('teachers'));
+    }
+    public function acaraStore(Request $req)
+    {
+        Acara::create($req->all());
     }
     public function teachers(Request $req)
     {
@@ -115,7 +137,9 @@ class AcaraController extends Controller
     public function hadir()
     {
         $guru = Teacher::all();
-        $acara = Acara::where('is_active', true)->select('id', 'nama_acara')->get();
+        $acara = Acara::whereDate('untuk_tanggal', '=', Carbon::now())
+            ->orWhere('is_active', true)
+            ->select('id', 'nama_acara')->get();
         return Inertia::render('Acara/Acara/Hadir', compact('acara', 'guru'));
     }
     public function hadirPost(Request $req)
