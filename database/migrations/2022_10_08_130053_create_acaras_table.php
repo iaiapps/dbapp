@@ -15,11 +15,12 @@ class CreateAcarasTable extends Migration
     {
         Schema::create('acara', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kategori_acara_id')->nullable();
-            $table->string('nama_acara')->nullable();
+            $table->unsignedBigInteger('kategori_acara_id');
+            $table->string('nama_acara');
             $table->date('untuk_tanggal')->nullable();
+            $table->string('tempat')->nullable();
             $table->text('catatan')->nullable();
-            $table->boolean('is_active')->nullable();
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }

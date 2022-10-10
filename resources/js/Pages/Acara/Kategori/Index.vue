@@ -1,5 +1,73 @@
 <template>
     <AppLayout>
+        <div class="d-flex justify-content-between mb-3">
+            <div class="">
+                <h4>Kategori</h4>
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+            >
+                +
+            </button>
+
+            <!-- Modal -->
+            <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <form @submit.prevent="handleSubmit">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    Tambah Kategori
+                                </h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Nama Kategori</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="form.nama"
+                                    />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+                                <button
+                                    type="submit"
+                                    :disabled="form.processing"
+                                    class="btn btn-success"
+                                >
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -37,13 +105,34 @@
     </AppLayout>
 </template>
 <script>
+import { useForm } from "@inertiajs/inertia-vue3";
 import AppLayout from "../../../Shared/AppLayout.vue";
+import Swal from "sweetalert2";
+
 export default {
     components: {
         AppLayout,
     },
     props: {
         kategori: Object,
+    },
+    setup() {
+        const form = useForm({
+            nama: null,
+        });
+        const handleSubmit = () => {
+            form.post("/kategori-acara/store", {
+                preserveScroll: true,
+                onSuccess: () => {
+                    form.reset("nama");
+                    Toast.fire({
+                        icon: "success",
+                        title: "Kategori, Berhasil di tambah",
+                    });
+                },
+            });
+        };
+        return { form, handleSubmit };
     },
 };
 </script>
