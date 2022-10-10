@@ -260,10 +260,11 @@ Route::middleware('role:operator|admin')->group(function () {
 
     Route::get('/acara/{id}/show', [AcaraController::class, 'acaraShow'])->name('acara.show');
 
-    Route::get('/acara/history', [AcaraController::class, 'history'])->name('acara.history');
 
     Route::get('/acara/teachers', [AcaraController::class, 'teachers'])->name('acara.teachers');
     Route::get('/acara/teacher/{id}', [AcaraController::class, 'teacherShow']);
-    Route::get('/saya_hadir', [AcaraController::class, 'hadir']);
-    Route::post('/saya_hadir', [AcaraController::class, 'hadirPost']);
 });
+
+Route::get('/acara/history', [AcaraController::class, 'history'])->name('acara.history');
+Route::get('/saya_hadir', [AcaraController::class, 'hadir']);
+Route::post('/saya_hadir', [AcaraController::class, 'hadirPost']);

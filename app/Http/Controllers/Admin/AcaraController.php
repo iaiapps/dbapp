@@ -19,10 +19,18 @@ class AcaraController extends Controller
     public function history()
     {
         $history = DB::table('acara_teacher')
-            ->leftJoin('acara', 'acara_teacher.acara_id', '=', 'acara.id')
-            ->leftJoin('teachers', 'acara_teacher.teacher_id', '=', 'teachers.id')
-            ->select('nama', 'nama_acara')
-            ->paginate();
+            ->orderByDesc('created_at')
+            ->join('acara', 'acara_teacher.acara_id', '=', 'acara.id')
+            ->join('teachers', 'acara_teacher.teacher_id', '=', 'teachers.id')
+            ->select('nama', 'nama_acara', 'acara_teacher.created_at')
+            ->paginate()
+            ->through(function ($i) {
+                return [
+                    'nama' => $i->nama,
+                    'nama_acara' => $i->nama_acara,
+                    'ca' => Carbon::parse($i->created_at)->diffForHumans()
+                ];
+            });
         return Inertia::render('Acara/Acara/History', compact('history'));
     }
     public function acaraIndex(Request $req)

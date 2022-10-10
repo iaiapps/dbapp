@@ -20,7 +20,7 @@ class CreateAcarasTable extends Migration
             $table->date('untuk_tanggal')->nullable();
             $table->string('tempat')->nullable();
             $table->text('catatan')->nullable();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }
