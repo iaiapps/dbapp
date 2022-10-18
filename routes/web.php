@@ -1,10 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\AcaraController;
 use Carbon\Carbon;
 use App\Models\User;
+use Inertia\Inertia;
 use App\Models\Grade;
+use App\Models\TempClass;
+use App\Models\TempStudent;
 use App\Models\MunaqosahTahfidz;
+use Illuminate\Support\Facades\DB;
 use App\Http\Livewire\JournalIndex;
 use App\Models\ExtracurricularData;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +21,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SiswaController;
+use Psy\CodeCleaner\ValidConstructorPass;
 use PHPUnit\Framework\Constraint\Operator;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -26,12 +30,12 @@ use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\AcaraController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\MunaqosahTahfidzController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ExtracurricularDataController;
-use Psy\CodeCleaner\ValidConstructorPass;
 
 // developer mode only
 // comment if production starting
@@ -260,7 +264,6 @@ Route::middleware('role:operator|admin')->group(function () {
 
     Route::get('/acara/{id}/show', [AcaraController::class, 'acaraShow'])->name('acara.show');
 
-
     Route::get('/acara/teachers', [AcaraController::class, 'teachers'])->name('acara.teachers');
     Route::get('/acara/teacher/{id}', [AcaraController::class, 'teacherShow']);
 });
@@ -268,3 +271,4 @@ Route::middleware('role:operator|admin')->group(function () {
 Route::get('/acara/history', [AcaraController::class, 'history'])->name('acara.history');
 Route::get('/saya_hadir', [AcaraController::class, 'hadir']);
 Route::post('/saya_hadir', [AcaraController::class, 'hadirPost']);
+Route::get('/tahsin', [AcaraController::class, 'tahsin'])->name('tahsin');
