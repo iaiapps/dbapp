@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Acara;
+use App\Models\Teacher;
+use App\Models\TempClass;
 use Illuminate\Http\Request;
 use App\Models\KategoriAcara;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Teacher;
-use Carbon\Carbon;
+use App\Models\TempStudent;
 
 class AcaraController extends Controller
 {
@@ -110,24 +112,6 @@ class AcaraController extends Controller
         $filters = $req->only(['bulan', 'tahun']);
         return Inertia::render('Teacher/Index', ['teachers' => $teachers, 'filters' => $filters]);
     }
-
-    // public function teacherShow($id)
-    // {
-    //     $acara = DB::table('acara_teacher')
-    //         ->where('teacher_id', $id)
-    //         ->paginate(4)
-    //         ->through(function ($item) {
-    //             $ca = Carbon::parse($item->created_at);
-    //             $na = Acara::where('id', $item->acara_id)->first();
-    //             return [
-    //                 'id' => $item->id,
-    //                 'nama_acara' => $na->nama_acara,
-    //                 'tanggal' => $ca->format('d M Y'),
-    //                 'jam' => $ca->format('H:i:s'),
-    //             ];
-    //         });
-    //     return Inertia::render('Teacher/Show', compact('acara'));
-    // }
     public function teacherShow($id)
     {
         $acara = Teacher::find($id)->acaras->map(function ($item) {
@@ -160,5 +144,18 @@ class AcaraController extends Controller
                 "updated_at" =>  \Carbon\Carbon::now(),
             ]
         );
+    }
+
+    public function tahsin(Request $req)
+    {
+        $siswa = TempStudent::all();
+        if ($req->input('kelas')) {
+            $kls = TempClass::where('name', $req->kelas)->first();
+            $siswa = TempStudent::query()
+                ->where('class_id', $kls->id)
+                ->get();
+        }
+        $kelas = TempClass::all();
+        return Inertia::render('GForm/Tahsin', compact('kelas', 'siswa'));
     }
 }
