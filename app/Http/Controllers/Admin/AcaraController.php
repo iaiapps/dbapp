@@ -145,26 +145,17 @@ class AcaraController extends Controller
             ]
         );
     }
+
     public function tahsin(Request $req)
     {
-        $siswa = TempStudent::query()
-            ->when($req->input('kelas'), function ($q, $k) {
-                $q->where('class_id', $k);
-            })
-            ->get();
+        $siswa = TempStudent::all();
+        if ($req->input('kelas')) {
+            $kls = TempClass::where('name', $req->kelas)->first();
+            $siswa = TempStudent::query()
+                ->where('class_id', $kls->id)
+                ->get();
+        }
         $kelas = TempClass::all();
         return Inertia::render('GForm/Tahsin', compact('kelas', 'siswa'));
     }
-    // public function tahsin(Request $req)
-    // {
-    //     $siswa = TempStudent::all();
-    //     if ($req->input('kelas')) {
-    //         $kls = TempClass::where('name', $req->kelas)->first();
-    //         $siswa = TempStudent::query()
-    //             ->where('class_id', $kls->id)
-    //             ->get();
-    //     }
-    //     $kelas = TempClass::all();
-    //     return Inertia::render('GForm/Tahsin', compact('kelas', 'siswa'));
-    // }
 }
