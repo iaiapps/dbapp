@@ -26,6 +26,7 @@
                                 id="ayahbunda"
                                 class="form-select text-capitalize"
                                 v-model="form.siapa"
+                                required
                             >
                                 <option selected disabled>Pilih</option>
                                 <option value="ayah">ayah</option>
@@ -130,26 +131,34 @@ const props = defineProps({
 });
 const form = reactive({
     siapa: "",
-    nama: "",
-    kelas: "",
-    ortudari: "",
+    namaortu: "",
 });
 
 const handleSubmit = () => {
-    Swal.fire({
-        title: "Jazakumullah",
-        text: "Semoga dimudahkan urusannya",
-        icon: "success",
-        confirmButtonText: "Aamiin",
-    });
-    setTimeout(() => {
-        form.kelas = "";
-        form.siapa = "";
-        form.namaortu = "";
-        form.ortudari = "";
-        selectedSiswa.value = "";
-        Inertia.get(route("tahsin"));
-    }, 3000);
+    if (
+        form.siapa == "" ||
+        form.namaortu == "" ||
+        form.kelas == "" ||
+        selectedSiswa.value == "" ||
+        selectedWaktu.value == ""
+    ) {
+        Swal.fire({
+            title: "Lengkapi",
+            text: "Mohon lengkapi",
+            icon: "error",
+            confirmButtonText: "Ok",
+        });
+    } else {
+        Swal.fire({
+            title: "Jazakumullah",
+            text: "Semoga dimudahkan urusannya",
+            icon: "success",
+            confirmButtonText: "Aamiin",
+        });
+        setTimeout(() => {
+            form.reset();
+        }, 1000);
+    }
 };
 watch(selectedSiswa, (newValue) => {
     Inertia.get(
