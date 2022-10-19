@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\KategoriAcara;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use App\Models\TempStudent;
 
 class AcaraController extends Controller
@@ -148,14 +149,14 @@ class AcaraController extends Controller
 
     public function tahsin(Request $req)
     {
-        $siswa = TempStudent::all();
-        if ($req->input('kelas')) {
-            $kls = TempClass::where('name', $req->kelas)->first();
-            $siswa = TempStudent::query()
-                ->where('class_id', $kls->id)
-                ->get();
-        }
         $kelas = TempClass::all();
-        return Inertia::render('GForm/Tahsin', compact('kelas', 'siswa'));
+        $siswa = TempStudent::all();
+        if ($s = $req->input('siswaTerpilih')) {
+            $kelas = TempStudent::where('temp_students.name', $s)
+                ->join('temp_classes', 'temp_students.class_id', '=', 'temp_classes.id')
+                ->first()->name;
+            return Inertia::render('GForm/Tahsin', compact('siswa', 'kelas'));
+        }
+        return Inertia::render('GForm/Tahsin', compact('siswa'));
     }
 }
