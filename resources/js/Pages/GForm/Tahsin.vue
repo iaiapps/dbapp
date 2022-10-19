@@ -77,15 +77,33 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="">Hari:</label>
-                            <select name="entry.470168096" class="form-select">
-                                <option>Rabu, 15.30</option>
-                                <option>Kami, 15.30</option>
-                                <option>Jumat, 15.30</option>
-                            </select>
+                            <label for=""
+                                >Hari
+                                <i> (ket: untuk hari lain, bisi diisi manual)</i
+                                >:</label
+                            >
+                            <input
+                                type="hidden"
+                                :value="selectedWaktu"
+                                name="entry.470168096"
+                            />
+                            <v-select
+                                item-text="entry.470168096"
+                                item-name="entry.470168096"
+                                v-model="selectedWaktu"
+                                :options="pilihanWaktu"
+                                :reduce="(waktu) => waktu.name"
+                                label="name"
+                                multiple
+                                taggable
+                                required
+                            />
                         </div>
                     </div>
 
+                    <p class="text-danger text-center">
+                        NB: Pastikan semua telah terisi sebelum dikirim !
+                    </p>
                     <button
                         type="submit"
                         @click="handleSubmit"
@@ -106,7 +124,8 @@ import { reactive, ref } from "vue";
 import Swal from "sweetalert2";
 var submitted = false;
 let selectedKelas = ref();
-defineProps({
+let selectedWaktu = ref("");
+const props = defineProps({
     kelas: Object,
     siswa: Object,
     // siswa: Object,
@@ -130,6 +149,8 @@ const handleSubmit = () => {
         form.siapa = "";
         form.nama = "";
         form.ortudari = "";
+        selectedKelas.value = "";
+        Inertia.get(route("tahsin"));
     }, 3000);
 };
 const cariSiswa = () => {
@@ -139,9 +160,15 @@ const cariSiswa = () => {
             kelas: selectedKelas.value,
         },
         {
+            preserveScroll: true,
             preserveState: true,
             replace: true,
         }
     );
 };
+let pilihanWaktu = [
+    { id: 1, name: "(Selasa, 15.30)" },
+    { id: 2, name: "(Rabu, 15.30)" },
+    { id: 3, name: "(Jumat, 15.30)" },
+];
 </script>
