@@ -909,6 +909,11 @@
   dependencies:
     "nprogress" "^0.2.0"
 
+"@inertiajs/server@^0.1.0":
+  "integrity" "sha512-Ab1DqaRgW53nZq3sPN1AitHPJ1UoHiTRLbdGGgrswO6HhTYu6m7aewY80+YtiL1VEWGJfOumeNPqhnY+3/414w=="
+  "resolved" "https://registry.npmjs.org/@inertiajs/server/-/server-0.1.0.tgz"
+  "version" "0.1.0"
+
 "@nodelib/fs.scandir@2.1.5":
   "integrity" "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="
   "resolved" "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -1155,7 +1160,7 @@
     "@vue/shared" "3.2.40"
     "csstype" "^2.6.8"
 
-"@vue/server-renderer@3.2.40":
+"@vue/server-renderer@^3.2.40", "@vue/server-renderer@3.2.40":
   "integrity" "sha512-gtUcpRwrXOJPJ4qyBpU3EyxQa4EkV8I4f8VrDePcGCPe4O/hd0BPS7v9OgjIQob6Ap8VDz9G+mGTKazE45/95w=="
   "resolved" "https://registry.npmjs.org/@vue/server-renderer/-/server-renderer-3.2.40.tgz"
   "version" "3.2.40"
@@ -2856,11 +2861,6 @@
   "integrity" "sha1-FQStJSMVjKpA20onh8sBQRmU6k8="
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
-
-"fsevents@~2.3.1":
-  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
-  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
-  "version" "2.3.2"
 
 "function-bind@^1.1.1":
   "integrity" "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
@@ -5685,6 +5685,11 @@
   dependencies:
     "clone-deep" "^4.0.1"
     "wildcard" "^2.0.0"
+
+"webpack-node-externals@^3.0.0":
+  "integrity" "sha512-LnL6Z3GGDPht/AigwRh2dvL9PQPFQ8skEpVrWZXLWBYmqcaojHNN0onvHzie6rq7EWKrrBfPYqNEzTJgiwEQDQ=="
+  "resolved" "https://registry.npmjs.org/webpack-node-externals/-/webpack-node-externals-3.0.0.tgz"
+  "version" "3.0.0"
 
 "webpack-notifier@^1.13.0":
   "integrity" "sha512-QLk6l/TZKGhyN6Hd1zobaiYno7S9YPX3wH86+YOSufHes77SegGhnGdj+4vrLDFK5A4ZKoQD5GRXXFnM0h0N8A=="
