@@ -48,40 +48,38 @@
                             Orang tua dari :
                         </div>
                         <div class="form-group">
-                            <label for="">Kelas :</label>
-                            <select
-                                name="entry.1048074324"
-                                class="form-select"
-                                v-model="selectedKelas"
-                                @change="cariSiswa"
-                            >
-                                <option selected disabled>Pilih</option>
-                                <option
-                                    v-for="i in kelas"
-                                    :value="i.name"
-                                    v-html="i.name"
-                                />
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Nama Siswa:</label>
-                            <select
+                            <label for="">Nama Siswa</label>
+                            <v-select
+                                v-model="selectedSiswa"
+                                :options="siswa"
+                                :reduce="(siswa) => siswa.name"
+                                label="name"
+                            />
+                            <input
+                                type="hidden"
                                 name="entry.15352034"
-                                v-model="form.ortudari"
-                                class="form-select"
-                            >
-                                <option selected disabled>Pilih</option>
-                                <option v-for="ii in siswa">
-                                    {{ ii.name }}
-                                </option>
-                            </select>
+                                :value="selectedSiswa"
+                            />
+                            <input
+                                type="hidden"
+                                name="entry.1048074324"
+                                :value="kelas"
+                            />
+                            <input
+                                type="text"
+                                name="entry.1048074324"
+                                disabled
+                                :value="kelas"
+                            />
                         </div>
                         <div class="form-group">
                             <label for=""
                                 >Hari
-                                <i> (ket: untuk hari lain, bisi diisi manual)</i
-                                >:</label
-                            >
+                                <br />
+                                <i> - Untuk hari lain, bisi diisi manual</i
+                                ><br />
+                                <i> - Pilihan dapat lebih dari satu</i>
+                            </label>
                             <input
                                 type="hidden"
                                 :value="selectedWaktu"
@@ -118,15 +116,15 @@
     </div>
 </template>
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import { reactive, ref } from "vue";
 import Swal from "sweetalert2";
 var submitted = false;
-let selectedKelas = ref();
+let selectedSiswa = ref();
 let selectedWaktu = ref("");
 const props = defineProps({
-    kelas: Object,
+    kelas: String,
     siswa: Object,
     // siswa: Object,
 });
@@ -149,15 +147,15 @@ const handleSubmit = () => {
         form.siapa = "";
         form.nama = "";
         form.ortudari = "";
-        selectedKelas.value = "";
+        selectedSiswa.value = "";
         Inertia.get(route("tahsin"));
     }, 3000);
 };
-const cariSiswa = () => {
+watch(selectedSiswa, (newValue) => {
     Inertia.get(
         route("tahsin"),
         {
-            kelas: selectedKelas.value,
+            siswaTerpilih: selectedSiswa.value,
         },
         {
             preserveScroll: true,
@@ -165,7 +163,7 @@ const cariSiswa = () => {
             replace: true,
         }
     );
-};
+});
 let pilihanWaktu = [
     { id: 1, name: "(Selasa, 15.30)" },
     { id: 2, name: "(Rabu, 15.30)" },
