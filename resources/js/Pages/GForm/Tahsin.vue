@@ -145,7 +145,7 @@ const handleSubmit = () => {
     setTimeout(() => {
         form.kelas = "";
         form.siapa = "";
-        form.nama = "";
+        form.namaortu = "";
         form.ortudari = "";
         selectedSiswa.value = "";
         Inertia.get(route("tahsin"));
