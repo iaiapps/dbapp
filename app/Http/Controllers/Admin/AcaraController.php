@@ -40,11 +40,12 @@ class AcaraController extends Controller
     {
         $kategori = KategoriAcara::all();
         $tahun = $req->input('tahun') ?: date('Y');
-        $acara = Acara::whereYear('untuk_tanggal', $tahun)
+        $acara = Acara::with('teachers')->whereYear('untuk_tanggal', $tahun)
             ->orderByDesc('untuk_tanggal')
             ->paginate()
             ->withQueryString()
             ->through(function ($i) {
+                $jml_hadir = DB::table('acara_teacher')->where('acara_id', $i->id)->count();
                 return [
                     'id' => $i->id,
                     'kategori' => $i->kategoriAcara->nama_kategori,
@@ -52,6 +53,8 @@ class AcaraController extends Controller
                     'tanggal' => $i->untuk_tanggal,
                     'lokasi' => $i->lokasi,
                     'catatan' => $i->catatan,
+                    'jml_hadir' => $jml_hadir,
+                    'for' => $i->for,
                     'is_active' => $i->is_active,
                 ];
             });
@@ -67,6 +70,10 @@ class AcaraController extends Controller
         $k = new KategoriAcara;
         $k->nama_kategori = $req->nama;
         $k->save();
+    }
+    public function kategoriDestroy($id)
+    {
+        KategoriAcara::find($id)->delete();
     }
     public function toggleAcara(int $id)
     {
@@ -91,9 +98,24 @@ class AcaraController extends Controller
         })->toArray();
         return Inertia::render('Acara/Acara/Show', compact('teachers'));
     }
+    public function acaraDestroy($id)
+    {
+        // $managementUnit = ManagementUnit::find(1);
+        // $managementUnit->councils()->where('id', 1)->wherePivot('year', 2011)->detach(1);
+        $acara = Acara::find($id);
+        $acara->delete();
+    }
     public function acaraStore(Request $req)
     {
-        Acara::create($req->all());
+        Acara::create([
+            'nama_acara' => $req->nama_acara,
+            'kategori_acara_id' => $req->kategori_acara_id,
+            'untuk_tanggal' => $req->untuk_tanggal,
+            'tempat' => $req->tempat,
+            'catatan' => $req->catatan,
+            'is_active' => $req->is_active,
+            'for' => $req->for[0],
+        ]);
     }
     public function teachers(Request $req)
     {
@@ -127,13 +149,27 @@ class AcaraController extends Controller
         });
         return Inertia::render('Teacher/Show', compact('acara'));
     }
-    public function hadir()
+    public function hadir(Request $req)
     {
-        $guru = Teacher::all();
-        $acara = Acara::whereDate('untuk_tanggal', '=', Carbon::now())
-            ->orWhere('is_active', true)
-            ->select('id', 'nama_acara')->get();
-        return Inertia::render('Acara/Acara/Hadir', compact('acara', 'guru'));
+        if ($for = (int)$req->input('for')) {
+            $filters = $req->only(['for']);
+            // dd($req->all());
+            $acara = Acara::whereDate('untuk_tanggal', '=', Carbon::now())
+                ->orWhere('is_active', true)
+                ->where('for', [3, $for])
+                ->select('id', 'nama_acara')->get();
+            $yang_dicari = $req->input('name');
+            if ($for == 1) {
+                $data = Teacher::where('nama', 'LIKE', "%{$yang_dicari}%")->first();
+                dd($data);
+            } elseif ($for == 2) {
+                $data = TempStudent::where('name', 'LIKE', "{$yang_dicari}")->get();
+            } else {
+                $data = null;
+            }
+            return Inertia::render('Acara/Acara/Hadir', compact('acara', 'filters', 'data'));
+        }
+        return Inertia::render('Acara/Acara/Hadir');
     }
     public function hadirPost(Request $req)
     {
@@ -146,7 +182,6 @@ class AcaraController extends Controller
             ]
         );
     }
-
     public function tahsin(Request $req)
     {
         $kelas = TempClass::all();

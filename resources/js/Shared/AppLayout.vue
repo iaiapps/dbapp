@@ -51,7 +51,15 @@
                                 class="nav-link active"
                                 aria-current="page"
                                 href="/acara/teachers"
-                                >Rekap</Link
+                                >Rekap Guru</Link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <Link
+                                class="nav-link active"
+                                aria-current="page"
+                                href="/acara/teachers"
+                                >Rekap Ortu/Siswa</Link
                             >
                         </li>
                         <li class="nav-item">
@@ -76,7 +84,7 @@
             <slot />
         </div>
     </div>
-    <Link
+    <a
         style="position: fixed; bottom: 20px; right: 20px"
         href="whatsapp://send?text=http%3A%2F%2Fsister.sditharum.id%3A8000%2Fsaya_hadir"
         data-action="share/whatsapp/share"
@@ -92,6 +100,6 @@
             <path
                 d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"
             /></svg
-    ></Link>
+    ></a>
 </template>
 <script></script>

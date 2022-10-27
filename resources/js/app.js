@@ -3,6 +3,7 @@ import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
 import { Link } from "@inertiajs/inertia-vue3";
 import Swal from "sweetalert2";
+import Multiselect from "vue-multiselect";
 
 import vSelect from "vue-select";
 
@@ -37,8 +38,10 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            // register globally
             .component("Link", Link)
             .component("v-select", vSelect)
+            .component("multiselect", Multiselect)
             .mount(el);
     },
 });

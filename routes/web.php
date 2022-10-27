@@ -261,14 +261,19 @@ Route::middleware('role:operator|admin')->group(function () {
 
     Route::get('/kategori-acara/index', [AcaraController::class, 'kategoriIndex']);
     Route::post('/kategori-acara/store', [AcaraController::class, 'kategoriStore']);
+    Route::get('/kategori-acara/{id}/hapus', [AcaraController::class, 'kategoriDestroy'])->name('acara.kategori.delete');
 
     Route::get('/acara/{id}/show', [AcaraController::class, 'acaraShow'])->name('acara.show');
+    Route::get('/acara/{id}/hapus', [AcaraController::class, 'acaraDestroy'])->name('acara.destroy');
 
     Route::get('/acara/teachers', [AcaraController::class, 'teachers'])->name('acara.teachers');
     Route::get('/acara/teacher/{id}', [AcaraController::class, 'teacherShow']);
 });
 
 Route::get('/acara/history', [AcaraController::class, 'history'])->name('acara.history');
-Route::get('/saya_hadir', [AcaraController::class, 'hadir']);
+Route::get('/saya_hadir', [AcaraController::class, 'hadir'])->name('acara.hadir');
 Route::post('/saya_hadir', [AcaraController::class, 'hadirPost']);
 Route::get('/tahsin', [AcaraController::class, 'tahsin'])->name('tahsin');
+Route::get('/coba', function () {
+    return Inertia::render('Coba');
+});
