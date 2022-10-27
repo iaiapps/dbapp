@@ -42,6 +42,22 @@
                                     </select>
                                 </div>
                                 <div class="form-group mb-2">
+                                    <label>Untuk</label>
+                                    <v-select
+                                        multiple
+                                        v-model="form.for"
+                                        :reduce="(option) => option.id"
+                                        :options="[
+                                            { label: 'Semua', id: 3 },
+                                            { label: 'Hanya Guru', id: 1 },
+                                            {
+                                                label: 'Hanya Siswa/Ortu',
+                                                id: 2,
+                                            },
+                                        ]"
+                                    />
+                                </div>
+                                <div class="form-group mb-2">
                                     <label>Nama Acara</label>
                                     <input
                                         type="text"
@@ -65,14 +81,14 @@
                                         v-model="form.tempat"
                                     />
                                 </div>
-                                <div class="form-group mb-2">
+                                <!-- <div class="form-group mb-2">
                                     <label>Catatan</label>
                                     <textarea
                                         type="text"
                                         class="form-control"
                                         v-model="form.catatan"
                                     />
-                                </div>
+                                </div> -->
                                 <div class="form-group mb-2">
                                     <label>Status</label>
 
@@ -144,11 +160,11 @@
                         <th scope="col">Nama acara</th>
                         <th scope="col">Tgl</th>
                         <th scope="col">Lokasi</th>
-                        <th scope="col">Note</th>
+                        <!-- <th scope="col">Note</th> -->
                         <th scope="col">Status</th>
+                        <th scope="col">jml hadir</th>
                         <th scope="col">Atur</th>
-                        <th scope="col">Kehadiran</th>
-                        <!-- <th scope="col">Status</th> -->
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -157,16 +173,17 @@
                             {{ index + 1 }}
                         </td>
                         <td>
+                            {{ item.nama }}
+                            <br />
                             <small class="badge rounded-pill bg-primary">{{
                                 item.kategori
-                            }}</small
-                            ><br />
-                            {{ item.nama }}
+                            }}</small>
                         </td>
                         <td>{{ item.tanggal }}</td>
                         <td>{{ item.lokasi }}</td>
-                        <td>{{ item.catatan }}</td>
+                        <!-- <td>{{ item.catatan }}</td> -->
                         <td v-html="item.is_active ? 'aktif' : 'tidak aktif'" />
+                        <td>{{ item.jml_hadir }}</td>
                         <td>
                             <Link
                                 v-if="!item.is_active"
@@ -184,8 +201,16 @@
                             >
                         </td>
                         <td>
-                            <Link :href="'/acara/' + item.id + '/show'"
+                            <Link
+                                :href="'/acara/' + item.id + '/show'"
+                                class="me-3"
                                 >Lihat</Link
+                            >
+
+                            <Link
+                                class="text-danger"
+                                @click="hapusAcara(item.id)"
+                                >Hapus</Link
                             >
                         </td>
                     </tr>
@@ -231,6 +256,7 @@
 <script>
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "@inertiajs/inertia-vue3";
+import Swal from "sweetalert2";
 import AppLayout from "../../../Shared/AppLayout.vue";
 
 export default {
@@ -271,18 +297,14 @@ export default {
             untuk_tanggal: "",
             tempat: "",
             catatan: "",
+            for: null,
             is_active: true,
         });
         const handleSubmit = () => {
             form.post(route("acara.store"), {
                 preserveScroll: true,
                 onSuccess: () => {
-                    form.reset("nama_acara");
-                    form.reset("kategori_acara_id");
-                    form.reset("untuk_tanggal");
-                    form.reset("tempat");
-                    form.reset("catatan");
-                    form.reset("is_active");
+                    form.reset();
                     Toast.fire({
                         icon: "success",
                         title: "Acara Berhasil di buat",
@@ -290,7 +312,35 @@ export default {
                 },
             });
         };
-        return { handleSubmit, form };
+        const hapusAcara = (id) => {
+            // if (
+            //     confirm(
+            //         "MENGHAPUS MENYEBABKAN DATA REKAP ACARA JUGA HILANG ! -- Yakin mau hapus acara? "
+            //     )
+            // ) {
+            //     Inertia.get(route("acara.destroy", id));
+            // }
+
+            Swal.fire({
+                title: "Yakin Bos?",
+                text: "Pikir lagi! Menghapusnya menyebabkan data rekap Hilang juga loh!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Inertia.get(route("acara.destroy", id));
+                    Swal.fire(
+                        "Deleted!",
+                        "Your file has been deleted.",
+                        "success"
+                    );
+                }
+            });
+        };
+        return { handleSubmit, form, hapusAcara };
     },
 };
 </script>

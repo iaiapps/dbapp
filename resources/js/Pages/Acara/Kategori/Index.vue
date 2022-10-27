@@ -91,10 +91,10 @@
                                 class="btn btn-success btn-sm mx-1"
                                 >Edit</Link
                             >
-
                             <Link
                                 as="button"
-                                class="btn btn-success btn-sm mx-1"
+                                @click="hapusKategori(kt.id)"
+                                class="btn btn-danger btn-sm mx-1"
                                 >Hapus</Link
                             >
                         </td>
@@ -108,6 +108,7 @@
 import { useForm } from "@inertiajs/inertia-vue3";
 import AppLayout from "../../../Shared/AppLayout.vue";
 import Swal from "sweetalert2";
+import { Inertia } from "@inertiajs/inertia";
 
 export default {
     components: {
@@ -132,7 +133,23 @@ export default {
                 },
             });
         };
-        return { form, handleSubmit };
+        const hapusKategori = (id) => {
+            Swal.fire({
+                title: "Yakin Bos?",
+                text: "Pikir lagi! Acara yang punya kategori tersebut juga terhapus",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Inertia.get(route("acara.kategori.delete", id));
+                    Swal.fire("Deleted!", "Berhasil di hapus.", "success");
+                }
+            });
+        };
+        return { form, handleSubmit, hapusKategori };
     },
 };
 </script>

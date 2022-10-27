@@ -16,15 +16,18 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @routes
     <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
     <script src="{{ mix('/js/app.js') }}" defer></script>
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+
     @inertiaHead
 </head>
 
 <body>
 
     @inertia
+    <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>

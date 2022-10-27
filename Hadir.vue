@@ -3,40 +3,12 @@
         <div class="container">
             <card>
                 <div class="card-body">
-                    <H1 v-if="guru == null && siswa == null"
-                        >Daftar Hadir Untuk</H1
-                    >
-                    <h1 v-else>Pilih acara</h1>
-                    <h1>{{ data }}</h1>
+                    <H1>Pilih</H1>
                 </div>
             </card>
-            <!-- PERTAMA, PILIH KEHADIRAN UNTUK -->
-            <!-- <multiselect :options="options"></multiselect> -->
-            <div
-                class="col-md-6"
-                style="float: none; margin: auto"
-                v-if="!acara"
-            >
+            <div class="col-md-6" style="float: none; margin: auto">
                 <button
-                    class="btn btn-block btn-success text-uppercase my-3"
-                    @click="pilih(1)"
-                >
-                    Guru
-                </button>
-                <button
-                    class="btn btn-block btn-success text-uppercase my-3"
-                    @click="pilih(2)"
-                >
-                    Siswa / Orang tua
-                </button>
-            </div>
-            <!-- KEDUA, PILIH ACARA -->
-            <div
-                class="col-md-6"
-                style="float: none; margin: auto"
-                v-if="!isSelected"
-            >
-                <button
+                    v-if="!isSelected"
                     v-for="item in acara"
                     class="btn btn-block btn-success text-uppercase my-3"
                     @click="
@@ -47,22 +19,20 @@
                 >
                     {{ item.nama_acara }}
                 </button>
-            </div>
-
-            <!-- KETIGA, INPUT FORM -->
-            <div class="col-md-6" style="float: none; margin: auto" v-else>
-                <div>
-                    <label class="typo__label">Single select</label>
-                    <multiselect
-                        v-model="value"
-                        :options="options"
-                        :close-on-select="false"
-                        :show-labels="false"
-                        placeholder="Pick a value"
-                        @search-change="onSearchMechanicsChange"
-                    ></multiselect>
-                    <pre class="language-json"><code>{{ value  }}</code></pre>
-                </div>
+                <v-select
+                    v-if="isSelected"
+                    v-model="form.guru"
+                    :options="guru"
+                    :reduce="(guru) => guru.id"
+                    label="nama"
+                />
+                <button
+                    v-if="isSelected"
+                    @click="submit"
+                    class="btn btn-outline-success btn-block mt-4"
+                >
+                    Kirim
+                </button>
             </div>
         </div>
     </div>
@@ -89,29 +59,22 @@
             /></svg
     ></a>
 </template>
-
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
 import { defineProps, ref } from "vue";
 import Swal from "sweetalert2";
 import { Inertia } from "@inertiajs/inertia";
-components: {
-    Multiselect: window.VueMultiselect.default;
-}
 // let selectedAcara = ref("");
 // let selectedGuru = ref("");
 const form = useForm({
     guru: "",
     acara: "",
 });
-
 let isSelected = ref(false);
-let disableFor = ref(false);
 
 const props = defineProps({
     acara: Object,
-    data: Object,
-    filters: Object,
+    guru: Object,
 });
 const handleSelect = (id) => {
     selectedAcara.value = id;
@@ -130,48 +93,5 @@ const submit = () => {
             Inertia.get("/saya_hadir");
         },
     });
-};
-const pilih = (id) => {
-    Inertia.get(
-        route("acara.hadir"),
-        {
-            for: id,
-        },
-        {
-            preserveScroll: true,
-            preserveState: true,
-        }
-    );
-    disableFor.value = true;
-};
-let value = "";
-let options = [
-    "Select option",
-    "options",
-    "selected",
-    "multiple",
-    "label",
-    "searchable",
-    "clearOnSelect",
-    "hideSelected",
-    "maxHeight",
-    "allowEmpty",
-    "showLabels",
-    "onChange",
-    "touched",
-];
-const onSearchMechanicsChange = (term) => {
-    Inertia.get(
-        route("acara.hadir"),
-        {
-            for: props.filters.for,
-            name: term,
-        },
-        {
-            preserveState: true,
-            preserveScroll: true,
-            replace: true,
-        }
-    );
 };
 </script>
