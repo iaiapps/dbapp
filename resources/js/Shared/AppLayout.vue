@@ -58,7 +58,7 @@
                             <Link
                                 class="nav-link active"
                                 aria-current="page"
-                                href="/acara/teachers"
+                                href="/acara/students"
                                 >Rekap Ortu/Siswa</Link
                             >
                         </li>

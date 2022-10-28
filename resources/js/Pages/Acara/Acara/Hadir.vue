@@ -50,23 +50,31 @@
 
             <!-- KETIGA, INPUT FORM -->
             <div class="col-md-6" style="float: none; margin: auto" v-else>
-                <div>
-                    <label class="typo__label">Pilih</label>
-                    <multiselect
-                        v-model="siswaTerpilih"
-                        :options="data"
-                        label="nama"
-                        placeholder="Siswa / Orang tua dari"
-                        @search-change="cariData"
-                        track-by="nama"
-                    ></multiselect>
-                    <input
-                        type="text"
-                        disabled
-                        class="form-control"
-                        :value="siswaTerpilih.kelas"
-                    />
-                </div>
+                <form @submit.prevent="submit">
+                    <div>
+                        <!-- <label class="typo__label">Pilih</label> -->
+                        <multiselect
+                            v-model="form.siswa"
+                            :options="data"
+                            label="nama"
+                            placeholder="Siswa / Orang tua dari"
+                            @search-change="cariData"
+                            track-by="nama"
+                        ></multiselect>
+                        <input
+                            type="text"
+                            disabled
+                            class="form-control"
+                            :value="form.siswa.kelas"
+                        />
+                        <button
+                            type="submit"
+                            class="mt-3 btn btn-block btn-success"
+                        >
+                            Kirim
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -99,19 +107,17 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import { defineProps, ref } from "vue";
 import Swal from "sweetalert2";
 import { Inertia } from "@inertiajs/inertia";
-components: {
-    Multiselect: window.VueMultiselect.default;
-}
+
 // let selectedAcara = ref("");
 // let selectedGuru = ref("");
 const form = useForm({
+    siswa: "",
     guru: "",
     acara: "",
 });
 
 let isSelected = ref(false);
 let disableFor = ref(false);
-let siswaTerpilih = ref("");
 
 const props = defineProps({
     acara: Object,

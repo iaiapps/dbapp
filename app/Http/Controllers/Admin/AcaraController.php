@@ -149,6 +149,38 @@ class AcaraController extends Controller
         });
         return Inertia::render('Teacher/Show', compact('acara'));
     }
+    public function students(Request $req)
+    {
+        $bulan = $req->input('bulan') ?: date('m');
+        $tahun = $req->input('tahun') ?: date('Y');
+        $students = TempStudent::all()->map(function ($i) use ($bulan, $tahun) {
+            $acara = DB::table('acara_student')->where('temp_student_id', $i->id)
+                ->whereMonth('created_at', $bulan)
+                ->whereYear('created_at', $tahun)
+                ->count();
+            return [
+                'id' => $i->id,
+                'nama' => $i->nama,
+                'jml' => $acara
+            ];
+        })->toArray();
+        $filters = $req->only(['bulan', 'tahun']);
+        return Inertia::render('Acara/Students/Index', ['students' => $students, 'filters' => $filters]);
+    }
+    // public function teacherShow($id)
+    // {
+    //     $acara = Teacher::find($id)->acaras->map(function ($item) {
+    //         $ca = Carbon::parse($item->pivot->created_at);
+    //         return [
+    //             'id' => $item->id,
+    //             'nama_acara' => $item->nama_acara,
+    //             'kategori' => $item->kategoriAcara->nama_kategori,
+    //             'tanggal' => $ca->format('d M Y'),
+    //             'jam' => $ca->format('H:i:s'),
+    //         ];
+    //     });
+    //     return Inertia::render('Teacher/Show', compact('acara'));
+    // }
     public function hadir(Request $req)
     {
         if ($for = (int)$req->input('for')) {
@@ -183,14 +215,26 @@ class AcaraController extends Controller
     }
     public function hadirPost(Request $req)
     {
-        DB::table('acara_teacher')->insert(
-            [
-                'acara_id' => $req->acara,
-                'teacher_id' => $req->guru,
-                "created_at" =>  \Carbon\Carbon::now(),
-                "updated_at" =>  \Carbon\Carbon::now(),
-            ]
-        );
+        // dd($req->all());
+        if ($req->input('siswa') == null) {
+            DB::table('acara_teacher')->insert(
+                [
+                    'acara_id' => $req->acara,
+                    'teacher_id' => $req->guru,
+                    "created_at" =>  \Carbon\Carbon::now(),
+                    "updated_at" =>  \Carbon\Carbon::now(),
+                ]
+            );
+        } else {
+            DB::table('acara_student')->insert(
+                [
+                    'acara_id' => $req->acara,
+                    'temp_student_id' => $req->siswa['id'],
+                    "created_at" =>  \Carbon\Carbon::now(),
+                    "updated_at" =>  \Carbon\Carbon::now(),
+                ]
+            );
+        }
     }
     public function tahsin(Request $req)
     {
