@@ -9,8 +9,13 @@ class TempStudent extends Model
 {
     use HasFactory;
     protected $fillable = ['class_id', 'name'];
-    public function tempClass()
+    public function temp_class()
     {
         return $this->belongsTo(TempClass::class);
+    }
+    public function acaras()
+    {
+        return $this->belongsToMany(Acara::class, 'acara_student')->withPivot('created_at')
+            ->orderByDesc('id');
     }
 }

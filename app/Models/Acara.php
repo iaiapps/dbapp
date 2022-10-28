@@ -35,4 +35,8 @@ class Acara extends Model
     {
         return $this->belongsToMany(Teacher::class, 'acara_teacher')->withPivot('created_at')->orderByDesc('id');
     }
+    public function students()
+    {
+        return $this->belongsToMany(TempStudent::class, 'acara_student')->withPivot('created_at')->orderByDesc('id');
+    }
 }

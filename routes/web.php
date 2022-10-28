@@ -268,6 +268,8 @@ Route::middleware('role:operator|admin')->group(function () {
 
     Route::get('/acara/teachers', [AcaraController::class, 'teachers'])->name('acara.teachers');
     Route::get('/acara/teacher/{id}', [AcaraController::class, 'teacherShow']);
+    Route::get('/acara/students', [AcaraController::class, 'students'])->name('acara.students');
+    Route::get('/acara/teacher/{id}', [AcaraController::class, 'studentShow'])->name('acara.students.show');
 });
 
 Route::get('/acara/history', [AcaraController::class, 'history'])->name('acara.history');

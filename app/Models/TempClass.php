@@ -10,7 +10,7 @@ class TempClass extends Model
 {
     use HasFactory;
     protected $table = 'temp_classes';
-    public function tempStudent()
+    public function tempStudents()
     {
         return $this->hasMany(TempStudent::class);
     }
