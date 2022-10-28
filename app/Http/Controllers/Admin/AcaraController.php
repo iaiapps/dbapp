@@ -160,12 +160,22 @@ class AcaraController extends Controller
                 ->select('id', 'nama_acara')->get();
             $yang_dicari = $req->input('name');
             if ($for == 1) {
-                $data = Teacher::where('nama', 'LIKE', "%{$yang_dicari}%")->first();
-                dd($data);
-            } elseif ($for == 2) {
-                $data = TempStudent::where('name', 'LIKE', "{$yang_dicari}")->get();
+                $data = Teacher::where('nama', 'LIKE', "%{$yang_dicari}%")->skip(0)->take(5)->get()->map(function ($i) {
+                    return [
+                        'id' => $i->id,
+                        'nama' => $i->nama,
+                    ];
+                });
             } else {
-                $data = null;
+                $data = TempStudent::where('temp_students.name', 'LIKE', "%{$yang_dicari}%")
+                    ->skip(0)->take(5)->get()->map(function ($i) {
+                        return [
+                            'id' => $i->id,
+                            'nama' => $i->name,
+                            'kelas' => $i->temp_class->name,
+                            'kelas_id' => $i->temp_class->id,
+                        ];
+                    });
             }
             return Inertia::render('Acara/Acara/Hadir', compact('acara', 'filters', 'data'));
         }

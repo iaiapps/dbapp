@@ -7,7 +7,6 @@
                         >Daftar Hadir Untuk</H1
                     >
                     <h1 v-else>Pilih acara</h1>
-                    <h1>{{ data }}</h1>
                 </div>
             </card>
             <!-- PERTAMA, PILIH KEHADIRAN UNTUK -->
@@ -52,16 +51,21 @@
             <!-- KETIGA, INPUT FORM -->
             <div class="col-md-6" style="float: none; margin: auto" v-else>
                 <div>
-                    <label class="typo__label">Single select</label>
+                    <label class="typo__label">Pilih</label>
                     <multiselect
-                        v-model="value"
-                        :options="options"
-                        :close-on-select="false"
-                        :show-labels="false"
-                        placeholder="Pick a value"
-                        @search-change="onSearchMechanicsChange"
+                        v-model="siswaTerpilih"
+                        :options="data"
+                        label="nama"
+                        placeholder="Siswa / Orang tua dari"
+                        @search-change="cariData"
+                        track-by="nama"
                     ></multiselect>
-                    <pre class="language-json"><code>{{ value  }}</code></pre>
+                    <input
+                        type="text"
+                        disabled
+                        class="form-control"
+                        :value="siswaTerpilih.kelas"
+                    />
                 </div>
             </div>
         </div>
@@ -107,6 +111,7 @@ const form = useForm({
 
 let isSelected = ref(false);
 let disableFor = ref(false);
+let siswaTerpilih = ref("");
 
 const props = defineProps({
     acara: Object,
@@ -117,6 +122,7 @@ const handleSelect = (id) => {
     selectedAcara.value = id;
     isSelected.value = true;
 };
+
 const submit = () => {
     form.post("/saya_hadir", {
         preserveScroll: true,
@@ -144,7 +150,7 @@ const pilih = (id) => {
     );
     disableFor.value = true;
 };
-let value = "";
+
 let options = [
     "Select option",
     "options",
@@ -160,7 +166,7 @@ let options = [
     "onChange",
     "touched",
 ];
-const onSearchMechanicsChange = (term) => {
+const cariData = (term) => {
     Inertia.get(
         route("acara.hadir"),
         {
