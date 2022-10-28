@@ -54,6 +54,7 @@
                                 v-model="selectedSiswa"
                                 :options="siswa"
                                 :reduce="(siswa) => siswa.name"
+                                @input="cariSiswa"
                                 label="name"
                             />
                             <input
@@ -178,4 +179,7 @@ let pilihanWaktu = [
     { id: 2, name: "(Rabu, 15.30)" },
     { id: 3, name: "(Jumat, 15.30)" },
 ];
+const cariSiswa = (dd) => {
+    console.log(dd);
+};
 </script>
