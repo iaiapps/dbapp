@@ -21,15 +21,15 @@ class AcaraController extends Controller
     }
     public function history()
     {
-        $history = DB::table('acara_teacher')
+        $history = DB::table('acara_student')
             ->orderByDesc('created_at')
-            ->join('acara', 'acara_teacher.acara_id', '=', 'acara.id')
-            ->join('teachers', 'acara_teacher.teacher_id', '=', 'teachers.id')
-            ->select('nama', 'nama_acara', 'acara_teacher.created_at')
+            ->join('acara', 'acara_student.acara_id', '=', 'acara.id')
+            ->join('temp_students', 'acara_student.temp_student_id', '=', 'temp_students.id')
+            ->select('name', 'nama_acara', 'acara_student.created_at')
             ->paginate()
             ->through(function ($i) {
                 return [
-                    'nama' => $i->nama,
+                    'nama' => $i->name,
                     'nama_acara' => $i->nama_acara,
                     'ca' => Carbon::parse($i->created_at)->diffForHumans()
                 ];
@@ -151,36 +151,36 @@ class AcaraController extends Controller
     }
     public function students(Request $req)
     {
-        $bulan = $req->input('bulan') ?: date('m');
-        $tahun = $req->input('tahun') ?: date('Y');
-        $students = TempStudent::all()->map(function ($i) use ($bulan, $tahun) {
+        // $bulan = $req->input('bulan') ?: date('m');
+        // $tahun = $req->input('tahun') ?: date('Y');
+        $students = TempStudent::all()->map(function ($i) {
             $acara = DB::table('acara_student')->where('temp_student_id', $i->id)
-                ->whereMonth('created_at', $bulan)
-                ->whereYear('created_at', $tahun)
                 ->count();
             return [
                 'id' => $i->id,
-                'nama' => $i->nama,
-                'jml' => $acara
+                'nama' => $i->name,
+                'kelas' => $i->temp_class->name,
+                'jml' => $acara,
+                'showUrl' => url(route('acara.students.show', $i->id))
             ];
         })->toArray();
-        $filters = $req->only(['bulan', 'tahun']);
-        return Inertia::render('Acara/Students/Index', ['students' => $students, 'filters' => $filters]);
+        $kelas = TempClass::all();
+        return Inertia::render('Acara/Students/Index', compact('kelas', 'students'));
     }
-    // public function teacherShow($id)
-    // {
-    //     $acara = Teacher::find($id)->acaras->map(function ($item) {
-    //         $ca = Carbon::parse($item->pivot->created_at);
-    //         return [
-    //             'id' => $item->id,
-    //             'nama_acara' => $item->nama_acara,
-    //             'kategori' => $item->kategoriAcara->nama_kategori,
-    //             'tanggal' => $ca->format('d M Y'),
-    //             'jam' => $ca->format('H:i:s'),
-    //         ];
-    //     });
-    //     return Inertia::render('Teacher/Show', compact('acara'));
-    // }
+    public function studentShow($id)
+    {
+        $acara = TempStudent::find($id)->acaras->map(function ($item) {
+            $ca = Carbon::parse($item->pivot->created_at);
+            return [
+                'id' => $item->id,
+                'nama_acara' => $item->nama_acara,
+                'kategori' => $item->kategoriAcara->nama_kategori,
+                'tanggal' => $ca->format('d M Y'),
+                'jam' => $ca->format('H:i:s'),
+            ];
+        });
+        return Inertia::render('Teacher/Show', compact('acara'));
+    }
     public function hadir(Request $req)
     {
         if ($for = (int)$req->input('for')) {
@@ -215,12 +215,11 @@ class AcaraController extends Controller
     }
     public function hadirPost(Request $req)
     {
-        // dd($req->all());
         if ($req->input('siswa') == null) {
             DB::table('acara_teacher')->insert(
                 [
                     'acara_id' => $req->acara,
-                    'teacher_id' => $req->guru,
+                    'teacher_id' => $req->guru['id'],
                     "created_at" =>  \Carbon\Carbon::now(),
                     "updated_at" =>  \Carbon\Carbon::now(),
                 ]

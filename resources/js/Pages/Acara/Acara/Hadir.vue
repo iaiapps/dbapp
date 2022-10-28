@@ -52,22 +52,35 @@
             <div class="col-md-6" style="float: none; margin: auto" v-else>
                 <form @submit.prevent="submit">
                     <div>
-                        <!-- <label class="typo__label">Pilih</label> -->
                         <multiselect
+                            v-if="filters.for == 2"
                             v-model="form.siswa"
                             :options="data"
                             label="nama"
-                            placeholder="Siswa / Orang tua dari"
+                            placeholder="Cari nama Siswa / Guru disini..."
+                            @search-change="cariData"
+                            :custom-label="nameWithLang"
+                            track-by="nama"
+                        ></multiselect>
+                        <multiselect
+                            v-else
+                            v-model="form.guru"
+                            :options="data"
+                            label="nama"
+                            placeholder="Cari nama Siswa / Guru disini..."
                             @search-change="cariData"
                             track-by="nama"
                         ></multiselect>
-                        <input
+
+                        <!-- <input
+                            v-if="filters.for == 2"
                             type="text"
                             disabled
                             class="form-control"
                             :value="form.siswa.kelas"
-                        />
+                        /> -->
                         <button
+                            v-if="submitOn"
                             type="submit"
                             class="mt-3 btn btn-block btn-success"
                         >
@@ -78,7 +91,7 @@
             </div>
         </div>
     </div>
-    <a
+    <Link
         style="position: fixed; bottom: 20px; right: 20px"
         href="/acara/history"
         class="btn btn-sm btn-secondary"
@@ -99,7 +112,7 @@
             <path
                 d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"
             /></svg
-    ></a>
+    ></Link>
 </template>
 
 <script setup>
@@ -108,8 +121,6 @@ import { defineProps, ref } from "vue";
 import Swal from "sweetalert2";
 import { Inertia } from "@inertiajs/inertia";
 
-// let selectedAcara = ref("");
-// let selectedGuru = ref("");
 const form = useForm({
     siswa: "",
     guru: "",
@@ -118,7 +129,7 @@ const form = useForm({
 
 let isSelected = ref(false);
 let disableFor = ref(false);
-
+let submitOn = ref(true);
 const props = defineProps({
     acara: Object,
     data: Object,
@@ -130,19 +141,30 @@ const handleSelect = (id) => {
 };
 
 const submit = () => {
-    form.post("/saya_hadir", {
-        preserveScroll: true,
-        onSuccess: () => {
-            Swal.fire({
-                title: "Jazakumullah",
-                text: "Terima kasih, atas kehadirannya",
-                icon: "success",
-                confirmButtonText: "Aamiin",
-            });
-            Inertia.get("/saya_hadir");
-        },
-    });
+    if (form.guru != "" || form.siswa != "") {
+        submitOn.value = false;
+        form.post("/saya_hadir", {
+            preserveScroll: true,
+            onSuccess: () => {
+                Swal.fire({
+                    title: "Jazakumullah",
+                    text: "Terima kasih, atas kehadirannya",
+                    icon: "success",
+                    confirmButtonText: "Aamiin",
+                });
+                Inertia.get("/saya_hadir");
+            },
+        });
+    } else {
+        Swal.fire({
+            title: "Maaf",
+            text: "Lengkapi dulu ya",
+            icon: "error",
+            confirmButtonText: "ok",
+        });
+    }
 };
+
 const pilih = (id) => {
     Inertia.get(
         route("acara.hadir"),
@@ -185,5 +207,8 @@ const cariData = (term) => {
             replace: true,
         }
     );
+};
+const nameWithLang = ({ nama, kelas }) => {
+    return `${nama} [${kelas}]`;
 };
 </script>
